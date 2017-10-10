@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<odoo>
+        <template id="page_report">
+            <t t-call="report.html_container">
+              <t t-foreach="docs" t-as="result">
+                <t t-call="report.external_layout">
+                  <div class="page">
+                  <!-- 
+                  	<span t-field="result.name" class="titulor"></span>
+                  	<span t-field="result.code"></span>  -->
+                  	Hola Mundo!
+                  	<div class="text-center custom_css" style="font-size: 18pt;font-family:Helvetica,Verdana,Arial,sans,Lucida Grande,Calibri;"><b>** Thank you **</b></div>
+                  	<div class="text-center custom_css" style="font-size: 18pt;"><b>** Thank you **</b></div>
+                  </div>
+                </t>
+              </t>
+            </t>
+        </template>
+</odoo>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <data noupdate="1">
+
+        <!--Email template -->
+        <record id="email_template_edi_alumnos" model="mail.template"> 
+            <field name="name">RFQz</field>
+            <field name="email_from">${(object.create_uid.email and '%s &lt;%s&gt;' % (object.create_uid.name, object.create_uid.email) or '')|safe}</field>
+            <field name="subject">${object.company_id.name} Order (Ref ${object.name or 'n/a' })</field>
+            <field name="partner_to">${object.partner_id.id}</field>
+            <field name="model_id" ref="alumnos.model_alumnos_email1"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="report_template" ref="reports_email_id_qweb"/>
+            <field name="report_name">RFQ_${(object.name or '').replace('/','_')}</field>
+            <field name="lang">${object.partner_id.lang}</field>
+            <field name="body_html"><![CDATA[
+<p><strong>UNIVERSIDAD DE EL SALVADOR</strong></p>
+<p>
+% if object.partner_id.is_company and object.child_ids:
+    ${object.partner_id.child_ids[0].name}
+% else :
+    ${object.partner_id.name}
+% endif
+,</p><p>
+Here is a ${object.state in ('draft', 'sent') and 'request for quotation' or 'purchase order confirmation'} <strong>${object.name}</strong>
+% if object.partner_ref:
+    with reference: ${object.partner_ref}
+% endif
+% if object.origin:
+    (RFQ origin: ${object.origin})
+% endif
+amounting in <strong>${object.amount_total} ${object.currency_id.name}</strong>
+from ${object.company_id.name}.
+</p>
+
+<p>If you have any question, do not hesitate to contact us.</p>
+<p>Best regards,</p>
+]]></field>
+        </record>
+
+    </data>
+</odoo>

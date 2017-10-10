@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<odoo>
+        <template id="page_report_email">
+            <t t-call="report.html_container">
+              <t t-foreach="docs" t-as="result">
+                <t t-call="report.external_layout">
+                  <div class="page">
+                  <!-- 
+                  	<span t-field="result.name" class="titulor"></span>
+                  	<span t-field="result.code"></span>  -->
+                  	Hola Mundo!
+                  </div>
+                </t>
+              </t>
+            </t>
+        </template>
+</odoo>
