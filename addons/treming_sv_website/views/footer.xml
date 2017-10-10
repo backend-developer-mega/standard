@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="footer" inherit_id="website.layout" name="Footer">
+
+            <xpath expr="//div[@id='footer']" position="replace">
+
+            <div class="oe_structure" id="footer">
+                <section>
+                    <div class="container">
+                        <div class="row">
+
+                            <div class="col-foter-2">
+                                <h6 class="heading7">GENERAL LINKS</h6>
+                                <ul class="footer-ul footer-ul-aux">
+                                    <t t-foreach="website.menu_id.child_id" t-as="submenu">
+                                        <t t-call="website.submenu"/>
+                                    </t>
+                                </ul>
+                            </div>
+                            <div class="col-foter-3">
+                                <h6 class="heading7">CONTACTS</h6>
+                                <div class="post">
+
+
+
+                                    <p><i class="fa fa-map-pin"></i>
+                                        <span t-field="res_company.street"></span>
+                                        <br></br>
+                                        <span t-field="res_company.city"></span>,
+                                        <span t-field="res_company.country_id"></span></p>
+                                    <br></br>
+                                    <p><i class="fa fa-phone"></i> Phone: <a style="text-decoration: none; color: #a6a8aa;" t-att-href="'tel:' + res_company.phone"> <span t-field="res_company.phone"></span></a></p>
+                                    <br></br>
+                                    <p><i class="fa fa-envelope"></i> <span t-field="res_company.email"></span></p>
+                                    <br></br>
+
+                                   <img  src="/treming_sv_website/static/assets/images/odoo-fo.png" width="35%"  />
+
+                                </div>
+                            </div>
+                            <div class="col-foter-6">
+
+                                <div class="logofooter">
+
+                                    <a  href="/"><img  src="/treming_sv_website/static/assets/images/menu/logo-footer.png" width="120%"  /> </a>
+
+
+
+
+
+                                </div>
+
+                                <div class="post-2">
+                                <p>
+
+                                    We are a team of passionate people whose goal is to improve everyone's life, through disruptive technology products.
+                                    We build great products to solve your business problems.
+                                </p>
+
+                                <p>
+                                    Our products are designed for small to medium sized companies willing to optimize their performance.
+                                </p>
+
+                                    <ul class="footer-ul">
+                                        <li class="dropdown " style="width: 105px;">
+
+                                            <t t-foreach="languages" t-as="lg">
+
+                                                <t  t-if="request.context.get('lang')==lg[0]">
+
+                                                    <a  class="dropdown-toggle" data-toggle="dropdown" href="#" >
+
+
+
+                                                        <t t-if="request.context.get('lang') == 'en_US'">
+                                                            <img class="ima-ban-2" alt="" src="//odoocdn.com/openerp_website/static/src/img/2016/flags/en_US.png"/>
+
+                                                        </t>
+
+                                                        <t t-if="request.context.get('lang') != 'en_US'">
+                                                            <img class="ima-ban-2" alt="" src="//odoocdn.com/openerp_website/static/src/img/2016/flags/es_ES.png"/>
+                                                        </t>
+                                                        <span id="idi-label" style="float: right;
+                                                        margin-top: 2px;
+                                                        margin-left: 4px;">
+                                                            <t t-esc="lg[1].split('/').pop()"/>
+                                                            <span class="caret"></span>
+                                                        </span>
+
+                                                    </a>
+                                                </t>
+                                            </t>
+
+
+
+                                            <ul  class="dropdown-menu" role="menu" >
+                                                <t t-foreach="languages" t-as="lg">
+                                                    <t  t-if="request.context.get('lang')!=lg[0]">
+
+
+                                                        <li>
+
+                                                            <a      style="margin-top: 0px;"
+                                                                    t-att-href="url_for(request.httprequest.path + '?' + keep_query(), lang=lg[0])"
+                                                                    t-att-data-default-lang="(editable or translatable) and 'true' if website and lg[0] == website.default_lang_code else None"
+                                                                    t-att-data-lang="lg[0]"
+                                                                    class="js_change_lang"
+                                                            >
+                                                                <t t-if="lg[0] == 'en_US'">
+                                                                    <img class="ima-ban-2" alt="" src="//odoocdn.com/openerp_website/static/src/img/2016/flags/en_US.png"/>
+
+                                                                </t>
+
+                                                                <t t-if="lg[0] != 'en_US'">
+                                                                    <img class="ima-ban-2" alt="" src="//odoocdn.com/openerp_website/static/src/img/2016/flags/es_ES.png"/>
+                                                                </t>
+                                                                <span >
+                                                                    <t t-esc="lg[1].split('/').pop()"/>
+                                                                </span>
+                                                            </a>
+                                                        </li>
+
+
+
+
+
+
+                                                    </t>
+                                                </t>
+                                            </ul>
+
+
+                                        </li>
+
+                                    </ul>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+
+                    </div>
+                </section>
+            </div>
+
+            </xpath>
+
+    </template>
+    <template id="website.layout_footer_copyright" inherit_id="website.layout" name="Footer Copyright">
+        <xpath expr="//footer" position="inside">
+            <div class="copyright">
+                <div class="container">
+                        <div class="made-odoo">
+                            <a href="http://www.odoo.com/page/website-builder"> Website made  with <span class="o_logo-page o_logo_inverse o_logo_15"> </span> </a>
+                            &amp;nbsp;&amp;nbsp; Copyright &amp;copy; <span id="ahocopy"></span>,  <span class="white" t-field="res_company.name" itemprop="name">Company name</span>
+                        </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>

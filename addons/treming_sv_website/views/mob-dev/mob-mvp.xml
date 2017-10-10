@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!-- === Services Page === -->
+    <template name="MOBILE" id="website.mob-mvp" page="True">
+        <t t-call="website.layout">
+
+            <div class="oe_structure"/>
+
+
+
+            <section class="open-erp-custamization odoo java text-center  ">
+                <h3>
+                    <span class="f-nrslight text-center grey ">
+                         <span class="orange f-nrssemibld"> MVP  </span>(Minimum Viable Product)
+                        <div class="clear"></div>
+                    </span>
+                </h3>
+                <div class="down-arrow"></div>
+
+            </section>
+            <section class="inner-page">
+            <div class="wrapper">
+                <div class="row">
+                    <div class="col8 left-section">
+                        <h1 class="f-nrsthin grey">MVP (Minimum Viable Product)</h1>  <br></br>
+
+                        <p>MVP is one of the most discussed concepts in mobility space. Mostly used by startups, the concept of Minimum Viable Product increases the chances of success with their products on the market.</p>
+                        <p>Software development companies used to spend years building a stable product for release it to its customers. With technology moving so fast and methods like Agile
+                            ruling the industry, taking a Beta product as a minimum viable product makes sense. The trend was started by internet giant Google on most of their products and
+                            offerings. The Beta software improves over time with real time interactions and feedback from users.</p>
+                        <p>We can help you build your Minimum Viable Product for your Android or iOS applications, including the backend web services. </p>
+
+
+                    </div>
+                    <div class="col4 last  right-section">
+                        <span class="stripe"></span>
+                        <h3>Related Topics</h3>
+                        <ul>
+
+                            <li><a href="/page/mob-pro">Mobile Application Prototyping</a></li>
+
+                            <li><a href="/page/mob-app">Mobile Application Development</a></li>
+                            <li><a href="/page/mob-req">Request for quotation</a></li>
+
+                            <li><a href="/page/mob-hybrid-app">Hybrid Mobile Application Development</a></li>
+                            <li><a href="/page/mob-ios-app">iOS App Development</a></li>
+                            <li><a href="/page/mob-android">Android App Development</a></li>
+
+                        </ul>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </section>
+
+
+
+            <t t-call="website.contactus_custom_template"/>
+            <div class="oe_structure"/>
+        </t>
+    </template>
+
+</odoo>

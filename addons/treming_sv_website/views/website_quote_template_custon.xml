@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--
+    <template id="external_layout_header_cus" inherit_id="report.external_layout_header">
+        <xpath expr="//div[1]/div[1]/div[1]/img" position="replace">
+
+            <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="max-height: 100px;"/>
+
+
+        </xpath>
+    </template>
+
+    -->
+
+    <template id="assets_pdf_cus" inherit_id="report.assets_pdf">
+        <xpath expr="//link" position="replace">
+            <link href="/treming_sv_website/static/assets/css/reset.min.css" rel="stylesheet"/>
+        </xpath>
+    </template>
+
+    <template id="assets_frontend" inherit_id="website.assets_frontend" name="Website Quote frontend assets">
+        <xpath expr="." position="inside">
+            <link rel='stylesheet' href='/treming_sv_website/static/assets/css/style.css'/>
+        </xpath>
+    </template>
+
+
+    <!-- Options:Quotation Signature -->
+    <template id="opt_quotation_signature_cus"  inherit_id="website_quote.opt_quotation_signature" name="Ask Signature Cus" customize_show="True" >
+        <xpath expr="//a[@id='sign_clean']" position="replace">
+            <a id="sign_clean"><i class="fa fa-eraser" aria-hidden="true"></i></a>
+        </xpath>
+    </template>
+
+    <template id="navigation_menu_cus" inherit_id="website_quote.navigation_menu"  >
+        <xpath expr="//div[1]/ul[1]/li[1]" position="replace">
+        </xpath>
+    </template>
+
+
+
+
+
+
+
+
+</odoo>

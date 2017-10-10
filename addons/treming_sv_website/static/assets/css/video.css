@@ -1,0 +1,182 @@
+
+
+    .hide-ca{
+        display: none;
+    }
+
+    /* Create three columns of equal width */
+    .cont-pri{
+        margin:0 auto;
+        width: 95%;
+    }
+
+    .columns {
+        position: relative;
+        display: inline-block;
+        width: 25%;
+        padding: 8px;
+
+    }
+
+    .columns-2 {
+        position: relative;
+        display: inline-block;
+        width: 45%;
+        padding: 8px;
+
+    }
+
+    /* Style the list */
+    .price {
+        list-style-type: none;
+        border: 1px solid #eee;
+        margin: 0;
+        padding: 0;
+        -webkit-transition: 0.3s;
+        transition: 0.3s;
+        background: white;
+    }
+
+
+    /* Style the list */
+    .price-2 {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        background: transparent;
+    }
+
+
+    /* Pricing header */
+    .price-2 .header {
+        background-color: transparent;
+    }
+
+    /* List items */
+    .price-2 li {
+
+        text-align: left;
+        display: block;
+        margin: 1.2em 0;
+        height: 40px;
+        font-size: 14px;
+        line-height: 1.832;
+
+    }
+
+    /* Add shadows on hover */
+    .price:hover {
+        box-shadow: 0 8px 12px 0 rgba(0,0,0,0.2)
+    }
+
+    /* Pricing header */
+    .price .header {
+        background-color: white;
+        color: #646464;
+        font-weight: bold;
+        font-size: 20px;
+        text-transform:uppercase;
+        padding: 1em;
+        margin-top: 0;
+    }
+
+    /* List items */
+    .price li {
+
+        text-align: center;
+        display: block;
+        margin: 1.2em 0;
+        height: 40px;
+        font-size: 14px;
+
+        background:  #fffbfc;
+
+    }
+
+    /* Grey list item */
+    .price .grey-pri {
+        position: relative;
+        padding: 10px;
+        background: #929fa8;
+        background: -webkit-linear-gradient(180deg, #98A6B0 20%, #8B979F 80%);
+        background: -moz-linear-gradient(180deg, #98A6B0 20%, #8B979F 80%);
+        background: -ms-linear-gradient(180deg, #98A6B0 20%, #8B979F 80%);
+        background: -o-linear-gradient(180deg, #98A6B0 20%, #8B979F 80%);
+        background: linear-gradient(180deg, #98A6B0 20%, #8B979F 80%);
+        color: white;
+        font-weight: bold;
+    }
+
+
+
+    /* Change the width of the three columns to 100%
+    (to stack horizontally on small screens) */
+    @media only screen and (max-width: 600px) {
+        .columns {
+            width: 100%;
+        }
+
+        .hide-col {
+            display:none ;
+
+        }
+
+        .hide-ca{
+            display: block;
+        }
+
+
+        cont-pri{
+            width: 95%;
+        }
+
+
+    }
+
+    .car-list  p{
+    display: none;
+
+    }
+
+    .car-list-sh  p{
+        display: block !important;
+        overflow: hidden;
+        transition: max-height 0.6s ease-out;
+
+
+    }
+
+    .car-list-sh  a{
+       font-weight: bold;
+
+    }
+
+    .car-list  a{
+
+        text-decoration: none;
+        color: #646464;
+
+    }
+
+
+    .list-style1-ca li {
+        background: #fff none repeat scroll 0 0;
+        border-bottom: 1px solid #ddd;
+        border-left: 1px solid #ddd;
+        box-shadow: 2px -1px 2px #ddd;
+        color: #646464;
+        font-size: 14px;
+        line-height: 1.813em;
+        margin-bottom: 10px;
+        padding: 10px 20px;
+        list-style: none;
+
+    }
+
+
+    .mar-row-20{
+        margin-bottom: 20px;
+    }
+
+
+

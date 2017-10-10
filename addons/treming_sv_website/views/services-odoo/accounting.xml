@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!-- === Services Page === -->
+    <template name="accounting" id="website.accounting" page="True">
+        <t t-call="website.layout">
+
+            <div class="oe_structure"/>
+            <div id="wrap">
+
+
+
+                <section class="open-erp-custamization odoo java text-center  ">
+                    <h3>
+                        <span class="f-nrslight text-center grey ">
+                            <span class="orange f-nrssemibld"> Accounting </span>
+                            <div class="clear"></div>
+                        </span>
+                    </h3>
+                    <h3 class="grey f-nrssemibld">ON CLOUD SOLUTION<br></br></h3>
+                    <div class="down-arrow"></div>
+                </section>
+
+
+
+                <t t-call="website.contactus_custom_template"/>
+            </div>
+            <div class="oe_structure"/>
+        </t>
+    </template>
+
+</odoo>

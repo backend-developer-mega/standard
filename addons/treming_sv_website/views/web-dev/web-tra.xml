@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!-- === Services Page === -->
+    <template name="WEB" id="website.web-tra" page="True">
+        <t t-call="website.layout">
+
+            <div class="oe_structure"/>
+
+
+
+            <section class="open-erp-custamization odoo java text-center  ">
+                <h3>
+                    <span class="f-nrslight text-center grey ">
+                        Web Development<span class="orange f-nrssemibld"> Training  </span>
+                        <div class="clear"></div>
+                    </span>
+                </h3>
+                <div class="down-arrow"></div>
+
+            </section>
+
+
+            <section class="inner-page">
+                <div class="wrapper">
+                    <div class="row">
+                        <div class="col8 left-section">
+                            <h1 class="f-nrsthin grey">Web Development Training</h1>  <br></br>
+                            <p>Whether it’s a website, web portal, or web based product development, at Treming we believe training your staff and stakeholders on the software is of high priority.</p>
+                            <p>we believe training your staff and stakeholders on the software is of high priority. Once the project development is complete, and before the UAT phase, we make sure
+                                that all of your stakeholders are properly trained on the software, whether in person or using online conferencing tools like WebEx or Skype.</p>
+
+                        </div>
+                        <div class="col4 last  right-section">
+                            <span class="stripe"></span>
+                            <h3>Related Topics</h3>
+                            <ul>
+
+                            
+                                <li><a href="/page/web-req-ana">Requirement Analysis</a></li>
+                                <li><a href="/page/web-po">Web Portals</a></li>
+                                <li><a href="/page/web-req-quo">Request for quotation</a></li>
+
+                                <li><a href="/page/web-tec">Web-Technologies</a></li>
+                                <li><a href="/page/web-bra">Branding</a></li>
+                                <li><a href="/page/web-seo">Search Engine Optimization</a></li>
+                                <li><a href="/page/web-e-com">E-Commerce</a></li>
+                            </ul>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </section>
+
+
+
+            <t t-call="website.contactus_custom_template"/>
+            <div class="oe_structure"/>
+        </t>
+    </template>
+
+</odoo>

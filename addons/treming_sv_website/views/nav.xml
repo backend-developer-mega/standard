@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+  <!-- Customize header  -->
+  <template id="nav_cus" inherit_id="website.layout" name="Custom Header">
+    <!-- Add an element after the top menu  -->
+    <xpath expr="//div[@id='wrapwrap']/header" position="replace">
+      <header>
+
+          <div class="navbar navbar-default navbar-static-top" style="display: none; margin:0; padding:0; " >
+            <div class="container">
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-top-collapse">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>pixeles
+                </button>
+                <a class="navbar-brand" href="/" t-if="website" t-field="website.name">My Website</a>
+              </div>
+              <div class="collapse navbar-collapse navbar-top-collapse">
+                <ul class="nav navbar-nav navbar-right" id="top_menu">
+                  <t t-foreach="website.menu_id.child_id" t-as="submenu">
+                    <t t-call="website.submenu"/>
+                  </t>
+                  <li class="divider" t-ignore="true" t-if="website.user_id != user_id"/>
+                  <li class="dropdown" t-ignore="true" t-if="website.user_id != user_id">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                      <b>
+                        <span t-esc="(len(user_id.name)&gt;25) and (user_id.name[:23]+'...') or user_id.name"/>
+                        <span class="caret"></span>
+                      </b>
+                    </a>
+                    <ul class="dropdown-menu js_usermenu" role="menu">
+                      <li id="o_logout"><a t-attf-href="/web/session/logout?redirect=/" role="menuitem">Logout</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <span class="stripe"></span>
+          <div class="wrapper">
+            <div class="row">
+              <div class="col12">
+
+                <div class="logo left"><a  href="/page/home"><img  src="/treming_sv_website/static/assets/images/menu/logo.png" /></a></div>
+
+                <input type="checkbox" id="text" style="visibility:hidden;"/>
+                <label class="menu-btn" for="text" ></label>
+                <label class="menu-btn_overlay" for="text" ></label>
+                <div class="bg-gray-color"></div>
+
+                <div class="menu" id="nav">
+                  <ul >
+
+                    <t t-foreach="website.menu_id.child_id" t-as="submenu">
+                      <t t-call="website.sub"/>
+                    </t>
+
+
+                    <li class="has-child" t-ignore="true" t-if="website.user_id != user_id" >
+                      <i class="fa fa-paper-plane" style="visibility: hidden;"></i><a href="#"><span t-esc="(len(user_id.name)&gt;10) and (user_id.name[:8]+'...') or user_id.name"/></a>
+                      <ul>
+                        <li id="o_logout"><a t-attf-href="/web/session/logout?redirect=/">LOGOUT</a></li>
+                      </ul>
+                    </li>
+
+
+                    <li groups="base.group_public">
+                      <a t-attf-href="/web/login">
+                        <b>SIGN IN</b>
+                      </a>
+                    </li>
+
+
+                  </ul>
+                </div>
+            <label class="search-btn" for="search"></label>
+            <input type="checkbox" id="search" style="visibility:hidden;"/>
+
+              <div class="right dot"><!--search-->
+
+
+                <div class="len-aux">
+
+                <div class="menu1">
+                <ul  t-if="(request and request.website_multilang and len(languages) &gt; 1) or (website and (editable or translatable))">
+                <li >
+
+                  <t t-foreach="languages" t-as="lg">
+                  <t  t-if="request.context.get('lang')==lg[0]">
+
+                  <a  class="has-child" href="#">
+
+
+
+                      <t t-if="request.context.get('lang') == 'en_US'">
+                        <img class="ima-ban" alt="" src="//odoocdn.com/openerp_website/static/src/img/2016/flags/en_US.png"/>
+
+                      </t>
+
+                     <t t-if="request.context.get('lang') != 'en_US'">
+                      <img class="ima-ban" alt="" src="//odoocdn.com/openerp_website/static/src/img/2016/flags/es_ES.png"/>
+                     </t>
+                  <span id="idi-label" style="  vertical-align: text-top;  ">
+                      <t t-esc="lg[1].split('/').pop()"/>
+                    <span class="caret"></span>
+                  </span>
+
+                  </a>
+                  </t>
+                  </t>
+
+
+
+                  <ul  role="menu"   >
+                    <t t-foreach="languages" t-as="lg">
+                      <t  t-if="request.context.get('lang')!=lg[0]">
+
+
+                            <li>
+
+                              <a      style="margin-top: 0px;"
+                                      t-att-href="url_for(request.httprequest.path + '?' + keep_query(), lang=lg[0])"
+                                      t-att-data-default-lang="(editable or translatable) and 'true' if website and lg[0] == website.default_lang_code else None"
+                                      t-att-data-lang="lg[0]"
+                                      class="js_change_lang"
+                              >
+                                <t t-if="lg[0] == 'en_US'">
+                                  <img class="ima-ban-2" alt="" src="//odoocdn.com/openerp_website/static/src/img/2016/flags/en_US.png"/>
+
+                                </t>
+
+                                <t t-if="lg[0] != 'en_US'">
+                                  <img class="ima-ban-2" alt="" src="//odoocdn.com/openerp_website/static/src/img/2016/flags/es_ES.png"/>
+                                </t>
+                                  <span >
+                                <t t-esc="lg[1].split('/').pop()"/>
+                                  </span>
+                              </a>
+                            </li>
+
+
+
+
+
+
+                      </t>
+                    </t>
+                  </ul>
+                </li>
+
+                </ul>
+                </div>
+                </div>
+
+              <div class="len-aux2">
+              <a t-att-href="'tel:' + res_company.phone"><div class="phone_no"> <i class="fa fa-phone darkorange"></i></div></a>
+              </div>
+
+            </div>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+      </header>
+    </xpath>
+  </template>
+
+  <!-- Layout -->
+  <template id="website.sub" name="Custom Sub Menu" >
+    <li t-if="not submenu.child_id" t-att-class="
+        'active' if submenu.url and submenu.url != '/' and request.httprequest.path == submenu.url.replace('/page/website.', '/page/') else None
+        ">
+      <a t-att-href="(website.menu_id.child_id[0] == submenu) and '/' or submenu.url" t-ignore="true" t-att-target="'_blank' if submenu.new_window else None">
+        <span t-field="submenu.name"/>
+      </a>
+    </li>
+
+    <li t-if="submenu.child_id" t-attf-class="has-child  #{
+        (submenu.url and submenu.url != '/' and any([request.httprequest.path == child.url.replace('/page/website.', '/page/') for child in submenu.child_id if child.url]) or
+         (submenu.url and request.httprequest.path == submenu.url.replace('/page/website.', '/page/'))) and 'active'
+        }">
+      <a class=""  href="#">
+        <span t-field="submenu.name"/> <span class="caret" t-ignore="true"></span>
+      </a>
+      <ul class="" role="menu">
+        <t t-foreach="submenu.child_id" t-as="submenu">
+          <t t-call="website.submenu"/>
+        </t>
+      </ul>
+    </li>
+  </template>
+
+</odoo>

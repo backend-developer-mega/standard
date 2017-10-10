@@ -1,0 +1,168 @@
+<openerp>
+  <data>
+
+  	<record model="ir.ui.view" id="course_form_view">
+      <field name="name">course.form</field>
+      <field name="model">openacademy.course</field>
+      <field name="arch" type="xml">
+        <form string="Course Form">
+          <sheet>
+            <group>
+              <field name="name"/>
+            </group>
+            <notebook>
+              
+              <page string="Lista de evaluaciones">
+                <field name="session_ids" context="{'default_course_id': active_id}">
+                  <tree string="Registered sessions" editable="top">
+                    <field name="name"/>
+                    <field name="lastname"/>
+                  </tree>
+                </field>
+              </page>
+              <page string="Lista de alumnos">
+                <field name="alumnos_ids" context="{'default_course_id': active_id}">
+                  <tree string="Registered alumnos">
+                    <field name="fullname"/>
+                  </tree>
+                </field>
+              </page>
+              <page string="About">
+                This is an example of notebooks
+              </page>
+
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="session_form_view">
+      <field name="name">session.form</field>
+      <field name="model">openacademy.session</field>
+      <field name="arch" type="xml">
+        <form string="Course Form">
+          <sheet>
+            <group>
+              <field name="name"/>
+            </group>
+            <notebook>              
+              <page string="Evaluacion">
+                    <field name="name"/>
+                    <field name="lastname"/>
+                    <field name="course_id"/>
+              </page>              
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="alumno_form_view">
+      <field name="name">alumno.form</field>
+      <field name="model">openacademy.alumno</field>
+      <field name="arch" type="xml">
+        <form string="Course Form">
+          <sheet>
+            <group>
+              <field name="fullname"/>
+            </group>
+            <notebook>              
+              <page string="Evaluacion">
+                    <field name="fullname"/>
+                    <field name="course_id"/>
+              </page> 
+              
+              <page string="Lista de evaluaciones">
+                <field name="session_ids">
+                  <tree string="Registered alumnos">
+                    <field name="session_id"/>
+                    <field name="nota"/>
+                  </tree>
+                </field>
+              </page>             
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+    
+    <record model="ir.ui.view" id="alumno_session_form_view">
+      <field name="name">session.form</field>
+      <field name="model">openacademy.alumno.evaluaciones</field>
+      <field name="arch" type="xml">
+        <form string="Course Form">
+          <sheet>
+            <notebook>              
+              <page string="Evaluacion Alumno">
+                    <field name="alumno_id"/>
+                    <field name="session_id"/>
+                    <field name="nota" />
+              </page>              
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+	<record model="ir.actions.act_window" id="course_list_action">
+	      <field name="name">Projecto</field>
+	      <field name="res_model">openacademy.course</field>
+	      <field name="view_type">form</field>
+	      <field name="view_mode">tree,form</field>
+	      <field name="context" eval="{'search_default_my_courses': 1}"/>
+	      <field name="help" type="html">
+	        <p class="oe_view_nocontent_create">Create the first course.
+	        </p>
+	      </field>
+    </record>
+	
+	<record model="ir.actions.act_window" id="session_list_action">
+	      <field name="name">Evaluaciones</field>
+	      <field name="res_model">openacademy.session</field>
+	      <field name="view_type">form</field>
+	      <field name="view_mode">tree,form</field>
+	      <field name="help" type="html">
+	        <p class="oe_view_nocontent_create">Create the first session.
+	        </p>
+	      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="alumno_list_action">
+	      <field name="name">Evaluaciones</field>
+	      <field name="res_model">openacademy.alumno</field>
+	      <field name="view_type">form</field>
+	      <field name="view_mode">tree,form</field>
+	      <field name="help" type="html">
+	        <p class="oe_view_nocontent_create">Create the first alumno.
+	        </p>
+	      </field>
+    </record>
+    
+    <record model="ir.actions.act_window" id="alumno_session_list_action">
+	      <field name="name">Evaluaciones</field>
+	      <field name="res_model">openacademy.alumno.evaluaciones</field>
+	      <field name="view_type">form</field>
+	      <field name="view_mode">tree,form</field>
+	      <field name="help" type="html">
+	        <p class="oe_view_nocontent_create">Create the first alumno evaluaciones.
+	        </p>
+	      </field>
+    </record>
+
+    <menuitem name="Open Academy" id="main_openacademy_menu"/>    
+    <menuitem name="Open Academy" id="openacademy_menu" parent="main_openacademy_menu"/> 
+
+    <menuitem name="Projecto" id="courses_menu" parent="openacademy_menu"
+              action="course_list_action"/>
+    <menuitem name="Evaluaciones" id="session_menu" parent="openacademy_menu"
+              action="session_list_action"/>
+	<menuitem name="Alumnos" id="alumno_menu" parent="openacademy_menu"
+              action="alumno_list_action"/>
+	<menuitem name="Alumnos Evaluaciones" id="alumno_session_menu" parent="openacademy_menu"
+              action="alumno_session_list_action"/>
+
+
+  </data>
+</openerp>

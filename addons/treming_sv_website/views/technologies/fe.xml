@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!-- === Services Page === -->
+    <template name="FrontEnd" id="website.fe" page="True">
+        <t t-call="website.layout">
+
+            <div class="oe_structure"/>
+            <div id="wrap">
+
+
+
+                <section class="open-erp-custamization odoo java text-center  ">
+                    <h3>
+                        <span class="f-nrslight text-center grey ">
+                             <span class="orange f-nrssemibld"> FrontEnd </span>
+                            <div class="clear"></div>
+                        </span>
+                    </h3>
+                    <h3 class="grey f-nrssemibld">Application Development<br></br></h3>
+                    <div class="down-arrow"></div>
+                </section>
+
+
+                <section class="about-services">
+                    <div class="wrapper">
+                        <div class="row">
+                            <div class="col6 left-section">
+                                <ul>
+                                    <li class="brdr-orange"><span id="dad-f"></span> years in IT</li>
+                                    <li class="brdr-orange ">300+ Projects Delivered</li>
+                                    <li class="brdr-orange ">No 3rd Party Outsourcing</li>
+                                    <li class="brdr-orange">Strict NDA</li>
+                                    <li class="brdr-orange">Consistent R&amp;D</li>
+                                </ul>
+                            </div>
+                            <div class="col6 last  right-section">
+                                <h4 class="f-nrsblack">FrontEnd<span class="f-nrssemibld"> Application Development </span></h4>
+                                <p class="f-gothm text-25"><span class="f-gothm-b">Treming</span> has proven expertise in building <span class="f-gothm-b">Enterprise </span>applications using <span class="f-gothm-r">this technologies stack.</span><span class="text-20"> Our clientele varies from Fortune 100 companies to privately held small and medium businesses.</span></p>
+                                <ul class="logo-wrap2">
+
+
+                                    <li><img src="/treming_sv_website/static/assets/images/technologies/fe/3.png" alt=""/></li>
+                                    <li><img src="/treming_sv_website/static/assets/images/technologies/fe/6.png" alt=""/></li>
+                                    <li><img src="/treming_sv_website/static/assets/images/technologies/fe/12.png" alt=""/></li>
+
+
+                                    <li><img src="/treming_sv_website/static/assets/images/technologies/fe/2.png" alt=""/></li>
+
+
+                                    <li><img src="/treming_sv_website/static/assets/images/technologies/fe/5.png" alt=""/></li>
+                                    <li><img src="/treming_sv_website/static/assets/images/technologies/fe/14.png" alt=""/></li>
+
+
+                                    <li><img src="/treming_sv_website/static/assets/images/technologies/fe/4.png" alt=""/></li>
+                                    <li><img src="/treming_sv_website/static/assets/images/technologies/fe/8.png" alt=""/></li>
+                                    <li><img src="/treming_sv_website/static/assets/images/technologies/fe/13.png" alt=""/></li>
+
+                                    <li><img src="/treming_sv_website/static/assets/images/technologies/fe/1.png" alt=""/></li>
+                                    <li><img src="/treming_sv_website/static/assets/images/technologies/fe/7.png" alt=""/></li>
+                                    <li><img src="/treming_sv_website/static/assets/images/technologies/fe/15.png" alt=""/></li>
+                                    <li><img src="/treming_sv_website/static/assets/images/technologies/fe/16.png" alt=""/></li>
+
+
+                                    <li><img src="/treming_sv_website/static/assets/images/technologies/fe/17.png" alt=""/></li>
+
+                                    <li><img src="/treming_sv_website/static/assets/images/technologies/fe/18.png" alt=""/></li>
+                                    <li><img src="/treming_sv_website/static/assets/images/technologies/fe/19.png" alt=""/></li>
+
+
+
+
+
+
+                                </ul>
+
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="java-dev">
+
+                    <div class="col-md-4 bg-orange last">
+                        <img src="/treming_sv_website/static/assets/images/technologies/analytics-icon.png"/><h4>Analysis &amp; Consulting</h4>
+                        <ul>
+                            <li>Business Analysis</li>
+                            <li>Requirements Gathering</li>
+                            <li>Database Architecture</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4 bg-orange last">
+                        <img src="/treming_sv_website/static/assets/images/technologies/frotned.png"/><h4>FrontEnd Development</h4>
+                        <ul>
+                            <li>Custom Application Development</li>
+
+                            <li>Legacy Modernization</li>
+                            <Li>Project Rescue</Li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4 bg-orange last">
+                        <img src="/treming_sv_website/static/assets/images/technologies/enterprise-icon.png"/><h4>Enterprise</h4>
+                        <ul>
+                            <li>3rd Party Integration</li>
+                            <li>Data Migration</li>
+                            <li>Data Governance</li>
+                            <li> Documentation</li>
+                        </ul>
+                    </div> <div class="clear"></div>
+
+                </section>
+
+                <t t-call="website.contactus_custom_template"/>
+            </div>
+            <div class="oe_structure"/>
+        </t>
+    </template>
+
+</odoo>

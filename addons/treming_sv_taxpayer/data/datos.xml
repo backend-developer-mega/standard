@@ -1,0 +1,25 @@
+<odoo>
+	<data noupdate="1">
+		<!--Defino los parametros que me dicen el nombre de los impuestos de retencion 
+			y percepcion -->
+		<record model="ir.config_parameter" id="retenido">
+			<field name="key">retenido</field>
+			<field name="value">IVA Retenido</field>
+		</record>
+		<record model="ir.config_parameter" id="percibido">
+			<field name="key">percibido</field>
+			<field name="value">IVA Percibido</field>
+		</record>
+
+		<!-- Como el nombre de las posiciones fiscales puede cambiar en el futuro, 
+			debo almacenarlo en parametros del sistema -->
+		<record model="ir.config_parameter" id="pf_peq">
+			<field name="key">peq_contrib</field>
+			<field name="value">Contribuyente</field>
+		</record>
+		<record model="ir.config_parameter" id="pf_gran">
+			<field name="key">gra_contrib</field>
+			<field name="value">Gran Contribuyente</field>
+		</record>
+	</data>
+</odoo>

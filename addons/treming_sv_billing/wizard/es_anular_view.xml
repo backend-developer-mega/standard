@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+	<!-- Formuario de los Impuestos -->
+	<record id="es_anular_confirmacion_view" model="ir.ui.view">
+			<field name="name">conf.anular</field>
+			<field name="model">esinvoice.anular</field>
+			<field name="arch" type="xml">
+				<form>
+					<group>
+						<field name="justificacion" />
+					</group>
+					<footer>
+						<button name="anular_factura" string="Anular" type="object"
+							class="oe_highlight" />
+						<button string="Cancelar" class="oe_link" special="cancel" />
+					</footer>
+				</form>
+			</field>
+		</record>
+
+		<record id="es_anular_confirmacion_action" model="ir.actions.act_window">
+			<field name="name">Confirmar Anulación</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">esinvoice.anular</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="es_anular_confirmacion_view" />
+			<field name="target">new</field>
+		</record>
+
+       <act_window id="es_anular_confirmacion_action"
+              name="Anular Documento"
+              res_model="esinvoice.anular"
+              view_mode="form"
+              target="new"
+        />
+	</data>
+</odoo>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<!-- Formuario de los Impuestos -->
+<!-- 	<record id="es_reporte_ventas_form_view" model="ir.ui.view"> -->
+<!-- 		<field name="name">account.reporte.ventas.form</field> -->
+<!-- 		<field name="model">account.report.general.ventas</field> -->
+<!-- 		<field name="inherit_id" ref="account.account_common_report_view" /> -->
+<!-- 		<field name="arch" type="xml"> -->
+<!-- 			<data> -->
+<!-- 				<xpath expr="//field[@name='target_move']" position="replace"> -->
+<!-- 					<field name="tipo_doc" /> -->
+<!-- 				</xpath> -->
+<!-- 				<xpath expr="//field[@name='date_from']" position="before"> -->
+<!-- 					<field name="state" /> -->
+<!-- 				</xpath> -->
+<!-- 				<xpath expr="//field[@name='journal_ids']" position="replace"> -->
+<!-- 				</xpath> -->
+<!-- 				<xpath expr="//field[@name='date_from']" position="attributes"> -->
+<!-- 					<attribute name="string">Fecha de Inicio</attribute> -->
+<!-- 				</xpath> -->
+<!-- 				<xpath expr="//field[@name='date_to']" position="attributes"> -->
+<!-- 					<attribute name="string">Fecha de Fin</attribute> -->
+<!-- 				</xpath> -->
+<!-- 				<xpath expr="//button[@name='check_report']" position="replace"> -->
+<!-- 					<button name="calculate_report" type="object" string="Imprimir" class="oe_highlight"/> -->
+<!-- 				</xpath> -->
+<!-- 			</data> -->
+<!-- 		</field> -->
+<!-- 	</record> -->
+
+<!-- 	<record id="es_account_reportes_ventas_action" model="ir.actions.act_window"> -->
+<!-- 		<field name="name">Reporte de Ventas</field> -->
+<!-- 		<field name="type">ir.actions.act_window</field> -->
+<!-- 		<field name="res_model">account.report.general.ventas</field> -->
+<!-- 		<field name="view_type">form</field> -->
+<!-- 		<field name="view_mode">form</field> -->
+<!-- 		<field name="view_id" ref="es_reporte_ventas_form_view" /> -->
+<!-- 		<field name="target">new</field> -->
+<!-- 	</record> -->
+
+<!-- 	<menuitem id="es_account_reportes_ventas" name="Reportes" -->
+<!-- 		parent="account.menu_finance_receivables" action="es_account_reportes_ventas_action" /> -->
+</odoo>

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!-- === Services Page === -->
+    <template name="MOBILE" id="website.mob-app-dev" page="True">
+        <t t-call="website.layout">
+
+            <div class="oe_structure"/>
+
+
+            <section class="home-banner">
+            <div class="slider1">
+            <div>
+            <section class="open-erp-custamization odoo mob-banner img-responsive">
+                <div class="banner-caption grey greyAux  f-nrslight padding-lg">
+                    <h1 class="fadeInRight animated">We develop and deliver </h1>
+                    <h2 class="fadeInRight animated">high quality<span class="orange f-nrssemibld"> Mobile Applications </span></h2>
+                    <h3 class="fadeInRight animated">for your<span class="orange f-nrssemibld"> Business.</span></h3>
+                    <a href="/page/contactus" class="button-2 text-cap btn bg-black white f-nrssemibld hvr-sweep-to-right fadeInRight animated"> CONTACT US </a>
+                </div>
+            </section>
+            </div>
+            </div>
+            </section>
+
+
+
+            <section class="grid_galllery web" id="web-d">
+                <div class="wrap first-section">
+                    <div class="half-section">
+
+                        <a href="#web-d">
+                            <div class="case-study">
+                                <img src="/treming_sv_website/static/assets/images/mob-dev/web-case-study-bg.jpg"/>
+                                <div class="text-wrap">
+                                    <img class="icon-image" src="/treming_sv_website/static/assets/images/mob-dev/cl-icon.png"/>
+                                    <h2>Case studies</h2>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="/page/mob-pro">
+                            <div class="training">
+                                <img src="/treming_sv_website/static/assets/images/mob-dev/training-bg.jpg" title=""/>
+                                <div class="text-wrap">
+                                    <img class="icon-image" src="/treming_sv_website/static/assets/images/mob-dev/training-blk-icon.png" title=""/>
+                                    <h2> Prototyping</h2>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#web-d">
+                            <div class="web-design">
+                                <img src="/treming_sv_website/static/assets/images/mob-dev/wd-bg.jpg"/>
+                                <div class="text-wrap">
+                                    <img class="icon-image" src="/treming_sv_website/static/assets/images/mob-dev/bl-icon.png"/>
+                                    <h2 > <span class="white" > UI Studio </span></h2>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#web-d">
+                            <div class="web-portfolio">
+                                <img src="/treming_sv_website/static/assets/images/mob-dev/web-portfolio-bg.jpg"/>
+                                <div class="text-wrap">
+                                    <img class="icon-image" src="/treming_sv_website/static/assets/images/mob-dev/o-connector-black-icon.png"/>
+                                    <h2>Portfolio</h2>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="/page/mob-hybrid-app">
+                            <div class="htm-5">
+                                <img src="/treming_sv_website/static/assets/images/mob-dev/htm-5-bg.jpg"/>
+                                <div class="text-wrap">
+                                    <img class="icon-image" src="/treming_sv_website/static/assets/images/mob-dev/rfq-icon.png"/>
+                                    <h2>Hybrid App Development</h2>
+                                </div>
+                            </div>
+                        </a>
+
+                    </div>
+                    <div class="half-section">
+                        <a href="/page/mob-app">
+                            <div class="opensource">
+                                <img src="/treming_sv_website/static/assets/images/mob-dev/omod-bg.jpg"/>
+                                <div class="text-wrap">
+                                    <img class="icon-image" src="/treming_sv_website/static/assets/images/mob-dev/omod-icon.png"/>
+                                        <h2>App Development</h2>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="/page/mob-ios-app">
+                            <div class="code-lib">
+                                <img src="/treming_sv_website/static/assets/images/mob-dev/cl-bg.jpg"/>
+                                <div class="text-wrap">
+                                    <img class="icon-image" src="/treming_sv_website/static/assets/images/mob-dev/apple-icon.png"/>
+                                    <h2>iOS </h2>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="/page/mob-android">
+                            <div class="cost">
+                                <img src="/treming_sv_website/static/assets/images/mob-dev/ce-bg.jpg"/>
+                                <div class="text-wrap">
+                                    <img class="icon-image" src="/treming_sv_website/static/assets/images/mob-dev/android-icon-grey.png"/>
+                                    <h2>Android</h2>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="/page/mob-req">
+                            <div class="cust-partners">
+                                <img src="/treming_sv_website/static/assets/images/mob-dev/cp-bg.jpg"/>
+                                <div class="text-wrap">
+                                    <img class="icon-image" src="/treming_sv_website/static/assets/images/mob-dev/cp-icon.png"/>
+                                    <h2>Request for quotation</h2>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="/page/mob-mvp">
+                            <div class="hire-best">
+                                <img src="/treming_sv_website/static/assets/images/mob-dev/vg-bg.jpg"/>
+                                <div class="text-wrap">
+
+
+                                    <img class="icon-image" src="/treming_sv_website/static/assets/images/mob-dev/mvp-icon.png"/>
+                                    <h2>MVP</h2>
+                                </div>
+                            </div>
+                        </a>
+
+                    </div><div class="clear"></div>
+                </div>
+            </section>
+
+
+
+
+
+
+            <section class="content-caption2 ">
+                <div class="content-wrapper">
+                    <h2><span class="thick bg-white">WHY TREMING?</span></h2>
+
+                    <p>We put our heart and minds on each of our projects so we can create real and useful digital solutions. Commitment is our catchword, that's why we are in constant learning and implement the best practices.</p>
+                    <p>We are agile Team, below describe our proccess:</p>
+                </div>
+            </section>
+
+            <section class="instagram-section">
+                <div class="row">
+                    <div class="col12">
+                        <div class="insta-wrap">
+
+                            <div>
+                            <t  t-if="request.context.get('lang')=='en_US'">
+                                <img alt="Instagram" src="/treming_sv_website/static/assets/images/scrum.jpg" />
+                            </t>
+
+                                <t  t-if="request.context.get('lang')!='en_US'">
+                                    <img alt="Instagram" src="/treming_sv_website/static/assets/images/scrum-esp.jpg" />
+                                </t>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </section>
+
+
+
+            <t t-call="website.contactus_custom_template"/>
+
+            <div class="oe_structure"/>
+        </t>
+    </template>
+
+</odoo>

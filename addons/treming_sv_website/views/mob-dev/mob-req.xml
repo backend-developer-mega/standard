@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!-- === Services Page === -->
+    <template name="MOBILE" id="website.mob-req" page="True">
+        <t t-call="website.layout">
+
+            <div class="oe_structure"/>
+
+
+
+            <section class="open-erp-custamization odoo java text-center  ">
+                <h3>
+                    <span class="f-nrslight text-center grey ">
+                        Request <span class="orange f-nrssemibld"> for   </span>Quotation
+                        <div class="clear"></div>
+                    </span>
+                </h3>
+                <div class="down-arrow"></div>
+
+            </section>
+
+            <section class="inner-page">
+                <div class="wrapper">
+                    <div class="row">
+                        <div class="col8 left-section">
+                            <h1 class="f-nrsthin grey">Request for Quotation</h1>  <br></br>
+
+                            <p>Treming is an established software development company with proven experience in delivering more than 100+ mobile application projects world-wide. Whether your requirements are building a
+                                prototype application, Minimum Viable Product, or product development, Treming will be able to help you in the best way possible.</p>
+                            <p>We can help you build your Minimum Viable Product for your Android or iOS applications, including the backend web services. </p>
+
+
+                        </div>
+                        <div class="col4 last  right-section">
+                            <span class="stripe"></span>
+                            <h3>Related Topics</h3>
+                            <ul>
+
+                                <li><a href="/page/mob-pro">Mobile Application Prototyping</a></li>
+
+                                <li><a href="/page/mob-app">Mobile Application Development</a></li>
+
+
+                                <li><a href="/page/mob-hybrid-app">Hybrid Mobile Application Development</a></li>
+                                <li><a href="/page/mob-ios-app">iOS App Development</a></li>
+                                <li><a href="/page/mob-android">Android App Development</a></li>
+                                <li><a href="/page/mob-mvp">MVP</a></li>
+                            </ul>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </section>
+
+
+
+            <t t-call="website.contactus_custom_template"/>
+            <div class="oe_structure"/>
+        </t>
+    </template>
+
+</odoo>

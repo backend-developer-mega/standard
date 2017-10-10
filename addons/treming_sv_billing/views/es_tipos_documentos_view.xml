@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="view_form_tipos_documentos">
+			<field name="name">es.tipos.documentos.form</field>
+			<field name="model">tipos.documentos</field>
+			<field name="arch" type="xml">
+				<form string="Tipos de Documentos">
+					<group>
+						<field name="nombre" />
+						<field name="descripcion" />
+						<field name="activo" />
+						<field name="mostrarf" />
+						<field name="secuencia" />
+						<field name="reporte" />
+						<field name="tipo" />
+						<field name="plantilla" />
+						<field name="copias" />
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_tree_tipos_documentos">
+			<field name="name">es.tipos.documentos.tree</field>
+			<field name="model">tipos.documentos</field>
+			<field name="arch" type="xml">
+				<tree string="Tipos de Documentos">
+					<field name="nombre" />
+					<field name="descripcion" />
+					<field name="activo" />
+					<field name="mostrarf" />
+					<field name="secuencia" />
+					<field name="reporte" />
+					<field name="tipo" />
+					<field name="plantilla" />
+					<field name="copias" />
+				</tree>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="tipos_documentos_action">
+			<field name="name">Tipos de Documentos</field>
+			<!-- Es el nombre del modelo al cual corresponde la vista -->
+			<field name="res_model">tipos.documentos</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">Crear un tipo de documento</p>
+			</field>
+		</record>
+
+		<!-- Menuitem que se agrega bajo Configuración en la Aplicación de Contabilidad -->
+		<menuitem id="es_account_tipos_documentos" name="Tipos de Documentos"
+			parent="account.menu_finance_configuration" action="tipos_documentos_action" />
+	</data>
+</openerp>

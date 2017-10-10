@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="contactus_custom" name="Contact Form" inherit_id="website_crm.contactus_form" customize_show="True">
+        <xpath expr="//div" position="replace">
+             <div class="oe_structure"/>
+             <section class="contact-slider  text-center">
+                <h3 >
+                    <span class="f-nrslight text-center grey contact-us-heading">
+                        WE ARE <span class="orange f-nrssemibld"> ALWAYS </span> AVAILABLE
+                        <div class="clear"></div>
+                    </span>
+                </h3>
+            </section>
+             <t t-call="website.contactus_custom_template"/>
+             <div class="oe_structure"/>
+        </xpath>
+    </template>
+
+    <template id="contactus_thanks_custom" name="Contact Form" inherit_id="website_crm.contactus_thanks" customize_show="True">
+        <xpath expr="//div" position="replace">
+            <div class="oe_structure"/>
+            <section class="contact-slider con text-center">
+                <h3 >
+                    <span class="f-nrslight text-center  grey contact-us-heading">
+                        WE ARE <span class="orange f-nrssemibld"> ALWAYS </span> AVAILABLE
+                        <div class="clear"></div>
+                    </span>
+                </h3>
+            </section>
+            <section class="help">
+                <div class="wrapper">
+                    <div class="row">
+
+                        <h3 class="f-nrssemibld grey2 text-lft">YOUR MESSAGE <span class="f-nrsblack"> WAS SENT.</span></h3>
+                        <div class="help-input-wrapper cond">
+                            <h5><span class="grey f-nrslight"> WE WILL RESPOND AS
+                                <br></br> SOON AS POSSIBLE.</span></h5>
+                            <br></br>
+                            <h5><span class="grey f-nrssemibld"> THANK YOU! </span></h5>
+                            <br></br>
+                            <br></br>
+
+                        </div>
+
+                        <div class="contact-details">
+                            <h5>Support</h5>
+                            <p> <i class="fa fa-envelope-o"></i><span t-field="res_company.email"></span></p>
+                            <p> <i class="fa fa-phone-square"></i><a t-att-href="'tel:' + res_company.phone"><span t-field="res_company.phone"></span></a></p>
+
+                            <br></br>
+                            <h5>Mailing Address</h5>
+                            <p> <i class="fa fa-envelope-o"></i>
+                                <span t-field="res_company.street"></span>
+                                <br></br>
+                                <span t-field="res_company.city"></span>,
+                                <span t-field="res_company.country_id"></span>
+                            </p>
+
+                            <br></br>
+                                  </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </section>
+            <section class="social-icons">
+                <div class="content-wrapper">
+                    <div class="logo-container social">
+                        <ul>
+                            <li><a TARGET="_blank" t-att-href="website.social_linkedin" t-if="website.social_linkedin"><img src="/treming_sv_website/static/assets/images/social/icon-03.png" alt=""/> </a></li>
+                            <li><a TARGET="_blank" t-att-href="website.social_facebook" t-if="website.social_facebook" ><img src="/treming_sv_website/static/assets/images/social/icon-01.png" alt=""/></a></li>
+                            <li><a TARGET="_blank" t-att-href="website.social_twitter" t-if="website.social_twitter"><img src="/treming_sv_website/static/assets/images/social/icon-02.png" alt=""/></a></li>
+                            <li><a TARGET="_blank" t-att-href="website.social_youtube" t-if="website.social_youtube"><img src="/treming_sv_website/static/assets/images/social/icon-04.png" alt=""/></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <div class="oe_structure"/>
+        </xpath>
+    </template>
+    
+    <template id="website.contactus_custom_template" name="Contact Form Template"  customize_show="True">
+             
+
+            <section class="help">
+                <div class="wrapper">
+                    <div class="row">
+                        <h3 class=" grey2 text-lft">HOW CAN WE <span class="f-nrsblack">HELP</span>?</h3>
+                        <div class="help-input-wrapper cond">
+
+                            <form action="/website_form/" method="post" data-model_name="crm.lead" data-success_page="/page/website_crm.contactus_thanks" class="s_website_form  container-fluid mt32" enctype="multipart/form-data" id="contact_us_form">
+                                <div class="form-group form-field o_website_form_required_custom  input-con">
+                                    <input type="text" placeholder="Name"  class="form-control o_website_form_input brdr-orange cu" name="contact_name" t-att-value="request.params.get('contact_name', '')" required=""/>
+                                </div>
+
+                                <div class="form-group form-field o_website_form_required_custom  input-con">
+                                    <input type="text" placeholder="Phone Number" class="form-control o_website_form_input brdr-orange ph  " name="phone" required="true" t-att-value="request.params.get('phone', '')" />
+                                </div>
+
+                                <div class="form-group form-field o_website_form_required_custom  input-con">
+                                    <input type="text"  placeholder="Email" class="form-control o_website_form_input brdr-orange ma " name="email_from" required="true" t-att-value="request.params.get('email_from', '')" />
+                                </div>
+
+                                <div class="form-group form-field o_website_form_required_custom  input-con">
+                                    <input type="text" placeholder="Your Company"  class="form-control o_website_form_input  brdr-orange com" name="partner_name" required="true" t-att-value="request.params.get('partner_name', '')" />
+                                </div>
+
+                                <div class="form-group form-field o_website_form_required_custom input-con2 ">
+                                    <input type="text"  placeholder="Subject" class="form-control o_website_form_input brdr-orange co-h" name="name" required="true" t-att-value="request.params.get('name', '')" />
+                                </div>
+
+                                <div class="form-group form-field o_website_form_required_custom input-con2 ">
+                                    <textarea   class="form-control o_website_form_input brdr-orange co comments"  rows="4"  placeholder="Your Question"  name="description" required="true" ><t t-esc="request.params.get('description', '')"/></textarea>
+                                </div>
+
+                                <input  class=" o_website_form_send" type="submit" value="SUBMIT"> </input>
+                                <br></br>
+
+                                <span id="o_website_form_result" ></span>
+
+                            </form>
+
+
+                        </div>
+
+                        <div class="contact-details">
+                            <h5>Support</h5>
+                            <p> <i class="fa fa-envelope-o"></i><span t-field="res_company.email"></span></p>
+                            <p> <i class="fa fa-phone-square"></i><a t-att-href="'tel:' + res_company.phone"><span t-field="res_company.phone"></span></a></p>
+
+                            <br></br>
+                            <h5>Mailing Address</h5>
+                            <p>
+
+                                <i class="fa fa-envelope-o"></i>
+                                <span t-field="res_company.street"></span>
+                                <br></br>
+                                <span t-field="res_company.city"></span>,<span t-field="res_company.country_id"></span>
+
+                            </p>
+
+                            <br></br>
+                               </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </section>
+            <section class="social-icons">
+                <div class="content-wrapper">
+                    <div class="logo-container social">
+                        <ul>
+                            <li><a TARGET="_blank" t-att-href="website.social_linkedin" t-if="website.social_linkedin"><img src="/treming_sv_website/static/assets/images/social/icon-03.png" alt=""/> </a></li>
+                            <li><a TARGET="_blank" t-att-href="website.social_facebook" t-if="website.social_facebook" ><img src="/treming_sv_website/static/assets/images/social/icon-01.png" alt=""/></a></li>
+                            <li><a TARGET="_blank" t-att-href="website.social_twitter" t-if="website.social_twitter"><img src="/treming_sv_website/static/assets/images/social/icon-02.png" alt=""/></a></li>
+                            <li><a TARGET="_blank" t-att-href="website.social_youtube" t-if="website.social_youtube"><img src="/treming_sv_website/static/assets/images/social/icon-04.png" alt=""/></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+
+    </template>
+
+
+</odoo>

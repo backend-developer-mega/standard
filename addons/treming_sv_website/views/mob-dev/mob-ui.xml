@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!-- === Services Page === -->
+    <template name="MOBILE" id="website.mob-ui" page="True">
+        <t t-call="website.layout">
+
+            <div class="oe_structure"/>
+
+
+
+            <section class="open-erp-custamization odoo java text-center  ">
+                <h3>
+                    <span class="f-nrslight text-center grey ">
+                        UI   <span class="orange f-nrssemibld"> Studio  </span>
+                        <div class="clear"></div>
+                    </span>
+                </h3>
+                <div class="down-arrow"></div>
+
+            </section>
+
+
+
+            <section class="inner-page">
+                <div class="wrapper">
+                    <div class="row">
+                        <div class="col8 left-section">
+                            <h1 class="f-nrsthin grey">UI Studio</h1>  <br></br>
+
+                            <p>Get inspired by looking through some of the UI/UX designs we have built for our mobile application customers.</p>
+                            <br></br><br></br>
+
+
+                            <div class="list-works">
+                                <ul>
+                                    <li><a><img src="/treming_sv_website/static/assets/images/mob-dev/tastebuds-app.jpg"/></a></li>
+                                    <li><a><img src="/treming_sv_website/static/assets/images/mob-dev/paniniz-app.jpg"/></a></li>
+                                    <li><a><img src="/treming_sv_website/static/assets/images/mob-dev/filson-water2-app.jpg"/></a></li>
+                                    <li><a><img src="/treming_sv_website/static/assets/images/mob-dev/drunkphrase-app.jpg"/></a></li>
+                                    <li><a><img src="/treming_sv_website/static/assets/images/mob-dev/paniniz-tab-app.jpg"/></a></li>
+                                    <li><a><img src="/treming_sv_website/static/assets/images/mob-dev/paniniz-tab2-app.jpg"/></a></li>
+                                    <li><a><img src="/treming_sv_website/static/assets/images/mob-dev/tastebuds3-app.jpg"/></a></li>
+                                    <li><a><img src="/treming_sv_website/static/assets/images/mob-dev/filsonwater-app.jpg"/></a></li>
+                                    <li><a><img src="/treming_sv_website/static/assets/images/mob-dev/tastebuds2-app.jpg"/></a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col4 last  right-section">
+                            <span class="stripe"></span>
+                            <h3>Related Topics</h3>
+                            <ul>
+                                <li><a href="/page/mob-cas">Mobile App Case Study</a></li>
+                                <li><a href="/page/mob-pro">Mobile Application Prototyping</a></li>
+
+                                <li><a href="/page/mob-app">Mobile Application Development</a></li>
+                                <li><a href="/page/mob-req">Request for quotation</a></li>
+                                <li><a href="/page/mob-por">Portfolio</a></li>
+                                <li><a href="/page/mob-hybrid-app">Hybrid Mobile Application Development</a></li>
+                                <li><a href="/page/mob-ios-app">iOS App Development</a></li>
+                                <li><a href="/page/mob-android">Android App Development</a></li>
+                                <li><a href="/page/mob-mvp">MVP</a></li>
+                            </ul>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </section>
+
+
+            <t t-call="website.contactus_custom_template"/>
+            <div class="oe_structure"/>
+        </t>
+    </template>
+
+</odoo>

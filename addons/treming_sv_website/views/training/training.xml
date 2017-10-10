@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!-- === Services Page === -->
+    <template name="Training" id="website.training" page="True">
+        <t t-call="website.layout">
+
+            <div class="oe_structure"/>
+            <section class="home-banner">
+            <div class="slider1">
+            <div>
+            <section class="open-erp-custamization odoo web-banner img-responsive">
+                <div class="banner-caption grey greyAux f-nrslight text-right ">
+                    <h1 class="fadeInRight animated"> <span class="orange f-nrssemibld">  TRAINING IN COMPANY </span> </h1>
+                    <h2 class="fadeInRight animated">We do customized trainings</h2>
+                    <h3 class="fadeInRight animated">in informations  technologies. </h3>
+
+                    <a href="/page/contactus" class="button-2 text-cap btn bg-black white f-nrssemibld hvr-sweep-to-right fadeInRight animated"> CONTACT US </a>
+                    <br></br>
+                </div>
+            </section>
+            </div>
+            </div>
+            </section>
+
+
+
+
+
+
+
+            <section class="content-caption2 bg-lgtgrey padding-20">
+                <div class="content-wrapper">
+                    <h2><span class="thick  bg-lgtgrey grey">ABOUT TRAINING</span></h2>
+
+
+
+                    <p>
+                        Training in Business, consists of a training program totally adapted to the needs of the organization.
+                        Based on the diagnosis carried out jointly with your organization, it develops a training plan with
+                        schedules and contents appropriate to your specific needs. The training in Company offers an academic and
+                        logistical adaptation that seeks to satisfy the requirements of each organization.
+                        For this it also has tools to measure the impact and monitoring of the training.
+                    </p>
+
+
+
+                </div>
+            </section>
+            <section class="content-caption2  padding-20">
+                <div class="content-wrapper">
+                    <h2><span class="bg-white grey">Training in <span class="bold"> technologies </span></span></h2>
+
+                    <ul class="logo-wrap2">
+
+
+
+                        <li><img src="/treming_sv_website/static/assets/images/technologies/bk/14.png" alt=""/></li>
+                        <li><img src="/treming_sv_website/static/assets/images/technologies/bk/15.png" alt=""/></li>
+                        <li><img src="/treming_sv_website/static/assets/images/technologies/bk/2.png" alt=""/></li>
+                        <li><img src="/treming_sv_website/static/assets/images/technologies/bk/3.png" alt=""/></li>
+
+
+
+                        <li><img src="/treming_sv_website/static/assets/images/technologies/bk/10.png" alt=""/></li>
+                        <li><img src="/treming_sv_website/static/assets/images/technologies/bk/11.png" alt=""/></li>
+                        <li><img src="/treming_sv_website/static/assets/images/technologies/bk/4.png" alt=""/></li>
+                        <li><img src="/treming_sv_website/static/assets/images/technologies/bk/9.png" alt=""/></li>
+
+                        <li><img src="/treming_sv_website/static/assets/images/technologies/bk/8.png" alt=""/></li>
+                        <li><img src="/treming_sv_website/static/assets/images/technologies/bk/7.png" alt=""/></li>
+                        <li><img src="/treming_sv_website/static/assets/images/technologies/bk/12.png" alt=""/></li>
+                        <li><img src="/treming_sv_website/static/assets/images/technologies/bk/1.png" alt=""/></li>
+
+
+
+                        <li><img src="/treming_sv_website/static/assets/images/technologies/bk/18.png" alt=""/></li>
+                        <li><img src="/treming_sv_website/static/assets/images/technologies/bk/25.png" alt=""/></li>
+                        <li><img src="/treming_sv_website/static/assets/images/technologies/bk/20.png" alt=""/></li>
+
+
+                        <li><img src="/treming_sv_website/static/assets/images/technologies/bk/21.png" alt=""/></li>
+                        <li><img src="/treming_sv_website/static/assets/images/technologies/bk/22.png" alt=""/></li>
+                        <li><img src="/treming_sv_website/static/assets/images/technologies/bk/23.png" alt=""/></li>
+                        <li><img src="/treming_sv_website/static/assets/images/technologies/bk/24.png" alt=""/></li>
+
+                        <li><img src="/treming_sv_website/static/assets/images/technologies/bk/5.png" alt=""/></li>
+                        <li><img src="/treming_sv_website/static/assets/images/technologies/bk/13.png" alt=""/></li>
+                        <li><img src="/treming_sv_website/static/assets/images/technologies/bk/6.png" alt=""/></li>
+                        <li><img src="/treming_sv_website/static/assets/images/technologies/bk/16.png" alt=""/></li>
+
+
+
+                        <li><img src="/treming_sv_website/static/assets/images/technologies/bk/19.png" alt=""/></li>
+
+                        <li><img src="/treming_sv_website/static/assets/images/technologies/bk/17.png" alt=""/></li>
+
+
+
+
+
+
+
+
+                        <li><img src="/treming_sv_website/static/assets/images/technologies/fe/3.png" alt=""/></li>
+                        <li><img src="/treming_sv_website/static/assets/images/technologies/fe/6.png" alt=""/></li>
+                        <li><img src="/treming_sv_website/static/assets/images/technologies/fe/12.png" alt=""/></li>
+
+
+                        <li><img src="/treming_sv_website/static/assets/images/technologies/fe/2.png" alt=""/></li>
+
+
+                        <li><img src="/treming_sv_website/static/assets/images/technologies/fe/5.png" alt=""/></li>
+                        <li><img src="/treming_sv_website/static/assets/images/technologies/fe/14.png" alt=""/></li>
+
+
+                        <li><img src="/treming_sv_website/static/assets/images/technologies/fe/4.png" alt=""/></li>
+                        <li><img src="/treming_sv_website/static/assets/images/technologies/fe/8.png" alt=""/></li>
+                        <li><img src="/treming_sv_website/static/assets/images/technologies/fe/13.png" alt=""/></li>
+
+                        <li><img src="/treming_sv_website/static/assets/images/technologies/fe/1.png" alt=""/></li>
+                        <li><img src="/treming_sv_website/static/assets/images/technologies/fe/7.png" alt=""/></li>
+                        <li><img src="/treming_sv_website/static/assets/images/technologies/fe/15.png" alt=""/></li>
+                        <li><img src="/treming_sv_website/static/assets/images/technologies/fe/16.png" alt=""/></li>
+
+
+                        <li><img src="/treming_sv_website/static/assets/images/technologies/fe/17.png" alt=""/></li>
+
+                        <li><img src="/treming_sv_website/static/assets/images/technologies/fe/18.png" alt=""/></li>
+                        <li><img src="/treming_sv_website/static/assets/images/technologies/fe/19.png" alt=""/></li>
+
+
+
+                        <li><img src="/treming_sv_website/static/assets/images/technologies/2-i.png" alt=""/></li>
+                        <li><img src="/treming_sv_website/static/assets/images/technologies/1-1.png" alt=""/></li>
+                        <li><img src="/treming_sv_website/static/assets/images/technologies/2-2.png" alt=""/></li>
+                        <li><img src="/treming_sv_website/static/assets/images/technologies/3-3.png" alt=""/></li>
+                        <li><img src="/treming_sv_website/static/assets/images/technologies/3-i.png" alt=""/></li>
+
+                        <li><img src="/treming_sv_website/static/assets/images/technologies/1-a.png" alt=""/></li>
+
+
+                        <li><img src="/treming_sv_website/static/assets/images/technologies/bk/27.png" alt=""/></li>
+
+
+
+                    </ul>
+
+
+                </div>
+            </section>
+            <t t-call="website.contactus_custom_template"/>
+            <div class="oe_structure"/>
+        </t>
+    </template>
+
+</odoo>

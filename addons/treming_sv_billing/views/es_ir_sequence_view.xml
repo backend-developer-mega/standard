@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<!-- Extend form -->
+		<record model="ir.ui.view" id="view_form_es_ir_sequence_inherited">
+			<field name="name">ir.sequence.es</field>
+			<field name="model">ir.sequence</field>
+			<field name="inherit_id" ref="base.sequence_view" />
+			<field name="arch" type="xml">
+				<!-- Añado los campos de inicial y final -->
+				<xpath expr="//field[@name='number_next_actual']" position="replace">
+				</xpath>
+				<xpath expr="//field[@name='use_date_range']" position="after">
+					<field name="inicial" attrs="{'invisible':[('use_date_range', '=', True)]}"/>
+				</xpath>				
+				<xpath expr="//field[@name='number_increment']" position="attributes">
+					<attribute name="string">Incremento</attribute>
+				</xpath>
+				<xpath expr="//field[@name='number_increment']" position="after">
+					<field name="number_next" string="Actual" />
+				</xpath>
+				<xpath expr="//field[@name='number_next']" position="after">
+					<field name="final" attrs="{'invisible':[('use_date_range', '=', True)]}"/>
+				</xpath>
+			</field>
+		</record>
+		
+		<record model="ir.ui.view" id="view_tree_es_ir_sequence_inherited">
+			<field name="name">ir.sequence.view.es</field>
+			<field name="model">ir.sequence</field>
+			<field name="inherit_id" ref="base.sequence_view_tree" />
+			<field name="arch" type="xml">
+				<!-- Añado los campos de inicial y final -->
+				<xpath expr="//field[@name='number_next_actual']" position="replace">
+					<field name="inicial"/>
+					<field name="number_next"/>
+					<field name="final"/>
+				</xpath>
+				<xpath expr="//field[@name='number_increment']" position="after">
+					<field name="number_next" string="Actual" />
+				</xpath>
+			</field>
+		</record>
+	</data>
+</openerp>

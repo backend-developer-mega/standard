@@ -1,0 +1,745 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<template id="es_reporte_ccf_documento" name="reporte_ccf_documento">
+			<t t-call="treming_sv_billing.sv_external_layout">
+				<div class="container-fluid" style="margin-top: 10mm;">
+					<t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})" />
+					<span style="display:none" t-esc="o._calcular_montos()" />
+					<span style="display:none" t-esc="o._calcular_deudas()" />
+					<div class="page" style="font-size: 0.65em;">
+						<div class="row"
+							style="margin-top: 5px !important; margin-left: 1px !important;">
+							<div class="col-xs-12" style="color: white">
+								-
+							</div>
+							<div class="col-xs-12" style="color: white">
+								-
+							</div>
+							<div class="col-xs-12" style="color: white">
+								-
+							</div>
+							<div class="col-xs-12" style="color: white">
+								-
+							</div>
+							<div class="col-xs-7"
+								style="border: 1px solid black; border-radius: 10px; width: 58%;">
+								<span style="display:none" t-esc="o._calcular_montos()" />
+								<span style="display:none" t-esc="o._calcular_deudas()" />
+								<div class="row"
+									style="text-align: center; border: 1px solid black; border-top: none; border-right: none; border-left: none">
+									<div class="col-xs-4">
+										<div>
+											<b>CLIENTE</b>
+										</div>
+										<div>
+											<span t-esc="o.partner_id.id"></span> <!--aqui -->
+										</div>
+									</div>
+									<div class="col-xs-4">
+										<div>
+											<b>REGISTRO No.</b>
+										</div>
+										<div>
+											<span t-field="o.partner_id.nrc_sv" />
+										</div>
+									</div>
+									<div class="col-xs-4">
+										<div>
+											<b>NIT</b>
+										</div>
+										<div>
+											<span t-field="o.partner_id.nit_sv" />
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xs-3">
+										<b>Cliente:</b>
+									</div>
+									<div class="col-xs-9">
+										<span t-field="o.partner_id.razon_social"></span>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xs-3">
+										<b>Dirección:</b>
+									</div>
+									<div class="col-xs-9">
+										<span t-field="o.partner_id.street" />
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xs-3">
+										<b>Departamento:</b>
+									</div>
+									<div class="col-xs-3">
+										<span t-field="o.partner_id.city" />
+									</div>
+									<div class="col-xs-3">
+										<b>Municipio:</b>
+									</div>
+									<div class="col-xs-3">
+										<span t-field="o.partner_id.city" />
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xs-3">
+										<b>Giro:</b>
+									</div>
+									<div class="col-xs-9">
+										<span t-field="o.partner_id.giro" />
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xs-3">
+										<b>Teléfono:</b>
+									</div>
+									<div class="col-xs-3">
+										<span t-field="o.partner_id.phone" />
+									</div>
+								</div>
+
+							</div>
+
+							<div class="col-xs-5 pull-right" style="padding-left: 0px;">
+								<div class="container-fluid"
+									style="margin-right: 0px !important; border: 1px solid black; border-radius: 10px;">
+									<div class="row"
+										style="text-align: center; background: #dddddd; border-top-left-radius: 10px; border-top-right-radius: 10px;">
+										RESUMEN ESTADO
+										DE CUENTA
+									</div>
+									<div class="row" sytle="border-top: 1px solid black;">
+										<div class="col-xs-6">
+											<b>Moneda</b>
+										</div>
+										<div class="col-xs-6" style="text-align: right;">
+
+											<p style="margin-bottom: 0px;">
+												<span t-field="o.currency_id.name" />
+											</p>
+
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-xs-6">
+											<b>Condición de Pago:</b>
+										</div>
+										<div class="col-xs-6" style="text-align: right;">
+											<t t-if="o.payment_term_id.dias == 0">
+												Contado
+											</t>
+											<t t-if="o.payment_term_id.dias != 0">
+												Crédito
+											</t>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-xs-6">
+											<b>Días de Crédito:</b>
+										</div>
+										<div class="col-xs-6" style="text-align: right;">
+											<t t-if="o.payment_term_id.dias == 0">
+												0
+											</t>
+											<t t-if="o.payment_term_id.dias != 0">
+												<span t-field="o.payment_term_id.dias" />
+											</t>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-xs-6" style="font-size: 1.2em;">
+											<b>Fecha de Emisión:</b>
+										</div>
+										<div class="col-xs-6" style="text-align: right; font-size: 1.2em;">
+											<b>
+												<span t-field="o.date_invoice" />
+											</b>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-xs-6" style="font-size: 1.2em;">
+											<b>Fecha de Vencimiento:</b>
+										</div>
+										<div class="col-xs-6" style="text-align: right; font-size: 1.2em;">
+											<b>
+												<span t-field="o.fvencimiento" />
+											</b>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-xs-6">
+											<b>Período de Servicio:</b>
+										</div>
+										<div class="col-xs-6" style="text-align: right; ">
+											<span t-field="o.ps_incio" />
+											-
+											<span t-field="o.ps_fin" />
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-xs-6">
+											<b>Referencia:</b>
+										</div>
+										<div class="col-xs-6" style="text-align: right;">
+											<b>
+												<span t-field="o.number" />
+											</b>
+										</div>
+
+									</div>
+									<div class="row">
+										<div class="col-xs-6">
+											<b>Factura:</b>
+										</div>
+										<div class="col-xs-6" style="text-align: right;">
+											<b>
+												<span t-field="o.prefijo" />
+												<span t-field="o.correlativo" />
+											</b>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-xs-6">
+											<b>Origen:</b>
+										</div>
+										<div class="col-xs-6" style="text-align: right;">
+											<b>
+												<span t-field="o.origin" />
+											</b>
+										</div>
+									</div>
+								</div>
+
+							</div>
+							<div class="col-xs-12">
+								<div style="margin-left: 0px !important;">
+									<div class="row" style="margin-right: 0px !important;">
+										<div
+											style="height: 15mm; text-align: center; border: 1px solid black; border-radius: 10px; margin-top: 3px">
+											<br></br>
+											<p>
+												<t t-if="o.comment is False">
+													<span t-field="o.company_id.msj_facturas" style="text-transform: uppercase !important;"></span>
+												</t>
+												<t t-if="o.comment != ''">
+													<span t-field="o.comment" style="text-transform: uppercase !important;" />
+
+												</t>
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+
+
+						<!--IMPRIMIMOS EL DETALLE DE LA FACTURA -->
+						<t t-set="display_discount" t-value="any([l.discount for l in o.invoice_line_ids])" />
+						<div class="row"
+							style="height:100%; margin-top: 5px !important; margin-right: none">
+							<div class="col-xs-12">
+								<div
+									style="height: 125mm; border: 1px solid black !important; border-top-left-radius: 10px; border-top-right-radius: 10px;">
+									<table class="table borderless" style="height: 125mm;">
+
+										<thead>
+
+											<tr>
+												<th
+													style="text-align: center;border-bottom: 1px solid black !important;border-right: 0.5px solid black !important;margin: 0px;padding: 0px;width: 65px;">
+													<div
+														style="background: #dddddd;border-top-left-radius: 10px;padding: 0px !important;margin: 0px !important;height: 30px;line-height: 30px;">
+														Cantidad
+													</div>
+												</th>
+
+												<th
+													style="text-align: center;border-bottom: 1px solid black !important;border-right: 0.5px solid black !important;margin: 0px;padding: 0px; width: 450px;">
+													<div
+														style="background: #dddddd;padding: 0px !important;margin: 0px !important;height: 30px;line-height: 30px;">
+														Descripción
+													</div>
+												</th>
+												<th class="text-right"
+													style="text-align: center;border-bottom: 1px solid black !important;border-right: 0.5px solid black !important;margin: 0px;padding: 0px;width: 90px;">
+													<div
+														style="background: #dddddd;padding: 0px !important;margin: 0px !important;height: 30px;line-height: 30px;">
+														Precio Unitario
+													</div>
+												</th>
+
+												<th class="text-right"
+													style="text-align: center;border-bottom: 1px solid black !important;border-right: 0.5px solid black !important;margin: 0px;padding: 0px;width: 90px;">
+													<div
+														style="background: #dddddd;padding: 0px !important;margin: 0px !important;height: 30px;line-height: 30px;">
+														Ventas No Sujetas
+													</div>
+												</th>
+
+												<th class="text-right"
+													style="text-align: center;border-bottom: 1px solid black !important;border-right: 0.5px solid black !important;margin: 0px;padding: 0px;width: 90px;">
+													<div
+														style="background: #dddddd;padding: 0px !important;margin: 0px !important;height: 30px;line-height: 30px; ">
+														Ventas Exentas
+													</div>
+												</th>
+
+												<th class="text-right"
+													style="text-align: center;border-bottom: 1px solid black !important;margin: 0px;padding: 0px;">
+													<div
+														style="background: #dddddd;border-top-right-radius: 10px;padding: 0px !important;margin: 0px !important;height: 30px;line-height: 30px;width: 90px;">
+														Ventas Gravadas
+													</div>
+												</th>
+											</tr>
+
+										</thead>
+
+
+										<tbody class="invoice_tbody">
+
+											<tr t-foreach="o.invoice_line_ids" t-as="l">
+												<!-- CANTIDAD -->
+												<td class="text-right"
+													style="text-aling: right; padding-top: 5px !important; padding-bottom: 0px !important; border-bottom: 1px solid white !important; border-right: 0.5px solid black !important;">
+													<p t-field="l.quantity" style="text-aling: right;" />
+													<p t-field="l.uom_id" groups="product.group_uom" />
+												</td>
+												<!-- DESCRIPCION -->
+												<td
+													style="border-bottom: 1px solid white !important; padding-top: 5px !important; padding-bottom: 0px !important; border-right: 0.5px solid black !important;">
+													<p t-field="l.name" />
+
+												</td>
+												<!-- PRECIO UNITARIO -->
+												<td class="text-right"
+													style="border-bottom: 1px solid white !important; padding-top: 5px !important; padding-bottom: 0px !important; border-right: 0.5px solid black !important;">
+													<span t-field="l.price_unit" style="line-height: 1.2;" />
+													<span t-field="o.currency_id.name" />
+												</td>
+												<!-- VENTAS NO SUJETAS -->
+												<td class="text-right"
+													style="border-bottom: 1px solid white !important; padding-top: 5px !important; padding-bottom: 0px !important; border-right: 0.5px solid black !important;">
+													<span t-if="l.tipov=='no_sujeto'">
+														<span t-field="l.price_subtotal" />
+													</span>
+
+												</td>
+												<!-- VENTAS EXENTAS -->
+												<td class="text-right"
+													style="border-bottom: 1px solid white !important; padding-top: 5px !important; padding-bottom: 0px !important; border-right: 0.5px solid black !important;">
+													<span t-if="l.tipov=='exento'">
+														<span t-field="l.price_subtotal" />
+
+													</span>
+
+												</td>
+												<!-- VENTAS GRAVADAS -->
+												<td class="text-right"
+													style="border-bottom: 1px solid white !important; padding-top: 5px !important; padding-bottom: 0px !important;">
+													<span t-if="l.tipov=='gravado'">
+														<span t-field="l.price_subtotal_plus_discount" />
+													</span>
+												</td>
+											</tr>
+											<tr style="height: 100%; min-height: 100%;">
+												<td class="text-right"
+													style="border-bottom: 1px solid white !important; padding: 0 5 0 0;">
+
+												</td>
+												<td class="text-right"
+													style="border-bottom: 1px solid white !important; padding: 0 5 0 0; border-left: 0.5px solid black !important;">
+
+												</td>
+												<td class="text-right"
+													style="border-bottom: 1px solid white !important; padding: 0 5 0 0; border-left: 0.5px solid black !important;">
+
+												</td>
+												<td class="text-right"
+													style="border-bottom: 1px solid white !important; padding: 0 5 0 0; border-left: 0.5px solid black !important;">
+
+												</td>
+												<td class="text-right"
+													style="border-bottom: 1px solid white !important; padding: 0 5 0 0; border-left: 0.5px solid black !important;">
+
+												</td>
+												<td class="text-right"
+													style="border-bottom: 1px solid white !important; padding: 0 5 0 0; border-left: 0.5px solid black !important;">
+
+												</td>
+											</tr>
+
+										</tbody>
+									</table>
+								</div>
+							</div>
+
+						</div>
+						<!-- INICIO DEL FOOTER -->
+						<div class="row">
+							<div class="col-xs-12">
+								<div
+									style="border-left: 1px solid black !important; border-right: 1px solid black !important; border-bottom: 1px solid black !important; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
+									<table class="table" style="margin-bottom: 0mm">
+										<tr>
+											<td width="50%" colspan="2" style="height: 25mm;">
+												<div class="row">
+													<div class="col-xs-12">
+														<p>
+															<b>SON:</b>
+															<br></br>
+															<span t-field="o.en_letras" />
+															<span t-field="o.currency_id.description_currency" />
+														</p>
+													</div>
+												</div>
+											</td>
+											<td width="50%" colspan="4"
+												style="border-bottom: 0.5px solid black !important;border-left: 1px solid black !important;padding-top: 0px !important;padding-left: 0px !important;padding-right: 0px !important;padding-bottom: 0px;">
+												<div class="container-fluid">
+													<div class="row"
+														style="border-bottom: 1px solid black !important;padding-left: 0px;padding-right: 0px;">
+
+														<div class="col-xs-2"
+															style="border-bottom: 1px solid white !important; padding: 0 2 0 0; border-right: 0.5px solid black !important;padding-left: 0px;padding-right: 0px; width: 159px;">
+															<p style="margin-bottom: 0px;">
+																<b style="padding-left: 5px;">SUMAS</b>
+															</p>
+														</div>
+														<div class="col-xs-3"
+															style="border-bottom: 1px solid white !important; padding: 0 2 0 0; border-right: 0.5px solid black !important;padding-left: 0px;padding-right: 5px; width: 88px;">
+															<p style="margin-bottom: 0px; text-align: right;">
+																<span t-field="o.monto_no_sujeto" />
+
+															</p>
+														</div>
+														<div class="col-xs-4"
+															style="border-bottom: 1px solid white !important; padding: 0 2 0 0; border-right: 0.5px solid black !important;padding-left: 0px;padding-right: 5px; width: 88px;">
+															<p style="margin-bottom: 0px; text-align: right;">
+																<span t-field="o.monto_exento" />
+
+															</p>
+														</div>
+														<div class="col-xs-3"
+															style="padding-right: 0px;padding-left:0px; width: 89px;">
+															<!--		<p class="text-right"
+                                                                        style="margin-bottom: 0px;padding-right: 5px; text-align: right;">
+                                                                       <span t-field="o.amount_untaxed" />
+                                                                        <span t-field="o.monto_gravado" />
+                                                                    </p>  -->
+
+															<t t-set="i" t-value="0"/>
+															<t t-foreach="o.invoice_line_ids" t-as="l">
+																<t t-set="i" t-value="i+l.price_subtotal_plus_discount"/>
+															</t>
+															<p class="text-right"
+															   style="margin-bottom: 0px;padding-right: 5px; text-align: right;">
+																<span t-esc="i"/> <span t-field="o.currency_id.name" />
+															</p>
+
+														</div>
+
+													</div>
+													<!-- INICIO DESCUENTOS -->
+													<div class="row"
+														 style="padding-left: 0px;padding-right: 0px;">
+
+														<span t-if="o.invoice_line_ids.discount_subtotal != 0.0">
+															<!-- Pesonalizado -->
+															<div class="col-xs-6" style="padding-right: 0px;padding-left:0px;">
+																<p style="margin-bottom: 0px;">
+																	<b style="padding-left: 5px;">Descuentos</b>
+																</p>
+															</div>
+															<div class="col-xs-3">
+																<p style=" ">
+
+																</p>
+															</div>
+															<div class="col-xs-3 text-right" style="padding-right:0px; padding-left:0px;">
+																<t t-set="d" t-value="0"/>
+																<t t-foreach="o.invoice_line_ids" t-as="l">
+																	<t t-set="d" t-value="d+l.discount_subtotal"/>
+																</t>
+																<p style="margin-bottom: 0px;padding-right: 5px;">
+																	-<span t-esc="d"/> <span t-field="o.currency_id.name" />
+																</p>
+															</div>
+														</span>
+
+													</div>
+													<div class="row"
+														 style="padding-left: 0px;padding-right: 0px;">
+
+														<span t-if="o.invoice_line_ids.discount_subtotal != 0.0">
+															<!-- Pesonalizado -->
+															<div class="col-xs-6" style="padding-right: 0px;padding-left:0px;">
+																<p style="margin-bottom: 0px;">
+																	<b style="padding-left: 5px;">Sumas con descuentos</b>
+																</p>
+															</div>
+															<div class="col-xs-3">
+																<p style=" ">
+
+																</p>
+															</div>
+															<div class="col-xs-3 text-right" style="padding-right:0px; padding-left:0px;">
+																<p class="text-right"
+																   style="margin-bottom: 0px;padding-right: 5px; text-align: right;">
+																	<span t-field="o.monto_gravado" />
+																</p>
+															</div>
+														</span>
+
+													</div>
+													<!-- FIN LISTAR DE DESCUENTOS -->
+
+													<!-- LISTA DE IMPUESTOS -->
+													<div t-foreach="o.tax_line_ids" t-as="t" class="row"
+														style="padding-left: 0px;padding-right: 0px;">
+														<span t-if="t.tax_id.primary_tax!=False">
+															<!-- Pesonalizado -->
+															<div class="col-xs-6" style="padding-right: 0px;padding-left:5px;">
+																<p style="margin-bottom: 0px;">
+																	<b>
+																		<span t-field="t.name" />
+																	</b>
+																</p>
+															</div>
+															<div class="col-xs-3">
+																<p style=" ">
+
+																</p>
+															</div>
+															<div class="col-xs-3 text-right" style="padding-right:0px; padding-left:0px;">
+																<p style="margin-bottom: 0px;padding-right: 5px;">
+																	<span t-field="t.amount" />
+
+																</p>
+															</div>
+														</span>
+													</div>
+													<!-- FIN LISTAR DE IMPUESTOS -->
+													<div class="row">
+														<div class="col-xs-6" style="padding-left: 0px; padding-right: 0px; ">
+															<p style="margin-bottom: 0px;">
+																<b style="padding-left: 5px;">SUBTOTAL</b>
+															</p>
+														</div>
+														<div class="col-xs-3" style="padding-right: 0px;padding-left:0px;">
+															<p style="margin-bottom: 0px;padding-right: 5px;">
+
+															</p>
+														</div>
+														<div class="col-xs-3" style="padding-right:0px;padding-left:0px;">
+															<p class="text-right" style="margin-bottom: 0px;padding-right: 5px; ">
+																<span t-field="o.subtotal" />
+
+															</p>
+														</div>
+													</div>
+
+													<!-- LISTA DE IMPUESTOS QUE RESTAN -->
+
+													<!-- lo nuevo -->
+													<div t-foreach="o.tax_line_ids" t-as="t" class="row">
+														<span t-if="t.tax_id.primary_tax==False">
+															<!-- Pesonalizado -->
+															<div class="col-xs-6" style="padding-right: 0px;padding-left:0px;">
+																<p style="margin-bottom: 0px;">
+																	<b style="padding-left: 5px;">
+
+																		<span t-field="t.name" />
+
+																	</b>
+																</p>
+															</div>
+															<div class="col-xs-3" style="padding-right: 0px;padding-left:0px;">
+																<p style="margin-bottom: 0px;">
+
+																</p>
+															</div>
+															<div class="col-xs-3 text-right" style="padding-right:0px;padding-left:0px;">
+																<p style="margin-bottom: 0px;padding-right: 5px;">
+
+																	<span t-field="t.amount" />
+
+
+																</p>
+															</div>
+														</span>
+													</div>
+
+													<div class="row">
+														<div class="col-xs-6" style="padding-right: 0px;padding-left:0px;">
+															<p style="margin-bottom: 0px;">
+																<b style="padding-left: 5px;">Ventas Exentas</b>
+															</p>
+														</div>
+														<div class="col-xs-3" style="padding-right: 0px;padding-left:0px;">
+															<p style="margin-bottom: 0px;">
+
+															</p>
+														</div>
+														<div class="col-xs-3" style="padding-right:0px;padding-left:0px;">
+															<p class="text-right" style="margin-bottom: 0px;padding-right: 5px;">
+																<span t-field="o.monto_exento" />
+
+															</p>
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-xs-6" style="padding-right: 0px;padding-left:0px;">
+															<p style="margin-bottom: 0px;">
+																<b style="padding-left: 5px;">Ventas No Sujetas</b>
+															</p>
+														</div>
+														<div class="col-xs-3">
+															<p style="margin-bottom: 0px;">
+
+															</p>
+														</div>
+														<div class="col-xs-3" style="padding-right:0px;padding-left:0px;">
+															<p class="text-right" style="margin-bottom: 0px;padding-right: 5px;">
+																<span t-field="o.monto_no_sujeto" />
+
+															</p>
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-xs-6" style="padding-right: 0px;padding-left:0px;">
+															<p style="font-size: 1.5em; margin-bottom: 0px;">
+																<b style="padding-left: 5px;">VENTA TOTAL</b>
+															</p>
+														</div>
+														<div class="col-xs-6" style="padding-right:0px;padding-left:0px;">
+															<p class="text-right"
+																style="font-size: 1.5em; margin-bottom: 0px;padding-right: 5px;">
+																<span t-field="o.amount_total" />
+																<span t-field="o.currency_id.name" />
+															</p>
+														</div>
+													</div>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td colspan="6" style="border-top: 1px solid black !important;">
+												<div class="row">
+													<div class="col-xs-12">
+
+														<center>
+															<b>OPERACIONES IGUAL O SUPERIOR A $ 11,428.58</b>
+														</center>
+
+													</div>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td colspan="2"
+												style="border-top: 1px solid black !important; border-bottom: 1px solid black !important;">
+												<p style="margin-bottom: 10px;">
+													<b>Entregado por: </b>
+													<span t-field="o.entregado_por" />
+												</p>
+												<p style="margin-bottom: 10px;">
+													<span>
+														<b>DUI ó NIT: </b>
+														<span t-field="o.entpor_doc" />
+													</span>
+												</p>
+												<p>
+													<b>Firma: </b>
+												</p>
+											</td>
+											<td colspan="4" style="border: 1px solid black !important;">
+												<p>
+													<b>Recibido por: </b>
+													<span t-field="o.recibido_por" />
+
+												</p>
+												<p style="margin-bottom: 10px;">
+													<span>
+														<b>DUI ó NIT: </b>
+														<span t-field="o.recpor_doc" />
+													</span>
+												</p>
+												<p>
+													<b>Firma: </b>
+												</p>
+											</td>
+										</tr>
+										<tr colspan="1">
+											<td style="text-align: center;">
+												SALDO ANTERIOR
+											</td>
+											<td style="text-align: center;">
+												(+)SERVICIO DEL PERIODO
+											</td>
+											<td colspan="2" style="text-align: center;">
+												(+)OTROS CARGOS
+											</td>
+											<td style="text-align: center;">
+												(-)PAGOS Y OTROS ABONOS
+											</td>
+											<td style="text-align: center;">
+												(=)SALDO TOTAL
+											</td>
+										</tr>
+										<tr colspan="1">
+											<!-- SALDO ANTERIOR -->
+											<td
+												style="text-align: center;   border-top: 1px solid black !important; border-right: 1px solid black !important;">
+										<!-- 		<span t-field="o.monto_atrasado" /> -->
+												----------
+											</td>
+											<!-- SERVICIO DEL PERIODO -->
+											<td
+												style="text-align: center;   border-top: 1px solid black !important; border-right: 1px solid black !important;">
+												<span t-field="o.amount_total" />
+												<span t-field="o.currency_id.name" />
+
+											</td>
+											<!-- OTROS CARGOS -->
+											<td colspan="2"
+												style="text-align: center;   border-top: 1px solid black !important; border-right: 1px solid black !important;">
+												----------
+											</td>
+											<!-- PAGOS Y OTROS ABONOS -->
+											<td
+												style="text-align: center;   border-top: 1px solid black !important; border-right: 1px solid black !important;">
+												----------
+											</td>
+											<!-- SALDO TOTAL -->
+											<td
+												style="text-align: center;   border-top: 1px solid black !important;">
+												<span t-field="o.monto_total_adeudado" />
+											</td>
+										</tr>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- CIERRE DEL PAGE -->
+
+				</div>
+			</t>
+		</template>
+		<template id="es_reporte_ccf" name="reporte_ccf" inherit_id="account.report_invoice"
+			primary="True">
+			<xpath expr="." position="replace">
+				<t t-call="report.html_container">
+					<t t-foreach="docs" t-as="o">
+						<t t-call="treming_sv_billing.es_reporte_ccf_documento" t-lang="o.partner_id.lang" />
+					</t>
+				</t>
+			</xpath>
+		</template>
+	</data>
+</openerp>

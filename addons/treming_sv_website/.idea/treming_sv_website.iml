@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../odoo_web_login" />
+    <content url="file://$MODULE_DIR$" />
+    <content url="file://$MODULE_DIR$/../../../odoo-server/addons/website" />
+    <content url="file://$MODULE_DIR$/../../../odoo-server/addons/website_blog" />
+    <content url="file://$MODULE_DIR$/../../../odoo-server/addons/website_crm" />
+    <content url="file://$MODULE_DIR$/../../../odoo-server/addons/website_hr_recruitment" />
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

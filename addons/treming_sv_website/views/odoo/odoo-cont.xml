@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!-- === Services Page === -->
+    <template name="ODOO" id="website.odoo-cont" page="True">
+        <t t-call="website.layout">
+
+            <div class="oe_structure"/>
+
+
+
+            <section class="open-erp-custamization odoo java text-center  ">
+                <h3>
+                    <span class="f-nrslight text-center grey ">
+                        Odoo<span class="orange f-nrssemibld"> Contributions </span>
+                        <div class="clear"></div>
+                    </span>
+                </h3>
+                <div class="down-arrow"></div>
+
+            </section>
+            <section class="inner-page">
+                <div class="wrapper">
+                    <div class="row">
+                        <div class="col8 left-section">
+                            <h1 class="f-nrsthin grey">Odoo Contributions</h1>
+                            <br></br>
+                            <p>Bank Reconciliation – We have built a dedicated Bank Reconciliation Module for
+
+                                Odoo 8 and Odoo 9 Enterprise. This module is very useful for our customers who do
+
+                                not want to sync real time bank transactions to Odoo.</p><p>
+
+                            Shipping Module – We have built a shipping module for Odoo 7, 8, and 9 Enterprise.
+
+                            This shipping module is different from default support of UPS/FedEx and USPS
+
+                            because you have additional features. Ship Collect is designed to where customers
+
+                            can provide their shipping account number with UPS or FedEx and the shipping will
+
+                            be charged to their account. In another great feature the business owner can view
+
+                            and compare rates from different providers for specifications like ground, express
+
+                            etc. and choose what he/she wants to apply for the specific customer.</p><p>
+
+                            PrestaShop Odoo Connector – We have built a PrestaShop – Odoo connector which
+
+                            can sync in real time. For more details <a href="odoo-prestashop-connector.html"> please read..</a></p><p>
+
+                            Magento – Odoo Connector – We have built a Magento- Odoo connector which can
+
+                            sync in real time. For more details <a href="odoo-magento-connector.html">please read..</a>
+                        </p>
+                            <br></br>
+                        </div>
+                        <div class="col4 last  right-section">
+                            <span class="stripe"></span>
+                            <h3>Related Topics</h3>
+
+                            <ul>
+
+                                <li><a href="/page/odoo-10">Odoo Version 10</a></li>
+                                <li><a href="/page/odoo-app-dev"> Odoo Development </a> </li>
+                                <li><a href="/page/odoo-mod">Odoo Modules</a></li>
+                                <li><a href="/page/odoo-video">Odoo Video Gallery</a></li>
+                                <li><a href="/page/odoo-com-vs-ent">Odoo Community Vs Enterprise</a></li>
+                                <li><a  href="/page/odoo-sus-sto">Odoo Success Stories</a></li>
+                                <li><a  href="/page/odoo-custom">Odoo Customization</a></li>
+                           
+                                <li><a  href="/page/odoo-dat-mig">Odoo Data Migration</a></li>
+                                <li><a  href="/page/odoo-whi-pap">Odoo White Papers </a></li>
+
+
+
+
+                            </ul>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </section>
+
+            <t t-call="website.contactus_custom_template"/>
+            <div class="oe_structure"/>
+        </t>
+    </template>
+
+</odoo>

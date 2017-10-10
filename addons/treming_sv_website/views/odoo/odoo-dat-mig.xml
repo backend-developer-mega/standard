@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!-- === Services Page === -->
+    <template name="ODOO" id="website.odoo-dat-mig" page="True">
+        <t t-call="website.layout">
+
+            <div class="oe_structure"/>
+
+
+
+            <section class="open-erp-custamization odoo java text-center  ">
+                <h3>
+                    <span class="f-nrslight text-center grey ">
+                       Odoo <span class="orange f-nrssemibld"> Data  </span>Migration
+                        <div class="clear"></div>
+                    </span>
+                </h3>
+                <div class="down-arrow"></div>
+
+            </section>
+            <section class="inner-page">
+                <div class="wrapper">
+                    <div class="row">
+                        <div class="col8 left-section">
+                            <h1 class="f-nrsthin grey">Odoo Data Migration</h1>
+                            <p>You might be running your business on an existing ERP system, using 25 different
+
+                                software systems, or doing everything on Excel sheets. When you decide to move to
+
+                                Odoo/OpenERP, data migration is one of the most important process to be taken
+
+                                care of.</p><p>
+
+                            At Treming we have helped hundreds of customers successfully migrate their data
+
+                            from third party systems like QuickBooks, Sage, Salesforce, Zoho, Sugar CRM, Vtiger
+
+                            CRM, NetSuite etc.</p><p>
+
+                            In some cases, we have helped customers move their data from custom
+
+                            systems built using Microsoft technologies or Java/J2EE or Cobol etc.
+
+                            If you want to talk about your options, please contact us.</p>
+
+
+                            <br></br>
+                        </div>
+                        <div class="col4 last  right-section">
+                            <span class="stripe"></span>
+                            <h3>Related Topics</h3>
+
+                            <ul>
+
+                                <li><a href="/page/odoo-10">Odoo Version 10</a></li>
+                                <li><a href="/page/odoo-app-dev"> OpenERP Development </a> </li>
+                                <li><a href="/page/odoo-mod">Odoo Modules</a></li>
+                                <li><a href="/page/odoo-video">Odoo Video Gallery</a></li>
+                                <li><a href="/page/odoo-com-vs-ent">Odoo Community Vs Enterprise</a></li>
+                                <li><a  href="/page/odoo-sus-sto">Odoo Success Stories</a></li>
+                                <li><a  href="/page/odoo-custom">Odoo Customization</a></li>
+                                <li><a  href="/page/odoo-cont">Odoo Contributions</a></li>
+                               
+                                <li><a  href="/page/odoo-whi-pap">Odoo White Papers </a></li>
+
+
+
+                            </ul>
+                        </div>
+
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </section>
+
+
+            <t t-call="website.contactus_custom_template"/>
+
+            <div class="oe_structure"/>
+        </t>
+    </template>
+
+</odoo>

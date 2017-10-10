@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!-- === Services Page === -->
+    <template name="ABOUT US" id="website.about-us" page="True">
+        <t t-call="website.layout">
+            <div class="oe_structure"/>
+
+            <div class="odoo service-hed">
+            <section class="home-banner">
+            <div class="slider1">
+            <div>
+
+
+
+
+
+            <section class="open-erp-custamization odoo web-banner img-responsive">
+                    <div class="banner-caption grey greyAux f-nrslight text-right ">
+                        <h1 class="fadeInLeft animated"> <span class=" f-nrssemibld">  DELIVERING A TRUSTED </span>  </h1>
+                        <h2 class="fadeInLeft animated orange">TECHNOLOGY EXPERIENCE </h2>
+                        <a href="/page/contactus" class="button-2 text-cap btn bg-black white f-nrssemibld hvr-sweep-to-right fadeInRight animated"> CONTACT US </a>
+                        <br></br>
+                    </div>
+                </section>
+            </div>
+            </div>
+            </section>
+
+
+            <section class="about">
+                <div class="wrapper">
+                    <div class="row">
+                        <div class="col12">
+                            <div class="col3">
+                                <h1>The age of <span style="display:inline-block">technology has</span></h1>
+                                <h2>changed life as we know it.</h2><br></br>
+                            <h3>We convert challenges into great results.</h3>
+                        </div>
+                        <div class="col3">
+
+                            <p>TREMING  is a child of the new millennium that has undergone exponential growth in a period of 8 years. Being a  enterprise establish strongly in the El Salvador, TREMING provides quality software service to clients in almost 12 countries around the world. We are an interactive, reliable company which thrives on the satisfaction we provide our customers.</p>
+                            <p>With streamlined communication and networking solutions, businesses have the opportunity to thrive and grow at an unprecedented rate. However, with a variety of options in both providing organizations and software, it can be difficult to make the right choice. This is where TREMING steps in to help you.</p>
+                        </div>
+                        <div class="col3">
+                            <p>We build end-to-end integrated solutions for a complete automation experience that promotes business growth. Our solutions range over multiple domains including ERP systems, custom built solutions for Web/Mobile and dedicated product builds. We have a definite focus on ERP implementation using OpenERP/Odoo and are equipped with the right resources and expertise to streamline and perfect software for your business.</p>
+                            <p>Clients who bring their business to us are guaranteed to be satisfied. We treat every project with complete dedication and believe that no venture is too big or too small.</p>
+                           
+                        </div>
+
+                    </div><div class="clear"></div>
+                </div><div class="clear"></div>
+            </div><div class="clear"></div>
+        </section>
+
+            <div  id="vision" style="margin-top:-33px; position: absolute;"></div>
+
+            <section class="content-caption2 padding-20 ">
+                <div class="content-wrapper">
+                    <h2><span class="thin bg-white text-cap">  VISION <span class="normal-plus">and</span>  VALUES </span></h2>
+                <p class="text-center">Be the best company on technology solutions in the region while contributing to build a much better world.</p>
+            </div>
+            </section>
+
+            <section class="belif">
+                <ul id="slider1" class="item">
+                    <li>
+                        <h2 class="f-nrssemibld">Responsibility </h2>
+                        <p>We know how important your time, so if we promise to meet on a date, it will.</p>
+                    </li>
+                    <li>
+                        <h2 class="f-nrssemibld">Great People</h2>
+                        <p>In Treming you have highly cash to meet your needs and expectations.</p>
+                    </li>
+                    <li><h2 class="f-nrssemibld">Integrity</h2>
+                        <p>You always will have solutions that cover every need and expectation you have. </p>
+                    </li>
+                    <li><h2 class="f-nrssemibld">Management</h2>
+                        <p>We manage all the resources with strategies to reach the goals we set. </p>
+                    </li>
+                    <li><h2 class="f-nrssemibld">Commitment</h2>
+                        <p>We work hard to ensure quality and higher return on your investment. </p>
+                    </li>
+                    <li><h2 class="f-nrssemibld">We Dream on Big</h2>
+                        <p>We are not satisfied with little, always seek to achieve more ambitious dreams quality and delivery. </p>
+                    </li>
+
+                </ul>
+            </section>
+
+            <section class="instagram-section">
+                <div class="row">
+                    <div class="col12">
+                        <div class="insta-wrap">
+                            <div>
+
+                                <t  t-if="request.context.get('lang')=='en_US'">
+                                <img alt="Instagram" src="/treming_sv_website/static/assets/images/about/insta-ing.jpg" />
+                                </t>
+
+                                <t  t-if="request.context.get('lang')!='en_US'">
+                                    <img alt="Instagram" src="/treming_sv_website/static/assets/images/about/insta.jpg" />
+                                </t>
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </section>
+
+
+
+
+            <section class="content-caption2 padding-20 time">
+                <div class="content-wrapper">
+                    <h2><span class="thin bg-white text-cap">TIMELINE</span></h2>
+              </div>
+            </section>
+
+            <section class="show-case f-nrsblack time">
+            <div class="content-wrapper ">
+
+                <div class="row">
+                    <div class="col12 band">
+                        <input type="radio" id="slide_1"  hidden="true" name="test" checked="true"/>
+                        <input type="radio" id="slide_2"  hidden="true"  name="test"/>
+                        <input type="radio" id="slide_3"  hidden="true"  name="test"/>
+                        <input type="radio" id="slide_4"  hidden="true"  name="test"/>
+                        <input type="radio" id="slide_5"  hidden="true"  name="test"/>
+                        <input type="radio" id="slide_6"  hidden="true"  name="test"/>
+                        <input type="radio" id="slide_7"  hidden="true"  name="test"/>
+                        <input type="radio" id="slide_8"  hidden="true"  name="test"/>
+                        <div class="picc">
+                            <label for="slide_1" >2010 <a><span class="p1"></span></a> </label>
+                            <label for="slide_2" >2011 <a><span class="p2"></span></a></label>
+                            <label for="slide_3" >2012 <a><span class="p3"></span></a></label>
+                            <label for="slide_4" >2013 <a><span class="p4"></span></a></label>
+                            <label for="slide_5" >2014 <a><span class="p5"></span></a></label>
+                            <label for="slide_6" >2015 <a><span class="p6"></span></a></label>
+                            <label for="slide_7" >2016 <a><span class="p7"></span></a></label>
+                            <label for="slide_8" >2017 <a><span class="p8"></span></a></label>
+                        </div>
+                        <div class="tm">TIMELINE</div>
+                        <div class="hline"></div>
+
+                        <div class="slider-cover">
+                            <div class="slider-inner">
+                                <div class="year">
+                                    <div class="detail-con">
+                                        <br></br>
+                                        <div class="col11"><h6>How it all started</h6>
+                                            <p>
+                                                It all started on april 2010, when William Contreras founder of Grupo Treming
+                                                had the vision to offer SAP consultancy to local business. At that momment,
+                                                it was the only service that Grupo Treming offered. The company started with
+                                                two employees that were making ABAP developments and currently, thanks to the
+                                                confidence of our clientes, there are more than 100 empleyees, six business
+                                                lines, and it has been done projects in more than 12 countries.
+                                            </p>
+                                            <br/>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="year">
+
+                                    <div class="detail-con">
+                                        <br></br>
+                                        <div class="col11"><h6>Being a Reliable Partner</h6>
+                                            <p>
+                                                Our passion for open code technology  kept us for good way. 2010 gave us wings
+                                                to work on multiple geographies only by offering SAP consultancy. Our contracts evolved into long time ones.
+                                                In consecuence, our employees’s number grew from two to ten, in a very few time.
+                                            </p>
+
+
+                                            <br/>
+
+                                        </div>
+                                            </div>
+                                </div>
+                                <div class="year">
+
+                                    <div class="detail-con">
+                                        <br></br>
+                                        <div class="col11"><h6>The way forward</h6>
+                                            <p>
+                                            The technology gave us all the tools that needed to solve business problems
+                                                and we keep exploring new and more advanced ones in market. A very awesome
+                                                Project that we did, was to build product for international business that
+                                                had SAP facilities, which gave us experience with the  main companies in the region.
+                                            </p>
+                                            <br/>
+
+
+                                        </div>
+                                             </div>
+                                </div>
+                                <div class="year">
+
+                                    <div class="detail-con">
+                                        <br></br>
+                                        <div class="col11"><h6>Gains with Passion</h6>
+                                            <p>At 2013 we started with good software development projects,
+                                                in this year we opened some new business lines like:
+                                                IT personal’s outsourcing, Backend and Frontend software
+                                                development. By this year, we had nearly some
+                                                30 employees, and very important clients who trusted
+                                                their projects to us.
+                                            </p>
+
+                                            <br/>
+
+
+                                        </div>
+                                         </div>
+                                </div>
+                                <div class="year">
+
+                                    <div class="detail-con">
+                                        <br></br>
+                                        <div class="col11"><h6>The growing up process</h6>
+                                            <p>On 2014, we had the oportunity to participate in client’s
+                                                projects from the US and Mexico. That allowed
+                                                us to grow as Enterprise, and we realized that we could
+                                                reach a lot in North America.</p>
+
+                                            <br/>
+
+
+                                        </div>
+                                         </div>
+                                </div>
+                                <div class="year">
+
+                                    <div class="detail-con">
+                                        <br></br>
+                                        <div class="col11"><h6>A great year for TREMING</h6>
+                                            <p>On 2015, we won important contracts with the
+                                                salvadorean banking. By that time, we had very
+                                                important projects and we grew to 80 employees. That year,
+                                                we already implemented the six current business lines. This year, we moved
+                                                to bigger and more modern offices.
+                                            </p>
+
+                                            <br/>
+
+                                        </div>
+                                           </div>
+                                </div>
+                                <div class="year">
+
+                                    <div class="detail-con">
+                                        <br></br>
+                                        <div class="col11"><h6>Odoo and mERP Partners </h6>
+                                            <p>On this year, we became Odoo ERP and mERP partners, and we bet to develope
+                                                to make technology solutions around this tools. We opened new business
+                                                lines and we set up a sales office exclusively dedicated to Odoo and mERP.
+                                                On 2016, we put long times to train our selfs in the technical and functional
+                                                area on this technologies, to offer high quality services and consultancy.
+
+                                            </p>
+                                            <br/>
+
+
+                                        </div>
+                                        </div>
+                                </div>
+                                <div class="year">
+
+                                    <div class="detail-con">
+                                        <br></br>
+                                        <div class="col11"><h6>7 Glorious Years</h6>
+                                            <p>We welcomed this year with exciting mision to launch our new web site,
+                                            as part of our rebrand strategy. The most important thing, is that we launched
+                                            Odoo v10.0. on a dedicated and shared platform using Amazon EC2 for growing users wave.</p>
+
+                                            <p>Our objetives for the 2017’s last months, is be one the best software delopment
+                                            houses on the region, specialized on Odoo, developing productss (web and mobile)
+                                            to keep growing our family. We began with the mision of been a reliable partner for
+                                            our clients, and invent new solutions that make life easier. Whatever we do, we do
+                                                our job with this filosofy.</p>
+                                            <br/>
+
+
+                                        </div>
+                                          </div>
+                                </div>
+                            </div>
+                            <span class="year-dtl" ><h3>2010</h3> <h4>HIGHLIGHTS</h4></span>
+                            <span class="year-dt2" ><h3>2011</h3> <h4>HIGHLIGHTS</h4></span>
+                            <span class="year-dt3" ><h3>2012</h3> <h4>HIGHLIGHTS</h4></span>
+                            <span class="year-dt4" ><h3>2013</h3> <h4>HIGHLIGHTS</h4></span>
+                            <span class="year-dt5" ><h3>2014</h3> <h4>HIGHLIGHTS</h4></span>
+                            <span class="year-dt6" ><h3>2015</h3> <h4>HIGHLIGHTS</h4></span>
+                            <span class="year-dt7" ><h3>2016</h3> <h4>HIGHLIGHTS</h4></span>
+                            <span class="year-dt8" ><h3>2017</h3> <h4>HIGHLIGHTS</h4></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </section>
+
+
+
+
+
+            </div>
+
+            <t t-call="website.contactus_custom_template"/>
+
+            <div class="oe_structure"/>
+        </t>
+    </template>
+
+</odoo>

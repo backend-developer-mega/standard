@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<!-- Extend form -->
+		<record model="ir.ui.view" id="view_form_es_account_fiscal_position_inherited">
+			<field name="name">es.account.fiscal.position</field>
+			<field name="model">account.fiscal.position</field>
+			<field name="inherit_id" ref="account.view_account_position_form" />
+			<field name="arch" type="xml">
+				
+				<xpath expr="//field[@name='company_id']" position="after">
+					<!-- <field name="gran_contribuyente" /> -->
+					<field name="quantity_limit" />
+				</xpath>
+
+			</field>
+		</record>
+	</data>
+</openerp>

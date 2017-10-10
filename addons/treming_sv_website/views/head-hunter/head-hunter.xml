@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!-- === Services Page === -->
+    <template name="Head Hunter" id="website.head-hunter" page="True">
+        <t t-call="website.layout">
+
+            <div class="oe_structure"/>
+
+
+
+
+
+            <section class="home-banner">
+            <div class="slider1">
+            <div>
+            <section class="open-erp-custamization odoo iot-banner img-responsive">
+                <div class="banner-caption grey  greyAux f-nrslight ">
+                    <h1 class="fadeInRight animated"><span class="orange  f-nrssemibld">HEAD HUNTER IT PERSONAL</span></h1>
+                    <h3 class="fadeInRight animated" >WE PROVIDE HIGHLY QUALIFIED</h3>
+                    <h3 class="fadeInRight animated"> PERSONNEL FOR YOUR <span class="f-nrssemibld"> COMPANY.</span></h3>
+                     <a href="/page/contactus" class="button-2 text-cap btn bg-black white f-nrssemibld hvr-sweep-to-right fadeInRight animated"> CONTACT US </a>
+                    <br></br>
+                </div>
+            </section>
+            </div>
+            </div>
+            </section>
+
+
+
+            <section class="content-caption2 bg-lgtgrey padding-20">
+                <div class="content-wrapper">
+                    <h2><span class="thick  bg-lgtgrey grey">ABOUT head hunter</span></h2>
+
+
+
+                    <p>
+                        Treming has a highly trained  professional’s team for the human talent atraction, specifically in IT departments.
+                        We focus on the analisis, evaluation, selection processes, interviews per competences, phycological evaluations,
+                        and techniques in relation to the vacancy requeriments that businesses requires.
+                        Because of our trajectory and professionalism that describes us, it allows us to provide to our clients a integral
+                        service, which takes us to comply with the quality standars.
+                    </p>
+
+
+
+                </div>
+            </section>
+
+            <section class="content-caption2 bg-lgtgrey padding-20">
+                <div class="content-wrapper">
+                    <h2><span class="thick  bg-lgtgrey grey">Benefits</span></h2>
+                    <br></br>
+                    <div class="list-style1">
+                        <ul class="f-nrsthin darkgrey">
+                            <li class=" brdr-orange  darkgrey" href="#"><span> We offer to companies the specialized human talent they need, and we achive to low their time and money expenses. </span></li>
+                            <li class=" brdr-orange  darkgrey" href="#"><span> Our human talent atraction’s especialists are focus on specialized technical people research.</span></li>
+                            <li class=" brdr-orange  darkgrey" href="#"><span> Our clients look  to who can carry the process, with the objetive to attend their company needs. </span></li>
+                            <li class=" brdr-orange  darkgrey" href="#"><span> We are the ones who are responsable to execute the selection process, which is follow by efficiency and effectivity on the personal contracting. </span></li>
+                            <li class=" brdr-orange  darkgrey" href="#"><span> The service obtained by the clients is described as strategic and integral. </span></li>
+                            <li class=" brdr-orange  darkgrey" href="#"><span> We focus to give in every  executed process, a technical consultancy for their business good.</span></li>
+
+
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+
+            <section class="content-caption2  padding-20">
+                <div class="content-wrapper">
+                    <h2><span class="bg-white grey">Why <span class="bold">Treming?</span></span></h2>
+
+                    <p>
+
+                        Our trajectory and international expertise,
+                        also the multitask profesionals that back up
+                        allowed us to analize, and improve our processes
+                        for becoming and showing to our  clients that they
+                        are our strategic allies, technical team and we always
+                        look for awesome resources to incorporate them to their
+                        companies.
+                    </p>
+                    <p>
+
+                    </p>
+                </div>
+            </section>
+
+            <section class="content-caption2 ">
+                <div class="content-wrapper">
+                    <h2><span class="thick bg-white">OUR Process</span></h2>
+                </div>
+            </section>
+
+            <section class="instagram-section">
+                <div class="row">
+                    <div class="col12">
+                        <div class="insta-wrap">
+
+                            <div>
+                                <t  t-if="request.context.get('lang')=='en_US'">
+                                <img alt="Instagram" src="/treming_sv_website/static/assets/images/headhunter.jpg" />
+                                </t>
+                                <t  t-if="request.context.get('lang')!='en_US'">
+                                    <img alt="Instagram" src="/treming_sv_website/static/assets/images/headhunter-esp.jpg" />
+                                </t>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </section>
+            <t t-call="website.contactus_custom_template"/>
+            <div class="oe_structure"/>
+        </t>
+    </template>
+
+</odoo>

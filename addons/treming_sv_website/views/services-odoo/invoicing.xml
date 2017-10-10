@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!-- === Services Page === -->
+    <template name="Invoicing" id="website.invoicing" page="True">
+        <t t-call="website.layout">
+
+            <div class="oe_structure"/>
+            <div id="wrap">
+
+
+
+                <section class="open-erp-custamization odoo java text-center  ">
+                    <h3>
+                        <span class="f-nrslight text-center grey ">
+                            <span class="orange f-nrssemibld"> Invoicing </span>
+                            <div class="clear"></div>
+                        </span>
+                    </h3>
+                    <h3 class="grey f-nrssemibld">OUR SOLUTION<br></br></h3>
+                    <div class="down-arrow"></div>
+                </section>
+
+
+                <section class="content-caption2 bg-lgtgrey padding-20">
+                    <div class="content-wrapper">
+                        <h2><span class="thick  bg-lgtgrey grey">ABOUT Invoicing </span></h2>
+
+
+
+                        <p>
+                            Many invoices that process, too many papers that accumulate at the end of a day.
+                            No more complications, Odoo Billing will make your life easier, from carrying out
+                            the client portfolio to processing each fiscal document of your business operations.
+                            Set up in minutes the business logic of your company and all other operations,
+                            documents and tax and give them tropicalized for El Salvador. Stop wasting the time of document processing and focus on what is important, analyze your operations, for which we give you tools,
+                            that allow you to evaluate your billing through charts, dynamic tables and more.   </p>
+                    </div>
+                </section>
+
+                <section class="instagram-section">
+                    <div class="row">
+                        <div class="col12">
+                            <div class="insta-wrap">
+                                <div>
+
+
+                                    <img alt="Instagram" src="/treming_sv_website/static/assets/images/invoicing/grande.png" />
+
+
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </section>
+
+                <section class="content-caption2 bg-lgtgrey padding-20">
+                    <div class="content-wrapper">
+                        <h2><span class="thick  bg-lgtgrey grey"> General characteristics</span></h2>
+                        <br></br>
+                        <div class="list-style1-ca">
+                            <ul class="f-nrsthin darkgrey">
+
+                                <li class=" brdr-orange  darkgrey car-list" href="#" id="ca1"><span><a> Full Control of Customers and Native Integration CRM Odoo. </a>  </span>
+
+                                    <p>
+                                        Invoicing Odoo will allow you to manage all the clients of your company.
+                                        From your most basic information to your tax information. It also allows full integration
+                                        with Odoo CRM so you can track sales, from the time you create the opportunity,
+                                        to create the Invoice or Proof of Tax Credit or the document you need.
+                                    </p>
+
+                                </li>
+
+                                <li class=" brdr-orange  darkgrey car-list" href="#" id="ca2"><span><a>Calculations and Documents 100% Tropicalized to Salvador Legislation.</a></span>
+                                    <p>
+
+
+                                        The legislation of El Salvador has unique ways of carrying out the billing process,
+                                        defining its own documents: Final Consumer Invoices, Tax Credit Receipts, Credit Notes
+                                        and Due Notes. In addition to including their own taxes according to the product that is
+                                        invoiced. Our module allows
+                                        you to generate all these types of documents and calculate all tax in a quick and easy way to customize.
+
+                                    </p>
+                                </li>
+
+                                <li class=" brdr-orange  darkgrey car-list" href="#" id="ca3"><span><a> Control your products, no matter if they are service or commercial items.</a></span>
+
+                                    <p>
+
+                                        We know that the logic of each company is based on your commercial products are these service or items.
+                                        Regardless of what it was, Invoicing Odoo is prepared to handle the basic and fiscal information of each product.
+                                        It also integrates natively with the Accounting, Inventory and Purchasing system so you can more
+                                        effectively manage the information of each product.
+                                    </p>
+
+                                </li>
+
+                                <li class=" brdr-orange  darkgrey car-list" href="#" id="ca4"><span><a>Analyze your billing information and make the best decisions.</a></span>
+                                    <p>
+
+                                        We provide you with methods so that you can analyze the information through tools that will allow you to
+                                        determine the best decisions to increase your sales.
+                                    </p>
+                                </li>
+
+                                <li class=" brdr-orange  darkgrey car-list" href="#" id="ca5"><span><a>Manage your credit conditions and payment methods.</a></span>
+                                    <p>
+
+                                        Generate your invoices under credit conditions and Odoo will be in charge of helping you with
+                                        the notifications of collection to your clients or you can integrate them with Odoo Accounting
+                                        and manage the process of Accounts Receivable from a same section.
+                                    </p>
+                                </li>
+
+                                <li class=" brdr-orange  darkgrey car-list" href="#" id="ca6"><span><a> Audit of Billing Processing. </a></span>
+                                    <p>
+                                        We know that the processing of financial information is a very sensitive issue, that is why we provide
+                                        you with tools so that you can know all the changes a user has made and add your own comments.
+
+                                    </p>
+
+                                </li>
+
+                                <li class=" brdr-orange  darkgrey car-list" href="#" id="ca7"><span><a>  Integration with other Odoo Modules.</a></span>
+                                    <p>
+                                        All the information generated in our module is fully integrated with the following modules: Odoo Accounting
+                                        and Odoo CRM.<br></br>
+
+                                        If you need this information to be integrated with your own software, contact an Odoo consultant, we assure you that the integration is 100% possible.
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+
+                <section class="content-caption2  padding-20">
+                    <div class="content-wrapper">
+                        <h2><span class="bg-white grey bold">Module Sections</span></h2>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="row">
+                                <div class="col-xs-12">
+
+
+                                        <div class="row titu-carac">
+                                            <span class=" bold">Customers</span>
+                                        </div>
+
+                                        <br></br>
+
+                                        <div class="row">
+                                            <div class="col-xs-1 ">
+
+                                                <i class="fa fa-check  tex-carac" aria-hidden="true">
+                                                </i>
+                                            </div>
+                                            <div class="col-xs-10 ">
+                                                <p class="tex-carac" >
+                                                    <span class="bold"> </span>
+
+                                                     Controls from the most basic information to tax information.
+
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <br></br>
+                                        <div class="row">
+                                            <div class="col-xs-1">
+                                                <i class="fa fa-check  tex-carac" aria-hidden="true">
+                                                </i>
+                                            </div>
+                                            <div class="col-xs-10">
+                                                <p class="tex-carac" >
+                                                    Group the billing information of each customer and observe through graphs the financial performance of the customer.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <br></br>
+                                        <div class="row">
+                                            <div class="col-xs-1 ">
+                                                <i class="fa fa-check   tex-carac" aria-hidden="true">
+                                                </i>
+                                            </div>
+                                            <div class="col-xs-10 ">
+                                                <p class=" tex-carac" >
+
+                                                    Agrega contactos únicos por clientes, para que tengas un directorio completo de los responsables dentro de las entidades de los procesos de ventas que realices.
+                                                </p>
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 pad-img">
+                            <img class="img img-responsive" src="/treming_sv_website/static/assets/images/invoicing/clientes.png" alt="" />
+
+                        </div>
+                    </div>
+
+                </section>
+
+
+                <section class="content-caption2  bg-lgtgrey-2  padding-20">
+
+                    <div class="row ">
+
+                        <div class="col-sm-6 pad-img">
+
+                            <img class="img img-responsive" src="/treming_sv_website/static/assets/images/invoicing/productos.png" alt="" />
+
+                        </div>
+
+                        <div class="col-sm-6">
+
+                            <div class="row">
+
+                                <div class="col-xs-12">
+
+
+
+                                        <div class="row titu-carac">
+                                            <span class="bold">Productos</span>
+                                        </div>
+
+
+                                        <br></br>
+
+
+                                        <div class="row">
+                                            <div class="col-xs-1">
+                                                <i class="fa fa-check  tex-carac" aria-hidden="true">
+                                                </i>
+                                            </div>
+                                            <div class="col-xs-10 ">
+                                                <p class=" tex-carac" >
+                                                    Manage your product catalog by classifying them as "Services" or as commercial products.
+                                                    Including for each product from your most basic information to your costing and sales information.  </p>
+                                            </div>
+                                        </div>
+
+                                        <br></br>
+
+                                        <div class="row">
+                                            <div class="col-xs-1 ">
+                                                <i class="fa fa-check   tex-carac" aria-hidden="true">
+                                                </i>
+                                            </div>
+                                            <div class="col-xs-10 ">
+                                                <p class=" tex-carac" >
+
+
+                                                    Customize by product the taxes applicable to the process of purchase or sales of said product.
+
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <br></br>
+
+                                        <div class="row">
+                                            <div class="col-xs-1">
+                                                <i class="fa fa-check   tex-carac" aria-hidden="true">
+                                                </i>
+                                            </div>
+                                            <div class="col-xs-10 ">
+                                                <p class=" tex-carac" >
+
+                                                    Add comments to each product so that you have an internal control of the actions that have been taken with the product.
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <br></br>
+
+
+
+
+
+
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <section class="content-caption2   padding-20">
+                    <div class="row">
+
+
+
+                        <div class="col-sm-6">
+
+                            <div class="row">
+
+                                <div class="col-xs-12">
+
+
+
+                                        <div class="row titu-carac">
+                                            <span class="bold">Invoicing</span>
+                                        </div>
+
+
+                                        <br></br>
+
+
+                                        <div class="row">
+                                            <div class="col-xs-1">
+                                                <i class="fa fa-check  tex-carac" aria-hidden="true">
+                                                </i>
+                                            </div>
+                                            <div class="col-xs-10 ">
+                                                <p class=" tex-carac" >
+
+                                                    Generation of any type of document of the legislation of El Salvador:
+                                                    Proof of Tax Credit, Invoices, Credit or Debit Notes.
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <br></br>
+
+                                        <div class="row">
+                                            <div class="col-xs-1 ">
+                                                <i class="fa fa-check   tex-carac" aria-hidden="true">
+                                                </i>
+                                            </div>
+                                            <div class="col-xs-10 ">
+                                                <p class=" tex-carac" >
+
+
+                                                    Configured with the VAT rules, according to the legislation of El Salvador
+                                                    or configure the calculation of those taxes of your own in a matter of 2 minutes.
+
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <br></br>
+
+                                        <div class="row">
+                                            <div class="col-xs-1">
+                                                <i class="fa fa-check   tex-carac" aria-hidden="true">
+                                                </i>
+                                            </div>
+                                            <div class="col-xs-10 ">
+                                                <p class="tex-carac" >
+                                                    Visualize your invoices the way you want them: grouped by customer, by product, in the form of graphs, as you like.
+                                                    We hope you get the information you need in the most effective way.
+
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <br></br>
+
+                                        <div class="row">
+                                            <div class="col-xs-1">
+                                                <i class="fa fa-check   tex-carac" aria-hidden="true">
+                                                </i>
+                                            </div>
+                                            <div class="col-xs-10 ">
+                                                <p class=" tex-carac" >
+
+                                                    Control N number of Taxpayer Types and modify existing ones if you wish.
+
+                                                </p>
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-sm-6 pad-img">
+                            <img class="img img-responsive" src="/treming_sv_website/static/assets/images/invoicing/facturacion.png" alt="" />
+                        </div>
+                    </div>
+                </section>
+
+
+                <section class="content-caption2 bg-lgtgrey padding-20 hiden-produ">
+
+                    <div class="content-wrapper">
+
+                        <h2><span class="thick  bg-lgtgrey grey"><span class="bold"> Pricing </span></span></h2>
+
+                        <div class="cont-pri" >
+                            <div class="columns-2 hide-col">
+                                <ul class="price-2">
+                                    <li class="header"></li>
+                                    <li class="grey"></li>
+                                    <li class=" " href="#"><span> Full Control of Customers and Native Integration CRM Odoo. </span></li>
+                                    <li class=" " href="#"><span> Calculations and Documents 100% Tropicalized to Salvador Legislation.</span></li>
+                                    <li class=" " href="#"><span> Control your products, no matter if they are service or commercial items.</span></li>
+                                    <li class=" " href="#"><span> Analyze your billing information and make the best decisions.</span></li>
+                                    <li class=" " href="#"><span> Manage your credit conditions and payment methods.</span></li>
+                                    <li class=" " href="#"><span> Audit of Billing Processing.</span></li>
+                                    <li class=" " href="#"><span> Integration with other Odoo Modules.</span></li>
+
+                                </ul>
+                            </div>
+
+                            <div class="columns">
+                                <ul class="price">
+                                    <li class="header">On Cloud </li>
+                                    <li class="grey-pri">from USD 8.0 /user/month</li>
+                                    <li><span class="hide-ca">Full Control of Customers and Native Integration CRM Odoo.</span>   <i class="fa fa-check" aria-hidden="true"></i></li>
+                                    <li><span class="hide-ca">Calculations and Documents 100% Tropicalized to Salvador Legislation.</span>   <i class="fa fa-check" aria-hidden="true"></i></li>
+                                    <li><span class="hide-ca">Control your products, no matter if they are service or commercial items.</span>   <i class="fa fa-check" aria-hidden="true"></i></li>
+                                    <li><span class="hide-ca">Analyze your billing information and make the best decisions.</span>   <i class="fa fa-check" aria-hidden="true"></i></li>
+                                    <li><span class="hide-ca">Manage your credit conditions and payment methods.</span>   <i class="fa fa-check" aria-hidden="true"></i></li>
+                                    <li><span class="hide-ca">Audit of Billing Processing.</span>   <i class="fa fa-check" aria-hidden="true"></i></li>
+                                    <li><span class="hide-ca">Integration with other Odoo Modules.</span>   <i class="fa fa-check" aria-hidden="true"></i></li>
+
+                                </ul>
+                            </div>
+
+                            <div class="columns">
+                                <ul class="price">
+                                    <li class="header">On Premises</li>
+                                    <li class="grey-pri">from USD 8.0 /user/month</li>
+                                    <li><span class="hide-ca">Full Control of Customers and Native Integration CRM Odoo.</span>   <i class="fa fa-check" aria-hidden="true"></i></li>
+                                    <li><span class="hide-ca">Calculations and Documents 100% Tropicalized to Salvador Legislation.</span>   <i class="fa fa-check" aria-hidden="true"></i></li>
+                                    <li><span class="hide-ca">Control your products, no matter if they are service or commercial items.</span>   <i class="fa fa-check" aria-hidden="true"></i></li>
+                                    <li><span class="hide-ca">Analyze your billing information and make the best decisions.</span>   <i class="fa fa-check" aria-hidden="true"></i></li>
+                                    <li><span class="hide-ca">Manage your credit conditions and payment methods.</span>   <i class="fa fa-check" aria-hidden="true"></i></li>
+                                    <li><span class="hide-ca">Audit of Billing Processing.</span>   <i class="fa fa-check" aria-hidden="true"></i></li>
+                                    <li><span class="hide-ca">Integration with other Odoo Modules.</span>   <i class="fa fa-check" aria-hidden="true"></i></li>
+
+                                </ul>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </section>
+
+                <t t-call="website.contactus_custom_template"/>
+            </div>
+            <div class="oe_structure"/>
+        </t>
+    </template>
+
+</odoo>

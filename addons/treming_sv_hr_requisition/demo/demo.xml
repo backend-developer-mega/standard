@@ -1,0 +1,156 @@
+<openerp>
+	<data>
+		<!-- Crear Paramentro de Sistema -->
+		<record model="ir.config_parameter" id="config_parameter1">
+			<field name="key">requisition</field>
+			<field name="value">1</field>
+		</record>
+
+		<!-- Nivel Académico -->
+		<record model="hr.levelacademic" id="levelacademic1">
+			<field name="code">1</field>
+			<field name="name">Graduado</field>
+		</record>
+		<record model="hr.levelacademic" id="levelacademic2">
+			<field name="code">2</field>
+			<field name="name">Egresado</field>
+		</record>
+		<record model="hr.levelacademic" id="levelacademic3">
+			<field name="code">3</field>
+			<field name="name">Estudiante</field>
+		</record>
+
+		<!-- Servicio solicitado -->
+		<record model="hr.service" id="service1">
+			<field name="code">1</field>
+			<field name="name">Outsoursing</field>
+		</record>
+		<record model="hr.service" id="service2">
+			<field name="code">2</field>
+			<field name="name">Head Hunter</field>
+		</record>
+
+		<!-- Tipo de plaza -->
+		<record model="hr.typejob" id="typejob1">
+			<field name="code">1</field>
+			<field name="name">Temporal</field>
+		</record>
+		<record model="hr.typejob" id="typejob2">
+			<field name="code">2</field>
+			<field name="name">Permanente</field>
+		</record>
+
+		<!-- Cualidades específicas del Candidato -->
+		<record model="hr.tagqualities" id="tagqualities1">
+			<field name="color">0</field>
+			<field name="name">Proactivo</field>
+		</record>
+		<record model="hr.tagqualities" id="tagqualities2">
+			<field name="color">1</field>
+			<field name="name"> Ordenado</field>
+		</record>
+		<record model="hr.tagqualities" id="tagqualities3">
+			<field name="color">2</field>
+			<field name="name"> Responsable</field>
+		</record>
+		<record model="hr.tagqualities" id="tagqualities4">
+			<field name="color">3</field>
+			<field name="name"> Liderazgo</field>
+		</record>
+		<record model="hr.tagqualities" id="tagqualities5">
+			<field name="color">4</field>
+			<field name="name"> Alta Iniciativa</field>
+		</record>
+		<record model="hr.tagqualities" id="tagqualities6">
+			<field name="color">5</field>
+			<field name="name"> Capacidad de tomar decisiones importantes</field>
+		</record>
+
+		<!-- Carrera Universitaria -->
+		<record model="hr.tagcareer" id="tagcareer1">
+			<field name="color">1</field>
+			<field name="name">Ing. Industrial</field>
+		</record>
+		<record model="hr.tagcareer" id="tagcareer2">
+			<field name="color">2</field>
+			<field name="name">Ing. Civil</field>
+		</record>
+		<record model="hr.tagcareer" id="tagcareer3">
+			<field name="color">3</field>
+			<field name="name">Ing. Sistemas</field>
+		</record>
+		<record model="hr.tagcareer" id="tagcareer4">
+			<field name="color">4</field>
+			<field name="name">Ing. Eléctrica</field>
+		</record>
+		<record model="hr.tagcareer" id="tagcareer5">
+			<field name="color">5</field>
+			<field name="name">Lic. en Informática</field>
+		</record>
+
+		<!-- Idiomas -->
+		<record model="hr.languages" id="languages1">
+			<field name="color">0</field>
+			<field name="name">Ingles Basico</field>
+		</record>
+		<record model="hr.languages" id="languages2">
+			<field name="color">1</field>
+			<field name="name">Ingles Intermedio</field>
+		</record>
+		<record model="hr.languages" id="languages3">
+			<field name="color">2</field>
+			<field name="name">Ingles Avanzado</field>
+		</record>
+		<record model="hr.languages" id="languages4">
+			<field name="color">3</field>
+			<field name="name">Aleman Basico</field>
+		</record>
+		<record model="hr.languages" id="languages5">
+			<field name="color">4</field>
+			<field name="name">Francés Basico</field>
+		</record>
+
+		<!-- Lista de beneficios -->
+		<record model="hr.tagbenefits" id="tagbenefits0">
+			<field name="color">0</field>
+			<field name="name">Comisiones</field>
+		</record>
+		<record model="hr.tagbenefits" id="tagbenefits1">
+			<field name="color">1</field>
+			<field name="name">Viáticos</field>
+		</record>
+		<record model="hr.tagbenefits" id="tagbenefits2">
+			<field name="color">2</field>
+			<field name="name">Política de incremento</field>
+		</record>
+		<record model="hr.tagbenefits" id="tagbenefits3">
+			<field name="color">3</field>
+			<field name="name">Prestaciones de ley</field>
+		</record>
+		<record model="hr.tagbenefits" id="tagbenefits4">
+			<field name="color">4</field>
+			<field name="name">Depreciación</field>
+		</record>
+		<record model="hr.tagbenefits" id="tagbenefits5">
+			<field name="color">5</field>
+			<field name="name">Seguro Médico</field>
+		</record>
+		<record model="hr.tagbenefits" id="tagbenefits6">
+			<field name="color">6</field>
+			<field name="name">Celular</field>
+		</record>
+		<record model="hr.tagbenefits" id="tagbenefits7">
+			<field name="color">7</field>
+			<field name="name">Bonos</field>
+		</record>
+		<record model="hr.tagbenefits" id="tagbenefits8">
+			<field name="color">8</field>
+			<field name="name">Seguro de vida</field>
+		</record>
+		<record model="hr.tagbenefits" id="tagbenefits9">
+			<field name="color">9</field>
+			<field name="name">Capacitación</field>
+		</record>
+
+	</data>
+</openerp>

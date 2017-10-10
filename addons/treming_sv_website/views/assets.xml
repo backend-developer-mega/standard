@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <template id="nav_custom" name="nav_custom" inherit_id="website.assets_frontend">
+            <xpath expr="link[last()]" position="after">
+
+                <link rel="stylesheet" type="text/css" href="/treming_sv_website/static/assets/css/scroll.css" />
+                <link rel="stylesheet" type="text/css" href="/treming_sv_website/static/assets/css/font-awesome.min.css" />
+                <link rel="stylesheet" type="text/css" href="/treming_sv_website/static/assets/css/animation.css" />
+                <link rel="stylesheet" type="text/css" href="/treming_sv_website/static/assets/css/style.css" />
+                <link rel="stylesheet" type="text/css" href="/treming_sv_website/static/assets/css/hover.css" />
+                <link rel="stylesheet" type="text/css" href="/treming_sv_website/static/assets/css/video.css" />
+                <link rel="stylesheet" type="text/css" href="/treming_sv_website/static/assets/css/footer.css" />
+                <link rel="stylesheet" type="text/css" href="/treming_sv_website/static/assets/css/odoo.css" />
+                <link rel="stylesheet" type="text/css" href="/treming_sv_website/static/assets/vendor/bxslider/bxslider.css" />
+
+                <script src="/treming_sv_website/static/assets/js/common.js"></script>
+                <script src="/treming_sv_website/static/assets/vendor/bxslider/bxslider.min.js"></script>
+                <script src="/treming_sv_website/static/assets/js/jquery.anyslider.js"></script>
+                <script src="/treming_sv_website/static/assets/js/nav.js"></script>
+
+             </xpath>
+        </template>
+    </data>
+</odoo>

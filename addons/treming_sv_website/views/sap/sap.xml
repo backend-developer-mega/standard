@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!-- === Services Page === -->
+    <template name="SAP" id="website.sap" page="True">
+        <t t-call="website.layout">
+
+            <div class="oe_structure"/>
+
+            <section class="home-banner">
+                <div class="slider1">
+                    <div>
+            <section class="open-erp-custamization odoo bigdata-analytics-banner img-responsive">
+                <div class="banner-caption grey greyAux f-nrslight">
+                    <h1 class="fadeInRight animated"><span class="orange f-nrssemibld"> SAP CONSULTANCY </span> </h1>
+                    <h2 class="fadeInRight animated">WE OFFER TECHNICAL AND</h2>
+                    <h3 class="fadeInRight animated"> FUNCTIONAL CONSULTANCY <span class=" f-nrssemibld">IN SAP. </span></h3>
+                    <a href="/page/contactus" class="button-2 text-cap btn bg-black white f-nrssemibld hvr-sweep-to-right fadeInRight animated"> CONTACT US </a>
+                    <br></br>
+                    <img  class="banner-badge fadeInRight animated" src="/treming_sv_website/static/assets/images/sap-logo.png"/>
+                </div>
+            </section>
+
+        </div>
+    </div>
+</section>
+
+            <div class="odoo padding-10">
+    
+            
+                <section class="grid_galllery" id="grid_gal">
+                    <div class="wrap">
+                        <div class="half-section">
+                            <a href="#grid_gal">
+                                <div class="out-sourcing">
+                                    <img src="/treming_sv_website/static/assets/images/sap/y-bg.png"/>
+                                    <div class="text-wrap">
+                                        <img class="icon-image" src="/treming_sv_website/static/assets/images/sap/nos-icon.png"/>
+                                        <h2> SAP <span class="f-nrsblack">Consulting</span></h2>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="#grid_gal">
+                                <div class="uc-design">
+                                    <img src="/treming_sv_website/static/assets/images/sap/ucd-bg.jpg"/>
+                                    <div class="text-wrap">
+                                        <img class="icon-image" src="/treming_sv_website/static/assets/images/sap/uc-icon.png"/>
+                                        <h2>Implement</h2>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="#grid_gal">
+                                <div class="quality-code">
+                                    <img src="/treming_sv_website/static/assets/images/sap/qc-bg.jpg"/>
+                                    <div class="text-wrap">
+                                        <img class="icon-image" src="/treming_sv_website/static/assets/images/sap/qc-icon.png"/>
+                                        <h2>ABAP Factory</h2>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="half-section">
+                            <a href="#grid_gal">
+                                <div class="opensource">
+                                    <img src="/treming_sv_website/static/assets/images/sap/lo-bg.jpg"/>
+                                    <div class="text-wrap">
+                                        <img class="icon-image" src="/treming_sv_website/static/assets/images/sap/lo-icon.png"/>
+                                        <h2> <span> Mobile Integration </span></h2>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="#grid_gal">
+                                <div class="code-lib">
+                                    <img src="/treming_sv_website/static/assets/images/sap/cl-bg.jpg"/>
+                                    <div class="text-wrap">
+                                        <img class="icon-image" src="/treming_sv_website/static/assets/images/sap/cl-icon.png"/>
+                                        <h2 class="grey">Plant Automation with SAP MII</h2>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="#grid_gal">
+                                <div class="cost">
+                                    <img src="/treming_sv_website/static/assets/images/sap/ce-bg.png"/>
+                                    <div class="text-wrap">
+                                        <img class="icon-image" src="/treming_sv_website/static/assets/images/sap/ce-icon.png"/>
+                                        <h2 class="white">Sap netweaver <br></br>(portals, mobile, PI)</h2>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="#grid_gal">
+                                <div class="hire-best">
+                                    <img src="/treming_sv_website/static/assets/images/sap/whb-bg.png"/>
+                                    <div class="text-wrap">
+                                        <img class="icon-image" src="/treming_sv_website/static/assets/images/sap/whb-icon.png"/>
+                                        <h2>BASIS <br></br> System remote administration</h2>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="#grid_gal">
+                                <div class="cust-partners">
+                                    <img src="/treming_sv_website/static/assets/images/sap/cp-bg.jpg"/>
+                                    <div class="text-wrap">
+                                        <img class="icon-image" src="/treming_sv_website/static/assets/images/sap/cp-icon.png"/>
+                                        <h2 class="">integration (ALE, IDOCS, EDI) and archiving</h2>
+                                    </div>
+                                </div>
+                            </a>
+                        </div><div class="clear"></div>
+                    </div>
+                </section>
+            </div>
+
+
+
+            <section class="content-caption2 bg-lgtgrey padding-20">
+                <div class="content-wrapper">
+                    <h2><span class="thick  bg-lgtgrey grey">ABOUT SAP</span></h2>
+
+
+
+                    <p>
+
+                        SAP is a Powerful IT system that manages the resources of the world's leading companies,
+                        providing efficient management of financial resources, human resources, sales channels,
+                        logistics processes, stock management and much more!
+                    </p>
+
+
+
+                </div>
+            </section>
+            <section class="content-caption2  padding-20">
+                <div class="content-wrapper">
+                    <h2><span class="bg-white grey">Why <span class="bold">Treming? </span></span></h2>
+
+                    <p>
+
+                        Our team of consultants has extensive experience in the different business
+                        processes and their integration with the SAP functionalities.<br></br><br></br>
+
+                        We have different styles of work, during work closely with staff of the company,
+                        focusing on knowledge transfer to the person involved with the business processes and activities.
+
+                        <br></br><br></br>
+
+                        What makes the difference between us and other consulting firms is our commitment to our customers.
+                        This is achieved by focusing on meeting business goals and building a long-term relationship.
+
+                    </p>
+                </div>
+            </section>
+
+            <section class="content-caption2 ">
+                <div class="content-wrapper">
+                    <h2><span class="thick bg-white">Our Development Process</span></h2>
+                </div>
+            </section>
+
+            <section class="instagram-section">
+                <div class="row">
+                    <div class="col12">
+                        <div class="insta-wrap">
+                            <div>
+                                <t  t-if="request.context.get('lang')=='en_US'">
+                                <img alt="Instagram" src="/treming_sv_website/static/assets/images/ABAP-PROCESS.jpg" />
+                                </t>
+
+                                <t  t-if="request.context.get('lang')!='en_US'">
+                                    <img alt="Instagram" src="/treming_sv_website/static/assets/images/ABAP-ESP.jpg" />
+                                </t>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </section>
+
+            <t t-call="website.contactus_custom_template"/>
+            <div class="oe_structure"/>
+        </t>
+    </template>
+
+</odoo>

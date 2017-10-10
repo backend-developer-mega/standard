@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!-- === Services Page === -->
+    <template name="IOT" id="website.iot" page="True">
+        <t t-call="website.layout">
+
+            <div class="oe_structure"/>
+            <section class="home-banner">
+            <div class="slider1">
+            <div>
+            <section class="open-erp-custamization odoo iot-banner">
+                <div class="banner-caption grey greyAux  f-nrslight  ">
+                    <h1 class="f-nrssemibld fadeInRight animated"><span class="f-nrsblack orange">Anything </span>that can  </h1>
+
+                    <h1 class="f-nrssemibld fadeInRight animated"> be  connected,    will be <br></br>  connected. </h1>
+                    <h5 class="fadeInRight animated">Is your Enterprise ready for Internet of Things?</h5>
+                    <a href="/page/contactus" class="button-2 text-cap btn bg-black white f-nrssemibld hvr-sweep-to-right fadeInRight animated"> CONTACT US </a>
+                </div>
+            </section>
+            </div>
+            </div>
+        </section>
+
+            <div class="odoo">
+            <section class="grid_galllery iot" id="iot">
+                <div class="wrap first-section">
+                    <div class="half-section">
+
+                        <a href="#iot">
+                            <div class="case-study">
+                                <img src="/treming_sv_website/static/assets/images/iot/o-connector-bg.jpg"/>
+                                <div class="text-wrap">
+                                    <img class="icon-image" src="/treming_sv_website/static/assets/images/iot/smart-farming-icon.png"/>
+                                    <h2>Smart Animal Farming</h2>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="#iot">
+                            <div class="web-design">
+                                <img src="/treming_sv_website/static/assets/images/iot/24sup-bg.jpg"/>
+                                <div class="text-wrap">
+                                    <img class="icon-image" src="/treming_sv_website/static/assets/images/iot/supply-chain-icon-grey.png"/>
+                                    <h2>Supply Chain</h2>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#iot">
+                            <div class="web-portfolio">
+                                <img src="/treming_sv_website/static/assets/images/iot/web-portfolio-bg.jpg"/>
+                                <div class="text-wrap">
+                                    <img class="icon-image" src="/treming_sv_website/static/assets/images/iot/logistics-icon-grey.png"/>
+                                    <h2>Logistics</h2>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#iot">
+                            <div class="htm-5">
+                                <img src="/treming_sv_website/static/assets/images/iot/htm-5-bg.jpg"/>
+                                <div class="text-wrap">
+                                    <img class="icon-image" src="/treming_sv_website/static/assets/images/iot/smart-environment-icon-grey.png" />
+                                    <h2>Smart Environment</h2>
+                                </div>
+                            </div>
+                        </a>
+
+                    </div>
+                    <div class="half-section">
+                        <a href="#iot">
+                            <div class="opensource">
+                                <img src="/treming_sv_website/static/assets/images/iot/omod-bg.jpg"/>
+                                <div class="text-wrap">
+                                    <img class="icon-image" src="/treming_sv_website/static/assets/images/iot/smart-water-icon-grey.png" />
+                                        <h2>Smart Water</h2>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#iot">
+                            <div class="code-lib">
+                                <img src="/treming_sv_website/static/assets/images/iot/cl-bg.jpg"/>
+                                <div class="text-wrap">
+                                    <img class="icon-image" src="/treming_sv_website/static/assets/images/iot/smart-metering-icon-grey.png"/>
+                                    <h2>Smart Metering </h2>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="#iot">
+                            <div class="cust-partners">
+                                <img src="/treming_sv_website/static/assets/images/iot/cp-bg.jpg"/>
+                                <div class="text-wrap">
+                                    <img class="icon-image" src="/treming_sv_website/static/assets/images/iot/smart-agriculture-icon-grey.png" />
+                                    <h2>Smart Agriculture</h2>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#iot">
+                            <div class="hire-best">
+                                <img src="/treming_sv_website/static/assets/images/iot/vg-bg.jpg"/>
+                                <div class="text-wrap">
+                                    <img class="icon-image" src="/treming_sv_website/static/assets/images/iot/industrial-control-icon.png"/>
+                                    <h2>Industrial Control</h2>
+                                </div>
+                            </div>
+                        </a>
+
+                    </div><div class="clear"></div>
+                </div>
+                <div class="wrap second-section">
+                    <div class="half-section">
+                        <a href="#iot">
+                            <div class="data-migration">
+                                <img src="/treming_sv_website/static/assets/images/iot/dm-bg.jpg"/>
+                                <div class="text-wrap">
+                                    <img class="icon-image" src="/treming_sv_website/static/assets/images/iot/manufacturing-icon.png"/>
+                                    <h2>Manufacturing</h2>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="#iot">
+                            <div class="support-24">
+                                <img src="/treming_sv_website/static/assets/images/iot/24sup-bg.jpg"/>
+                                <div class="text-wrap">
+                                    <img class="icon-image" src="/treming_sv_website/static/assets/images/iot/government-icon-grey.png"/>
+                                    <h2>Government</h2>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="half-section">
+
+                        <a href="#iot">
+                            <div class="o-connector">
+                                <img src="/treming_sv_website/static/assets/images/iot/o-connector-bg.jpg"/>
+                                <div class="text-wrap">
+                                    <img class="icon-image" src="/treming_sv_website/static/assets/images/iot/retail-icon.png"/>
+                                    <h2>Retail</h2>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#iot">
+                            <div class="o-cust">
+                                <img src="/treming_sv_website/static/assets/images/iot/o-cust-bg.jpg"/>
+                                <div class="text-wrap">
+                                    <img class="icon-image" src="/treming_sv_website/static/assets/images/iot/e-health-icon.png"/>
+                                    <h2>E-Health</h2>
+                                </div>
+                            </div>
+                        </a>
+
+
+
+                    </div><div class="clear"></div>
+                </div>
+            </section>
+            </div>
+
+            <section class="content-caption2 bg-lgtgrey padding-20">
+                <div class="content-wrapper">
+                    <h2><span class="thick bg-lgtgrey grey">IOT Use Cases</span></h2>
+                    <p class="darkgrey">Internet of Things is a relatively new concept. With more than 60% of devices
+
+                        connecting to the internet and talking to each other by 2020, anything is possible.
+
+                        The following are some use cases of IOT.</p>
+                </div>
+            </section>
+
+            <section class="content-caption2 padding-20">
+                <div class="content-wrapper">
+                    <h2><span class="thick bg-white grey">HOW IT WORKS</span></h2>
+                    <p>The IOT lifecycle typically consists of collection, storing, analyzing and learning the data to create valuable knowledge. The knowledge created from the system can drive actionable items.
+                        Electronic sensors for continuously measuring pressure, humidity, temperature, lighting etc are examples of collection. Such sensor data is stored on servers with high availability for data mining creating valuable knowledge driving actionable items. </p>
+                </div>
+            </section>
+
+            <section class="content-caption2 bg-lgtgrey padding-20">
+                <div class="content-wrapper">
+                    <h2><span class="thick bg-lgtgrey grey">TECHNOLOGY</span></h2>
+
+                </div>
+            </section>
+            <section class=" bg-lgtgrey">
+                <div class="wrapper">
+                    <div class="row">
+                        <div class="col12">
+                            <div class="list-style-gallery1 m-top-0 ">
+                                <ul>
+                                    <li><img src="/treming_sv_website/static/assets/images/iot/amazon_web_services.png"/></li>
+                                    <li><img src="/treming_sv_website/static/assets/images/iot/Bluemix-logo-right.png"/></li>
+                                    <li><img src="/treming_sv_website/static/assets/images/iot/google-cloud-platform.png"/></li>
+                                    <li><img src="/treming_sv_website/static/assets/images/iot/watson-IOT.png"/></li>
+                                </ul>
+                            </div>
+                        </div><div class="clear"></div>
+                    </div>
+                </div>
+            </section>
+
+        <section class="content-caption2 padding-20">
+            <div class="content-wrapper">
+                <h2><span class="thick bg-white grey">HARDWARE</span></h2>
+            </div>
+        </section>
+        <section>
+            <div class="wrapper">
+                <div class="row">
+                    <div class="col12">
+                        <div class="list-style-gallery1  m-top-0">
+                            <ul>
+                                <li><img src="/treming_sv_website/static/assets/images/iot/Arduino.png"/></li>
+                                <li><img src="/treming_sv_website/static/assets/images/iot/Intel_Edison.png"/></li>
+                                <li><img src="/treming_sv_website/static/assets/images/iot/raspberry_b.png"/></li>
+                                <li><img src="/treming_sv_website/static/assets/images/iot/logo_arduino.png"/></li>
+                                <li><img src="/treming_sv_website/static/assets/images/iot/Edison-Logo.png"/></li>
+                                <li><img src="/treming_sv_website/static/assets/images/iot/raspberry-pi-logo.png"/></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div><div class="clear"></div>
+            </div>
+        </section>
+
+
+            <t t-call="website.contactus_custom_template"/>
+            
+            <div class="oe_structure"/>
+        </t>
+    </template>
+
+</odoo>

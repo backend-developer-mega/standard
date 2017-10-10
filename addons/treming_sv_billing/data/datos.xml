@@ -1,0 +1,542 @@
+<odoo>
+	<data noupdate="1">
+		<!-- Registros de Secuencia -->
+		<record model="ir.sequence" id="seq_ccf">
+			<field name="use_date_range" eval="False" />
+			<field name="number_next">1</field>
+			<field name="implementation">standard</field>
+			<field name="number_increment">1</field>
+			<field name="padding">4</field>
+			<field name="prefix">CCF0A</field>
+			<field name="active" eval="True" />
+			<field name="inicial">1</field>
+			<field name="final">1000</field>
+			<field name="name">Comprobante de Crédito Fiscal</field>
+		</record>
+		<record model="ir.sequence" id="seq_cf">
+			<field name="use_date_range" eval="False" />
+			<field name="number_next">1</field>
+			<field name="implementation">standard</field>
+			<field name="number_increment">1</field>
+			<field name="padding">4</field>
+			<field name="prefix">CF0B</field>
+			<field name="active" eval="True" />
+			<field name="inicial">1</field>
+			<field name="final">1000</field>
+			<field name="name">Consumidor Final</field>
+		</record>
+		<record model="ir.sequence" id="seq_fe">
+			<field name="use_date_range" eval="False" />
+			<field name="number_next">1</field>
+			<field name="implementation">standard</field>
+			<field name="number_increment">1</field>
+			<field name="padding">4</field>
+			<field name="prefix">FE0C</field>
+			<field name="active" eval="True" />
+			<field name="inicial">1</field>
+			<field name="final">1000</field>
+			<field name="name">Factura de Exportación</field>
+		</record>
+		<record model="ir.sequence" id="seq_nd">
+			<field name="use_date_range" eval="False" />
+			<field name="number_next">1</field>
+			<field name="implementation">standard</field>
+			<field name="number_increment">1</field>
+			<field name="padding">4</field>
+			<field name="prefix">ND0D</field>
+			<field name="active" eval="True" />
+			<field name="inicial">1</field>
+			<field name="final">1000</field>
+			<field name="name">Nota de Débito</field>
+		</record>
+		<record model="ir.sequence" id="seq_nc">
+			<field name="use_date_range" eval="False" />
+			<field name="number_next">1</field>
+			<field name="implementation">standard</field>
+			<field name="number_increment">1</field>
+			<field name="padding">4</field>
+			<field name="prefix">NC0E</field>
+			<field name="active" eval="True" />
+			<field name="inicial">1</field>
+			<field name="final">1000</field>
+			<field name="name">Nota de Crédito</field>
+		</record>
+
+		<!-- Registros de Plantilla de Correo -->
+		<record id="mail_template_ccf" model="mail.template">
+			<field name="name">Comprobante de Crédito Fiscal</field>
+			<field name="subject">${object.company_id.name} Invoice (Ref ${object.number or 'n/a'})</field>
+			<field name="model_id" ref="account.model_account_invoice" />
+			<field name="auto_delete" eval="True" />
+			<field name="body_html"><![CDATA[<p>Dear ${object.partner_id.name}
+				% set access_action = object.get_access_action()
+				% set access_url = access_action['type'] == 'ir.actions.act_url' and access_action['url'] or '/report/pdf/account.report_invoice/' + str(object.id)
+				% set is_online = access_action and access_action['type'] == 'ir.actions.act_url'
+				
+				% if object.partner_id.parent_id:
+				    (<i>${object.partner_id.parent_id.name}</i>)
+				% endif
+				,</p>
+				<p>Here is your invoice <strong>${object.number}</strong>
+				% if object.origin:
+				(with reference: ${object.origin} )
+				% endif
+				amounting in <strong>${object.amount_total} ${object.currency_id.name}</strong>
+				from ${object.company_id.name}.
+				</p>
+				
+				% if is_online:
+				    <br><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p><br></p><p>
+				    </p><center>
+				      <a href="${access_url}" style="background-color: #1abc9c; padding: 20px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 16px;" class="o_default_snippet_text">View Invoice</a>
+				    </center>
+				% endif
+				    <br><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p><br></p><p>
+				
+				% if object.state=='paid':
+				    </p><p>This invoice is already paid.</p>
+				% else:
+				    <p>Please remit payment at your earliest convenience.</p>
+				% endif
+				
+				<p>Thank you,</p>
+				% if object.user_id and object.user_id.signature:
+				    ${object.user_id.signature | safe}
+				% endif
+				<p></p>]]></field>
+			<field name="email_from"><![CDATA[${(object.user_id.email and '%s <%s>' % (object.user_id.name, object.user_id.email) or '')|safe}]]></field>
+			<field name="partner_to">${object.partner_id.id}</field>
+			<field name="lang">${object.partner_id.lang}</field>
+			<field name="report_template" ref="treming_sv_billing.report_ccf" />
+			<field name="report_name">${(object.number)}</field>
+		</record>
+		<record id="mail_template_cf" model="mail.template">
+			<field name="name">Consumidor Final</field>
+			<field name="subject">${object.company_id.name} Invoice (Ref ${object.number or 'n/a'})</field>
+			<field name="model_id" ref="account.model_account_invoice" />
+			<field name="auto_delete" eval="True" />
+			<field name="body_html"><![CDATA[<p>Dear ${object.partner_id.name}
+				% set access_action = object.get_access_action()
+				% set access_url = access_action['type'] == 'ir.actions.act_url' and access_action['url'] or '/report/pdf/account.report_invoice/' + str(object.id)
+				% set is_online = access_action and access_action['type'] == 'ir.actions.act_url'
+				
+				% if object.partner_id.parent_id:
+				    (<i>${object.partner_id.parent_id.name}</i>)
+				% endif
+				,</p>
+				<p>Here is your invoice <strong>${object.number}</strong>
+				% if object.origin:
+				(with reference: ${object.origin} )
+				% endif
+				amounting in <strong>${object.amount_total} ${object.currency_id.name}</strong>
+				from ${object.company_id.name}.
+				</p>
+				
+				% if is_online:
+				    <br><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p><br></p><p>
+				    </p><center>
+				      <a href="${access_url}" style="background-color: #1abc9c; padding: 20px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 16px;" class="o_default_snippet_text">View Invoice</a>
+				    </center>
+				% endif
+				    <br><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p><br></p><p>
+				
+				% if object.state=='paid':
+				    </p><p>This invoice is already paid.</p>
+				% else:
+				    <p>Please remit payment at your earliest convenience.</p>
+				% endif
+				
+				<p>Thank you,</p>
+				% if object.user_id and object.user_id.signature:
+				    ${object.user_id.signature | safe}
+				% endif
+				<p></p>]]></field>
+			<field name="email_from"><![CDATA[${(object.user_id.email and '%s <%s>' % (object.user_id.name, object.user_id.email) or '')|safe}]]></field>
+			<field name="partner_to">${object.partner_id.id}</field>
+			<field name="lang">${object.partner_id.lang}</field>
+			<field name="report_template" ref="treming_sv_billing.report_facturacf" />
+			<field name="report_name">${(object.number)}</field>
+		</record>
+		<record id="mail_template_fe" model="mail.template">
+			<field name="name">Factura de Exportación</field>
+			<field name="subject">${object.company_id.name} Invoice (Ref ${object.number or 'n/a'})</field>
+			<field name="model_id" ref="account.model_account_invoice" />
+			<field name="auto_delete" eval="True" />
+			<field name="body_html"><![CDATA[<p>Dear ${object.partner_id.name}
+				% set access_action = object.get_access_action()
+				% set access_url = access_action['type'] == 'ir.actions.act_url' and access_action['url'] or '/report/pdf/account.report_invoice/' + str(object.id)
+				% set is_online = access_action and access_action['type'] == 'ir.actions.act_url'
+				
+				% if object.partner_id.parent_id:
+				    (<i>${object.partner_id.parent_id.name}</i>)
+				% endif
+				,</p>
+				<p>Here is your invoice <strong>${object.number}</strong>
+				% if object.origin:
+				(with reference: ${object.origin} )
+				% endif
+				amounting in <strong>${object.amount_total} ${object.currency_id.name}</strong>
+				from ${object.company_id.name}.
+				</p>
+				
+				% if is_online:
+				    <br><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p><br></p><p>
+				    </p><center>
+				      <a href="${access_url}" style="background-color: #1abc9c; padding: 20px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 16px;" class="o_default_snippet_text">View Invoice</a>
+				    </center>
+				% endif
+				    <br><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p><br></p><p>
+				
+				% if object.state=='paid':
+				    </p><p>This invoice is already paid.</p>
+				% else:
+				    <p>Please remit payment at your earliest convenience.</p>
+				% endif
+				
+				<p>Thank you,</p>
+				% if object.user_id and object.user_id.signature:
+				    ${object.user_id.signature | safe}
+				% endif
+				<p></p>]]></field>
+			<field name="email_from"><![CDATA[${(object.user_id.email and '%s <%s>' % (object.user_id.name, object.user_id.email) or '')|safe}]]></field>
+			<field name="partner_to">${object.partner_id.id}</field>
+			<field name="lang">${object.partner_id.lang}</field>
+			<field name="report_template" ref="treming_sv_billing.es_report_factura_exportacion" />
+			<field name="report_name">${(object.number)}</field>
+		</record>
+		<record id="mail_template_nc" model="mail.template">
+			<field name="name">Nota de Crédito</field>
+			<field name="subject">${object.company_id.name} Invoice (Ref ${object.number or 'n/a'})</field>
+			<field name="model_id" ref="account.model_account_invoice" />
+			<field name="auto_delete" eval="True" />
+			<field name="body_html"><![CDATA[<p>Dear ${object.partner_id.name}
+				% set access_action = object.get_access_action()
+				% set access_url = access_action['type'] == 'ir.actions.act_url' and access_action['url'] or '/report/pdf/account.report_invoice/' + str(object.id)
+				% set is_online = access_action and access_action['type'] == 'ir.actions.act_url'
+				
+				% if object.partner_id.parent_id:
+				    (<i>${object.partner_id.parent_id.name}</i>)
+				% endif
+				,</p>
+				<p>Here is your invoice <strong>${object.number}</strong>
+				% if object.origin:
+				(with reference: ${object.origin} )
+				% endif
+				amounting in <strong>${object.amount_total} ${object.currency_id.name}</strong>
+				from ${object.company_id.name}.
+				</p>
+				
+				% if is_online:
+				    <br><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p><br></p><p>
+				    </p><center>
+				      <a href="${access_url}" style="background-color: #1abc9c; padding: 20px; text-decoration: none; color: #fff; border-radius: 5px; font-size: 16px;" class="o_default_snippet_text">View Invoice</a>
+				    </center>
+				% endif
+				    <br><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p><br></p><p>
+				
+				% if object.state=='paid':
+				    </p><p>This invoice is already paid.</p>
+				% else:
+				    <p>Please remit payment at your earliest convenience.</p>
+				% endif
+				
+				<p>Thank you,</p>
+				% if object.user_id and object.user_id.signature:
+				    ${object.user_id.signature | safe}
+				% endif
+				<p></p>]]></field>
+			<field name="email_from"><![CDATA[${(object.user_id.email and '%s <%s>' % (object.user_id.name, object.user_id.email) or '')|safe}]]></field>
+			<field name="partner_to">${object.partner_id.id}</field>
+			<field name="lang">${object.partner_id.lang}</field>
+			<field name="report_template" ref="treming_sv_billing.report_nota_credito" />
+			<field name="report_name">${(object.number)}</field>
+		</record>
+
+		<!-- Registros de Tipos de Documentos -->
+		<record model="tipos.documentos" id="td_ccf">
+			<field name="mostrarf" eval="True" />
+			<field name="descripcion">Comprobante de Crédito Fiscal</field>
+			<field name="tipo">factura</field>
+			<field name="nombre">Comprobante de Crédito Fiscal</field>
+			<field name="activo" eval="True" />
+			<field name="secuencia" ref="treming_sv_billing.seq_ccf" />
+			<field name="reporte" ref="treming_sv_billing.report_ccf" />
+			<field name="plantilla" ref="treming_sv_billing.mail_template_ccf" />
+			<field name="copias">4</field>
+		</record>
+		<record model="tipos.documentos" id="td_cf">
+			<field name="mostrarf" eval="True" />
+			<field name="descripcion">Consumidor Final</field>
+			<field name="tipo">factura</field>
+			<field name="nombre">Consumidor Final</field>
+			<field name="activo" eval="True" />
+			<field name="secuencia" ref="treming_sv_billing.seq_cf" />
+			<field name="reporte" ref="treming_sv_billing.report_facturacf" />
+			<field name="plantilla" ref="treming_sv_billing.mail_template_cf" />
+			<field name="copias">2</field>
+		</record>
+		<record model="tipos.documentos" id="td_fe">
+			<field name="mostrarf" eval="True" />
+			<field name="descripcion">Factura de Exportación</field>
+			<field name="tipo">factura</field>
+			<field name="nombre">Factura de Exportación</field>
+			<field name="activo" eval="True" />
+			<field name="secuencia" ref="treming_sv_billing.seq_fe" />
+			<field name="reporte" ref="treming_sv_billing.es_report_factura_exportacion" />
+			<field name="plantilla" ref="treming_sv_billing.mail_template_fe" />
+			<field name="copias">2</field>
+		</record>
+		<record model="tipos.documentos" id="td_nd">
+			<field name="mostrarf" eval="False" />
+			<field name="descripcion">Nota de Débito</field>
+			<field name="tipo">debito</field>
+			<field name="nombre">Nota de Débito</field>
+			<field name="activo" eval="True" />
+			<field name="secuencia" ref="treming_sv_billing.seq_nd" />
+			<field name="reporte" ref="treming_sv_billing.report_nota_credito" />
+			<field name="plantilla" ref="treming_sv_billing.mail_template_nc" />
+			<field name="copias">2</field>
+		</record>
+		<record model="tipos.documentos" id="td_nc">
+			<field name="mostrarf" eval="False" />
+			<field name="descripcion">Nota de Crédito</field>
+			<field name="tipo">credito</field>
+			<field name="nombre">Nota de Crédito</field>
+			<field name="activo" eval="True" />
+			<field name="secuencia" ref="treming_sv_billing.seq_nc" />
+			<field name="reporte" ref="treming_sv_billing.report_nota_credito" />
+			<field name="plantilla" ref="treming_sv_billing.mail_template_nc" />
+			<field name="copias">2</field>
+		</record>
+
+		<!-- Ahora se actualizan los términos de pago -->
+		<record model="account.payment.term" id="account.account_payment_term_immediate">
+			<field name="dias">0</field>
+		</record>
+		<record model="account.payment.term" id="account.account_payment_term_15days">
+			<field name="dias">15</field>
+		</record>
+		<record model="account.payment.term" id="account.account_payment_term_net">
+			<field name="dias">30</field>
+		</record>
+
+		<!-- Ahora se actualiza la configuracion de la moneda y el idioma -->
+		<record model="res.currency" id="base.USD">
+			<field name="symbol">USD</field>
+			<field name="position">after</field>
+			<field name="description_currency">DOLARES</field>
+		</record>
+		<record model="res.lang" id="base.lang_es">
+			<field name="thousands_sep">,</field>
+			<field name="decimal_point">.</field>
+		</record>
+
+		<!-- Se crea el parametro que define el nombre de la impresora y el que 
+			define la ubicación de los reportes -->
+		<record model="ir.config_parameter" id="impresora">
+			<field name="key">impresora</field>
+			<field name="value">Generic-PDF</field>
+		</record>
+		<record model="ir.config_parameter" id="direpo">
+			<field name="key">direpo</field>
+			<field name="value">/home/reportes</field>
+		</record>
+
+		<!--Para evitar el error que se muestra en el envio de las facturas por 
+			correo electronico -->
+		<record
+				id="account.mail_template_data_notification_email_account_invoice"
+				model="mail.template">
+			<field name="subject">Asunto</field>
+		</record>
+
+		<!--Ahora creo los impuestos -->
+		<record id="iva_venta" model="account.tax">
+			<field name="include_base_amount" eval="False" />
+			<field name="description">13.00%</field>
+			<field name="analytic" eval="False" />
+			<field name="tax_adjustment" eval="False" />
+			<field name="type_tax_use">sale</field>
+			<field name="active" eval="True" />
+			<field name="amount_type">percent</field>
+			<field name="name">IVA Venta</field>
+			<field name="amount">13.0000</field>
+			<field name="price_include" eval="False" />
+			<field name="primary_tax" eval="True" />
+		</record>
+		<record id="iva_compra" model="account.tax">
+			<field name="include_base_amount" eval="False" />
+			<field name="description">13.00%</field>
+			<field name="analytic" eval="False" />
+			<field name="tax_adjustment" eval="False" />
+			<field name="type_tax_use">purchase</field>
+			<field name="active" eval="True" />
+			<field name="amount_type">percent</field>
+			<field name="name">IVA Compra</field>
+			<field name="amount">13.0000</field>
+			<field name="price_include" eval="False" />
+			<field name="primary_tax" eval="True" />
+		</record>
+		<record id="cesc_venta" model="account.tax">
+			<field name="include_base_amount" eval="False" />
+			<field name="description">5.00%</field>
+			<field name="analytic" eval="False" />
+			<field name="tax_adjustment" eval="False" />
+			<field name="type_tax_use">sale</field>
+			<field name="active" eval="True" />
+			<field name="amount_type">percent</field>
+			<field name="name">CESC Venta</field>
+			<field name="amount">5.0000</field>
+			<field name="price_include" eval="False" />
+			<field name="primary_tax" eval="True" />
+		</record>
+		<record id="cesc_compra" model="account.tax">
+			<field name="include_base_amount" eval="False" />
+			<field name="description">5.00%</field>
+			<field name="analytic" eval="False" />
+			<field name="tax_adjustment" eval="False" />
+			<field name="type_tax_use">purchase</field>
+			<field name="active" eval="True" />
+			<field name="amount_type">percent</field>
+			<field name="name">CESC Compra</field>
+			<field name="amount">5.0000</field>
+			<field name="price_include" eval="False" />
+			<field name="primary_tax" eval="True" />
+		</record>
+		<record id="iva_percibido_venta_pc" model="account.tax">
+			<field name="include_base_amount" eval="False" />
+			<field name="description">1.00%</field>
+			<field name="analytic" eval="False" />
+			<field name="tax_adjustment" eval="False" />
+			<field name="type_tax_use">sale</field>
+			<field name="active" eval="True" />
+			<field name="amount_type">percent</field>
+			<field name="name">IVA Percibido</field>
+			<field name="amount">1.0000</field>
+			<field name="price_include" eval="False" />
+			<field name="primary_tax" eval="False" />
+		</record>
+		<record id="iva_retenido_compra_pc" model="account.tax">
+			<field name="include_base_amount" eval="False" />
+			<field name="description">-1.00%</field>
+			<field name="analytic" eval="False" />
+			<field name="tax_adjustment" eval="False" />
+			<field name="type_tax_use">purchase</field>
+			<field name="active" eval="True" />
+			<field name="amount_type">percent</field>
+			<field name="name">IVA Retenido</field>
+			<field name="amount">-1.0000</field>
+			<field name="price_include" eval="False" />
+			<field name="primary_tax" eval="False" />
+		</record>
+		<record id="iva_percibido_compra_gc" model="account.tax">
+			<field name="include_base_amount" eval="False" />
+			<field name="description">1.00%</field>
+			<field name="analytic" eval="False" />
+			<field name="tax_adjustment" eval="False" />
+			<field name="type_tax_use">purchase</field>
+			<field name="active" eval="True" />
+			<field name="amount_type">percent</field>
+			<field name="name">IVA Percibido</field>
+			<field name="amount">1.0000</field>
+			<field name="price_include" eval="False" />
+			<field name="primary_tax" eval="False" />
+		</record>
+		<record id="iva_retenido_venta_gc" model="account.tax">
+			<field name="include_base_amount" eval="False" />
+			<field name="description">-1.00%</field>
+			<field name="analytic" eval="False" />
+			<field name="tax_adjustment" eval="False" />
+			<field name="type_tax_use">sale</field>
+			<field name="active" eval="True" />
+			<field name="amount_type">percent</field>
+			<field name="name">IVA Retenido</field>
+			<field name="amount">-1.0000</field>
+			<field name="price_include" eval="False" />
+			<field name="primary_tax" eval="False" />
+		</record>
+
+		<!--Defino los parametros que me dicen el nombre de los impuestos de retencion
+			y percepcion -->
+		<record model="ir.config_parameter" id="retenido">
+			<field name="key">retenido</field>
+			<field name="value">IVA Retenido</field>
+		</record>
+		<record model="ir.config_parameter" id="percibido">
+			<field name="key">percibido</field>
+			<field name="value">IVA Percibido</field>
+		</record>
+
+		<!-- Ahora defino las posiciones fiscales -->
+		<record id="pc" model="account.fiscal.position">
+			<field name="auto_apply" eval="False" />
+			<field name="vat_required" eval="False" />
+			<field name="active" eval="True" />
+			<field name="name">Contribuyente</field>
+			<field name="quantity_limit">100.00</field>
+		</record>
+		<record id="gc" model="account.fiscal.position">
+			<field name="auto_apply" eval="False" />
+			<field name="vat_required" eval="False" />
+			<field name="active" eval="True" />
+			<field name="name">Gran Contribuyente</field>
+			<field name="quantity_limit">100.00</field>
+		</record>
+
+		<!-- Como el nombre de las posiciones fiscales puede cambiar en el futuro,
+			debo almacenarlo en parametros del sistema -->
+		<record model="ir.config_parameter" id="pf_peq">
+			<field name="key">peq_contrib</field>
+			<field name="value">Contribuyente</field>
+		</record>
+		<record model="ir.config_parameter" id="pf_gran">
+			<field name="key">gra_contrib</field>
+			<field name="value">Gran Contribuyente</field>
+		</record>
+
+		<!-- Ahora establezco las relaciones entre posicion e impuesto -->
+		<!--Pequeño Contribuyente -->
+		<record id="pc_venta_venta" model="account.fiscal.position.tax">
+			<field name="position_id" ref="treming_sv_billing.pc" />
+			<field name="tax_src_id" ref="treming_sv_billing.iva_venta" />
+			<field name="tax_dest_id" ref="treming_sv_billing.iva_venta" />
+		</record>
+		<record id="pc_venta_percibido" model="account.fiscal.position.tax">
+			<field name="position_id" ref="treming_sv_billing.pc" />
+			<field name="tax_src_id" ref="treming_sv_billing.iva_venta" />
+			<field name="tax_dest_id" ref="treming_sv_billing.iva_percibido_venta_pc" />
+		</record>
+		<record id="pc_compra_compra" model="account.fiscal.position.tax">
+			<field name="position_id" ref="treming_sv_billing.pc" />
+			<field name="tax_src_id" ref="treming_sv_billing.iva_compra" />
+			<field name="tax_dest_id" ref="treming_sv_billing.iva_compra" />
+		</record>
+		<record id="pc_compra_retenido" model="account.fiscal.position.tax">
+			<field name="position_id" ref="treming_sv_billing.pc" />
+			<field name="tax_src_id" ref="treming_sv_billing.iva_compra" />
+			<field name="tax_dest_id" ref="treming_sv_billing.iva_retenido_compra_pc" />
+		</record>
+
+		<!--Gran Contribuyente -->
+		<record id="gc_venta_venta" model="account.fiscal.position.tax">
+			<field name="position_id" ref="treming_sv_billing.gc" />
+			<field name="tax_src_id" ref="treming_sv_billing.iva_venta" />
+			<field name="tax_dest_id" ref="treming_sv_billing.iva_venta" />
+		</record>
+		<record id="gc_venta_retenido" model="account.fiscal.position.tax">
+			<field name="position_id" ref="treming_sv_billing.gc" />
+			<field name="tax_src_id" ref="treming_sv_billing.iva_venta" />
+			<field name="tax_dest_id" ref="treming_sv_billing.iva_retenido_venta_gc" />
+		</record>
+		<record id="gc_compra_compra" model="account.fiscal.position.tax">
+			<field name="position_id" ref="treming_sv_billing.gc" />
+			<field name="tax_src_id" ref="treming_sv_billing.iva_compra" />
+			<field name="tax_dest_id" ref="treming_sv_billing.iva_compra" />
+		</record>
+		<record id="gc_compra_percibido" model="account.fiscal.position.tax">
+			<field name="position_id" ref="treming_sv_billing.gc" />
+			<field name="tax_src_id" ref="treming_sv_billing.iva_compra" />
+			<field name="tax_dest_id" ref="treming_sv_billing.iva_percibido_compra_gc" />
+		</record>
+	</data>
+</odoo>

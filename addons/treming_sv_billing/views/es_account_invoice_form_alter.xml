@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<template id="assets_backend" name="facturacion assets"
+			inherit_id="web.assets_backend">
+			<xpath expr="." position="inside">
+				<!-- Este archivo contiene el CSS necesario para evitar que los controles
+					de textarea sean redimensionados -->
+				<link rel="stylesheet" href="/treming_sv_billing/static/src/css/esinvoice.css" />
+			</xpath>
+		</template>
+
+		<!-- Extend form -->
+		<record model="ir.ui.view" id="view_form_es_account_invoice_form_inherited">
+			<field name="name">es.account.invoice.form</field>
+			<field name="model">account.invoice</field>
+			<field name="inherit_id" ref="account.invoice_form" />
+			<field name="arch" type="xml">
+				<!-- Reemplazo el group que contiene los campos sin label -->
+
+
+				<!-- Reemplazo el group que contiene los campos sin label -->
+				<xpath expr="/form/sheet/notebook/page[1]/field[@name='invoice_line_ids']"
+					   position="after">
+					<!-- Añado el boton de anular factura -->
+					<button string="Calcular Importe Adeudado" attrs="{'invisible':['|',['type', 'not in', ('out_invoice','in_invoice')], ['state', 'in', ['draft', 'paid','cancel']]]}" name="importe_adeudado" type="object"/>
+				</xpath>
+
+				<xpath expr="/form/sheet/notebook/page[1]/group/field[@name='payments_widget']"
+					   position="attributes">
+					<attribute name="attrs">{'invisible':['|',['type', 'not in', ('out_invoice','in_invoice')], ['state', 'in', 'draft']]}</attribute>
+				</xpath>
+
+				<xpath expr="/form/header/button[9]" position="attributes">
+					<!-- Añado el boton de nota de credito -->
+					<attribute name="attrs">{'invisible':['|',('state', 'not in',
+						('open')), ('tipo_doc','!=', %(treming_sv_billing.td_ccf)d)]}</attribute>
+					<attribute name="string">Rectificar Factura</attribute>
+				</xpath>
+
+				<xpath expr="/form/header/button[5]" position="attributes">
+					<attribute name="attrs">{'invisible':['|',('tipon', '!=',
+						False)]}</attribute>
+				</xpath>
+
+				<xpath expr="//field[@name='type']" position="replace">
+					<field name="type" invisible="1"/>
+				</xpath>
+
+				<!-- Reemplazo los botones para imprimir -->
+				<!-- <xpath expr="//button[@name='invoice_print']" position="replace">
+					<button string="Descargar" name="invoice_print_custom" type="object"
+						attrs="{'invisible':[('state', '==', 'draft')]}" />
+					<button string="Imprimir" name="invoice_print_send" type="object"
+						attrs="{'invisible':[('state', '==', 'draft')]}" />
+				</xpath> -->
+
+				<!--<xpath expr="//button[@name='invoice_print']" position="replace" />-->
+
+				<!-- Agregado los campos para periodo de servicio y fecha de vencimiento -->
+				<xpath expr="//field[@name='payment_term_id']" position="after">
+					<field name="fvencimiento"
+						attrs="{'invisible':['|',('payment_term_id', '==', False),('payment_term_id','=',1)],'readonly':1}" />
+				</xpath>
+
+				<xpath expr="//field[@name='partner_id']" position="after">
+					<field name="ps_incio" />
+				</xpath>
+
+				<!-- Defino los estados que aparecen en la barra de estado, se añade
+					el de cancel -->
+				<xpath expr="//field[@name='state']" position="attributes">
+					<attribute name="statusbar_visible">draft,open,paid,cancel</attribute>
+				</xpath>
+
+				<xpath expr="//field[@name='partner_id']" position="before">
+					<field name="tipo_doc" attrs="{'readonly':['|',('state', 'not in', 'draft'),('type','in',['out_refund','in_refund'])],'required':True}" />
+				</xpath>
+
+				<!-- Agrego una nueva pestaña al notebook que contiene el detalle -->
+				<xpath expr="/form/sheet/notebook/page[1]" position="after">
+					<page string="Datos de Entrega">
+						<group>
+							<group>
+								<field name="entregado_por"
+									attrs="{'readonly':['|',('state', 'not in', 'draft'),('type','=','out_refund')]}" />
+								<field name="entpor_doc"
+									attrs="{'readonly':['|',('state', 'not in', 'draft'),('type','=','out_refund')]}" />
+								<field name="empleados_ids" widget="many2many_tags"/>
+							</group>
+							<group>
+								<field name="recibido_por"
+									attrs="{'readonly':['|',('state', 'not in', 'draft'),('type','=','out_refund')]}" />
+								<field name="recpor_doc"
+									attrs="{'readonly':['|',('state', 'not in', 'draft'),('type','=','out_refund')]}" />
+							</group>
+						</group>
+					</page>
+				</xpath>
+
+				<xpath expr="//field[@name='outstanding_credits_debits_widget']" position="replace">
+				</xpath>
+
+				<xpath expr="/form/sheet/notebook/page[3]" position="after">
+					<page string="Créditos y Débitos Pendientes" attrs="{'invisible': ['|',('tipo_doc','!=',1),('state','not in',('open','proforma2'))]}">
+						<group>
+							<group>
+								<field name="outstanding_credits_debits_widget" colspan="2" nolabel="1" widget="payment" attrs="{'invisible': [('state', 'not in', 'open')]}"/>
+                            </group>
+						</group>
+					</page>
+				</xpath>
+
+				<xpath expr="/form/sheet/notebook[1]" position="before">
+					<group attrs="{'invisible':['&amp;',('state', 'not in', ('cancel')), ('type', 'not in', ('out_refund','in_refund'))]}">
+						<field name="name" string="Motivo de Factura Rectificativa" attrs="{'invisible':[('type', 'not in', ('out_refund','in_refund'))],'readonly':1}"/>
+						<field name="ranulada" string="Motivo de Anulación" attrs="{'invisible':[('state', 'not in', ('cancel'))],'readonly':1}"/>
+					</group>
+				</xpath>
+
+				<!-- <xpath expr="//button[@name='action_invoice_sent']" position="replace"></xpath> -->
+
+				<xpath expr="//button[@name='action_invoice_sent']" position="replace">
+					<button name="action_invoice_sent" type="object" string="Enviar por Correo Electronico" attrs="{'invisible':[('state', '=', 'draft')]}" groups="base.group_user"/>
+				</xpath>
+
+				<!-- <xpath expr="/form/sheet/notebook[1]/page[3]//field[@name='name']" position="replace">
+				</xpath> -->
+
+				<!-- <xpath expr="/form/sheet/notebook[1]/page[3]//field[@name='date_due']" position="replace">
+				</xpath> -->
+
+				<!-- <xpath expr="/form/sheet/notebook[1]/page[3]//field[@name='origin']" position="after">
+					<field name="date_due" attrs="{'readonly':[('state', 'not in', ('draft'))]}"/>
+				</xpath> -->
+
+				<!-- <xpath
+					expr="//field[@name='number']"
+					position="replace">
+					<field name="num_docf" attrs="{'invisible':[('state', 'in', ('draft'))], 'readonly':1}"/>
+				</xpath>
+
+				<xpath expr="//field[@name='invoice_line_ids']/tree//field[@name='discount']" position="replace">
+					<field name="discount"/>
+				</xpath> -->
+
+				<xpath
+					expr="//field[@name='invoice_line_ids']/tree//field[@name='price_unit']"
+					position="after">
+					<field name="tipov" attrs="{'required':True, 'readonly':[('product_id', '==', False)]}" />
+					<field name="price_ci" invisible="1"/>
+					<field name="price_subtotal_ci" invisible="1"/>
+				</xpath>
+
+				<!-- Deshabilito los campos para cuando la factura haya dejado de ser
+					borrador -->
+
+				<xpath expr="//field[@name='ps_incio']" position="attributes">
+					<attribute name="attrs">{'readonly':['|',('state', 'not in',
+						'draft'),('type','=','out_refund')]}</attribute>
+				</xpath>
+
+				<xpath expr="//field[@name='partner_id']" position="attributes">
+					<attribute name="attrs">{'readonly':['|',('state', 'not in',
+						'draft'),('type','=','out_refund')]}</attribute>
+				</xpath>
+
+				<xpath expr="//field[@name='payment_term_id']" position="attributes">
+					<attribute name="attrs">{'readonly':['|',('state', 'not in',
+						'draft'),('type','=','out_refund')]}</attribute>
+				</xpath>
+
+				<xpath expr="//field[@name='user_id']" position="replace"/>
+
+				<xpath expr="//field[@name='date_invoice']" position="replace">
+					<group style="margin-top: 0px; width: 100%;">
+						<label for="id" string="N° de Documento" />
+						<div col="2" colspan="1">
+							<field name="prefijo" attrs="{'readonly':1}" style="width:60px;margin-right:25px" />
+							<field name="correlativo" attrs="{'readonly':[('state', 'not in', 'draft')]}"
+								style="width:60px" />
+						</div>
+						<label for="id" string="Fecha de Factura" />
+						<div>
+							<field name="date_invoice" />
+						</div>
+						<label for="id" string="Fin de Servicio" />
+						<div>
+							<field name="ps_fin" />
+						</div>
+						<label for="id" string="Vendedor" />
+						<div>
+							<field name="user_id" />
+						</div>
+						<label for="id" string="Venta a cuenta de" />
+						<div>
+							<field name="third_parties" />
+						</div>
+						<field name="tipon" attrs="{'invisible':1}" />
+					</group>
+				</xpath>
+
+				<!-- Deshabilito los campos para cuando la factura haya dejado de ser
+					borrador -->
+				<!-- Establezco que la fecha va a ser requerida -->
+				<xpath expr="//field[@name='date_invoice']" position="attributes">
+					<attribute name="attrs">{"readonly":[('state', 'not in','draft')],"required":True}</attribute>
+				</xpath>
+
+				<xpath expr="//field[@name='ps_fin']" position="attributes">
+					<attribute name="attrs">{'readonly':['|',('state', 'not in',
+						'draft'),('type','=','out_refund')]}</attribute>
+				</xpath>
+
+				<xpath expr="//field[@name='ps_incio']" position="attributes">
+					<attribute name="attrs">{'readonly':['|',('state', 'not in',
+						'draft'),('type','=','out_refund')]}</attribute>
+				</xpath>
+
+				<xpath expr="//field[@name='third_parties']" position="attributes">
+					<attribute name="attrs">{'readonly':['|',('state', 'not in',
+						'draft'),('type','=','out_refund')]}</attribute>
+				</xpath>
+
+				<xpath expr="//field[@name='user_id']" position="attributes">
+					<attribute name="attrs">{'readonly':['|',('state', 'not in',
+						'draft'),('type','=','out_refund')]}</attribute>
+				</xpath>
+
+				<xpath expr="//field[@name='comment']" position="after">
+					<group attrs="{'invisible':1}">
+						<field name="iva" />
+						<field name="ret_per" />
+						<field name="new_subtotal" />
+					</group>
+				</xpath>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_tree_es_account_invoice_inherited">
+			<field name="name">account.invoice.tree.es</field>
+			<field name="model">account.invoice</field>
+			<field name="inherit_id" ref="account.invoice_tree" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='partner_id']" position="after">
+					<field name="empleados_ids" />
+				</xpath>
+				<!-- Añado el campo de tipo y N° de Documento -->
+				<xpath expr="//field[@name='date_invoice']" position="after">
+					<field name="tipo_doc" string="Tipo Doc." />
+					<field name="num_docf" string="N° Doc." />
+				</xpath>
+				<xpath expr="//field[@name='number']" position="replace">
+					<field name="number" string="Ref. Interna" invisible="0" />
+				</xpath>
+				<xpath expr="//field[@name='amount_total_signed']" position="before">
+					<field name="amount_untaxed" string="Monto" sum="Monto total" />
+					<field name="iva" sum="IVA Total" />
+					<field name="ret_per" sum="Retención Total" />
+					<field name="new_subtotal" sum="Monto con IVA" />
+				</xpath>
+			</field>
+		</record>
+	</data>
+</openerp>

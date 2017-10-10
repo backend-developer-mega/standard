@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!-- === Services Page === -->
+    <template name="Code Library" id="website.cod-lib" page="True">
+        <t t-call="website.layout">
+
+            <div class="oe_structure"/>
+
+
+
+            <section class="open-erp-custamization odoo java text-center  ">
+                <h3>
+                    <span class="f-nrslight text-center grey ">
+                        Code <span class="orange f-nrssemibld">  Library  </span>
+                        <div class="clear"></div>
+                    </span>
+                </h3>
+                <div class="down-arrow"></div>
+
+            </section>
+            <section class="inner-page">
+                <div class="wrapper">
+                    <div class="row">
+                        <div class="col8 left-section">
+                            <h1 class="f-nrsthin grey">Code Library</h1>
+
+                            <p>Treming is always investing in creating a code library without infringing
+                                on any intellectual property rights of our customers. The code libraries 
+                                for web and mobile comprise of generic features and processes known to 
+                                the public, but the strict quality control imposed on the code library 
+                                makes it invaluable. Following this process helps us to reduce costs on
+                                customer projects. Facebook and Google logins on Android or iOS application
+                                development is one example of how we reuse code from our Code Library.</p>
+                            <br></br>
+                        </div>
+                        <div class="col4 last  right-section">
+                            <span class="stripe"></span>
+                            <h3>Related Topics</h3>
+                            <ul>
+
+                                <li><a href="/page/use-cen-des">User centered design </a></li>
+                                <li><a href="/page/out">Projects in more than 12 countries</a> </li>
+                                <li><a href="/page/qua-cod">100% quality code</a></li>
+                                <li><a href="/page/open"> Love Technology </a></li>
+                                <li><a href="/page/cost-eff">Cost efficiency</a> </li>
+
+                                <li><a href="/page/hir"> We Hire The Best People</a></li>
+                                <li><a href="/page/cust-par">Customers = Partners</a></li>
+
+                            </ul>
+
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </section>
+
+            <t t-call="website.contactus_custom_template"/>
+            <div class="oe_structure"/>
+        </t>
+    </template>
+
+</odoo>

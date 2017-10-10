@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+		<template id="es_report_ventas_contribuyentes">
+			<t t-call="treming_sv_billing.sv_external_layout_iva">
+				<div class="container-fluid" style="margin-top: 10mm;">
+					<div class="page" style="font-size: 0.65em;">
+						<div class="row"
+							style="height:100%; margin-top: 5px !important; margin-right: none">
+							<div class="col-xs-12">
+								<div
+									style="height: 100mm; border: 1px solid black !important; border-top-left-radius: 10px; border-top-right-radius: 10px;">
+									<table class="table borderless" style="height: 100mm;">
+
+										<thead>
+
+											<tr>
+												<th
+													style="text-align: center;border-bottom: 1px solid black !important;border-right: 0.5px solid black !important;margin: 0px;padding: 0px;width: 30px;">
+													<div
+														style="background: #dddddd;border-top-left-radius: 10px;padding: 0px !important;margin: 0px !important;height: 30px;line-height: 30px;">
+														N°
+													</div>
+												</th>
+
+												<th
+													style="text-align: center;border-bottom: 1px solid black !important;border-right: 0.5px solid black !important;margin: 0px;padding-top: 7px; width: 70px;">
+													<div
+														style="background: #dddddd;padding: 0px !important;margin: 0px !important;height: 30px;line-height: 10px;">
+														Fecha de Emisión
+													</div>
+												</th>
+												<th class="text-right"
+													style="text-align: center;border-bottom: 1px solid black !important;border-right: 0.5px solid black !important;margin-top: 5px;padding-top: 7px;width: 80px;">
+													<div
+														style="background: #dddddd;padding: 0px !important;margin: 0px !important;height: 30px;line-height: 10px;">
+														Número del Documento
+													</div>
+												</th>
+
+												<th class="text-right"
+													style="text-align: center;border-bottom: 1px solid black !important;border-right: 0.5px solid black !important;margin: 0px;padding: 0px;width: 80px;">
+													<div
+														style="background: #dddddd;padding: 0px !important;margin: 0px !important;height: 30px;line-height: 30px;">
+														N.R.C
+													</div>
+												</th>
+
+												<th class="text-right"
+													style="text-align: center;border-bottom: 1px solid black !important;border-right: 0.5px solid black !important;margin: 0px;padding: 0px;width: 100px;">
+													<div
+														style="background: #dddddd;padding: 0px !important;margin: 0px !important;height: 30px;line-height: 30px; ">
+														N.I.T o D.U.I
+													</div>
+												</th>
+
+												<th class="text-right"
+													style="text-align: center;border-bottom: 1px solid black !important;border-right: 0.5px solid black !important;margin: 0px;padding: 0px;width: 120px;">
+													<div
+														style="background: #dddddd;padding: 0px !important;margin: 0px !important;height: 30px;line-height: 30px">
+														Nombre del Proveedor
+													</div>
+												</th>
+												<th colspan="2" class="text-right"
+													style="text-align:center;border-bottom: 1px solid black !important;border-right: 0.5px solid black !important;margin: 0px;padding: 0px;width: 100px;">
+													<div style="background: #dddddd;padding: 0px !important;margin: 0px !important;height: 30px;line-height: 30px">
+														<div>Compras Exentas</div>
+													</div>
+												</th>
+												<th colspan="3" class="text-right"
+													style="text-align: center;border-bottom: 1px solid black !important;border-right: 0.5px solid black !important;margin: 0px;padding: 0px;width: 150px;">
+													<div
+														style="background: #dddddd;padding: 0px !important;margin: 0px !important;height: 30px;line-height: 30px">
+														<div>Compras Gravadas</div>
+													</div>
+												</th>
+												<th class="text-right"
+													style="text-align: center;border-bottom: 1px solid black !important;border-right: 0.5px solid black !important;margin: 0px;padding: 0px;width: 80px;">
+													<div style="background: #dddddd;padding: 0px !important;margin: 0px !important;height: 30px;line-height: 30px;">
+														IVA Retenido
+													</div>
+												</th>
+												<th class="text-right"
+													style="text-align: center;border-bottom: 1px solid black !important;border-right: 0.5px solid black !important;margin: 0px;padding: 0px;width: 80px">
+													<div style="background: #dddddd;padding: 0px !important;margin: 0px !important;height: 30px;line-height: 30px;">
+														IVA Percibido
+													</div>
+												</th>
+												<th class="text-right"
+													style="text-align: center;border-bottom: 1px solid black !important;border-right: 0.5px solid black !important;margin: 0px;padding: 0px;width: 80px">
+													<div style="background: #dddddd;padding: 0px !important;margin: 0px !important;height: 30px;line-height: 30px;">
+														Total Compras
+													</div>
+												</th>
+												<th class="text-right"
+													style="text-align: center;border-bottom: 1px solid black !important;border-right: 0.5px solid black !important;margin: 0px;padding: 0px;width: 80px">
+													<div style="background: #dddddd;padding: 0px !important;margin: 0px !important;height: 30px;line-height: 30px;border-top-right-radius: 10px">
+														Compras a Sujetos Excluidos
+													</div>
+												</th>
+											</tr>
+										</thead>
+
+										<tbody class="invoice_tbody">
+											<tr t-foreach="data['registros']" t-as="l">
+												<!-- N° -->
+												<td class="text-center"
+													style="padding-top: 5px !important; padding-bottom: 0px !important; border-bottom: 0.5px solid black !important; border-right: 0.5px solid black !important;">
+													<span t-esc="l[0]" />
+												</td>
+												<!-- FE -->
+												<td class="text-center"
+													style="padding-top: 5px !important; padding-bottom: 0px !important; border-bottom: 0.5px solid black !important; border-right: 0.5px solid black !important;">
+													<span t-esc="l[1]" />
+												</td>
+												<!-- ND -->
+												<td class="text-center"
+													style="border-bottom: 0.5px solid black !important; padding-top: 5px !important; padding-bottom: 0px !important; border-right: 0.5px solid black !important;">
+													<span t-esc="l[2]" />
+												</td>
+												<!-- NRC -->
+												<td class="text-center"
+													style="border-bottom: 0.5px solid black !important; padding-top: 5px !important; padding-bottom: 0px !important; border-right: 0.5px solid black !important;">
+													<span t-esc="l[3]" />
+												</td>
+												<!-- NIT o DUI -->
+												<td class="text-center"
+													style="border-bottom: 0.5px solid black !important; padding-top: 5px !important; padding-bottom: 0px !important; border-right: 0.5px solid black !important;">
+														<t t-if="l[4] != null">
+															<span t-esc="l[4]" />
+														</t>
+														<t t-if="l[4] == null">
+															<span t-esc="l[5]" />
+														</t>
+												</td>
+												<!-- PROVEEDOR -->
+												<td class="text-center"
+													style="border-bottom: 0.5px solid black !important; padding-top: 5px !important; padding-bottom: 0px !important; border-right: 0.5px solid black !important;">
+													<span t-esc="l[6]" />
+												</td>
+												<!-- Exentas Internas -->
+												<td class="text-center"
+													style="border-bottom: 0.5px solid black !important; padding-top: 5px !important; padding-bottom: 0px !important;">
+													<span t-esc="l[7]" />
+												</td>
+												<!-- Exentas Importaciones -->
+												<td class="text-center"
+													style="border-bottom: 0.5px solid black !important; padding-top: 5px !important; padding-bottom: 0px !important;">
+													<span t-esc="l[8]" />
+												</td>
+												<!-- Gravadas Internas -->
+												<td class="text-center"
+													style="border-bottom: 0.5px solid black !important; padding-top: 5px !important; padding-bottom: 0px !important;">
+													<span t-esc="l[9]" />
+												</td>
+												<!-- Gravadas Importaciones -->
+												<td class="text-center"
+													style="border-bottom: 0.5px solid black !important; padding-top: 5px !important; padding-bottom: 0px !important;">
+													<span t-esc="l[10]" />
+												</td>
+												<!-- Gravadas CF -->
+												<td class="text-center"
+													style="border-bottom: 0.5px solid black !important; padding-top: 5px !important; padding-bottom: 0px !important;">
+													<span t-esc="l[11]" />
+												</td>
+												<!-- Retenido -->
+												<td class="text-center"
+													style="border-bottom: 0.5px solid black !important; padding-top: 5px !important; padding-bottom: 0px !important;">
+													<span t-esc="l[12]" />
+												</td>
+												<!-- Percibido -->
+												<td class="text-center"
+													style="border-bottom: 0.5px solid black !important; padding-top: 5px !important; padding-bottom: 0px !important;">
+													<span t-esc="l[13]" />
+												</td>
+												<!-- Total -->
+												<td class="text-center"
+													style="border-bottom: 0.5px solid black !important; padding-top: 5px !important; padding-bottom: 0px !important;">
+													<span t-esc="l[14]" />
+												</td>
+												<!-- Sujetos Excluidos -->
+												<td class="text-center"
+													style="border-bottom: 0.5px solid black !important; padding-top: 5px !important; padding-bottom: 0px !important;">
+													<span t-esc="l[15]" />
+												</td>
+											</tr>
+											<tr style="height: 100%; min-height: 100%;">
+												<td class="text-right"
+													style="border-bottom: 1px solid white !important; padding: 0 5 0 0;">
+
+												</td>
+												<td class="text-right"
+													style="border-bottom: 1px solid white !important; padding: 0 5 0 0; border-left: 0.5px solid black !important;">
+
+												</td>
+												<td class="text-right"
+													style="border-bottom: 1px solid white !important; padding: 0 5 0 0; border-left: 0.5px solid black !important;">
+
+												</td>
+												<td class="text-right"
+													style="border-bottom: 1px solid white !important; padding: 0 5 0 0; border-left: 0.5px solid black !important;">
+
+												</td>
+												<td class="text-right"
+													style="border-bottom: 1px solid white !important; padding: 0 5 0 0; border-left: 0.5px solid black !important;">
+
+												</td>
+												<td class="text-right"
+													style="border-bottom: 1px solid white !important; padding: 0 5 0 0; border-left: 0.5px solid black !important;">
+
+												</td>
+												<td class="text-right"
+													style="border-bottom: 1px solid white !important; padding: 0 5 0 0; border-left: 0.5px solid black !important;">
+
+												</td>
+												<td class="text-right"
+													style="border-bottom: 1px solid white !important; padding: 0 5 0 0; border-left: 0.5px solid black !important;">
+
+												</td>
+												<td class="text-right"
+													style="border-bottom: 1px solid white !important; padding: 0 5 0 0; border-left: 0.5px solid black !important;">
+
+												</td>
+												<td class="text-right"
+													style="border-bottom: 1px solid white !important; padding: 0 5 0 0; border-left: 0.5px solid black !important;">
+												</td>
+												<td class="text-right"
+													style="border-bottom: 1px solid white !important; padding: 0 5 0 0; border-left: 0.5px solid black !important;">
+												</td>
+												<td class="text-right"
+													style="border-bottom: 1px solid white !important; padding: 0 5 0 0; border-left: 0.5px solid black !important;">
+												</td>
+												<td class="text-right"
+													style="border-bottom: 1px solid white !important; padding: 0 5 0 0; border-left: 0.5px solid black !important;">
+												</td>
+												<td class="text-right"
+													style="border-bottom: 1px solid white !important; padding: 0 5 0 0; border-left: 0.5px solid black !important;">
+												</td>
+												<td class="text-right"
+													style="border-bottom: 1px solid white !important; padding: 0 5 0 0; border-left: 0.5px solid black !important;">
+												</td>
+												<td class="text-right"
+													style="border-bottom: 1px solid white !important; padding: 0 5 0 0; border-left: 0.5px solid black !important;">
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+
+						</div>
+						<!-- INICIO DEL FOOTER -->
+						<div class="row">
+							<div class="col-xs-12">
+								<div
+									style="border-left: 1px solid black !important; border-right: 1px solid black !important; border-bottom: 1px solid black !important; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
+									<table class="table" style="margin-bottom: 0mm">
+										<tr>
+											<td width="50%" colspan="2" style="height: 25mm;">
+												<div class="row">
+													<div class="col-xs-12">
+														<p>
+															<b>SON:</b>
+															<br></br>
+														</p>
+													</div>
+												</div>
+											</td>
+											<td width="50%" colspan="4"
+												style="border-bottom: 0.5px solid black !important;border-left: 1px solid black !important;padding-top: 0px !important;padding-left: 0px !important;padding-right: 0px !important;padding-bottom: 0px;">
+												<div class="container-fluid">
+													<div class="row"
+														style="border-bottom: 1px solid black !important;padding-left: 0px;padding-right: 0px;">
+
+														<div class="col-xs-2"
+															style="border-bottom: 1px solid white !important; padding: 0 2 0 0; border-right: 0.5px solid black !important;padding-left: 0px;padding-right: 0px; width: 80px;">
+															<p style="margin-bottom: 0px;">
+																<b style="padding-left: 5px;">TOTAL DEL MES</b>
+															</p>
+														</div>
+													</div>
+												</div>
+											</td>
+										</tr>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- CIERRE DEL PAGE -->
+
+				</div>
+			</t>
+		</template>
+</openerp>

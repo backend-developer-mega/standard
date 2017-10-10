@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+	<record id="es_reporte_libros_iva_form_view" model="ir.ui.view">
+		<field name="name">account.libros.iva.form</field>
+		<field name="model">account.libros.iva</field>
+		<field name="arch" type="xml">
+			<form>
+					<group>
+						<field name="anyo" />
+						<field name="mes" />
+						<field name="libro" />
+					</group>
+					<footer>
+						<button name="generar_libro" string="Generar Libro" type="object"
+							class="oe_highlight" />
+						o
+						<button string="Cancelar" class="oe_link" special="cancel" />
+					</footer>
+				</form>
+		</field>
+	</record>
+
+	<record id="libros_iva_action" model="ir.actions.act_window">
+		<field name="name">Libros de IVA</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">account.libros.iva</field>
+		<field name="view_type">form</field>
+		<field name="view_mode">form</field>
+		<field name="view_id" ref="es_reporte_libros_iva_form_view" />
+		<field name="target">new</field>
+	</record>
+
+		<!-- Menuitem que se agrega bajo Configuración en la Aplicación de Contabilidad -->
+		<menuitem id="es_account_libros_iva" name="Libros de IVA"
+			parent="account.menu_finance_reports" action="libros_iva_action" />
+	</data>
+</openerp>

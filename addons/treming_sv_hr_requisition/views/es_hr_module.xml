@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+<record model="ir.ui.view" id="hr_requisition_search_view_r">
+			<field name="name">es.hr.requisition.serch</field>
+			<field name="model">hr.requisition</field>
+			<field name="arch" type="xml">
+				<search>
+					<field name="name" />
+					<filter name="my_loads" string="Activos"
+						domain="[('activeS', '=', 1)]" />
+
+				</search>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_form_hr_requisition_re_r">
+			<field name="name">es.hr.recruitment.form.r</field>
+			<field name="model">hr.requisition</field>
+			<field name="arch" type="xml">
+				<form string="Requisition de Personal-Module">
+					<header>
+					</header>
+					<sheet>
+						<div class="oe_button_box" name="button_box">
+							<button type="object" readonly="1" class="oe_stat_button"
+								name="toggle_statistics">
+								<div
+									style="width: 100px; color: red; font-size: 9px; text-align: left;">
+									<field name="taken_job" widget="progressbar" />
+								</div>
+							</button>
+<!-- 							<button name="toggle_active" style="width: 50px;" type="object"
+								class="oe_stat_button" icon="fa-archive">
+								<field name="active" widget="boolean_button"
+									options="{&quot;terminology&quot;: &quot;archive&quot;}" />
+							</button> -->
+							<button type="object" class="oe_stat_button" id="invoice_button"
+								icon="fa-pencil-square-o" name="show_employees_requisition">
+								<!-- icon="fa-pencil-square-o" name="open_partner_history"> -->
+								<!-- attrs="{'invisible': [('customer', '=', False)]}" context="{'default_partner_id':
+									active_id}" > -->
+								<div class="o_form_field o_stat_info">
+									<span class="o_stat_value">
+										<field name="viewFlashCalculeButton" readonly="1" />
+									</span>
+									<span class="o_stat_text">Contratados</span>
+								</div>
+							</button>
+
+						</div>
+						<h1 style="color: #7C7BAD;">Requisición de Personal-Module</h1>
+						<strong>Fecha de Inicio:</strong>
+						<field name="start_date" readonly="1" />
+						<br></br>
+						<strong>Fecha de Fin:</strong>
+						<field name="finalize_date" readonly="1" />
+						<group>
+							<!-- Datos del Solicitante -->
+							<group>
+								<field name="name" invisible="1" />
+								<field name="businessname" invisible="1" />
+								<field name="nameRequistionLabel" invisible="1" />
+								<field name="service" />
+								<field name="partner_id" placeholder="Nombre del cliente" />
+								<field name="contactBusinessName" placeholder="Contacto de la empresa" />
+							</group>
+							<group>
+								<field name="contactBusinessPosition" placeholder="Ej. Miembro de la Junta Directiva" />
+								<field name="contactBusinessTelephone" widget="phone"
+									placeholder="(503) 7568 9632" />
+								<field name="contactBusinessEmail" widget="email"
+									placeholder="user@empresa.com" />
+								<field name="priority" widget="priority" string="Prioridad" />
+							</group>
+						</group>
+						<notebook>
+							<page string="Informacion del puesto">
+								<group>
+									<group>
+										<field name="jobname" placeholder="Seleciones una plaza" />
+										<field name="no_of_recruitment" />
+										<!-- Agregar beneficios -->
+										<field name="listBenefits" widget="many2many_tags" />
+										<!-- Oferta -->
+										<field name="dateDesirableStart" />
+										<field name="salaryOffer" />
+										<field name="scheduleJob" placeholder="Ej. 8:00 a.m. a 5:30 p.m." />
+										<!-- Campos de soporte a metodos -->
+										<field name="no_of_hired_employee" readonly="1"
+											invisible="1" />
+										<field name="sumarAssigned" invisible="1" />
+										<field name="old_no_of_recruitment" invisible="1" />
+										<field name="openStateOldRecruitment" invisible="1" />
+									</group>
+									<group>
+										<field name="typeJob" />
+										<field name="datestart" attrs="{'invisible': [('typeJob', '!=', 1)]}" />
+										<field name="dateend" attrs="{'invisible': [('typeJob', '!=', 1)]}" />
+										<!-- Agregar beneficios -->
+										<field name="commentsAdditional" string="" />
+										<!-- Oferta -->
+										<field name="addressAssigned" />
+									</group>
+								</group>
+								<group string="Actividades especificas del puesto">
+								</group>
+								<field name="descriptionPosition" />
+							</page>
+							<page string="Personal a contactar">
+								<group>
+									<!-- Información del personal a contactar -->
+									<group>
+										<label for="ageStart" />
+										<div class="o_row">
+											<field name="ageStart" placeholder="Desde" />
+											<field name="ageEnd" string="" placeholder="hasta" />
+										</div>
+										<field name="gender" />
+										<field name="civilStatus" />
+										<field name="levelAcademic" />
+										<field name="experienceJob" />
+										<field name="tag_ids_qualities" widget="many2many_tags" />
+									</group>
+									<group>
+										<field name="tag_ids" widget="many2many_tags" />
+										<field name="languages" widget="many2many_tags" />
+										<field name="knowledgeSpecific" />
+										<field name="vehicle" />
+									</group>
+								</group>
+								<group>
+									<field name="otherObservations" />
+								</group>
+							</page>
+							<!-- <page string="Responsables" attrs="{'invisible': [('valor','=',False)]}"> -->
+							<page string="Responsables"
+								attrs="{'invisible': [('state', 'not in', ['confirmed','done'])]}">
+								<field name="responsable_ids"
+									context="{'default_requisition_id':
+									active_id}">
+									<tree string="Registered sessions">
+										<field name="responsible_id" />
+										<field name="assigned" />
+									</tree>
+								</field>
+							</page>
+							<page string="Notas">
+								<field name="note" placeholder="Agrege sus notas" />
+							</page>
+						</notebook>
+
+					</sheet>
+					<div class="oe_chatter">
+          <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+            <field name="message_ids" widget="mail_thread"/>
+          </div>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_tree_hr_requisition_re_r">
+			<field name="name">es.hr.recruitment.tree</field>
+			<field name="model">hr.requisition</field>
+			<field name="arch" type="xml">
+				<tree string="Requisicion Personal">
+					<field name="id" />
+					<field name="priority" string="Prioridad" />
+					<field name="partner_id" string='Solicitante' />
+					<field name="jobname" string='Plaza' />
+					<field name="no_of_recruitment" string='Cantidad plazas' />
+					<field name="no_of_hired_employee" />
+					<field name="taken_job" widget="progressbar" />
+					<field name="start_date" string="Fecha inicio" />
+					<field name="finalize_date" string="Fecha fin" />
+					<!-- <field name="responsable_ids" string="Responsables" /> -->
+					<field name="state" string="Estado" />
+					<!-- <field name="jobAssignedResponsible" /> -->
+				</tree>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="action_hr_slopes_r">
+			<field name="name">Requisición de Personal</field>
+			<!-- Es el nombre del modelo al cual corresponde la vista -->
+			<field name="res_model">hr.requisition</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,graph,form</field>
+			<field name="context" eval="{'search_default_my_loads': 1}" />
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">Crear una nueva requisicion</p>
+			</field>
+
+		</record>
+
+		<record id="view_graph_hr_requisition" model="ir.ui.view">
+		    <field name="name">view_graph_hr_requisition</field>
+		    <field name="model">hr.requisition</field>
+		    <field name="arch" type="xml">
+		        <graph type="graph">
+		                   <!-- <field name="id" /> -->
+			<!--		<field name="priority" string="Prioridad" /> -->
+					<field name="partner_id_count" type="measure" /> 
+ 		<!--		        <field name="jobname" string='Plaza' />
+					<field name="no_of_recruitment" string='Cantidad plazas' />
+					<field name="no_of_hired_employee" />
+					<field name="taken_job" widget="progressbar" />
+					<field name="start_date" string="Fecha inicio" />
+					<field name="finalize_date" string="Fecha fin" />
+					<field name="state" string="Estado" /> -->
+		        </graph>
+		    </field>
+		</record>
+
+
+         	<menuitem id="main_requisition_personal_menu" name="Requisición de Personal"/>
+
+		<menuitem id="menu_hr_job_slopes_r" name="Requisiciones Pendientes" parent="main_requisition_personal_menu" action="action_hr_slopes_r" groups="treming_sv_hr_requisition.group_areahead"/>
+		<!-- Add the security groups here to allow only access for specific user groups! -->
+        <!--
+        <menuitem id="menu_detail_hr_job_slopes_r"  parent="menu_hr_job_slopes_r" 
+      groups="treming_sv_hr_requisition.group_areahead"/>
+-->
+<!--		<menuitem id="menu_hr_job_my_responsability_r" name="Carga de trabajo" parent="main_requisition_personal_menu" action="action_hr_my_responsability" groups="treming_sv_hr_requisition.group_recruitanaly"/> -->
+		<!-- Add the security groups here to allow only access for specific user groups! -->
+        <!--
+        <menuitem id="menu_detail_hr_job_my_responsability_r" action="action_hr_my_responsability" parent="menu_hr_job_my_responsability_r" 
+      groups="treming_sv_hr_requisition.group_recruitanaly"/>
+-->
+
+	</data>
+</openerp>

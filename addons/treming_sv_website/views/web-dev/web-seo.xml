@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!-- === Services Page === -->
+    <template name="WEB" id="website.web-seo" page="True">
+        <t t-call="website.layout">
+
+            <div class="oe_structure"/>
+
+
+
+            <section class="open-erp-custamization odoo java text-center  ">
+                <h3>
+                    <span class="f-nrslight text-center grey ">
+                        Search Engine  <span class="orange f-nrssemibld"> Optimization </span>
+                        <div class="clear"></div>
+                    </span>
+                </h3>
+                <div class="down-arrow"></div>
+
+            </section>
+
+            <section class="inner-page">
+                <div class="wrapper">
+                    <div class="row">
+                        <div class="col8 left-section">
+                            <h1 class="f-nrsthin grey">Search Engine Optimization (SEO)</h1>  <br></br>
+
+                            <p>We have a team of certified SEO engineers who work to put your website on the first page of Google Search using the best possible targeted keywords. We only follow
+                                Google guidelines in promoting your website online.</p>
+                            <p>SEO is a time bound job and we take only relevant projects where we are 100% sure that results can be achieved. We do not endorse or use any black hat methods.</p>
+                            <p>Our work speaks for itself through results. We will be happy to discuss examples of other happy customers who are consistently listed on the first page of Google Search.</p>
+                            <p>We are not a marketing and media agency, so we do not set up any paid advertising for our customers.</p>
+
+                        </div>
+                        <div class="col4 last  right-section">
+                            <span class="stripe"></span>
+                            <h3>Related Topics</h3>
+                            <ul>
+
+                                <li><a href="/page/web-tra"> Web Development Training</a></li>
+                                <li><a href="/page/web-req-ana">Requirement Analysis</a></li>
+                                <li><a href="/page/web-po">Web Portals</a></li>
+                                <li><a href="/page/web-req-quo">Request for quotation</a></li>
+
+                                <li><a href="/page/web-tec">Web-Technologies</a></li>
+                                <li><a href="/page/web-bra">Branding</a></li>
+
+                                <li><a href="/page/web-e-com">E-Commerce</a></li>
+                            </ul>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </section>
+
+
+
+            <t t-call="website.contactus_custom_template"/>
+            <div class="oe_structure"/>
+        </t>
+    </template>
+
+</odoo>

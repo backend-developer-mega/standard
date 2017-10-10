@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+		<template id="es_reporte_quotation_documento" name="reporte_quotation_documento">
+			<t t-call="treming_sv_sales.sv_quotation_external_layout">
+				<div class="container-fluid" style="margin-top: 0mm;">
+					<t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})" />
+					<!-- <span style="display:none" t-esc="o._calcular_montos()" /> -->
+					<div class="page" style="font-size: 0.65em;">
+						<!-- <br></br> <br></br> <br></br> <br></br> <br></br> -->
+						<div class="row"
+							style="margin-top: 0px !important; margin-left: 1px !important;">
+
+							<div class="col-xs-7"
+								style="border: 1px solid black; border-radius: 10px; width: 58%;">
+								<!-- <span style="display:none" t-esc="o._calcular_montos()" /> -->
+								<div class="row"
+									style="text-align: center; border: 1px solid black; border-top: none; border-right: none; border-left: none">
+									<div class="col-xs-4">
+										<div>
+											<b>CLIENTE</b>
+										</div>
+										<div>
+
+											<span t-field="o.partner_id.id"></span>
+										</div>
+									</div>
+									<div class="col-xs-4">
+										<div>
+											<b>REGISTRO No.</b>
+										</div>
+										<div>
+											<span t-field="o.partner_id.nrc_sv" />
+										</div>
+									</div>
+									<div class="col-xs-4">
+										<div>
+											<b>NIT</b>
+										</div>
+										<div>
+											<span t-field="o.partner_id.nit_sv" />
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xs-3">
+										<b>Cliente:</b>
+									</div>
+									<div class="col-xs-9">
+										<span t-field="o.partner_id.name"></span>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xs-3">
+										<b>Dirección:</b>
+									</div>
+									<div class="col-xs-9">
+										<span t-field="o.partner_id.street" />
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xs-3">
+										<b>Departamento:</b>
+									</div>
+									<div class="col-xs-3">
+										<span t-field="o.partner_id.city" />
+									</div>
+									<div class="col-xs-3">
+										<b>Municipio:</b>
+									</div>
+									<div class="col-xs-3">
+										<span t-field="o.partner_id.city" />
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xs-3">
+										<b>Giro:</b>
+									</div>
+									<div class="col-xs-9">
+										<span t-field="o.partner_id.giro" />
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xs-3">
+										<b>Teléfono:</b>
+									</div>
+									<div class="col-xs-3">
+										<span t-field="o.partner_id.phone" />
+									</div>
+								</div>
+
+							</div>
+
+							<div class="col-xs-5 pull-right" style="padding-left: 0px;">
+								<div class="container-fluid"
+									style="margin-right: 0px !important; border: 1px solid black; border-radius: 10px;">
+									<div class="row"
+										style="text-align: center; background: #dddddd; border-top-left-radius: 10px; border-top-right-radius: 10px;">
+										RESUMEN ESTADO
+										DE CUENTA
+									</div>
+									<div class="row" sytle="border-top: 1px solid black;">
+										<div class="col-xs-6">
+											<b>Moneda</b>
+										</div>
+										<div class="col-xs-6" style="text-align: right;">
+
+											<p style="margin-bottom: 0px;">
+												<span t-field="o.pricelist_id.currency_id" />
+											</p>
+
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-xs-6">
+											<b>Condición de Pago:</b>
+										</div>
+										<div class="col-xs-6" style="text-align: right;">
+											<t t-if="o.payment_term_id.dias == 0">
+												Contado
+											</t>
+											<t t-if="o.payment_term_id.dias != 0">
+												Crédito
+											</t>
+
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-xs-6">
+											<b>Días de Crédito:</b>
+										</div>
+										<div class="col-xs-6" style="text-align: right;">
+											<t t-if="o.payment_term_id.dias == 0">
+												0
+											</t>
+											<t t-if="o.payment_term_id.dias != 0">
+												<span t-field="o.payment_term_id.dias" />
+											</t>
+
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-xs-6" style="font-size: 1.2em;">
+											<b>Fecha de Emisión:</b>
+										</div>
+										<div class="col-xs-6" style="text-align: right; font-size: 1.2em;">
+											<b>
+												<span t-field="o.date_order" />
+											</b>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-xs-6" style="font-size: 1.2em;">
+											<b>Fecha de Validez:</b>
+										</div>
+										<div class="col-xs-6" style="text-align: right; font-size: 1.2em;">
+											<b>
+												<span t-field="o.validity_date" />
+											</b>
+										</div>
+									</div>
+
+								</div>
+
+							</div>
+
+						</div>
+
+
+						<!--IMPRIMIMOS EL DETALLE DE LA FACTURA -->
+
+						<div class="row"
+							style="height:100%; margin-top: 5px !important; margin-right: none">
+							<div class="col-xs-12">
+								<div
+									style="height: 150mm; border: 1px solid black !important; border-top-left-radius: 10px; border-top-right-radius: 10px;">
+									<table class="table borderless" style="height: 150mm;">
+
+										<thead>
+
+											<tr>
+												<th width="10%"
+													style="text-align: center;border-bottom: 1px solid black !important;border-right: 0.5px solid black !important;margin: 0px;padding: 0px;">
+													<div
+														style="background: #dddddd;border-top-left-radius: 10px;padding: 0px !important;margin: 0px !important;height: 30px;line-height: 30px;">
+														Cantidad
+													</div>
+												</th>
+
+												<th width="35%"
+													style="text-align: center;border-bottom: 1px solid black !important;border-right: 0.5px solid black !important;margin: 0px;padding: 0px;">
+													<div
+														style="background: #dddddd;padding: 0px !important;margin: 0px !important;height: 30px;line-height: 30px;">
+														Descripción
+													</div>
+												</th>
+												<th class="text-right"
+													style="text-align: center;border-bottom: 1px solid black !important;border-right: 0.5px solid black !important;margin: 0px;padding: 0px;width: 214px;">
+													<div
+														style="background: #dddddd;padding: 0px !important;margin: 0px !important;height: 30px;line-height: 30px;">
+														Precio Unitario
+													</div>
+												</th>
+
+												<th class="text-right"
+													style="text-align: center;border-bottom: 1px solid black !important;margin: 0px;padding: 0px;">
+													<div
+														style="background: #dddddd;border-top-right-radius: 10px;padding: 0px !important;margin: 0px !important;height: 30px;line-height: 30px;">
+														Ventas
+													</div>
+												</th>
+											</tr>
+
+										</thead>
+
+
+										<tbody class="invoice_tbody">
+
+											<tr t-foreach="o.order_line" t-as="l">
+
+												<!-- CANTIDAD -->
+												<td width="10%" class="text-right"
+													style="text-aling: right; padding-top: 5px !important; padding-bottom: 0px !important; border-bottom: 1px solid white !important; border-right: 0.5px solid black !important;">
+													<p t-field="l.product_uom_qty" style="text-aling: right;" />
+													<span groups="product.group_uom" t-field="l.product_uom" />
+												</td>
+												<!-- DESCRIPCION -->
+												<td width="35%"
+													style="border-bottom: 1px solid white !important; padding-top: 5px !important; padding-bottom: 0px !important; border-right: 0.5px solid black !important;">
+													<p t-field="l.name" />
+
+												</td>
+												<!-- PRECIO UNITARIO -->
+												<td class="text-right"
+													style="border-bottom: 1px solid white !important; padding-top: 5px !important; padding-bottom: 0px !important; border-right: 0.5px solid black !important;">
+													<span t-field="l.price_unit" style="line-height: 1.2;" />
+													<span t-field="o.pricelist_id.currency_id" />
+
+												</td>
+
+												<!-- VENTAS GRAVADAS -->
+												<td class="text-right"
+													style="border-bottom: 1px solid white !important; padding-top: 5px !important; padding-bottom: 0px !important;">
+
+													<span t-field="l.price_subtotal" />
+												</td>
+											</tr>
+											<tr style="height: 100%; min-height: 100%;">
+												<td class="text-right"
+													style="border-bottom: 1px solid white !important; padding: 0 5 0 0;">
+
+												</td>
+												<td class="text-right"
+													style="border-bottom: 1px solid white !important; padding: 0 5 0 0; border-left: 0.5px solid black !important;">
+
+												</td>
+												<td class="text-right"
+													style="border-bottom: 1px solid white !important; padding: 0 5 0 0; border-left: 0.5px solid black !important;">
+
+												</td>
+
+												<td class="text-right"
+													style="border-bottom: 1px solid white !important; padding: 0 5 0 0; border-left: 0.5px solid black !important;">
+
+												</td>
+											</tr>
+
+										</tbody>
+									</table>
+								</div>
+							</div>
+
+						</div>
+						<!-- INICIO DEL FOOTER -->
+						<div class="row">
+							<div class="col-xs-12">
+								<div
+									style="border-left: 1px solid black !important; border-right: 1px solid black !important; border-bottom: 1px solid black !important; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
+									<table class="table" style="margin-bottom: 0mm">
+										<tr>
+											<td width="50%" colspan="2" style="height: 25mm;">
+												<div class="row">
+													<div class="col-xs-12">
+														<p>
+															<b>SON:</b>
+															<br></br>
+
+															<span t-field="o.en_letras" />
+															<span t-field="o.pricelist_id.currency_id.description_currency" />
+														</p>
+													</div>
+												</div>
+											</td>
+											<td width="50%" colspan="4"
+												style="border-left: 1px solid black !important;padding-top: 0px !important;padding-left: 0px !important;padding-right: 0px !important;padding-bottom: 0px;">
+												<div class="container-fluid">
+													<div class="row"
+														style="border-bottom: 1px solid black !important;padding-left: 0px;padding-right: 0px;">
+
+														<div class="col-xs-6"
+															style="border-bottom: 1px solid white !important; padding: 0 2 0 0; border-right: 0.5px solid black !important;padding-left: 0px;padding-right: 0px;  width: 178px;">
+															<p style="margin-bottom: 0px;">
+																<b style="padding-left: 5px;">SUMAS</b>
+															</p>
+														</div>
+
+														<div class="col-xs-6"
+															style="padding-right: 0px;padding-left:0px; width: 166px;">
+															<p class="text-right"
+																style="margin-bottom: 0px;padding-right: 5px; text-align: right;">
+																<span t-field="o.amount_untaxed"
+																	t-field-options='{"widget": "monetary", "display_currency": "o.pricelist_id.currency_id"}' />
+
+															</p>
+														</div>
+
+													</div>
+
+													<!-- LISTA DE IMPUESTOS -->
+													<!-- <div t-foreach="o.order_line" t-as="l"> -->
+
+													<div class="row" style="padding-left: 0px;padding-right: 0px;">
+														<!-- <span t-if="t.tax_id.primary_tax!=False"> -->
+
+														<div class="col-xs-6" style="padding-right: 0px;padding-left:5px;">
+															<p style="margin-bottom: 0px;">
+																<b>
+																	IMPUESTOS
+																</b>
+															</p>
+														</div>
+														<div class="col-xs-3">
+															<p style=" ">
+
+															</p>
+														</div>
+														<div class="col-xs-3 text-right" style="padding-right:0px; padding-left:0px;">
+															<p style="margin-bottom: 0px;padding-right: 5px;">
+																<span t-field="o.amount_tax"
+																	t-field-options='{"widget": "monetary", "display_currency": "o.pricelist_id.currency_id"}' />
+															</p>
+														</div>
+														<!-- </span> -->
+													</div>
+													<!-- FIN LISTAR DE IMPUESTOS -->
+
+													<div class="row">
+														<div class="col-xs-6" style="padding-right: 0px;padding-left:0px;">
+															<p style="font-size: 1.5em; margin-bottom: 0px;">
+																<b style="padding-left: 5px;">TOTAL</b>
+															</p>
+														</div>
+														<div class="col-xs-6" style="padding-right:0px;padding-left:0px;">
+															<p class="text-right"
+																style="font-size: 1.5em; margin-bottom: 0px;padding-right: 5px;">
+																<span t-field="o.amount_total" />
+
+															</p>
+														</div>
+													</div>
+												</div>
+											</td>
+										</tr>
+
+									</table>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-12" style="padding-right: 0px;">
+							<div style="margin-left: 0px !important;margin-right: 0px !important;">
+								<div class="row" style="margin-right: 0px !important;">
+									<div
+										style="height: 15mm; text-align: center; border: 1px solid black; border-radius: 10px; margin-top: 3px">
+										<br></br>
+										<p>
+											<t t-if="o.note is False">
+												<span t-field="o.company_id.msj_facturas" style="text-transform: uppercase !important;"></span>
+											</t>
+											<t t-if="o.note != ''">
+												<span t-field="o.note" style="text-transform: uppercase !important;" />
+											</t>
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- CIERRE DEL PAGE -->
+				</div>
+			</t>
+		</template>
+		<template id="es_reporte_quotation" name="reporte_quotation"
+			inherit_id="sale.report_saleorder">
+			<xpath expr="." position="replace">
+				<t t-call="report.html_container">
+					<t t-foreach="docs" t-as="o">
+						<t t-call="treming_sv_sales.es_reporte_quotation_documento"
+							t-lang="o.partner_id.lang" />
+						<field name="paperformat_id"
+							ref="treming_sv_sales.formato_reporte_documento_quotation" />
+					</t>
+				</t>
+			</xpath>
+		</template>
+	</data>
+</openerp>

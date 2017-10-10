@@ -1,0 +1,194 @@
+
+main {
+    height: auto !important;
+    display: block !important;
+    margin-top: 0px;
+    margin-bottom: 350px;
+    position: relative;
+    z-index: 1;
+    border-bottom: 0px solid black;
+    background: white;
+
+}
+
+footer {
+    width: 100%;
+    position: fixed;
+    z-index: 0;
+    bottom: 0;
+    height: auto;
+    font-family:  "Work Sans", sans-serif;
+    background-color: #282f33 !important;
+
+}
+
+.social-icons {
+    box-shadow: 0 10px 10px #1d2225;
+}
+
+
+
+.footerleft { margin-top:50px; padding:0 36px; }
+
+
+.logofooter { margin-bottom:10px; font-size:25px; color:#A6A8AA;;; font-weight:700; }
+
+.logofooter a{
+
+    display: inline-block;
+    width: 120px; height: auto
+}
+
+.footerleft p { color:#A6A8AA;; font-size:13px !important; font-family: 'neris-light' !important; margin-bottom:15px;}
+.footerleft p i { width:20px; color:#A6A8AA;}
+
+
+.footer-ul { list-style-type:none;  padding-left:0px; margin-left:2px;}
+.footer-ul li { line-height:29px; font-size:13px;}
+.footer-ul li a { color:#A6A8AA; transition: color 0.2s linear 0s, background 0.2s linear 0s;   text-transform: uppercase !important; }
+.footer-ul i { margin-right:10px;}
+.footer-ul li a:hover {transition: color 0.2s linear 0s, background 0.2s linear 0s; color:#FF7400; text-decoration: none;  }
+
+.footer-ul-aux li ul{
+    top:-100px !important;
+}
+
+
+.copyright { min-height:40px; background-color:#21272b; font-size: 13px; padding-top:1em !important; padding-bottom:  1em !important; }
+
+
+.odoo-fo{
+
+font-weight: bold;
+font-size: 14px;
+
+}
+
+.made-odoo{
+
+    font-family: "Work Sans", sans-serif;
+    letter-spacing: -0.01em;
+    font-weight: 500;
+    color:#A6A8AA;;  float: left;
+}
+
+
+.o_logo_15 {
+    width: 47.025px !important;
+    height: 15px !important;
+    background-size: auto 15px !important;
+}
+
+
+.o_logo_inverse {
+    background-position: 100% 0 !important;
+}
+.o_logo-page {
+
+    background-image: url("../images/odoo_logo.svg");
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    display: inline-block;
+
+}
+
+.made-odoo a {
+
+    font-family: "Work Sans", sans-serif;
+    letter-spacing: -0.01em;
+    font-weight: 500;
+
+}
+
+.made-odoo a:hover {
+
+    text-decoration: none;
+    color: white;
+
+}
+
+
+
+.heading7 { font-size:21px; font-weight:700; color:#A6A8AA; margin-bottom:22px; }
+.post p,.post-2 p  { font-size:13px;  line-height:20px;}
+
+.post{  width:100%; text-align: justify; color:  #A6A8AA;}
+
+.post-2{  width:100%; text-align: justify; color:  #A6A8AA;}
+
+
+.bottom_ul { list-style-type:none; float:right; margin-bottom:0px;}
+.bottom_ul li { float:left; line-height:40px;}
+.bottom_ul li:after { content:"/"; color:#FFF; margin-right:8px; margin-left:8px;}
+.bottom_ul li a { color:#A6A8AA;;  font-size:13px;}
+
+.col-foter-2{ width:27%; float: left;    box-sizing: border-box; padding: 1% 1% 1% 10%;}
+
+.col-foter-3{ width:25%; float: left;    box-sizing: border-box; padding: 1% 3% 1% 3%;}
+
+.col-foter-6{ width: 48%; float: left;    box-sizing: border-box; padding: 0 10% 1% 1%;}
+
+@media only screen and (max-width: 768px) {
+
+    .col-foter-2{ display:none; }
+
+    .col-foter-3{ width:100%; padding: 1% 1% 1% 1%;}
+
+    .col-foter-6{ width:100%; padding: 1% 1% 1% 1%; }
+
+    .post{  width:100%; text-align: center; }
+
+    .heading7 { text-align: center; }
+
+    .logofooter {
+
+        margin: 0 auto;
+
+        padding: 2% 0% 2% 0%;
+    }
+
+    .treming-copy{
+
+        text-align:center;  padding:10px 0; margin-bottom:0px;  width:100%;
+
+
+    }
+}
+
+@media only screen and (max-width : 980px) and (min-width : 768px){
+
+    .heading7 { text-align: center; }
+
+    .post{  width:100%; text-align: center; }
+
+    .col-foter-2{ display:none; }
+
+    .post{  text-align: center; }
+
+    .col-foter-3{ width:100%; padding: 1% 1% 1% 1%;}
+
+    .col-foter-6{ width:100%; padding: 1% 1% 1% 1%; }
+
+    .logofooter {
+
+        margin: 0 auto;
+
+        padding: 2% 0% 2% 0%;
+    }
+
+    .treming-copy{
+
+        text-align:center;  padding:10px 0; margin-bottom:0px;  width:100%;
+
+
+    }
+
+    }
+
+
+
+body .modal.o_website_modal .form-control{
+
+    width: 90% !important;;
+    float: none !important;
+}

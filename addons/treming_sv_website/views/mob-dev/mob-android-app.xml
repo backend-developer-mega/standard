@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!-- === Services Page === -->
+    <template name="MOBILE" id="website.mob-android" page="True">
+        <t t-call="website.layout">
+
+            <div class="oe_structure"/>
+
+
+
+            <section class="open-erp-custamization odoo java text-center  ">
+                <h3>
+                    <span class="f-nrslight text-center grey ">
+                        Android   <span class="orange f-nrssemibld"> App </span>Development
+                        <div class="clear"></div>
+                    </span>
+                </h3>
+                <div class="down-arrow"></div>
+
+            </section>
+
+
+            <section class="inner-page">
+                <div class="wrapper">
+                    <div class="row">
+                        <div class="col8 left-section">
+                            <h1 class="f-nrsthin grey">Android App Development</h1>
+                            <p>Treming has hands on experience in building native Android applications for your needs.
+                                Our Android application development expertise includes:</p>
+                            <br></br>
+
+                            <h4 class="f-nrsthin orange bold" >Android Application Prototyping</h4>
+                            <p> Many of our startup customers want to build a prototype so that they can pitch their idea to investors. At Treming, we make sure your requirements are well
+
+                                documented before we begin building the prototype Android application to a level where it can be demoed to an audience. Once you get funded, the existing prototype
+
+                                app stack becomes the base for the entire development cycle. Since we are a software house, we can take care of your backend web services needs as well.
+
+                                Working with Treming gives you have an expert team of Android developers, creative designers with experience in UI/UX design, quality assurance testers with
+
+                                access to the latest tools, project managers, and software design architects.</p><br></br>
+                            <h4 class="f-nrsthin orange bold">Android App Development</h4>
+                            <p> Each customer is different. In some cases, an established business has enough
+
+                                capital to start directly on the development of an Android App. Our team will work
+
+                                closely with the customer’s team to gather and document the requirements. Most of
+
+                                the initial meetings will be over WebEx or Skype. We will start working on
+
+                                the actual Android app development once everyone agrees on the architecture of
+
+                                the solution and has signed the project proposal. We will do the final work of
+
+                                submitting the app to the Android Google Play store and will work with Google to
+
+                                get it approved as quickly as possible.</p><br></br>
+
+
+                            <p>In most cases, we work on Android app development projects on a fixed cost basis.
+
+                                You can also choose the Time and Material or Full Time Staffing options.
+                            </p>
+
+                            <br></br>
+                        </div>
+                        <div class="col4 last  right-section">
+                            <span class="stripe"></span>
+                            <h3>Related Topics</h3>
+                            <ul>
+
+                                <li><a href="/page/mob-pro">Mobile Application Prototyping</a></li>
+
+                                <li><a href="/page/mob-app">Mobile Application Development</a></li>
+                                <li><a href="/page/mob-req">Request for quotation</a></li>
+
+                                <li><a href="/page/mob-hybrid-app">Hybrid Mobile Application Development</a></li>
+                                <li><a href="/page/mob-ios-app">iOS App Development</a></li>
+                               
+                                <li><a href="/page/mob-mvp">MVP</a></li>
+                            </ul>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </section>
+
+
+            <t t-call="website.contactus_custom_template"/>
+            <div class="oe_structure"/>
+        </t>
+    </template>
+
+</odoo>

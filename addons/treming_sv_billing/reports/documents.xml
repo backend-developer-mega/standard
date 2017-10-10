@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<!-- CCF Reports -->
+		<report id="report_ccf"
+		model="account.invoice"
+		string="Comprobante de Crédito Fiscal"
+		report_type="qweb-pdf"
+		name="treming_sv_billing.es_reporte_ccf"
+		file="treming_sv_billing.es_report_ccf"
+		attachment_use="True" />
+
+		<!-- facturacf Reports -->
+		<report id="report_facturacf"
+		model="account.invoice"
+		string="Factura de Consumidor Final"
+		report_type="qweb-pdf"
+		name="treming_sv_billing.es_reporte_facturacf"
+		file="treming_sv_billing.es_report_facturacf"
+		attachment_use="True" />
+
+		<!-- nota_credito Reports -->
+		<report id="report_nota_credito"
+		model="account.invoice"
+		string="Nota de Crédito"
+		report_type="qweb-pdf"
+		name="treming_sv_billing.es_reporte_nota_credito"
+		file="treming_sv_billing.es_report_nota_credito"
+		attachment_use="True" />
+
+		<!-- Factura de Exportacion Reports -->
+		 <report id="es_report_factura_exportacion"
+		model="account.invoice"
+		string="Factura de Exportación"
+		report_type="qweb-pdf"
+		name="treming_sv_billing.reporte_factura_exportacion"
+		file="treming_sv_billing.es_report_factura_exportacion"
+		attachment_use="True" />
+
+        <report id="report_iva_compras"
+        model="account.invoice"
+		string="Libro de IVA de Compras"
+		report_type="qweb-pdf"
+		name="treming_sv_billing.es_report_iva_compras"
+		file="treming_sv_billing.es_report_iva_compras"
+		menu="False" />
+
+		<report id="report_iva_ventas_contribuyentes"
+        model="account.invoice"
+		string="Libro de Ventas a Contribuyentes"
+		report_type="qweb-pdf"
+		name="treming_sv_billing.es_report_ventas_contribuyentes"
+		file="treming_sv_billing.es_report_ventas_contribuyentes"
+		menu="False" />
+
+		<report id="report_iva_ventas_consumidores"
+        model="account.invoice"
+		string="Libro de Ventas a Consumidores"
+		report_type="qweb-pdf"
+		name="treming_sv_billing.es_report_ventas_consumidores"
+		file="treming_sv_billing.es_report_ventas_consumidores"
+		menu="False" />
+
+		<record id="formato_reporte_documentos_fiscales" model="report.paperformat">
+			<field name="name">Reportes Fiscales</field>
+			<field name="default" eval="True" />
+			<field name="format">Letter</field>
+			<field name="orientation">Portrait</field>
+			<field name="margin_top">31</field>
+			<field name="margin_bottom">5</field>
+			<field name="margin_left">15</field>
+			<field name="margin_right">1</field>
+			<field name="header_line" eval="False" />
+			<field name="header_spacing">20</field>
+			<field name="dpi">90</field>
+		</record>
+
+		<!-- Formato de Orientación Horizontal -->
+		<record id="formato_reporte_documentos_fiscales_horizontal" model="report.paperformat">
+			<field name="name">Reportes Fiscales Horizontales</field>
+			<field name="default" eval="True" />
+			<field name="format">Letter</field>
+			<field name="orientation">Landscape</field>
+			<field name="margin_top">25</field>
+			<field name="margin_bottom">5</field>
+			<field name="margin_left">1</field>
+			<field name="margin_right">1</field>
+			<field name="header_line" eval="False" />
+			<field name="header_spacing">20</field>
+			<field name="dpi">90</field>
+		</record>
+
+		<record id="treming_sv_billing.report_facturacf" model="ir.actions.report.xml">
+		    <field name="paperformat_id" ref="treming_sv_billing.formato_reporte_documentos_fiscales" />
+		</record>
+
+		<record id="treming_sv_billing.report_ccf" model="ir.actions.report.xml">
+		    <field name="paperformat_id" ref="treming_sv_billing.formato_reporte_documentos_fiscales" />
+		</record>
+
+		<record id="treming_sv_billing.report_nota_credito" model="ir.actions.report.xml">
+		    <field name="paperformat_id" ref="treming_sv_billing.formato_reporte_documentos_fiscales" />
+		</record>
+
+		<record id="treming_sv_billing.es_report_factura_exportacion" model="ir.actions.report.xml">
+		    <field name="paperformat_id" ref="treming_sv_billing.formato_reporte_documentos_fiscales" />
+		</record>
+
+		<record id="treming_sv_billing.report_iva_compras" model="ir.actions.report.xml">
+		    <field name="paperformat_id" ref="treming_sv_billing.formato_reporte_documentos_fiscales_horizontal" />
+		</record>
+
+		<record id="treming_sv_billing.report_iva_ventas_contribuyentes" model="ir.actions.report.xml">
+		    <field name="paperformat_id" ref="treming_sv_billing.formato_reporte_documentos_fiscales_horizontal" />
+		</record>
+
+		<record id="treming_sv_billing.report_iva_ventas_consumidores" model="ir.actions.report.xml">
+		    <field name="paperformat_id" ref="treming_sv_billing.formato_reporte_documentos_fiscales_horizontal" />
+		</record>
+	</data>
+</odoo>

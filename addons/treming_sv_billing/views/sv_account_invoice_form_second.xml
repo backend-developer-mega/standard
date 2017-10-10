@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_form_sv_account_invoice_form_second_inherited">
+            <field name="name">sv.account.invoice.form.second</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_invoice_cancel']" position="replace">
+                    <!-- Añado el boton de anular factura -->
+                    <button string="Anular Factura" name="cancel_custom" type="object"
+                            attrs="{'invisible':[('state','not in',('open','paid'))]}" />
+                </xpath>
+
+                <!-- Reemplazo los botones para imprimir -->
+                <xpath expr="//button[@name='invoice_print']" position="replace">
+                    <button string="Descargar" name="invoice_print_custom" type="object"
+                            attrs="{'invisible':[('state', '==', 'draft')]}" />
+                    <button string="Imprimir" name="invoice_print_send" type="object"
+                            attrs="{'invisible':[('state', '==', 'draft')]}" />
+                </xpath>
+
+                <xpath expr="//button[@name='action_invoice_draft']" position="replace"/>
+
+                <xpath expr="//field[@name='team_id']" position="replace"/>
+        				<xpath expr="//field[@name='payment_term_id']" position="after">
+        					<field name="team_id" attrs="{'readonly':['|',('state', 'not in',
+        						'draft'),('type','=','out_refund')]}"/>
+        				</xpath>
+
+                <xpath expr="//field[@name='number']" position="replace">
+                    <field name="num_docf" attrs="{'invisible':[('state', 'in', ('draft'))], 'readonly':1}"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
