@@ -37,6 +37,7 @@ class materias(models.Model):
 
     name = fields.Char()
     code = fields.Integer()
+    lineas = fields.Char()
     
     @api.multi
     def name_get(self):

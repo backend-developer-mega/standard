@@ -1,2 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_alumnos_alumnos,alumnos.alumnos,model_alumnos_alumnos,,1,0,0,0
+access_alumnos_alumnos_admin,alumnos.alumnos,alumnos.model_alumnos_alumnos,alumnos.group_admin,1,0,0,1
+access_alumnos_alumnos_user,alumnos.alumnos,alumnos.model_alumnos_alumnos,alumnos.group_user,0,0,0,0

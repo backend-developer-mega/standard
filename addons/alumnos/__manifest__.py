@@ -24,8 +24,8 @@
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
-        #'data/email_template_data.xml',
+        'security/user_group.xml',
+        'security/ir.model.access.csv',
         'views/views.xml',
         'views/page_report.xml',
         'views/report.xml',

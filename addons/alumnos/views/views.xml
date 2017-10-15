@@ -46,7 +46,7 @@
 							type="object" class="btn-primary" />
 
 						<button name="action_open" states="in_progress" string="Validate"
-							type="object" class="btn-primary" />
+							type="object" class="btn-primary" groups="alumnos.group_admin" />
 
 						<button name="action_done" states="open" string="Iniciar"
 							type="object" class="btn-primary" />
@@ -59,7 +59,8 @@
 						<group>
 							<group>
 								<field name="name" string="Nombre" />
-								<field name="description" string="Descripcion" />
+								<field name="description" string="Descripcion"
+									attrs="{'invisible': [('state', '=', 'draft')]}" />
 							</group>
 							<group>
 								<field name="datos" string="Datos" />
@@ -105,10 +106,11 @@
 			<field name="name">alumnos list materias</field>
 			<field name="model">alumnos.materias</field>
 			<field name="arch" type="xml">
-				<tree>
+				<form string="Materias">
 					<field name="name" />
 					<field name="code" />
-				</tree>
+					<field name="lineas" groups="alumnos.group_admin" />
+				</form>
 			</field>
 		</record>
 
@@ -120,6 +122,16 @@
 					<field name="sequence" widget="handle" />
 					<field name="name" />
 					<field name="code" />
+				</tree>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="alumnos.list_work2">
+			<field name="name">work2 list materias</field>
+			<field name="model">alumnos.work</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="name" />
 				</tree>
 			</field>
 		</record>
@@ -143,6 +155,18 @@
 			</field>
 		</record>
 
+
+
+		<record model="ir.ui.view" id="alumnos.list_materias">
+			<field name="name">alumnos list materias</field>
+			<field name="model">alumnos.materias</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="name" />
+					<field name="code" />
+				</tree>
+			</field>
+		</record>
 
 		<!-- actions opening views on models -->
 
@@ -180,13 +204,57 @@
 			<field name="name">work window</field>
 			<field name="res_model">alumnos.work</field>
 			<field name="view_mode">tree,form</field>
+			<field name="domain">[('state', '=', 'draft')]</field>
 		</record>
+		<record model="ir.actions.act_window" id="alumnos.work_action_window_dos">
+			<field name="name">work window</field>
+			<field name="res_model">alumnos.work</field>
+			<field name="view_mode">form</field>
+			<field name="act_window_id" ref="action_invoice_tree2" />
+		</record>
+		<record model="ir.actions.act_window" id="alumnos.work_action_window_uno">
+			<field name="name">work window</field>
+			<field name="res_model">alumnos.work</field>
+			<field name="view_mode">tree</field>
+			<field name="act_window_id" ref="action_invoice_tree2" />
+			<field name="view_id" ref="alumnos.list_work2" />
+		</record>
+
+		<record id="action_invoice_supplier_tree1_view1" model="ir.actions.act_window.view">
+			<field eval="1" name="sequence" />
+			<field name="view_mode">tree</field>
+			<field name="view_id" ref="invoice_supplier_tree" />
+			<field name="act_window_id" ref="form_alumnos" />
+		</record>
+
+		<record id="action_invoice__supplier_tree1_view2" model="ir.actions.act_window.view">
+			<field eval="2" name="sequence" />
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="invoice_supplier_form" />
+			<field name="act_window_id" ref="form_alumnos" />
+		</record>
+
+
+
+		<record id="view_alumnos_work_search" model="ir.ui.view">
+			<field name="name">alumnos.work.search</field>
+			<field name="model">alumnos.work</field>
+			<field name="arch" type="xml">
+				<search string="Buscar">
+					<filter string="Hoy" domain="[('state','=','draft')]" help="Draft Invoices" />
+				</search>
+			</field>
+		</record>
+
+
 
 		<record model="ir.actions.act_window" id="alumnos.email_action_window">
 			<field name="name">email window</field>
 			<field name="res_model">alumnos.email1</field>
 			<field name="view_mode">tree,form</field>
 		</record>
+		<!-- <field name="context">{'search_default_state':'draft'}</field> -->
+		<!-- <field name="search_view_id" ref="view_alumnos_work_search"/> -->
 		<!-- server action to the one above -->
 		<!-- <record model="ir.actions.server" id="alumnos.action_server"> <field 
 			name="name">alumnos server</field> <field name="model_id" ref="model_alumnos_alumnos"/> 
@@ -204,7 +272,7 @@
 		<!-- actions -->
 
 		<menuitem name="List" id="alumnos.menu_1_list" parent="alumnos.menu_1"
-			action="alumnos.action_window" />
+			action="alumnos.action_window" groups="alumnos.group_admin" />
 		<menuitem name="Materias" id="alumnos.menu_2_list" parent="alumnos.menu_1"
 			action="alumnos.materias_action_window" />
 		<menuitem name="Estado" id="alumnos.menu_3_list" parent="alumnos.menu_1"
@@ -215,6 +283,8 @@
 			action="alumnos.session_action_window" />
 		<menuitem name="Work" id="alumnos.menu_6_list" parent="alumnos.menu_1"
 			action="alumnos.work_action_window" />
+		<menuitem name="Work admin" id="alumnos.menu_8_list" parent="alumnos.menu_1"
+			action="alumnos.work_action_window_dos" />
 		<menuitem name="Email" id="alumnos.menu_7_list" parent="alumnos.menu_1"
 			action="alumnos.email_action_window" />
 		<!-- <menuitem name="Server to list" id="alumnos" parent="alumnos.menu_2" 
