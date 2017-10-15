@@ -1,2 +1,0 @@
-import es_res_partner
-import es_res_company
