@@ -130,7 +130,7 @@
                     </group>
                     <group string="Departamento">
                         <field name="job_id" string="Departamento" readonly="1" />
-                    <!--    <field name="department_id"/> -->
+                        <field name="department_id"/>
                         <field name="company_id" groups="base.group_multi_company" options='{"no_open":True}' />
                     </group>
 
