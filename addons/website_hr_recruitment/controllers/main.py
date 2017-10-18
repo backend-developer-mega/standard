@@ -89,6 +89,7 @@ class WebsiteHrRecruitment(http.Controller):
             default = request.session.pop('website_hr_recruitment_default')
         return request.render("website_hr_recruitment.apply", {
             'job': job,
+            'departments': request.env['hr.department'].sudo().search([]),
             'error': error,
             'default': default,
         })

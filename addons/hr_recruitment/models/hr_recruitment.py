@@ -113,8 +113,11 @@ class Applicant(models.Model):
         return company_id
 
     name = fields.Char("Subject / Application Name", required=True)
-    dui = fields.Char("DUI")
+    cycle = fields.Char("Ciclo")
+    academic_year = fields.Char("Año académico")
     carnet = fields.Char()
+    year_income = fields.Char()
+    year_out = fields.Char()
     active = fields.Boolean("Active", default=True, help="If the active field is set to false, it will allow you to hide the case without removing it.")
     description = fields.Text("Description")
     email_from = fields.Char("Email", size=128, help="These people will receive email.")
