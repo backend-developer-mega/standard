@@ -228,9 +228,9 @@ var Thread = Widget.extend({
 
         var date = msg.date.format('YYYY-MM-DD');
         if (date === moment().format('YYYY-MM-DD')) {
-            msg.day = _t("Today");
+            msg.day = _t("Hoy");
         } else if (date === moment().subtract(1, 'days').format('YYYY-MM-DD')) {
-            msg.day = _t("Yesterday");
+            msg.day = _t("Ayer");
         } else {
             msg.day = msg.date.format('LL');
         }

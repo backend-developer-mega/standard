@@ -99,7 +99,7 @@ var _lt = function (s) {
     _t('%d minutes ago');
     _t('about an hour ago');
     _t('%d hours ago');
-    _t('a day ago');
+    _t('hace un dia');
     _t('%d days ago');
     _t('about a month ago');
     _t('%d months ago');

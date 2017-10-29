@@ -42,9 +42,9 @@ var Loading = Widget.extend({
         this.count += increment;
         if (this.count > 0) {
             if (session.debug) {
-                this.$el.text(_.str.sprintf( _t("Loading (%d)"), this.count));
+                this.$el.text(_.str.sprintf( _t("Cargando (%d)"), this.count));
             } else {
-                this.$el.text(_t("Loading"));
+                this.$el.text(_t("Cargando"));
             }
             this.$el.show();
             this.getParent().$el.addClass('oe_wait');

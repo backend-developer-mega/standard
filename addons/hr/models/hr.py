@@ -107,6 +107,14 @@ class Employee(models.Model):
         image_path = get_module_resource('hr', 'static/src/img', 'default_image.png')
         return tools.image_resize_image_big(open(image_path, 'rb').read().encode('base64'))
 
+
+    cycle = fields.Char("Ciclo")
+    academic_year = fields.Char("Año académico")
+    carnet = fields.Char()
+    year_incom = fields.Char()
+    year_out = fields.Char()
+    curriculum = fields.Char()
+    valuation_units = fields.Char()
     # we need a related field in order to be able to sort the employee by name
     name_related = fields.Char(related='resource_id.name', string="Resource Name", readonly=True, store=True)
     country_id = fields.Many2one('res.country', string='Nationality (Country)')

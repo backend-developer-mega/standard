@@ -19,11 +19,11 @@
                     <field name="product_id"/>
                     <field name="state"/>
                     <field name="mo_id"/>
-                    <group expand="0" string="Filters">
+                    <group expand="0" string="Filtros">
                         <filter name="draft" string="Draft" domain="[('state', '=', 'draft')]"/>
                         <filter name="done" string="Done" domain="[('state', '=', 'done')]"/>
                     </group>
-                    <group expand='0' string='Group by...'>
+                    <group expand='0' string='Agrupar por...'>
                         <filter string='Product' name="productgroup" context="{'group_by': 'product_id'}"/>
                         <filter string="Manufacturing Order" name="mogroup" context="{'group_by': 'mo_id'}"/>
                     </group>

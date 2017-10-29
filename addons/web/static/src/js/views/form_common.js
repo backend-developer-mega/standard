@@ -209,7 +209,7 @@ var CompletionFieldMixin = {
             if (values.length > self.limit) {
                 values = values.slice(0, self.limit);
                 values.push({
-                    label: _t("Search More..."),
+                    label: _t("Buscar mas..."),
                     action: function() {
                         dataset.name_search(search_val, self.build_domain(), 'ilike', 160).done(function(_data) {
                             self._search_create_popup("search", _data);

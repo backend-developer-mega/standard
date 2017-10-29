@@ -53,11 +53,11 @@
     <t t-name="mail.Chatter">
         <div class="o_chatter">
             <div class="o_chatter_topbar">
-                <button type="button" class="btn btn-sm btn-primary o_chatter_button_new_message" title="Send a message">
-                    New message
+                <button type="button" class="btn btn-sm btn-primary o_chatter_button_new_message" title="Enviar mensaje">
+                    Nuevo mensaje
                 </button>
-                <button t-if="widget.options.display_log_button" class="btn btn-sm btn-link o_chatter_button_log_note" title="Log a note. Followers will not be notified.">
-                    Log an internal note
+                <button t-if="widget.options.display_log_button" class="btn btn-sm btn-link o_chatter_button_log_note" title="Nota interna. Los seguidores no van a poder ver esta nota.">
+                    Registrar un nota interna
                 </button>
             </div>
         </div>

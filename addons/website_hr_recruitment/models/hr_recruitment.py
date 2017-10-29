@@ -34,7 +34,7 @@ class Applicant(models.Model):
 
     def website_form_input_filter(self, request, values):
         if 'partner_name' in values:
-            values.setdefault('name', '%s\'s Application' % values['partner_name'])
+            values.setdefault('name', 'Solicitud de ''%s.' % values['partner_name'])
         return values
 
 
@@ -59,3 +59,8 @@ class Job(models.Model):
     def set_open(self):
         self.write({'website_published': False})
         return super(Job, self).set_open()
+
+    @api.multi
+    def set_recruit(self):
+        self.write({'website_published': True})
+        return super(Job, self).set_recruit()

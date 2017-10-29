@@ -159,7 +159,7 @@
 									<label class="control-label" for="partner_phone">Ciclo</label>
 								</div>
 								<div class="col-sm-1" style="width: 90px !important; padding-right: 2px !important;">
-									<select type="text" name="delivery_time" class="form-control">
+									<select type="text" name="cycle" class="form-control">
 										<option value="1">1</option>
 										<option value="2">2</option>
 										<option value="3">3</option>
@@ -170,14 +170,14 @@
 								</div>
 								<div class="col-sm-1" style="padding-left: 2px !important; padding-right: 2px !important;">
 									<input type="number" min="1950" class="form-control o_website_form_input"
-										name="partner_phone" required="" />
+										name="academic_year" required="" />
 								</div>
 								<div class="col-sm-1" style="padding-left: 5px !important; width: 70px !important; padding-right: 5px !important;">
 									<label class="control-label" for="partner_phone">Carnet</label>
 								</div>
 								<div class="col-sm-2" style="padding-left: 2px !important; width: 137px !important;">
 									<input type="text" class="form-control o_website_form_input"
-										name="partner_phone" required="" style="width: 290.992188px !important;" />
+										name="carnet" required="" style="width: 290.992188px !important;" />
 								</div>
 							</div>
 							
@@ -243,14 +243,14 @@
 								</div>
 								<div class="col-md-3 col-sm-3">
 									<input type="text" class="form-control o_website_form_input"
-										name="partner_phone" required="" />
+										name="year_incom" required="" />
 								</div>
 								<div class="col-sm-1">
 									<label class="control-label" for="partner_phone">Egreso</label>
 								</div>
 								<div class="col-md-3 col-sm-1">
 									<input type="text" class="form-control o_website_form_input"
-										name="partner_phone" required="" />
+										name="year_out" required="" />
 								</div>
 							</div>
 							<div class="form-group form-field o_website_form_required_custom">
@@ -274,14 +274,14 @@
 								</div>
 								<div class="col-sm-1">
 									<input type="text" class="form-control o_website_form_input"
-										name="partner_phone" required="" />
+										name="curriculum" required="" />
 								</div>
 								<div class="col-sm-2" style="width: 120px !important;">
 									<label class="control-label" for="partner_phone">Total de U.V.</label>
 								</div>
 								<div class="col-sm-1">
 									<input type="text" class="form-control o_website_form_input"
-										name="partner_phone" required="" />
+										name="valuation_units" required="" />
 								</div>
 							</div>
 							<div class="form-group form-field">
@@ -690,6 +690,7 @@
 		<xpath expr="." position="inside">
 			<script type="text/javascript"
 				src="/website_hr_recruitment/static/src/js/website_hr_recruitment_tour.js"></script>
+				
 		</xpath>
 	</template>
 

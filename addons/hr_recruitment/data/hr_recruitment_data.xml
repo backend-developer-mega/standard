@@ -43,12 +43,11 @@ Unfortunately, your profile does not match with our needs</p>
         <field name="model_id" ref="hr_recruitment.model_hr_applicant"/>
         <field name="user_signature" eval="False"/>
         <field name="body_html"><![CDATA[
-<p>Dear ${object.partner_name or 'applicant'},</p>
-<p>Thank you for your enquiry.<br />
-Your resume got our interest. I will contact you as soon as possible to plan
-next steps of the recruitment process.</p>
-<p>If you have any questions, please let us know.</p>
-<p>Best regards,</p>]]></field>
+<p>Estimado ${object.partner_name or 'applicant'},</p>
+<p>Confirmamos que has realizado una solicitud de usuario en la plataforma de trabajos de grado online de la Universidad de El Salvador.<br />
+El personal administrativo de la facultad revisara los datos y los documentos que has adjuntado y posteriormente te estaremos informando del progreso de tu solicitd.</p>
+<p>Si tiene alguna duda, por favor póngase en contacto con nosotros, marcando al numero: 2440 2563.</p>
+<p>Atentamente,</p>]]></field>
     </record>
 
     <record id="email_template_data_applicant_employee" model="mail.template">
@@ -98,7 +97,7 @@ joining us as a ${object.job_id.name}
         <field name="res_model">hr.applicant</field>
         <field name="default" eval="False"/>
         <field name="hidden" eval="True"/>
-        <field name="description">Applicant created</field>
+        <field name="description">Solicitante creado</field>
     </record>
     <record id="mt_applicant_stage_changed" model="mail.message.subtype">
         <field name="name">Stage Changed</field>

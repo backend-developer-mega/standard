@@ -116,8 +116,10 @@ class Applicant(models.Model):
     cycle = fields.Char("Ciclo")
     academic_year = fields.Char("Año académico")
     carnet = fields.Char()
-    year_income = fields.Char()
+    year_incom = fields.Char()
     year_out = fields.Char()
+    curriculum = fields.Char()
+    valuation_units = fields.Char()
     active = fields.Boolean("Active", default=True, help="If the active field is set to false, it will allow you to hide the case without removing it.")
     description = fields.Text("Description")
     email_from = fields.Char("Email", size=128, help="These people will receive email.")
@@ -400,13 +402,23 @@ class Applicant(models.Model):
                                                'address_home_id': address_id,
                                                'department_id': applicant.department_id.id or False,
                                                'address_id': applicant.company_id and applicant.company_id.partner_id and applicant.company_id.partner_id.id or False,
-                                               'work_email': applicant.department_id and applicant.department_id.company_id and applicant.department_id.company_id.email or False,
-                                               'work_phone': applicant.department_id and applicant.department_id.company_id and applicant.department_id.company_id.phone or False})
+                                               'cycle': applicant.cycle  or False,
+                                               'academic_year': applicant.academic_year  or False,
+                                               'carnet': applicant.carnet  or False,
+                                               'year_incom': applicant.year_incom  or False,
+                                               'year_out': applicant.year_out  or False,
+                                               'curriculum': applicant.curriculum  or False,
+                                               'valuation_units': applicant.valuation_units  or False,
+                                               'notes': applicant.description  or False,
+                                               'work_email': applicant.email_from  or False,
+                                               'mobile_phone': applicant.partner_mobile  or False,
+                                               'work_phone': applicant.partner_phone or False})
                 applicant.write({'emp_id': employee.id})
                 applicant.job_id.message_post(
                     body=_('New Employee %s Hired') % applicant.partner_name if applicant.partner_name else applicant.name,
                     subtype="hr_recruitment.mt_job_applicant_hired")
                 employee._broadcast_welcome()
+                employee.create_user()
             else:
                 raise UserError(_('You must define an Applied Job and a Contact Name for this applicant.'))
 

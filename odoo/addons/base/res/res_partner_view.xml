@@ -493,7 +493,7 @@
         </record>
 
         <record id="action_partner_employee_form" model="ir.actions.act_window">
-            <field name="name">Employees</field>
+            <field name="name">Estudiantes</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">res.partner</field>
             <field name="view_type">form</field>

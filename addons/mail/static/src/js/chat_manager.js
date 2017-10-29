@@ -55,7 +55,7 @@ function notify_incoming_message (msg, options) {
         // no need to notify
         return;
     }
-    var title = _t('New message');
+    var title = _t('Nuevo mensaje');
     if (msg.author_id[1]) {
         title = _.escape(msg.author_id[1]);
     }

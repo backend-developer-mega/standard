@@ -3,6 +3,7 @@
 
 from lxml import etree
 
+from email.utils import formataddr
 from odoo import api, fields, models, tools, SUPERUSER_ID, _
 from odoo.exceptions import UserError, ValidationError
 from odoo.tools.safe_eval import safe_eval
@@ -229,6 +230,7 @@ class Project(models.Model):
                                domain=['|', ('stage_id.fold', '=', False), ('stage_id', '=', False)])
     color = fields.Integer(string='Color Index')
     user_id = fields.Many2one('res.users', string='Project Manager', default=lambda self: self.env.user)
+    user_ids_many = fields.Many2one('res.users', string='Project Manager', default=lambda self: self.env.user)
     alias_id = fields.Many2one('mail.alias', string='Alias', ondelete="restrict", required=True,
         help="Internal email associated with this project. Incoming emails are automatically synchronized "
              "with Tasks (or optionally Issues if the Issue Tracker module is installed).")
@@ -318,6 +320,11 @@ class Project(models.Model):
     def close_dialog(self):
         return {'type': 'ir.actions.act_window_close'}
 
+class employeeTask(models.Model):
+    _inherit = "hr.employee"
+    
+    employee_ids = fields.Many2many('project.task', 'employee_task_rel', 'task_id', 'emp_id', string='Employees')
+    #task_ids = fields.Many2one('project.task', string='Task')
 
 class Task(models.Model):
     _name = "project.task"
@@ -326,6 +333,39 @@ class Task(models.Model):
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _mail_post_access = 'read'
     _order = "priority desc, sequence, date_start, name, id"
+    
+    #recipient_ids = fields.Many2many('hr.employee', string='Integrantes')
+    
+    recipient_ids = fields.Many2many('hr.employee', 'employee_task_rel', 'emp_id', 'task_id', string='Tags')
+    department_id = fields.Many2one('hr.department', string='Carrera')
+    #recipient_ids = fields.One2many('hr.employee', 'task_ids', string='Integrantes')
+    
+    @api.multi
+    def name_get(self):
+        res = []
+        for record in self:
+            name = (record.name[:75] + '...') if len(record.name) > 75 else record.name
+            res.append((record.id, name))
+        return res
+            
+    @api.multi
+    def send_email(self):
+        """Return a dictionary for specific email values, depending on a
+        partner, or generic to the whole recipients given by mail.email_to.
+
+            :param browse_record mail: mail.mail browse_record
+            :param browse_record partner: specific recipient partner
+        """
+        mail = self.env['mail.mail'].create({
+            'subject': self.name,
+            'body_html': '<p>Test siii prueba de rendimiento</p>',
+            'email_to': ','.join(formataddr((partner.name, partner.work_email)) for partner in self.env['hr.employee'].sudo().browse(self.recipient_ids.ids)),
+            'recipient_ids' : self.recipient_ids,
+            'partner_ids': '1'
+        })
+        mail.send()       
+
+
 
     @api.model
     def default_get(self, field_list):
@@ -357,7 +397,7 @@ class Task(models.Model):
         return stages.browse(stage_ids)
 
     active = fields.Boolean(default=True)
-    name = fields.Char(string='Task Title', track_visibility='always', required=True, index=True)
+    name = fields.Char(string='Task Title', required=True, index=True)
     description = fields.Html(string='Description')
     priority = fields.Selection([
             ('0','Normal'),
@@ -818,3 +858,4 @@ class TaskEvaluation(models.Model):
     
     project_id = fields.Many2one('project.project',
         ondelete='cascade', string="Projecto")
+

@@ -226,12 +226,12 @@
                         </t>
                         <t t-if="item.create_uid and item.create_uid[0]" t-set="item.title">
                             <t t-raw="item.title"/><br/>
-                            <b>Created by : </b><br/>
+                            <b>Creado por : </b><br/>
                             <t t-raw="item.create_uid[1] + ' ' + item.create_date"/>
                         </t>
                         <t t-if="item.create_uid and item.write_uid and item.create_uid[0] != item.write_uid[0]" t-set="item.title">
                             <t t-raw="item.title"/><br/>
-                            <b>Modified by : </b><br/>
+                            <b>Modificado por : </b><br/>
                             <t t-raw="item.write_uid[1] + ' ' + item.write_date"/>
                         </t>
                     </t>
@@ -247,7 +247,7 @@
                         <input type="hidden" name="model" t-att-value="widget.dataset and widget.dataset.model"/>
                         <input type="hidden" name="id" t-att-value="widget.model_id"/>
                         <input type="hidden" name="session_id" t-att-value="widget.session.session_id" t-if="widget.session.override_session"/>
-                        <span>Add...</span>
+                        <span>Agregar...</span>
                     </t>
                 </li>
             </ul>
@@ -909,7 +909,7 @@
 <div t-name="SearchView" class="o_searchview">
     <span class="o_searchview_more fa" title="Advanced Search..."/>
 </div>
-<input t-name="SearchView.InputView" type="text" class="o_searchview_input" placeholder="Search..."/>
+<input t-name="SearchView.InputView" type="text" class="o_searchview_input" placeholder="Buscar..."/>
 <div t-name="SearchView.FacetView" tabindex="0" class="o_searchview_facet">
     <span t-if="widget.model.has('icon')" t-att-class="'fa ' + widget.model.get('icon') + ' o_searchview_facet_label'"/>
     <span t-if="!widget.model.has('icon')" class="o_searchview_facet_label">
@@ -927,15 +927,15 @@
 
 <div t-name="SearchView.FilterMenu" class="btn-group o_dropdown">
     <button class="o_dropdown_toggler_btn btn btn-sm dropdown-toggle" data-toggle="dropdown">
-        <span class="fa fa-filter"/> Filters <span class="caret"/>
+        <span class="fa fa-filter"/> Filtros <span class="caret"/>
     </button>
     <ul class="dropdown-menu o_filters_menu" role="menu">
         <li class="o_add_filter o_closed_menu">
-            <a href="#">Add Custom Filter</a>
+            <a href="#">Agregar filtro personalizado</a>
         </li>
         <li class="o_add_filter_menu">
-            <button class="btn btn-primary btn-sm o_apply_filter" type="button">Apply</button>
-            <button class="btn btn-default btn-sm o_add_condition" type="button"><span class="fa fa-plus-circle"/> Add a condition</button>
+            <button class="btn btn-primary btn-sm o_apply_filter" type="button">Aplicar</button>
+            <button class="btn btn-default btn-sm o_add_condition" type="button"><span class="fa fa-plus-circle"/>Agregar condicion</button>
         </li>
     </ul>
 </div>
@@ -1004,7 +1004,7 @@
 </t>
 <t t-name="SearchView.extended_search.proposition">
     <li class="o_filter_condition">
-        <span class="o_or_filter">or</span>
+        <span class="o_or_filter">o</span>
         <span>
             <select class="o_searchview_extended_prop_field">
                 <t t-foreach="widget.attrs.fields" t-as="field">
@@ -1036,12 +1036,12 @@
 
 <div t-name="SearchView.GroupByMenu" class="btn-group hidden-xs o_dropdown">
     <button class="o_dropdown_toggler_btn btn btn-sm dropdown-toggle" data-toggle="dropdown">
-        <span class="fa fa-bars"/> Group By <span class="caret"/>
+        <span class="fa fa-bars"/> Agrupar por <span class="caret"/>
     </button>
     <ul class="dropdown-menu o_group_by_menu" role="menu">
         <li class="divider"/>
         <li class="o_add_custom_group o_closed_menu">
-            <a href="#">Add custom group</a>
+            <a href="#">Agregar grupo personalizado</a>
         </li>
     </ul>
 </div>
@@ -1052,30 +1052,30 @@
         </t>
     </select></li>
     <li>
-        <button type="button" class="btn btn-primary btn-sm o_add_group o_select_group">Apply</button>
+        <button type="button" class="btn btn-primary btn-sm o_add_group o_select_group">Aplicar</button>
     </li>
 </t>
 
 <div t-name="SearchView.FavoriteMenu" class="btn-group o_dropdown">
     <button class="o_dropdown_toggler_btn btn btn-sm dropdown-toggle" data-toggle="dropdown">
-        <span class="fa fa-star"/> Favorites <span class="caret"/>
+        <span class="fa fa-star"/> Favoritos <span class="caret"/>
     </button>
     <ul class="dropdown-menu o_favorites_menu" role="menu">
         <li class="divider"/>
         <li class="o_save_search o_closed_menu">
-            <a href="#">Save current search</a>
+            <a href="#">Guardar busqueda frecuente</a>
         </li>
         <li class="o_save_name">
             <input type="text"></input>
         </li>
         <li class="o_save_name">
-            <span><div class="o_checkbox"><input type="checkbox"/><span/></div> Use by default</span>
+            <span><div class="o_checkbox"><input type="checkbox"/><span/></div> Usar por defecto</span>
         </li>
         <li class="o_save_name">
-            <span><div class="o_checkbox"><input type="checkbox"/><span/></div> Share with all users </span><span class="fa fa-users"/>
+            <span><div class="o_checkbox"><input type="checkbox"/><span/></div> Compartir para todos los usuarios </span><span class="fa fa-users"/>
         </li>
         <li class="o_save_name">
-            <button type="button" class="btn btn-primary btn-sm">Save</button>
+            <button type="button" class="btn btn-primary btn-sm">Guardar</button>
         </li>
     </ul>
 </div>

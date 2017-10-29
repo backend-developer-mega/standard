@@ -11,7 +11,7 @@ Sidebar.include({
         this._super.apply(this, arguments);
         var view = this.getParent();
         if (view.fields_view && view.fields_view.type === "form") {
-            this.sections.splice(1, 0, { 'name' : 'files', 'label' : _t('Attachment(s)'), });
+            this.sections.splice(1, 0, { 'name' : 'files', 'label' : _t('Adjunto(s)'), });
             this.items.files = [];
         }
     },

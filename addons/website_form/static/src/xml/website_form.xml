@@ -11,7 +11,7 @@
     <!-- Missing field status -->
     <t t-name="website_form.status_invalid">
         <span id="o_website_form_result" class="text-danger ml8">
-            <i class="fa fa-close mr4"/>Please fill in the form correctly.
+            <i class="fa fa-close mr4"/>Por favor completa el formulario correctamente.
         </span>
     </t>
 

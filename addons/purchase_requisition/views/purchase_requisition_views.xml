@@ -86,7 +86,7 @@
         <field name="context">{"default_requisition_id":active_id}</field>
     </record>
     <record model="ir.actions.act_window" id="action_purchase_requisition_list">
-        <field name="name">Request for Quotations Queeee</field>
+        <field name="name">Request for Quotations</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">purchase.order</field>
         <field name="view_type">form</field>
@@ -101,27 +101,19 @@
         <field name="arch" type="xml">
             <form string="Purchase Agreements">
             <header>
-            
                 <button name="%(action_purchase_requisition_to_so)d" type="action"
                     string="New Quotation"
                     attrs="{'invisible': [('state', '!=', 'open')]}"/>
-                    
                 <button name="%(action_purchase_requisition_to_so)d" type="action"
                     string="New Quotation" class="btn-primary"
                     attrs="{'invisible': [('state', '!=', 'in_progress')]}"/>
-                    
+
                 <button name="action_in_progress" states="draft" string="Confirm" type="object" class="btn-primary"/>
                 
                 <button name="action_open" states="in_progress" string="Validate" type="object" class="btn-primary"/>
-                
-                
                 <button name="action_done" states="open" string="Done" type="object" class="btn-primary"/>
-                
-                
                 <button name="action_draft" states="cancel" string="Reset to Draft" type="object"/>
-                
                 <button name="action_cancel" states="draft,in_progress" string="Cancel Call" type="object"/>
-                
                 <field name="state" widget="statusbar" statusbar_visible="draft,in_progress,open,done"/>
             </header>
             <sheet>
