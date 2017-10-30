@@ -27,31 +27,21 @@
                         <nav class="header-nav-top pull-right">
 
                             <div id="social">
-                                <a href="https://www.facebook.com/OpenEduCat"
+                                <a href="https://www.facebook.com/UESoficial.SV/"
                                     target="_blank">
                                     <i class="fa fa-facebook fa-1x img-circle"></i>
                                 </a>
-                                <a href="https://twitter.com/openeducat"
+                                <a href="https://twitter.com/UESoficial"
                                     target="_blank">
                                     <i class="fa fa-twitter fa-1x img-circle"></i>
-                                </a>
-                                <a
-                                    href="https://plus.google.com/u/0/+OpenEduCat/posts"
-                                    target="_blank">
-                                    <i
-                                        class="fa fa-google-plus fa-1x img-circle"></i>
-                                </a>
-                                <a href="https://github.com/openeducat"
-                                    target="_blank">
-                                    <i class="fa fa-github fa-1x img-circle"></i>
                                 </a>
                             </div>
                         </nav>
                         <div id="company_details" class="text-white">
                             <i class="fa fa-phone pr8" />
-                            <span class="company-info pr8 text-white">+1 555 123 8069</span>
+                            <span class="company-info pr8 text-white">+(503)2480-0800</span>
                             <i class="fa fa-envelope pr8" />
-                            <span class="company-info text-white">info@example.com</span>
+                            <span class="company-info text-white">plataformatrabajogrado@gmail.com</span>
                         </div>
                     </div>
                 </div>

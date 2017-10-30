@@ -2,11 +2,11 @@
 <odoo>
 
 	<!-- Top menu item -->
-	<menuitem name="Project" id="menu_main_pm"
+	<menuitem name="Inscripción" id="menu_main_pm"
 		groups="group_project_manager,group_project_user" web_icon="project,static/description/icon.png"
 		sequence="50" />
 
-	<menuitem name="Search" id="menu_project_management" parent="menu_main_pm"
+	<menuitem name="Temas" id="menu_project_management" parent="menu_main_pm"
 		sequence="2" groups="base.group_no_one,group_project_user" />
 
 	<menuitem id="menu_project_config" name="Configuration"
@@ -16,14 +16,14 @@
 		<field name="name">project.task.search.form</field>
 		<field name="model">project.task</field>
 		<field name="arch" type="xml">
-			<search string="Tasks">
-				<field name="name" string="Tasks" />
+			<search string="Temas">
+				<field name="name" string="Temas" />
 				<field name="tag_ids" />
 				<field name="partner_id" />
 				<field name="project_id" />
 				<field name="user_id" />
 				<field name="stage_id" />
-				<filter string="My Tasks" name="my_tasks" domain="[('user_id','=',uid)]" />
+				<filter string="Mis temas" name="my_tasks" domain="[('user_id','=',uid)]" />
 				<filter string="Unassigned" name="unassigned" domain="[('user_id', '=', False)]" />
 				<separator />
 				<filter string="New" name="draft"
@@ -33,7 +33,7 @@
 					domain="[('message_needaction','=',True)]" />
 				<filter string="Archived" name="inactive" domain="[('active','=',False)]" />
 				<group expand="0" string="Group By">
-					<filter string="Project" name="project" context="{'group_by':'project_id'}" />
+					<filter string="Departamento" name="project" context="{'group_by':'project_id'}" />
 					<filter string="Task" context="{'group_by':'name'}" />
 					<filter string="Assigned to" name="User" context="{'group_by':'user_id'}" />
 					<filter string="Stage" name="Stage" context="{'group_by':'stage_id'}" />
@@ -48,7 +48,7 @@
 	</record>
 
 	<record id="act_project_project_2_project_task_all" model="ir.actions.act_window">
-		<field name="name">Tasks</field>
+		<field name="name">Temas</field>
 		<field name="res_model">project.task</field>
 		<field name="view_mode">kanban,tree,form,calendar,pivot,graph</field>
 		<field name="context">{
@@ -206,7 +206,7 @@
 		<field name="model">project.project</field>
 		<field name="arch" type="xml">
 			<tree decoration-bf="message_needaction==True" decoration-muted="active == False"
-				string="Projects">
+				string="Inscripción">
 				<field name="sequence" widget="handle" />
 				<field name="message_needaction" invisible="1" />
 				<field name="active" invisible="1" />
@@ -251,7 +251,7 @@
 	</record>
 
 	<record id="open_create_project" model="ir.actions.act_window">
-		<field name="name">Create a Project</field>
+		<field name="name">Crear temas</field>
 		<field name="res_model">project.project</field>
 		<field name="view_type">form</field>
 		<field name="view_mode">form</field>
@@ -299,20 +299,17 @@
 								<div class="o_kanban_card_manage_pane o_invisible">
 									<div class="o_kanban_card_manage_section o_kanban_manage_reports">
 										<div groups="project.group_project_manager">
-											<a type="edit">Settings</a>
+											<a type="edit">Configuración</a>
 										</div>
 										<div attrs="{'invisible': [('use_tasks', '=', False)]}">
 											<a name="%(project.action_project_task_user_tree_filtered)d"
-												type="action">Tasks</a>
+												type="action">Temas</a>
 										</div>
-									</div>
-									<div t-if="widget.editable" class="o_project_kanban_colorpicker">
-										<ul class="oe_kanban_colorpicker" data-field="color" />
 									</div>
 								</div>
 								<div class="o_project_kanban_manage">
 									<a class="o_kanban_manage_toggle_button o_left" href="#">
-										More
+										Mas
 										<i class="fa fa-caret-down" />
 									</a>
 									<a type="object" name="toggle_favorite" class="o_right">
@@ -330,7 +327,7 @@
 											<t t-esc="record.task_count.value" />
 										</span>
 										<span class="o_label">
-											<t t-esc="record.label_tasks.value" />
+											Temas
 										</span>
 									</a>
 									<a t-if="record.task_needaction_count.raw_value" class="o_needaction"
@@ -364,7 +361,7 @@
 	</record>
 
 	<record id="open_view_project_all" model="ir.actions.act_window">
-		<field name="name">Projects</field>
+		<field name="name">Inscripción</field>
 		<field name="res_model">project.project</field>
 		<field name="view_type">form</field>
 		<field name="domain">[]</field>
@@ -385,7 +382,7 @@
 	</record>
 
 	<record id="open_view_project_all_config" model="ir.actions.act_window">
-		<field name="name">Projects</field>
+		<field name="name">Inscripción</field>
 		<field name="res_model">project.project</field>
 		<field name="view_type">form</field>
 		<field name="domain">[]</field>
@@ -410,14 +407,14 @@
 		<field name="model">project.task</field>
 		<field eval="2" name="priority" />
 		<field name="arch" type="xml">
-			<form string="Task" class="o_form_project_tasks">
+			<form string="Temas" class="o_form_project_tasks">
 				<header>
 					<field name="stage_id" widget="statusbar" clickable="True"
 						options="{'fold_field': 'fold'}" />
 					<button name="send_email" string="Send Now" type="object"
 						class="oe_highlight" />
 				</header>
-				<sheet string="Task">
+				<sheet string="Temas">
 					<div class="oe_button_box" name="button_box">
 						<button name="toggle_active" type="object" groups="base.group_user"
 							class="oe_stat_button" icon="fa-archive">
@@ -843,9 +840,9 @@
 		groups="group_project_manager" />
 
 	<menuitem action="open_view_project_all" id="menu_projects"
-		name="Dashboard" parent="menu_main_pm" sequence="1" />
+		name="Principal" parent="menu_main_pm" sequence="1" />
 	<menuitem action="open_view_project_all_config" id="menu_projects_config"
-		name="Projects" parent="menu_project_config" sequence="10" />
+		name="Departamentos" parent="menu_project_config" sequence="10" />
 
 	<!-- User Form -->
 	<act_window
