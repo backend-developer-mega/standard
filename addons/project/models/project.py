@@ -336,8 +336,9 @@ class Task(models.Model):
     
     #recipient_ids = fields.Many2many('hr.employee', string='Integrantes')
     
-    recipient_ids = fields.Many2many('hr.employee', 'employee_task_rel', 'emp_id', 'task_id', string='Tags')
+    recipient_ids = fields.Many2many('hr.employee', 'employee_task_rel', 'emp_id', 'task_id', string='Tags', track_visibility='always')
     department_id = fields.Many2one('hr.department', string='Carrera')
+    depart_ids = fields.Many2one('hr.job', string='Departamento')
     #recipient_ids = fields.One2many('hr.employee', 'task_ids', string='Integrantes')
     
     @api.multi
@@ -347,7 +348,31 @@ class Task(models.Model):
             name = (record.name[:75] + '...') if len(record.name) > 75 else record.name
             res.append((record.id, name))
         return res
-            
+
+    @api.multi
+    def action_step_one(self):
+        self.write({'stage_id': '19'})
+ 
+    @api.multi
+    def action_step_two(self):
+        self.write({'stage_id': '20'})
+
+    @api.multi
+    def action_step_three(self):
+        self.write({'stage_id': '21'})
+ 
+    @api.multi
+    def action_step_four(self):
+        self.write({'stage_id': '22'})
+
+    @api.multi
+    def action_step_five(self):
+        self.write({'stage_id': '23'})
+ 
+    @api.multi
+    def action_refuse(self):
+        self.write({'stage_id': '24'})
+
     @api.multi
     def send_email(self):
         """Return a dictionary for specific email values, depending on a
@@ -397,7 +422,7 @@ class Task(models.Model):
         return stages.browse(stage_ids)
 
     active = fields.Boolean(default=True)
-    name = fields.Char(string='Task Title', required=True, index=True)
+    name = fields.Char(string='Tema', required=True, index=True, track_visibility='onchange')
     description = fields.Html(string='Description')
     priority = fields.Selection([
             ('0','Normal'),
@@ -405,7 +430,7 @@ class Task(models.Model):
         ], default='0', index=True)
     sequence = fields.Integer(string='Sequence', index=True, default=10,
         help="Gives the sequence order when displaying a list of tasks.")
-    stage_id = fields.Many2one('project.task.type', string='Stage', track_visibility='onchange', index=True,
+    stage_id = fields.Many2one('project.task.type', string='Estado actual', track_visibility='onchange', index=True,
         default=_get_default_stage_id, group_expand='_read_group_stage_ids',
         domain="[('project_ids', '=', project_id)]", copy=False)
     tag_ids = fields.Many2many('project.tags', string='Tags', oldname='categ_ids')
@@ -415,7 +440,6 @@ class Task(models.Model):
             ('blocked', 'Blocked')
         ], string='Kanban State',
         default='normal',
-        track_visibility='onchange',
         required=True, copy=False,
         help="A task's kanban state indicates special situations affecting it:\n"
              " * Normal is the default situation\n"
@@ -435,7 +459,7 @@ class Task(models.Model):
         copy=False,
         readonly=True)
     project_id = fields.Many2one('project.project',
-        string='Project',
+        string='Departamento',
         default=lambda self: self.env.context.get('default_project_id'),
         index=True,
         track_visibility='onchange',
@@ -446,7 +470,12 @@ class Task(models.Model):
     user_id = fields.Many2one('res.users',
         string='Assigned to',
         default=lambda self: self.env.uid,
-        index=True, track_visibility='always')
+        index=True)
+    user_id_asignado = fields.Many2one('res.users',
+        string='Docente director designado')
+    user_id_coordi = fields.Many2one('res.users',
+        string='Coordinador de Carrera')
+    time_grade = fields.Char(string="Tiempo probable de realizacion de trabajo de grado")
     partner_id = fields.Many2one('res.partner',
         string='Customer',
         default=_get_default_partner)
@@ -621,7 +650,7 @@ class Task(models.Model):
             return 'project.mt_task_blocked'
         elif 'kanban_state' in init_values and self.kanban_state == 'done':
             return 'project.mt_task_ready'
-        elif 'user_id' in init_values and self.user_id:  # assigned -> new
+        elif 'user_id' in init_values and self.name:  # assigned -> new
             return 'project.mt_task_new'
         elif 'stage_id' in init_values and self.stage_id and self.stage_id.sequence <= 1:  # start stage -> new
             return 'project.mt_task_new'

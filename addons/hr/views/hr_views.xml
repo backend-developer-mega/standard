@@ -22,7 +22,7 @@
 			<field name="name">hr.employee.form</field>
 			<field name="model">hr.employee</field>
 			<field name="arch" type="xml">
-				<form string="Employee">
+				<form string="Estudiantes">
 					<sheet>
 						<div class="oe_button_box" name="button_box">
 							<button name="toggle_active" type="object" groups="hr.group_hr_user"

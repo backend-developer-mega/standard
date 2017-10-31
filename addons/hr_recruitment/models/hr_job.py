@@ -26,6 +26,7 @@ class Job(models.Model):
         'mail.alias', "Alias", ondelete="restrict", required=True,
         help="Email alias for this job position. New emails will automatically create new applicants for this job position.")
     color = fields.Integer("Color Index")
+    #topic = fields.One2many('project.task', 'depart_ids', string='Temas')
 
     def _compute_document_ids(self):
         applicants = self.mapped('application_ids').filtered(lambda self: not self.emp_id)

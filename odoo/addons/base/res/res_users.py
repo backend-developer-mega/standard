@@ -209,6 +209,8 @@ class Users(models.Model):
          help="External user with limited access, created only for the purpose of sharing data.")
     companies_count = fields.Integer(compute='_compute_companies_count', string="Number of Companies", default=_companies_count)
     tz_offset = fields.Char(compute='_compute_tz_offset', string='Timezone offset', invisible=True)
+    type_selection = fields.Selection([('student', 'Estudiante'), ('catedratico', 'Catedratico'),('department', 'Jefe de departamento'),('coordinador', 'Coordinador de carrera'),], 'Tipo de usuario', required=True, default='student')
+    #department_id = fields.Many2one('hr.job', string='Departamento')
 
     @api.model
     def _get_company(self):
