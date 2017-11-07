@@ -51,7 +51,7 @@
             </field>
         </record>
         <record id="action_module_open_categ" model="ir.actions.act_window">
-            <field name="name">Apps</field>
+            <field name="name">Volver</field>
             <field name="res_model">ir.module.module</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,kanban</field>
@@ -180,7 +180,7 @@
             </field>
         </record>
         <record id="open_module_tree" model="ir.actions.act_window">
-            <field name="name">Apps</field>
+            <field name="name">Volver</field>
             <field name="res_model">ir.module.module</field>
             <field name="view_type">form</field>
             <field name="view_mode">kanban,tree,form</field>

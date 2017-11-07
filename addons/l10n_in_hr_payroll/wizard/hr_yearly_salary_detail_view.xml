@@ -13,7 +13,7 @@
                 <group>
                     <field name="date_from"/>
                     <field name="date_to"/>
-                    <separator string="Employees" />
+                    <separator string="Estudiantes" />
                     <field name="employee_ids"  nolabel="1" colspan="4"/>
                 </group>
             </form>

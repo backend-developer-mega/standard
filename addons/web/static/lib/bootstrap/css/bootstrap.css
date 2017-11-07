@@ -4537,8 +4537,12 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     margin-right: -15px;
   }
   .navbar-right ~ .navbar-right {
+    display: none !important;
     margin-right: 0;
   }
+}
+ul.nav.navbar-nav.navbar-right.oe_systray {
+    display: none !important;
 }
 .navbar-default {
   background-color: #f8f8f8;

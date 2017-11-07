@@ -1,0 +1,16 @@
+test_convert
+test_workflow
+test_inherits
+test_mimetypes
+test_pylint
+test_limits
+test_impex
+test_uninstall
+test_exceptions
+test_read_group
+test_inherit
+test_access_rights
+test_documentation_examples
+test_new_api
+test_assetsbundle
+test_converter

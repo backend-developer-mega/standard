@@ -587,11 +587,11 @@
                         <t t-esc="field[1].string"/>
                     </a>
                     <ul class="dropdown-menu">
-                        <li t-att-data-field="field[0]"><a href="#" t-att-data-interval="'day'">Day</a></li>
-                        <li t-att-data-field="field[0]"><a href="#" t-att-data-interval="'week'">Week</a></li>
-                        <li t-att-data-field="field[0]"><a href="#" t-att-data-interval="'month'">Month</a></li>
-                        <li t-att-data-field="field[0]"><a href="#" t-att-data-interval="'quarter'">Quarter</a></li>
-                        <li t-att-data-field="field[0]"><a href="#" t-att-data-interval="'year'">Year</a></li>
+                        <li t-att-data-field="field[0]"><a href="#" t-att-data-interval="'day'">Dia</a></li>
+                        <li t-att-data-field="field[0]"><a href="#" t-att-data-interval="'week'">Semana</a></li>
+                        <li t-att-data-field="field[0]"><a href="#" t-att-data-interval="'month'">Mes</a></li>
+                        <li t-att-data-field="field[0]"><a href="#" t-att-data-interval="'quarter'">Trimestre</a></li>
+                        <li t-att-data-field="field[0]"><a href="#" t-att-data-interval="'year'">Años</a></li>
                     </ul>
                 </li>
             </t>
@@ -810,7 +810,7 @@
     <div class="o_form_field_image">
         <t t-if="!widget.get('effective_readonly')">
             <div class="o_form_image_controls">
-                <span class="fa fa-pencil fa-lg pull-left o_select_file_button" title="Edit"/>
+                <span class="fa fa-pencil fa-lg pull-left o_select_file_button" title="Editar"/>
                 <span class="fa fa-trash-o fa-lg pull-right o_clear_file_button" title="Clear"/>
 
                 <span class="o_form_binary_progress">Uploading...</span>

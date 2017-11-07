@@ -79,7 +79,7 @@
                         </group>
                     </group>
                     <notebook>
-                        <page string="Summary">
+                        <page string="Tema de reunión">
                             <widget type="weekly_timesheet" attrs="{'readonly': [['state', 'not in', ['new', 'draft']]]}">
                             </widget>
                         </page>
@@ -125,7 +125,7 @@
                     <field name="employee_id"/>
                     <field name="department_id"/>
                     <group expand="0" string="Group By">
-                        <filter string="Employees" domain="[]" context="{'group_by':'employee_id'}"/>
+                        <filter string="Estudiantes" domain="[]" context="{'group_by':'employee_id'}"/>
                         <filter string="Department" domain="[]" context="{'group_by':'department_id'}"/>
                     </group>
                 </search>

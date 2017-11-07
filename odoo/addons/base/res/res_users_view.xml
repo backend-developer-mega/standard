@@ -342,9 +342,9 @@
 						<field name="signature" readonly="0" />
 					</group>
 					<footer>
-						<button name="preference_save" type="object" string="Save"
+						<button name="preference_save" type="object" string="Guardar"
 							class="btn-primary" />
-						<button name="preference_cancel" string="Cancel" special="cancel"
+						<button name="preference_cancel" string="Cancelar" special="cancel"
 							class="btn-default" />
 					</footer>
 				</form>

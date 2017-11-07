@@ -49,7 +49,7 @@ function get_fc_defaultOptions() {
 
     return {
         weekNumberTitle: _t("W"),
-        allDayText: _t("All day"),
+        allDayText: _t("Todo el dia"),
         monthNames: moment.months(),
         monthNamesShort: moment.monthsShort(),
         dayNames: moment.weekdays(),
@@ -309,7 +309,7 @@ var CalendarView = View.extend({
                     self.$buttons.find('.o_calendar_button_' + mode).addClass('active');
                 }
 
-                var title = self.title + ' (' + ((mode === "week")? _t("Week ") : "") + view.title + ")"; 
+                var title = self.title + ' (' + ((mode === "week")? _t("Semana ") : "") + view.title + ")"; 
                 self.set({'title': title});
 
                 self.$calendar.fullCalendar('option', 'height', Math.max(290, parseInt(self.$('.o_calendar_view').height())));
@@ -925,16 +925,16 @@ var CalendarView = View.extend({
                 view_id: +this.open_popup_action,
                 readonly: true,
                 buttons: [
-                    {text: _t("Edit"), classes: 'btn-primary', close: true, click: function() {
+                    {text: _t("Editar"), classes: 'btn-primary', close: true, click: function() {
                         self.dataset.index = self.dataset.get_id_index(id);
                         self.do_switch_view('form', { mode: "edit" });
                     }},
 
-                    {text: _t("Delete"), close: true, click: function() {
+                    {text: _t("Eliminar"), close: true, click: function() {
                         self.remove_event(id);
                     }},
 
-                    {text: _t("Close"), close: true}
+                    {text: _t("Cerrar"), close: true}
                 ]
             }).open();
         }

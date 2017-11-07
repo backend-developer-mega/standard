@@ -18,7 +18,7 @@
             <t t-if="!widget.options.is_log">
                 <!-- Text for followers -->
                 <span class="o_chatter_composer_info">
-                    To: Followers of
+                    Registrar comentarios sobre el tema 
                     <t t-if="widget.options.record_name">
                         &quot;<t t-esc="widget.options.record_name"/>&quot;
                     </t>

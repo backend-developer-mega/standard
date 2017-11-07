@@ -59,7 +59,7 @@
     <t t-name="mail.Followers.add_more">
         <t t-if="widget.view_is_editable">
             <li class="o_add_follower">
-                <a href="#"> Add Followers </a>
+                <a href="#"> Agregar seguidores </a>
             </li>
             <li class="o_add_follower_channel">
                 <a href="#"> Add Channels </a>

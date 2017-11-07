@@ -3,7 +3,7 @@
 	<data>
 
 		<!-- Top menu item -->
-		<menuitem id="menu_hr_root" name="Employees"
+		<menuitem id="menu_hr_root" name="Estudiantes"
 			groups="group_hr_manager,group_hr_user,base.group_user" web_icon="hr,static/description/icon.png"
 			sequence="75" />
 
@@ -106,11 +106,11 @@
 							</page>
 						</notebook>
 					</sheet>
-					<div class="oe_chatter">
+			<!--	<div class="oe_chatter">
 						<field name="message_follower_ids" widget="mail_followers"
 							groups="base.group_user" />
 						<field name="message_ids" widget="mail_thread" />
-					</div>
+					</div>  -->
 				</form>
 			</field>
 		</record>
@@ -119,7 +119,7 @@
 			<field name="name">hr.employee.tree</field>
 			<field name="model">hr.employee</field>
 			<field name="arch" type="xml">
-				<tree string="Employees" decoration-bf="message_needaction==True">
+				<tree string="Estudiantes" decoration-bf="message_needaction==True">
 					<field name="name" />
 					<field name="work_phone" />
 					<field name="work_email" />
@@ -137,8 +137,8 @@
 			<field name="name">hr.employee.search</field>
 			<field name="model">hr.employee</field>
 			<field name="arch" type="xml">
-				<search string="Employees">
-					<field name="name" string="Employees"
+				<search string="Estudiantes">
+					<field name="name" string="Estudiantes"
 						filter_domain="['|',('work_email','ilike',self),('name','ilike',self)]" />
 					<field name="department_id" />
 					<field name="category_ids" groups="hr.group_hr_user" />
@@ -250,7 +250,7 @@
 		</record>
 
 		<record id="open_view_employee_list" model="ir.actions.act_window">
-			<field name="name">Employees</field>
+			<field name="name">Estudiantes</field>
 			<field name="res_model">hr.employee</field>
 			<field name="view_type">form</field>
 			<field name="view_mode">form,tree</field>
@@ -259,7 +259,7 @@
 		</record>
 
 		<record id="open_view_employee_list_my" model="ir.actions.act_window">
-			<field name="name">Employees</field>
+			<field name="name">Estudiantes</field>
 			<field name="res_model">hr.employee</field>
 			<field name="view_type">form</field>
 			<field name="view_mode">kanban,tree,form</field>
@@ -289,7 +289,7 @@
 			<field name="field_parent">child_ids</field>
 			<field name="priority" eval="20" />
 			<field name="arch" type="xml">
-				<tree string="Employees">
+				<tree string="Estudiantes">
 					<field name="name" />
 					<field name="work_phone" />
 					<field name="work_email" />
@@ -463,7 +463,7 @@
 		</record>
 
 		<record id="act_employee_from_department" model="ir.actions.act_window">
-			<field name="name">Employees</field>
+			<field name="name">Estudiantes</field>
 			<field name="res_model">hr.employee</field>
 			<field name="view_type">form</field>
 			<field name="view_mode">kanban,form,tree</field>
@@ -532,7 +532,7 @@
 			<field name="name">hr.department.search</field>
 			<field name="model">hr.department</field>
 			<field name="arch" type="xml">
-				<search string="Departments">
+				<search string="Carreras">
 					<field name="name" string="Department" />
 					<field name="manager_id" />
 					<filter string="Unread Messages" name="message_needaction"
@@ -575,7 +575,7 @@
 									<div class="row">
 										<div class="col-xs-6 o_kanban_primary_left">
 											<button class="btn btn-primary" name="%(act_employee_from_department)d"
-												type="action">Employees</button>
+												type="action">Estudiantes</button>
 										</div>
 										<div class="col-xs-6 o_kanban_primary_right">
 										</div>
@@ -621,19 +621,17 @@
 		</record>
 
 		<record id="open_module_tree_department" model="ir.actions.act_window">
-			<field name="name">Departments</field>
+			<field name="name">Carreras</field>
 			<field name="res_model">hr.department</field>
 			<field name="view_type">form</field>
 			<field name="view_mode">kanban,tree,form</field>
 			<field name="search_view_id" ref="view_department_filter" />
 			<field name="help" type="html">
 				<p class="oe_view_nocontent_create">
-					Click to create a department.
+					Agrega una nueva carrera.
 				</p>
 				<p>
-					Odoo's department structure is used to manage all documents
-					related to employees by departments: expenses, timesheets,
-					leaves and holidays, recruitments, etc.
+					Registra las carreras que la plataforma utilizara en el proceso de trabajo de grado.
 				</p>
 			</field>
 		</record>

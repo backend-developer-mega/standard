@@ -95,8 +95,8 @@ widgets.SidebarFilter.include({
         return session.is_bound.then(function() {
             self.view.all_filters = {};
             self.view.now_filter_ids = [];
-            self._add_filter(session.partner_id, session.name + _lt(" [Me]"), !active_partner);
-            self._add_filter(-1, _lt("Everybody's calendars"), false, false);
+            self._add_filter(session.partner_id, session.name + _lt(" [Mi]"), !active_partner);
+            self._add_filter(-1, _lt("Calendario"), false, false);
             //Get my coworkers/contacts
             return new Model("calendar.contacts")
                 .query(["partner_id"])
@@ -156,7 +156,7 @@ widgets.SidebarFilter.include({
         var self = this;
         var id = $(e.currentTarget).data('id');
 
-        Dialog.confirm(this, _t("Do you really want to delete this filter from favorites ?"), {
+        Dialog.confirm(this, _t("¿Realmente deseas eliminar este filtro de los favoritos?"), {
             confirm_callback: function() {
                 self.ds_contacts.call('unlink_from_partner_id', [id]).then(function () {
                     self._remove_filter(id);

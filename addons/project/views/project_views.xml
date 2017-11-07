@@ -109,7 +109,7 @@
 					</div>
 					<div class="oe_title">
 						<h1>
-							<field name="name" placeholder="Project Name" />
+							<field name="name" placeholder="Departamento" />
 						</h1>
 						<div name="options_active" class="oe_edit_only">
 							<div>
@@ -183,7 +183,7 @@
 		<field name="model">project.project</field>
 		<field name="arch" type="xml">
 			<search string="Search Project">
-				<field name="name" string="Project Name" />
+				<field name="name" string="Departamento" />
 				<filter string="My Favorites" name="my_projects"
 					domain="[('favorite_user_ids', 'in', uid)]" />
 				<separator />
@@ -225,8 +225,8 @@
 				<sheet>
 					<group>
 						<group>
-							<field name="name" class="o_project_name oe_inline" string="Project Name"
-								placeholder="e.g. Office Party" />
+							<field name="name" class="o_project_name oe_inline" string="Departamento"
+								placeholder="" />
 							<label for="alias_name" string="Choose a Project Email"
 								attrs="{'invisible': [('alias_domain', '=', False)]}" />
 							<div name="alias_def" attrs="{'invisible': [('alias_domain', '=', False)]}">
@@ -240,9 +240,9 @@
 						</group>
 					</group>
 					<footer>
-						<button string="Create" name="close_dialog" type="object"
+						<button string="Guardar" name="close_dialog" type="object"
 							class="btn-primary" />
-						<button string="Discard" class="btn-default" special="cancel" />
+						<button string="Cerrar" class="btn-default" special="cancel" />
 					</footer>
 
 				</sheet>
@@ -251,7 +251,7 @@
 	</record>
 
 	<record id="open_create_project" model="ir.actions.act_window">
-		<field name="name">Crear temas</field>
+		<field name="name">Agregar departamento</field>
 		<field name="res_model">project.project</field>
 		<field name="view_type">form</field>
 		<field name="view_mode">form</field>
@@ -537,7 +537,7 @@
 					<t t-name="kanban-box">
 						<div
 							t-attf-class="oe_kanban_color_#{kanban_getcolor(record.color.raw_value)} oe_kanban_card oe_kanban_global_click">
-
+							<!--
 							<div class="o_dropdown_kanban dropdown" groups="base.group_user">
 								<a class="dropdown-toggle btn" data-toggle="dropdown" href="#">
 									<span class="fa fa-bars fa-lg" />
@@ -559,10 +559,10 @@
 										</li>
 									</t>
 									<li>
-									<!--	<ul class="oe_kanban_colorpicker" data-field="color" /> -->
+										<ul class="oe_kanban_colorpicker" data-field="color" /> 
 									</li>
 								</ul>
-							</div>
+							</div> -->
 							<div class="oe_kanban_content">
 								<div>
 									<field name="tag_ids" />
@@ -584,7 +584,7 @@
 									</span>
 								</div>
 								<div class="oe_kanban_bottom_left">
-									<field name="priority" widget="priority" />
+							<!--	<field name="priority" widget="priority" /> -->
 									<t t-if="record.message_needaction_counter.raw_value">
 										<span class='oe_kanban_mail_new' title='Unread Messages'>
 											<i class='fa fa-comments' />
@@ -597,9 +597,10 @@
 										t-att-src="kanban_image('res.users', 'image_small', record.user_id.raw_value)"
 										t-att-title="record.user_id.value" width="24" height="24"
 										class="oe_kanban_avatar pull-right" />
+									<!--
 									<div class="pull-left" groups="base.group_user">
 										<field name="kanban_state" widget="kanban_state_selection" />
-									</div>
+									</div> -->
 								</div>
 							</div>
 							<div t-if="record.displayed_image_id.value">

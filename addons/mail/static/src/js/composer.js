@@ -368,7 +368,7 @@ var BasicComposer = Widget.extend({
             input_min_height: 28,
             mention_fetch_limit: 8,
             mention_partners_restricted: false, // set to true to only suggest prefetched partners
-            send_text: _t('Send'),
+            send_text: _t('Registrar'),
             default_body: '',
             default_mention_selections: {},
         });
@@ -416,7 +416,7 @@ var BasicComposer = Widget.extend({
         }
 
         // Emojis
-        this.emoji_container_classname = 'o_composer_emoji';
+        //this.emoji_container_classname = 'o_composer_emoji';
 
         this.PartnerModel = new Model('res.partner');
         this.ChannelModel = new Model('mail.channel');
@@ -439,6 +439,7 @@ var BasicComposer = Widget.extend({
         this.on("change:attachment_ids", this, this.render_attachments);
 
         // Emoji
+        /*
         this.$('.o_composer_button_emoji').popover({
             placement: 'top',
             content: function() {
@@ -454,7 +455,7 @@ var BasicComposer = Widget.extend({
             container: '.' + self.emoji_container_classname,
             trigger: 'focus',
         });
-
+        */
         // Mention
         this.mention_manager.prependTo(this.$('.o_composer'));
 
@@ -746,7 +747,7 @@ var ExtendedComposer = BasicComposer.extend({
         });
         this._super(parent, options);
         this.extended = true;
-        this.emoji_container_classname = 'o_extended_composer_emoji';
+        //this.emoji_container_classname = 'o_extended_composer_emoji';
     },
 
     start: function () {

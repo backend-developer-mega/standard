@@ -666,83 +666,83 @@ class Meeting(models.Model):
                 return round(duration, 2)
             return 0.0
 
-    name = fields.Char('Meeting Subject', required=True, states={'done': [('readonly', True)]})
-    state = fields.Selection([('draft', 'Unconfirmed'), ('open', 'Confirmed')], string='Status', readonly=True, track_visibility='onchange', default='draft')
+    name = fields.Char('Tema de la reunión', required=True, states={'done': [('readonly', True)]})
+    state = fields.Selection([('draft', 'Unconfirmed'), ('open', 'Confirmed')], string='Estado', readonly=True, track_visibility='onchange', default='draft')
 
-    is_attendee = fields.Boolean('Attendee', compute='_compute_attendee')
-    attendee_status = fields.Selection(Attendee.STATE_SELECTION, string='Attendee Status', compute='_compute_attendee')
-    display_time = fields.Char('Event Time', compute='_compute_display_time')
-    display_start = fields.Char('Date', compute='_compute_display_start', store=True)
-    start = fields.Datetime('Start', required=True, help="Start date of an event, without time for full days events")
-    stop = fields.Datetime('Stop', required=True, help="Stop date of an event, without time for full days events")
+    is_attendee = fields.Boolean('Asistente', compute='_compute_attendee')
+    attendee_status = fields.Selection(Attendee.STATE_SELECTION, string='Estado del asistente', compute='_compute_attendee')
+    display_time = fields.Char('Hora del evento', compute='_compute_display_time')
+    display_start = fields.Char('Fecha', compute='_compute_display_start', store=True)
+    start = fields.Datetime('Comienzo', required=True, help="Start date of an event, without time for full days events")
+    stop = fields.Datetime('Detener', required=True, help="Stop date of an event, without time for full days events")
 
-    allday = fields.Boolean('All Day', states={'done': [('readonly', True)]}, default=False)
-    start_date = fields.Date('Start Date', compute='_compute_dates', inverse='_inverse_dates', store=True, states={'done': [('readonly', True)]}, track_visibility='onchange')
-    start_datetime = fields.Datetime('Start DateTime', compute='_compute_dates', inverse='_inverse_dates', store=True, states={'done': [('readonly', True)]}, track_visibility='onchange')
-    stop_date = fields.Date('End Date', compute='_compute_dates', inverse='_inverse_dates', store=True, states={'done': [('readonly', True)]}, track_visibility='onchange')
-    stop_datetime = fields.Datetime('End Datetime', compute='_compute_dates', inverse='_inverse_dates', store=True, states={'done': [('readonly', True)]}, track_visibility='onchange')  # old date_deadline
-    duration = fields.Float('Duration', states={'done': [('readonly', True)]})
-    description = fields.Text('Description', states={'done': [('readonly', True)]})
-    privacy = fields.Selection([('public', 'Everyone'), ('private', 'Only me'), ('confidential', 'Only internal users')], 'Privacy', default='public', states={'done': [('readonly', True)]}, oldname="class")
-    location = fields.Char('Location', states={'done': [('readonly', True)]}, track_visibility='onchange', help="Location of Event")
-    show_as = fields.Selection([('free', 'Free'), ('busy', 'Busy')], 'Show Time as', states={'done': [('readonly', True)]}, default='busy')
+    allday = fields.Boolean('Todo el dia', states={'done': [('readonly', True)]}, default=False)
+    start_date = fields.Date('Fecha de inicio', compute='_compute_dates', inverse='_inverse_dates', store=True, states={'done': [('readonly', True)]}, track_visibility='onchange')
+    start_datetime = fields.Datetime('Hora de inicio', compute='_compute_dates', inverse='_inverse_dates', store=True, states={'done': [('readonly', True)]}, track_visibility='onchange')
+    stop_date = fields.Date('Fecha fin', compute='_compute_dates', inverse='_inverse_dates', store=True, states={'done': [('readonly', True)]}, track_visibility='onchange')
+    stop_datetime = fields.Datetime('Hora fin', compute='_compute_dates', inverse='_inverse_dates', store=True, states={'done': [('readonly', True)]}, track_visibility='onchange')  # old date_deadline
+    duration = fields.Float('Duración', states={'done': [('readonly', True)]})
+    description = fields.Text('Descripción', states={'done': [('readonly', True)]})
+    privacy = fields.Selection([('public', 'Todo el mundo'), ('private', 'Solo a mi'), ('confidential', 'Solo a los usuarios internos')], 'Privacidad', default='public', states={'done': [('readonly', True)]}, oldname="class")
+    location = fields.Char('Ubicación', states={'done': [('readonly', True)]}, track_visibility='onchange', help="Ubicación del evento")
+    show_as = fields.Selection([('free', 'Libre'), ('busy', 'Ocupado')], 'Estado', states={'done': [('readonly', True)]}, default='busy')
 
     # RECURRENCE FIELD
-    rrule = fields.Char('Recurrent Rule', compute='_compute_rrule', inverse='_inverse_rrule', store=True)
+    rrule = fields.Char('Regla recurrente', compute='_compute_rrule', inverse='_inverse_rrule', store=True)
     rrule_type = fields.Selection([
-        ('daily', 'Day(s)'),
-        ('weekly', 'Week(s)'),
-        ('monthly', 'Month(s)'),
-        ('yearly', 'Year(s)')
-    ], string='Recurrency', states={'done': [('readonly', True)]}, help="Let the event automatically repeat at that interval")
-    recurrency = fields.Boolean('Recurrent', help="Recurrent Meeting")
-    recurrent_id = fields.Integer('Recurrent ID')
-    recurrent_id_date = fields.Datetime('Recurrent ID date')
+        ('daily', 'Dia(s)'),
+        ('weekly', 'Semana(s)'),
+        ('monthly', 'Mes(s)'),
+        ('yearly', 'Año(s)')
+    ], string='Recurrencia', states={'done': [('readonly', True)]}, help="Let the event automatically repeat at that interval")
+    recurrency = fields.Boolean('Recurente', help="Recurrent Meeting")
+    recurrent_id = fields.Integer('Recurente ID')
+    recurrent_id_date = fields.Datetime('Recurente ID fecha')
     end_type = fields.Selection([
-        ('count', 'Number of repetitions'),
-        ('end_date', 'End date')
-    ], string='Recurrence Termination', default='count')
-    interval = fields.Integer(string='Repeat Every', default=1, help="Repeat every (Days/Week/Month/Year)")
-    count = fields.Integer(string='Repeat', help="Repeat x times", default=1)
-    mo = fields.Boolean('Mon')
-    tu = fields.Boolean('Tue')
-    we = fields.Boolean('Wed')
-    th = fields.Boolean('Thu')
-    fr = fields.Boolean('Fri')
-    sa = fields.Boolean('Sat')
-    su = fields.Boolean('Sun')
+        ('count', 'Numero de repeticiones'),
+        ('end_date', 'Fecha fin')
+    ], string='Terminación de recurrencia', default='count')
+    interval = fields.Integer(string='Intervalo de repeticiones', default=1)
+    count = fields.Integer(string='Repetir', default=1)
+    mo = fields.Boolean('Lun')
+    tu = fields.Boolean('Mar')
+    we = fields.Boolean('Mier')
+    th = fields.Boolean('Jue')
+    fr = fields.Boolean('Vir')
+    sa = fields.Boolean('Sab')
+    su = fields.Boolean('Dom')
     month_by = fields.Selection([
-        ('date', 'Date of month'),
-        ('day', 'Day of month')
-    ], string='Option', default='date', oldname='select1')
-    day = fields.Integer('Date of month', default=1)
+        ('date', 'Fecha del mes'),
+        ('day', 'Dia del mes')
+    ], string='Opciones', default='date', oldname='select1')
+    day = fields.Integer('Fecha del mes', default=1)
     week_list = fields.Selection([
-        ('MO', 'Monday'),
-        ('TU', 'Tuesday'),
-        ('WE', 'Wednesday'),
-        ('TH', 'Thursday'),
-        ('FR', 'Friday'),
-        ('SA', 'Saturday'),
-        ('SU', 'Sunday')
-    ], string='Weekday')
+        ('MO', 'Lunes'),
+        ('TU', 'Martes'),
+        ('WE', 'Miercoles'),
+        ('TH', 'Jueves'),
+        ('FR', 'Viernes'),
+        ('SA', 'Sabado'),
+        ('SU', 'Domingo')
+    ], string='Día de la semana')
     byday = fields.Selection([
-        ('1', 'First'),
-        ('2', 'Second'),
-        ('3', 'Third'),
-        ('4', 'Fourth'),
-        ('5', 'Fifth'),
-        ('-1', 'Last')
-    ], string='By day')
-    final_date = fields.Date('Repeat Until')
+        ('1', 'Primero'),
+        ('2', 'Segundo'),
+        ('3', 'Tercero'),
+        ('4', 'Cuarto'),
+        ('5', 'Quinto'),
+        ('-1', 'Ultimo')
+    ], string='Por día')
+    final_date = fields.Date('Repetir hasta')
 
-    user_id = fields.Many2one('res.users', 'Responsible', states={'done': [('readonly', True)]}, default=lambda self: self.env.user)
-    color_partner_id = fields.Integer("Color index of creator", compute='_compute_color_partner', store=False)
+    user_id = fields.Many2one('res.users', 'Responsable', states={'done': [('readonly', True)]}, default=lambda self: self.env.user)
+    color_partner_id = fields.Integer("Color", compute='_compute_color_partner', store=False)
 
-    active = fields.Boolean('Active', default=True, help="If the active field is set to false, it will allow you to hide the event alarm information without removing it.")
-    categ_ids = fields.Many2many('calendar.event.type', 'meeting_category_rel', 'event_id', 'type_id', 'Tags')
-    attendee_ids = fields.One2many('calendar.attendee', 'event_id', 'Participant', ondelete='cascade')
-    partner_ids = fields.Many2many('res.partner', 'calendar_event_res_partner_rel', string='Attendees', states={'done': [('readonly', True)]}, default=_default_partners)
-    alarm_ids = fields.Many2many('calendar.alarm', 'calendar_alarm_calendar_event_rel', string='Reminders', ondelete="restrict", copy=False)
+    active = fields.Boolean('Active', default=True, help="Si el campo activo está configurado en falso, le permitirá ocultar la información de la alarma del evento sin eliminarlo.")
+    categ_ids = fields.Many2many('calendar.event.type', 'meeting_category_rel', 'event_id', 'type_id', 'Etiqueta')
+    attendee_ids = fields.One2many('calendar.attendee', 'event_id', 'Participante', ondelete='cascade')
+    partner_ids = fields.Many2many('res.partner', 'calendar_event_res_partner_rel', string='Asistentes', states={'done': [('readonly', True)]}, default=_default_partners)
+    alarm_ids = fields.Many2many('calendar.alarm', 'calendar_alarm_calendar_event_rel', string='Recordatorios', ondelete="restrict", copy=False)
 
     @api.multi
     def _compute_attendee(self):
@@ -834,9 +834,9 @@ class Meeting(models.Model):
     def _check_closing_date(self):
         for meeting in self:
             if meeting.start_datetime and meeting.stop_datetime and meeting.stop_datetime < meeting.start_datetime:
-                raise ValidationError(_('Ending datetime cannot be set before starting datetime.'))
+                raise ValidationError(_('La fecha y hora de finalización no se puede establecer antes de iniciar la fecha y hora.'))
             if meeting.start_date and meeting.stop_date and meeting.stop_date < meeting.start_date:
-                raise ValidationError(_('Ending date cannot be set before starting date.'))
+                raise ValidationError(_('La fecha de finalización no se puede establecer antes de la fecha de inicio.'))
 
     @api.onchange('start_datetime', 'duration')
     def _onchange_duration(self):
@@ -876,7 +876,7 @@ class Meeting(models.Model):
             event = cal.add('vevent')
 
             if not meeting.start or not meeting.stop:
-                raise UserError(_("First you have to specify the date of the invitation."))
+                raise UserError(_("Primero debes especificar la fecha de la invitación."))
             event.add('created').value = ics_datetime(time.strftime(DEFAULT_SERVER_DATETIME_FORMAT))
             event.add('dtstart').value = ics_datetime(meeting.start, meeting.allday)
             event.add('dtend').value = ics_datetime(meeting.stop, meeting.allday)
@@ -1083,9 +1083,9 @@ class Meeting(models.Model):
             :return: string containing recurring rule (empty if no rule)
         """
         if self.interval and self.interval < 0:
-            raise UserError(_('interval cannot be negative.'))
+            raise UserError(_('No se puede establecer intervalos negativos.'))
         if self.count and self.count <= 0:
-            raise UserError(_('Event recurrence interval cannot be negative.'))
+            raise UserError(_('El intervalo de recurrencia del evento no puede ser negativo.'))
 
         def get_week_string(freq):
             weekdays = ['mo', 'tu', 'we', 'th', 'fr', 'sa', 'su']
@@ -1098,7 +1098,7 @@ class Meeting(models.Model):
         def get_month_string(freq):
             if freq == 'monthly':
                 if self.month_by == 'date' and (self.day < 1 or self.day > 31):
-                    raise UserError(_("Please select a proper day of the month."))
+                    raise UserError(_("Por favor seleccione un día apropiado del mes."))
 
                 if self.month_by == 'day' and self.byday and self.week_list:  # Eg : Second Monday of the month
                     return ';BYDAY=' + self.byday + self.week_list
@@ -1451,7 +1451,7 @@ class Meeting(models.Model):
     @api.model
     def read_group(self, domain, fields, groupby, offset=0, limit=None, orderby=False, lazy=True):
         if 'date' in groupby:
-            raise UserError(_('Group by date is not supported, use the calendar view instead.'))
+            raise UserError(_('Agrupar por fecha no es compatible, utilice la vista de calendario en su lugar.'))
         return super(Meeting, self.with_context(virtual_id=False)).read_group(domain, fields, groupby, offset=offset, limit=limit, orderby=orderby, lazy=lazy)
 
     @api.multi

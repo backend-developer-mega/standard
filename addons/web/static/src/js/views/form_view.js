@@ -727,7 +727,7 @@ var FormView = View.extend(common.FieldManagerMixin, {
         var self = this;
         var def = $.Deferred();
         this.has_been_loaded.done(function() {
-            if (self.datarecord.id && confirm(_t("Do you really want to delete this record?"))) {
+            if (self.datarecord.id && confirm(_t("¿Realmente quieres borrar este registro?"))) {
                 self.dataset.unlink([self.datarecord.id]).done(function() {
                     if (self.dataset.size()) {
                         self.reload();
@@ -750,7 +750,7 @@ var FormView = View.extend(common.FieldManagerMixin, {
             return $.Deferred().resolve();
         }
 
-        message = message || _t("The record has been modified, your changes will be discarded. Are you sure you want to leave this page ?");
+        message = message || _t("El registro ha sido modificado, sus cambios serán descartados. ¿Estás seguro de que quieres salir de esta página?");
 
         var self = this;
         var def = $.Deferred();
@@ -881,7 +881,7 @@ var FormView = View.extend(common.FieldManagerMixin, {
             }).value();
         warnings.unshift('<ul>');
         warnings.push('</ul>');
-        this.do_warn(_t("The following fields are invalid:"), warnings.join(''));
+        this.do_warn(_t("Los siguientes campos no son válidos:"), warnings.join(''));
     },
     /**
      * Reload the form after saving
@@ -1120,10 +1120,10 @@ var FormView = View.extend(common.FieldManagerMixin, {
             })
             .value();
         var d = new Dialog(this, {
-            title: _t("Set Default"),
+            title: _t("Por defecto"),
             buttons: [
-                {text: _t("Close"), close: true},
-                {text: _t("Save default"), click: function () {
+                {text: _t("Cerrar"), close: true},
+                {text: _t("Guardar por defecto"), click: function () {
                     var $defaults = d.$el.find('#formview_default_fields');
                     var field_to_set = $defaults.val();
                     if (!field_to_set) {
@@ -1295,7 +1295,7 @@ return core.Class.extend({
         _.each(this.fields_to_init, function($elem) {
             var name = $elem.attr("name");
             if (!self.fvg.fields[name]) {
-                throw new Error(_.str.sprintf(_t("Field '%s' specified in view could not be found."), name));
+                throw new Error(_.str.sprintf(_t("El campo '%s' especificado a la vista no se pudo encontrar."), name));
             }
             var obj = self.fields_registry.get_any([$elem.attr('widget'), self.fvg.fields[name].type]);
             if (!obj) {

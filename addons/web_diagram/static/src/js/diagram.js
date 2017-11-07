@@ -109,7 +109,7 @@ var DiagramView = View.extend({
 
     on_diagram_loaded: function(record) {
         // title is displayed in breadcrumbs
-        this.set({ 'title' : record.id ? record.name : _t("New") });
+        this.set({ 'title' : record.id ? record.name : _t("Nuevo") });
 
         var id_record = record['id'];
         if (id_record) {
@@ -239,7 +239,7 @@ var DiagramView = View.extend({
             res_model: self.node,
             res_id: node_id,
             context: self.context || self.dataset.context,
-            title: _t("Open: ") + title
+            title: _t("Abrir: ") + title
         }).open();
 
         pop.on('write_completed', self, function() {
@@ -259,12 +259,12 @@ var DiagramView = View.extend({
     // Creates a popup to add a node to the diagram
     add_node: function(){
         var self = this;
-        var title = _t('Activity');
+        var title = _t('Actividad');
         var pop = new form_common.FormViewDialog(self, {
             res_model: self.node,
             domain: self.domain,
             context: self.context || self.dataset.context,
-            title: _t("Create:") + title,
+            title: _t("Crear:") + title,
             disable_multiple_selection: true,
             on_selected: function(element_ids) {
                 self.dataset.read_index(_.keys(self.fields_view.fields)).then(self.on_diagram_loaded);
@@ -289,7 +289,7 @@ var DiagramView = View.extend({
             res_model: self.connector,
             res_id: parseInt(connector_id, 10),      //FIXME Isn't connector_id supposed to be an int ?
             context: self.context || self.dataset.context,
-            title: _t("Open: ") + title
+            title: _t("Abrir: ") + title
         }).open();
         pop.on('write_completed', self, function() {
             self.dataset.read_index(_.keys(self.fields_view.fields)).then(self.on_diagram_loaded);
