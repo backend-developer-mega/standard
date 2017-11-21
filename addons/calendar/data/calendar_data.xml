@@ -73,7 +73,7 @@
         </record>
 
         <record id="calendar_template_meeting_invitation" model="mail.template">
-            <field name="name">Calendar: Meeting Invitation</field>
+            <field name="name">Calendario: Invitación a una reunión</field>
             <field name="email_from">${object.event_id.user_id.email or ''}</field>
             <field name="subject">${object.event_id.name} invitation</field>
             <field name="model_id" ref="calendar.model_calendar_attendee"/>
@@ -90,9 +90,9 @@
             </td>
             <td valign="center" align="right" width="340" style="padding:10px 10px 10px 5px; font-size: 12px;">
                 <p>
-                    <a href="/calendar/meeting/accept?db=${'dbname' in ctx and ctx['dbname'] or ''}&token=${object.access_token}&action=${'action_id' in ctx and ctx['action_id'] or ''}&id=${object.event_id.id}" style="padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px">Accept</a>
-                    <a href="/calendar/meeting/decline?db=${'dbname' in ctx and ctx['dbname'] or '' }&token=${object.access_token}&action=${'action_id' in ctx and ctx['action_id'] or ''}&id=${object.event_id.id}" style="padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px">Decline</a>
-                    <a href="/calendar/meeting/view?db=${'dbname' in ctx and ctx['dbname'] or ''}&token=${object.access_token}&action=${'action_id' in ctx and ctx['action_id'] or ''}&id=${object.event_id.id}" style="padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px">View</a>
+                    <a href="/calendar/meeting/accept?db=${'dbname' in ctx and ctx['dbname'] or ''}&token=${object.access_token}&action=${'action_id' in ctx and ctx['action_id'] or ''}&id=${object.event_id.id}" style="padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px">Acepto</a>
+                    <a href="/calendar/meeting/decline?db=${'dbname' in ctx and ctx['dbname'] or '' }&token=${object.access_token}&action=${'action_id' in ctx and ctx['action_id'] or ''}&id=${object.event_id.id}" style="padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px">No asistire</a>
+                    <a href="/calendar/meeting/view?db=${'dbname' in ctx and ctx['dbname'] or ''}&token=${object.access_token}&action=${'action_id' in ctx and ctx['action_id'] or ''}&id=${object.event_id.id}" style="padding: 5px 10px; font-size: 12px; line-height: 18px; color: #FFFFFF; border-color:#875A7B; text-decoration: none; display: inline-block; margin-bottom: 0px; font-weight: 400; text-align: center; vertical-align: middle; cursor: pointer; white-space: nowrap; background-image: none; background-color: #875A7B; border: 1px solid #875A7B; border-radius:3px">Ver</a>
                 </p>
             </td>
         </tr></tbody>
@@ -111,10 +111,10 @@
     <table cellspacing="0" cellpadding="0" style="width:600px;border-collapse:collapse;background:inherit;color:inherit">
         <tbody><tr>
             <td style="padding:10px 10px 10px 5px;font-size: 14px;">
-                <p style="font-size: 20px; text-align: center;">Invitation to <strong>${object.event_id.name}</strong></p>
+                <p style="font-size: 20px; text-align: center;">Invitación a <strong>${object.event_id.name}</strong></p>
                 <p>
-                    <strong>Dear ${object.common_name}</strong>,<br />
-                    ${object.event_id.user_id.partner_id.name} invited you for the ${object.event_id.name} meeting of ${object.event_id.user_id.company_id.name}.</p>
+                    <strong>Estimad@ ${object.common_name}</strong>,<br />
+                    ${object.event_id.user_id.partner_id.name} te invitó a la reunion ${object.event_id.name} en  ${object.event_id.user_id.company_id.name}.</p>
                 <table style="margin-top: 20px;"><tr>
                     <td>
                         <div style="border-top-left-radius:3px;border-top-right-radius:3px;font-size:12px;border-collapse:separate;text-align:center;font-weight:bold;color:#ffffff;width:130px;min-height: 18px;background:#875A7B;padding-top: 4px;">
@@ -128,20 +128,20 @@
                     </td>
                     <td width="20px;"/>
                     <td>
-                        <p>Details of the event</p>
+                        <p>Detalles del evento</p>
                         <ul>
                         % if object.event_id.location:
-                            <li>Location: ${object.event_id.location}
+                            <li>Lugar: ${object.event_id.location}
                             (<a href="http://maps.google.com/maps?oi=map&q=${object.event_id.location}">View Map</a>)
                             </li>
                         % endif
                         % if object.event_id.description :
-                            <li>Description: ${object.event_id.description}</li>
+                            <li>Descripción: ${object.event_id.description}</li>
                         % endif
                         % if not object.event_id.allday and object.event_id.duration
-                            <li>Duration: ${('%dH%02d' % (object.event_id.duration,(object.event_id.duration*60)%60))}</li>
+                            <li>Duración: ${('%dH%02d' % (object.event_id.duration,(object.event_id.duration*60)%60))}</li>
                         % endif
-                        <li>Attendees
+                        <li>Asistentes
                         <ul>
                         % for attendee in object.event_id.attendee_ids:
                             <li>

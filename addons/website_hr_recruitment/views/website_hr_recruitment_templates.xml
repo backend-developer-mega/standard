@@ -19,7 +19,7 @@
 							<div class="row">
 								<div class="col-md-12 text-center mb16">
 									<h2>Haz tu solicitud de usuario</h2>
-									<h3 class="text-muted">Si el perido de inscripcion de tu departamento es abierto solicita tu usuario ya!
+									<h3 class="text-muted">Si el perido de inscripcion de tu departamento esta abierto solicita tu usuario ya!
 									</h3>
 								</div>
 								<div class="col-md-12">
@@ -41,8 +41,7 @@
 							<div t-if="not jobs">
 								<div class="text-center text-muted">
 									<h3 class="css_editable_hidden">
-										<a t-attf-href="/page/website.contactus">Contact us</a>
-										for job opportunities.
+										Ningun departamento se encuentra en periodo de inscripción.
 									</h3>
 									<h4 groups="hr_recruitment.group_hr_recruitment_manager">
 										Create new job pages from the
@@ -98,7 +97,7 @@
 				<section class="mb16 bg-white">
 					<div class="container">
 						<div class="pull-right">
-							<a t-attf-href="/jobs/apply/#{job.id}" class="btn btn-primary btn-lg pull-right mt32 mb4">Apply Now!</a>
+							<a t-attf-href="/jobs/apply/#{job.id}" class="btn btn-primary btn-lg pull-right mt32 mb4">Solicita ya!</a>
 							<br />
 							<t t-call="website.publish_management">
 								<t t-set="object" t-value="job" />
@@ -106,7 +105,7 @@
 							</t>
 						</div>
 						<label class="mb0 mt16">
-							<a href="/jobs">Jobs</a>
+							<a href="/jobs">Departamento</a>
 						</label>
 						/
 						<h1 class="mb0 mt0" t-field="job.name" />
@@ -124,7 +123,7 @@
 				<div class="oe_structure">
 					<section class="o_job_bottom_bar mt32 mb32">
 						<div class="text-center">
-							<a t-attf-href="/jobs/apply/#{job.id}" class="btn btn-primary btn-lg">Apply Now!</a>
+							<a t-attf-href="/jobs/apply/#{job.id}" class="btn btn-primary btn-lg">Solicita ya!</a>
 						</div>
 					</section>
 				</div>
@@ -565,18 +564,16 @@
 			<div id="wrap">
 				<div class="oe_structure">
 					<div class="container">
-						<h1>Thank you!</h1>
+						<h1>Envio exitoso!</h1>
 						<p>
-							Your job application has been successfully registered,
-							we will
-							get back to you soon.
+							Tu solicitud de usuario a la plataforma de trabajos de grado online ha sido enviada exitosamente, en este momente verfica tu correo electronico que introduciste, se te ha enviado un correo electronico de confirmacion de tu accion, una persona del personal administrativo de la Universidad verificara todos tus datos y posteriormente te estaresmos informando de la aceptación o rechazo de tu solicitud.
 						</p>
 					</div>
 					<section class="oe_dark">
 						<div class="container">
 							<div class="row">
 								<div class="col-md-12 text-center mt16 mb16">
-									<a href="/" class="btn btn-primary btn-lg">Continue To Our Website</a>
+									<a href="/" class="btn btn-primary btn-lg">Continuar en el sitio</a>
 								</div>
 							</div>
 						</div>

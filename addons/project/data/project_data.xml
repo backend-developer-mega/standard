@@ -56,10 +56,10 @@
             <field name="description">Task ready for Next Stage</field>
         </record>
         <record id="mt_task_stage" model="mail.message.subtype">
-            <field name="name">Stage Changed</field>
+            <field name="name">Cambio de estado</field>
             <field name="res_model">project.task</field>
             <field name="default" eval="False"/>
-            <field name="description">Stage changed</field>
+            <field name="description">Cambio de estado</field>
         </record>
         <!-- Project-related subtypes for messaging / Chatter -->
         <record id="mt_project_task_new" model="mail.message.subtype">

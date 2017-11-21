@@ -36,7 +36,7 @@ Unfortunately, your profile does not match with our needs</p>
 
     <record id="email_template_data_applicant_interest" model="mail.template">
         <field name="name">Applicant: Interest</field>
-        <field name="subject">Application approved</field>
+        <field name="subject">Solicitud de acceso</field>
         <field name="email_to">${object.email_from}</field>
         <field name="partner_to">${object.partner_id and object.partner_id.id or ''}</field>
         <field name="lang">${object.partner_id and object.partner_id.lang or ''}</field>
@@ -47,6 +47,22 @@ Unfortunately, your profile does not match with our needs</p>
 <p>Confirmamos que has realizado una solicitud de usuario en la plataforma de trabajos de grado online de la Universidad de El Salvador.<br />
 El personal administrativo de la facultad revisara los datos y los documentos que has adjuntado y posteriormente te estaremos informando del progreso de tu solicitd.</p>
 <p>Si tiene alguna duda, por favor póngase en contacto con nosotros, marcando al numero: 2440 2563.</p>
+<p>Atentamente,</p>]]></field>
+    </record>
+
+    <record id="email_template_data_applicant_aceptation" model="mail.template">
+        <field name="name">Notificar: Aceptación</field>
+        <field name="subject">Aceptación de solicitud</field>
+        <field name="email_to">${object.email_from}</field>
+        <field name="partner_to">${object.partner_id and object.partner_id.id or ''}</field>
+        <field name="lang">${object.partner_id and object.partner_id.lang or ''}</field>
+        <field name="model_id" ref="hr_recruitment.model_hr_applicant"/>
+        <field name="user_signature" eval="False"/>
+        <field name="body_html"><![CDATA[
+<p>Estimado ${object.partner_name or 'applicant'},</p>
+<p>Confirmamos que tu solicitud de usuario en la plataforma de trabajos de grado online de la Universidad de El Salvador ha sido APROBADA.<br />
+Se ha verificado cada uno de los datos ingresados en la solicitud y no se han presentado mayores inconvenientes.</p>
+<p>Felicitaciones, ya eres miembro de la gran familia de egresados inscritos en la plataforma de trabajos de grado online. Si tiene alguna duda, por favor póngase en contacto con nosotros, marcando al numero: 2440 2563.</p>
 <p>Atentamente,</p>]]></field>
     </record>
 

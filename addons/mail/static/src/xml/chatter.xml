@@ -10,8 +10,7 @@
             <!-- Internal note composer -->
             <t t-if="widget.options.is_log">
                 <span class="o_chatter_composer_info">
-                    Log an internal note which will not be sent to followers, but which can be read
-                    by users accessing this document.
+                    
                 </span>
             </t>
             <!-- New message composer -->

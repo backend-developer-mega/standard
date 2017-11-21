@@ -123,9 +123,9 @@ class Employee(models.Model):
     sinid = fields.Char('SIN No', help='Social Insurance Number', groups='hr.group_hr_user')
     identification_id = fields.Char(string='Identification No', groups='hr.group_hr_user')
     gender = fields.Selection([
-        ('male', 'Male'),
-        ('female', 'Female'),
-        ('other', 'Other')
+        ('male', 'Masculino'),
+        ('female', 'Femenino'),
+        ('other', 'Institución')
     ], groups='hr.group_hr_user')
     marital = fields.Selection([
         ('single', 'Single'),

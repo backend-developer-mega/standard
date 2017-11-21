@@ -110,7 +110,7 @@ class AccountAccount(models.Model):
         'an unreconciled debit and an unreconciled credit Or if you click the "Done" button.')
     reconcile = fields.Boolean(string='Allow Reconciliation', default=False,
         help="Check this box if this account allows invoices & payments matching of journal items.")
-    tax_ids = fields.Many2many('account.tax', 'account_account_tax_default_rel',
+    ` = fields.Many2many('account.tax', 'account_account_tax_default_rel',
         'account_id', 'tax_id', string='Default Taxes')
     note = fields.Text('Internal Notes')
     company_id = fields.Many2one('res.company', string='Company', required=True,

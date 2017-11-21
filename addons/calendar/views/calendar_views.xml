@@ -194,12 +194,12 @@
                             </group>
                         </page>
 
-                        <page string="Invitaciones" groups="base.group_no_one">
+                        <page string="Invitaciones">
                             <button name="action_sendmail" type="object" string="Enviar correo" icon="fa-envelope" class="oe_link"/>
                             <field name="attendee_ids" widget="one2many" >
                                 <tree string="Detalles de invitación" editable="top" create="false" delete="false">
-                                    <field name="partner_id" />
-                                    <field name="state" />
+                                    <field name="partner_id" string="Contacto" />
+                                    <field name="state" string="Estado" />
                                     <field name="email" widget="email"/>
 
                                     <button name="do_tentative" states="needsAction,declined,accepted" string="Incierto" type="object" icon="fa-asterisk" />

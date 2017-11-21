@@ -336,9 +336,11 @@ class Task(models.Model):
     
     #recipient_ids = fields.Many2many('hr.employee', string='Integrantes')
     
-    recipient_ids = fields.Many2many('hr.employee', 'employee_task_rel', 'emp_id', 'task_id', string='Tags', track_visibility='always')
+    student_ids = fields.Many2many('hr.employee', 'student_lead_tag_rel_res', 'student_lead_id_res', 'student_tag_id_res', string='Carrera Universitaria', help="Establecer las carreras universitarias")
     department_id = fields.Many2one('hr.department', string='Carrera')
     depart_ids = fields.Many2one('hr.job', string='Departamento')
+    jefe_department_id = fields.Many2one('res.users', "Jefe de Departamento")
+    description_general = fields.Text( "Descripción")
     #recipient_ids = fields.One2many('hr.employee', 'task_ids', string='Integrantes')
     
     @api.multi
@@ -374,6 +376,22 @@ class Task(models.Model):
         self.write({'stage_id': '24'})
 
     @api.multi
+    def action_inscri(self):
+        topic_grade_online = self.env['topic.grade.online.topic'].create({
+            'name': self.name,
+            'department_id': self.depart_ids.id,
+            'carrera_id': self.department_id.id,
+            'docente_director_id': self.user_id.id,
+            'coordinador_department_id': self.user_id_coordi.id,
+            'docente_director_id': self.user_id_asignado.id,
+            'jefe_department_id': self.jefe_department_id.id,
+            'eraise_topic_ids': self.id,
+            'project_topic_id': self.id
+        }) 
+        self.write({'stage_id': '24'})
+        topic_grade_online._onchange_id_values()
+
+    @api.multi
     def send_email(self):
         """Return a dictionary for specific email values, depending on a
         partner, or generic to the whole recipients given by mail.email_to.
@@ -385,7 +403,7 @@ class Task(models.Model):
             'subject': self.name,
             'body_html': '<p>Test siii prueba de rendimiento</p>',
             'email_to': ','.join(formataddr((partner.name, partner.work_email)) for partner in self.env['hr.employee'].sudo().browse(self.recipient_ids.ids)),
-            'recipient_ids' : self.recipient_ids,
+            'recipient_ids' : self.student_ids,
             'partner_ids': '1'
         })
         mail.send()       

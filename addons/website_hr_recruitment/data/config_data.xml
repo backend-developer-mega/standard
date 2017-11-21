@@ -2,7 +2,7 @@
 <odoo>
     <data noupdate="1">
         <record id="menu_jobs" model="website.menu">
-            <field name="name">Jobs</field>
+            <field name="name">Departamentos</field>
             <field name="url">/jobs</field>
             <field name="parent_id" ref="website.main_menu"/>
             <field name="sequence" type="int">50</field>

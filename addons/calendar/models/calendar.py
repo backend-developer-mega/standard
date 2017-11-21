@@ -85,10 +85,10 @@ class Attendee(models.Model):
         return uuid.uuid4().hex
 
     STATE_SELECTION = [
-        ('needsAction', 'Needs Action'),
-        ('tentative', 'Uncertain'),
-        ('declined', 'Declined'),
-        ('accepted', 'Accepted'),
+        ('needsAction', 'Necesita accion'),
+        ('tentative', 'Incierto'),
+        ('declined', 'No asistira'),
+        ('accepted', 'Acepto'),
     ]
 
     state = fields.Selection(STATE_SELECTION, string='Status', readonly=True, default='needsAction',
@@ -174,7 +174,7 @@ class Attendee(models.Model):
                 current_mail.mail_message_id.write(vals)
                 mails_to_send |= current_mail
 
-        if force_send and mails_to_send:
+        if mails_to_send:
             res = mails_to_send.send()
 
         return res

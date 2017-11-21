@@ -165,6 +165,7 @@ class Applicant(models.Model):
     attachment_number = fields.Integer(compute='_get_attachment_number', string="Number of Attachments")
     employee_name = fields.Char(related='emp_id.name', string="Employee Name")
     attachment_ids = fields.One2many('ir.attachment', 'res_id', domain=[('res_model', '=', 'hr.applicant')], string='Attachments')
+    observations = fields.Char("Observaciones generales")
 
     @api.depends('date_open', 'date_closed')
     @api.one
@@ -412,12 +413,19 @@ class Applicant(models.Model):
                                                'notes': applicant.description  or False,
                                                'work_email': applicant.email_from  or False,
                                                'mobile_phone': applicant.partner_mobile  or False,
-                                               'work_phone': applicant.partner_phone or False})
+                                               'work_phone': applicant.partner_phone or False,
+                                               'attachment_ids': applicant.attachment_ids or False })
                 applicant.write({'emp_id': employee.id})
-                applicant.job_id.message_post(
-                    body=_('New Employee %s Hired') % applicant.partner_name if applicant.partner_name else applicant.name,
-                    subtype="hr_recruitment.mt_job_applicant_hired")
-                employee._broadcast_welcome()
+                for attach_id in self.attachment_ids:
+                    self.env['ir.attachment'].create({
+                        'datas': attach_id.datas,
+                        'name': attach_id.name,
+                        'datas_fname': attach_id.datas_fname,
+                        'res_model': 'hr.employee', 'res_id': employee.id})
+        #jose        #applicant.job_id.message_post(
+        #jose        #    body=_('New Employee %s Hired') % applicant.partner_name if applicant.partner_name else applicant.name,
+        #jose        #    subtype="hr_recruitment.mt_job_applicant_hired")
+        #jose        #employee._broadcast_welcome()
                 employee.create_user()
             else:
                 raise UserError(_('You must define an Applied Job and a Contact Name for this applicant.'))

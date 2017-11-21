@@ -419,9 +419,9 @@
 						class="oe_highlight" />
 					<button name="action_step_four" string="Revision detallada" attrs="{'invisible': [('stage_id', '!=', 21)]}" type="object"
 						class="oe_highlight" />
-					<button name="action_step_five" string="Inscribir" attrs="{'invisible': [('stage_id', '!=', 22)]}" type="object"
+					<button name="action_step_five" string="Junta Directiva" attrs="{'invisible': [('stage_id', '!=', 22)]}" type="object"
 						class="oe_highlight" />
-					<button name="action_refuse" string="Rechazar" attrs="{'invisible': ['|',('stage_id', '=', 18),('stage_id', '=', 24)]}" type="object"
+					<button name="action_inscri" string="Inscribir" attrs="{'invisible': ['|',('stage_id', '=', 18),('stage_id', '=', 24)]}" type="object"
 						class="oe_highlight" />
 				</header>
 				<sheet string="Temas">
@@ -455,6 +455,7 @@
 						<group>
 							<field name="date_deadline" invisible="1" />
 							<field name="tag_ids" invisible="1" widget="many2many_tags" options="{'no_create_edit': True}" />
+							<field name="jefe_department_id" domain="[('type_selection', '=', 'department')]" options='{"no_open": True, "no_create_edit": True}' />
 							<field name="user_id_coordi" domain="[('type_selection', '=', 'coordinador')]" options='{"no_open": True, "no_create_edit": True}' />
 							<field name="user_id_asignado" domain="[('type_selection', '=', 'catedratico')]" options='{"no_open": True, "no_create_edit": True}' />
       						<field name="time_grade" string="Tiempo trabajo grado probable" />
@@ -469,8 +470,12 @@
 								<field name="name" widget="text" placeholder="Task Title..." />
 							</h2>
 						</page>
+						<page string="Descripción General">
+							<field name="description_general" />
+							<div class="oe_clear" />
+						</page>
 						<page string="Integrantes">
-							<field name="recipient_ids" domain="[('department_id','=',department_id)]">
+							<field name="student_ids" domain="[('department_id','=',department_id)]">
 								<tree editable="bottom" string="Taxes">
 									<field name="carnet" string="Carnet" />
 									<field name="name" string="Nombre" />
