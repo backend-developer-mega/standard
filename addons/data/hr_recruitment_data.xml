@@ -125,7 +125,7 @@ joining us as a ${object.job_id.name}
         <field name="name">Applicant Hired</field>
         <field name="res_model">hr.applicant</field>
         <field name="default" eval="True"/>
-        <field name="description">Applicant hired</field>
+        <field name="description">Usuario creado</field>
     </record>
 
     <!-- Job-related subtypes for messaging / Chatter -->

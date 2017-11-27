@@ -22,6 +22,8 @@ class Topic(models.Model):
     total = fields.Float(string="Total", readonly=True, compute='calulate_total', store=True)
     project_topic_id = fields.Many2one('project.task', string='Tema inscripcion')
     student_ids = fields.Many2many('hr.employee', 'students_lead_tag_rel_res', 'students_lead_id_res', 'students_tag_id_res')
+
+
     
 
     #document_ids = fields.One2many('ir.attachment', string="Documentos")
@@ -47,12 +49,12 @@ class Topic(models.Model):
 
 
     @api.one
-    @api.depends('evaluations_ids.note')
-    @api.onchange('evaluations_ids.note')
+    @api.depends('evaluations_ids.note_procentaje_1')
+    @api.onchange('evaluations_ids.note_procentaje_1')
     def calulate_total(self):
         divide = sum(1 for line in self.evaluations_ids)
         if divide != 0:
-            self.total = sum(line.note for line in self.evaluations_ids) / sum(1 for line in self.evaluations_ids)
+            self.total = sum(line.note_procentaje_1 for line in self.evaluations_ids) / sum(1 for line in self.evaluations_ids)
         elif divide == 0:
             self.total = 0.0
 
@@ -65,3 +67,105 @@ class Topic(models.Model):
             if (project_topic_id.id and (self.env["project.task"].search([['id', '=', self.project_topic_id.id]]).active == True)):
                 obj = self.env["project.task"].search([['id', '=', self.project_topic_id.id]])[0]
                 self.student_ids = obj.student_ids
+                evaluations_for_topic_1 = self.env['topic.grade.online.evaluations'].create({
+                                            'name': 'Proceso formativo 1 (10%)',
+                                            'sequence': 10,
+                                            'topic_id': self.id,
+                                            'state': 'report1',
+                                            'note_procentaje_1': 10.0,
+                                            'docente_director_id': self.docente_director_id.id,
+                                            'description_note_final': 'POR MEDIO DE LA PRESENTE SE HACE CONSTAR LA NOTA PONDERADA DE CADA ALUMNO AL FINAL DE LA COLUMNA RESPECTIVA'
+                                        })
+                evaluations_for_topic_2 = self.env['topic.grade.online.evaluations'].create({
+                                            'name': 'Anteproyecto (20%)',
+                                            'sequence': 20,
+                                            'topic_id': self.id,
+                                            'state': 'report2',
+                                            'note_procentaje_2': 20.0,
+                                            'docente_director_id': self.docente_director_id.id,
+                                            'description_note_final': 'POR MEDIO DE LA PRESENTE SE HACE CONSTAR LA NOTA PONDERADA DE CADA ALUMNO AL FINAL DE LA COLUMNA RESPECTIVA'
+                                        })
+                evaluations_for_topic_3 = self.env['topic.grade.online.evaluations'].create({
+                                            'name': 'Proceso formativo 2 (10%)',
+                                            'sequence': 30,
+                                            'topic_id': self.id,
+                                            'state': 'report3',
+                                            'note_procentaje_3': 10.0,
+                                            'docente_director_id': self.docente_director_id.id,
+                                            'description_note_final': 'POR MEDIO DE LA PRESENTE SE HACE CONSTAR LA NOTA PONDERADA DE CADA ALUMNO AL FINAL DE LA COLUMNA RESPECTIVA'
+                                        })
+                evaluations_for_topic_4 = self.env['topic.grade.online.evaluations'].create({
+                                            'name': 'Avance capitular (40%)',
+                                            'sequence': 40,
+                                            'topic_id': self.id,
+                                            'state': 'report4',
+                                            'note_procentaje_4': 40.0,
+                                            'docente_director_id': self.docente_director_id.id,
+                                            'description_note_final': 'POR MEDIO DE LA PRESENTE SE HACE CONSTAR LA NOTA PONDERADA DE CADA ALUMNO AL FINAL DE LA COLUMNA RESPECTIVA'
+                                        })
+                evaluations_for_topic_5 = self.env['topic.grade.online.evaluations'].create({
+                                            'name': 'Presentación oral final (20%)',
+                                            'sequence': 50,
+                                            'topic_id': self.id,
+                                            'state': 'report5',
+                                            'note_procentaje_5': 20.0,
+                                            'docente_director_id': self.docente_director_id.id,
+                                            'description_note_final': 'POR MEDIO DE LA PRESENTE SE HACE CONSTAR LA NOTA PONDERADA DE CADA ALUMNO AL FINAL DE LA COLUMNA RESPECTIVA'
+                                        })
+                evaluations_for_topic_6 = self.env['topic.grade.online.evaluations'].create({
+                                            'name': 'Consolidado final (100%)',
+                                            'sequence': 60,
+                                            'topic_id': self.id,
+                                            'state': 'report6',
+                                            'docente_director_id': self.docente_director_id.id,
+                                            'description_note_final': 'POR MEDIO DE LA PRESENTE SE HACE CONSTAR LA NOTA PONDERADA DE CADA ALUMNO AL FINAL DE LA COLUMNA RESPECTIVA'
+                                        })
+
+                for student_id_uni in obj.student_ids:
+                    report_6 = self.env['topic.grade.online.report6'].create({
+                                            'evaluation_id': evaluations_for_topic_6.id,
+                                            'carrera_id': self.carrera_id.id,
+                                            'name_egresado_id': student_id_uni.id,
+                                            'note_procentaje_1': 10.0,
+                                            'note_procentaje_2': 20.0,
+                                            'note_procentaje_3': 10.0,
+                                            'note_procentaje_4': 40.0,
+                                            'note_procentaje_5': 20.0
+                               })
+
+                    report_1 = self.env['topic.grade.online.report1'].create({
+                                            'evaluation_id': evaluations_for_topic_1.id,
+                                            'carrera_id': self.carrera_id.id,
+                                            'name_egresado_id': student_id_uni.id,
+                                            'id_report_6': report_6.id,
+                                            'name': str(report_6.id) + ' '
+                               })
+                    report_2 = self.env['topic.grade.online.report2'].create({
+                                            'evaluation_id': evaluations_for_topic_2.id,
+                                            'carrera_id': self.carrera_id.id,
+                                            'name_egresado_id': student_id_uni.id,
+                                            'id_report_6': report_6.id,
+                                            'name': str(report_6.id) + ' '
+                               })
+                    report_3 = self.env['topic.grade.online.report3'].create({
+                                            'evaluation_id': evaluations_for_topic_3.id,
+                                            'carrera_id': self.carrera_id.id,
+                                            'name_egresado_id': student_id_uni.id,
+                                            'id_report_6': report_6.id,
+                                            'name': str(report_6.id) + ' '
+                               })
+                    report_4 = self.env['topic.grade.online.report4'].create({
+                                            'evaluation_id': evaluations_for_topic_4.id,
+                                            'carrera_id': self.carrera_id.id,
+                                            'name_egresado_id': student_id_uni.id,
+                                            'id_report_6': report_6.id,
+                                            'name': str(report_6.id) + ' '
+                               })
+                    report_5 = self.env['topic.grade.online.report5'].create({
+                                            'evaluation_id': evaluations_for_topic_5.id,
+                                            'carrera_id': self.carrera_id.id,
+                                            'name_egresado_id': student_id_uni.id,
+                                            'id_report_6': report_6.id,
+                                            'name': str(report_6.id) + ' '
+                               })
+

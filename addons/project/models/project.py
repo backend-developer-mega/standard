@@ -381,7 +381,6 @@ class Task(models.Model):
             'name': self.name,
             'department_id': self.depart_ids.id,
             'carrera_id': self.department_id.id,
-            'docente_director_id': self.user_id.id,
             'coordinador_department_id': self.user_id_coordi.id,
             'docente_director_id': self.user_id_asignado.id,
             'jefe_department_id': self.jefe_department_id.id,

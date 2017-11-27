@@ -61,7 +61,7 @@
 									</group>
 									<group string="Departamento">
 										<field name="job_id" string="Departamento" options="{'no_create_edit': True,'no_open': True}" clickable="False"/>
-										<field name="department_id" options="{'no_create_edit': True}" string="Carrera" />
+										<field name="department_id" options="{'no_create_edit': True,'no_open': True}" clickable="False" string="Carrera" />
 										<field name="parent_id" invisible="1" />
 										<field name="coach_id" invisible="1" />
 										<field name="calendar_id" invisible="1" />
@@ -565,10 +565,10 @@
 										</div>
 									</div>
 									<div class="o_kanban_manage_button_section">
-										<a class="o_kanban_manage_toggle_button" href="#">
-											More
+									<!--	<a class="o_kanban_manage_toggle_button" href="#">
+											Mas
 											<i class="fa fa-caret-down" />
-										</a>
+										</a> -->
 									</div>
 								</div>
 								<div class="container o_kanban_card_content o_visible">

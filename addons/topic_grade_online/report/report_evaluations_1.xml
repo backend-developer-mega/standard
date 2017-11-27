@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+
+<odoo>
+
+  <template id="report_evaluations_1">
+    <t t-call="report.html_container">
+      <t t-foreach="docs" t-as="result">
+        <t t-call="report.external_layout">
+          <div class="page">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-10">
+                  <div class="page-header">
+                    <center><h3>Evaluación de proceso formativo 1</h3></center>
+                  </div>
+                </div>
+              </div>
+
+
+              <form class="form-horizontal">
+                <div class="row">
+                  <div class="col-xs-12">
+                    <label for="proyect-name">Trabajo de Graduación</label>
+                    <p t-field="result.topic_id.name"/>
+                  </div>
+                </div> 
+                <div class="row">
+                  <div class="col-xs-6">
+                    <label for="teacher-name">Docente Director</label>
+                    <p t-field="result.docente_director_id.name"/>
+                  </div>
+                  <div class="col-xs-6">
+                    <label for="proyect-date">Fecha</label>
+                    <p t-field="result.date_report"/>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-12">
+                    <label for="observations"> Observaciones</label>
+                    <p t-field="result.observations"/>
+                  </div>
+                </div> 
+                <div class="row">
+                  <div class="col-md-12">
+                    <p><b>ETAPA A EVALUAR:</b> PROCESO FORMATIVO 1 (CORRESPONDE AL 10 % DE LA CALIFICACION FINAL)</p>
+                    <table class="table table-bordered"> 
+                      <thead> 
+                        <tr> 
+                          <th>Nombre</th> 
+                          <th><center>Asistencia</center></th> 
+                          <th><center>Puntualidad</center></th> 
+                          <th><center>Responsabilidad</center></th> 
+                          <th><center>Iniciativa</center></th> 
+                          <th><center>Creatividad</center></th> 
+                          <th><center>Nota</center></th> 
+                        </tr> 
+                      </thead> 
+                      <tbody>
+                        <div t-if="len(result.report1_id) > 0">
+                          <tr t-foreach="result.report1_id" t-as="li">  
+                            <td><span t-field="li.name_egresado_id.name"/></td> 
+                            <td class="text-right"><span t-field="li.note_asistence"/></td> 
+                            <td class="text-right"><span t-field="li.note_puntuality"/></td> 
+                            <td class="text-right"><span t-field="li.note_responsability"/></td> 
+                            <td class="text-right"><span t-field="li.note_iniciativity"/></td> 
+                            <td class="text-right"><span t-field="li.note_creativity"/></td> 
+                            <td class="text-right"><strong><span t-field="li.note_promedio_1"/></strong></td> 
+                          </tr>
+                        </div>
+                      </tbody> 
+                    </table>
+                  </div>
+                </div>
+              </form>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <p>POR MEDIO DE LA PRESENTE SE HACE CONSTAR  LA NOTA PONDERADA  DE CADA ALUMNO AL FINAL DE LA COLUMNA RESPECTIVA</p>
+                  <p>* Evaluación Parcial sobre la base de los artículos Nos. 11 y 13 del REGLAMENTO GENERAL DE PROCESOS DE GRADUACION DE LA U.E.S.</p>
+                  <p>** NOTAS INDIVIDUALES: En este Proceso todas las notas registradas son individuales.</p>
+                  <P>Dicha nota deberá ser ESCRITA A MANO POR EL DOCENTE DIRECTOR del Trabajo de Graduación, debiendo las anotaciones no tener ningún tipo de ENMENDADURA</P>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+        </t>
+      </t>
+    </t>
+  </template>
+</odoo>

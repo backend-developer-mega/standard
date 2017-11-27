@@ -667,7 +667,7 @@ class Meeting(models.Model):
             return 0.0
 
     name = fields.Char('Tema de la reunión', required=True, states={'done': [('readonly', True)]})
-    state = fields.Selection([('draft', 'Unconfirmed'), ('open', 'Confirmed')], string='Estado', readonly=True, track_visibility='onchange', default='draft')
+    state = fields.Selection([('draft', 'Sin confirmar'), ('open', 'Confirmado')], string='Estado', readonly=True, track_visibility='onchange', default='draft')
 
     is_attendee = fields.Boolean('Asistente', compute='_compute_attendee')
     attendee_status = fields.Selection(Attendee.STATE_SELECTION, string='Estado del asistente', compute='_compute_attendee')

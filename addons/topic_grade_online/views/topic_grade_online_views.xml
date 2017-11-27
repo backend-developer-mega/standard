@@ -38,7 +38,7 @@
                             <field name="evaluations_ids">
                                 <tree>
                                     <field name="name" />
-                                    <field name="note" />
+                                    <field name="description" />
                                 </tree>
                             </field>
                             <group>
@@ -84,18 +84,121 @@
                         <group>
                             <field name="name" class="oe_inline" />
                             <field name="description" />
+                            <field name="date_report" />
                         </group>
                         <group>
                             <field name="topic_id" class="oe_inline" options="{'no_create_edit': True, 'no_open': True}" /> 
-                            <field name="note" />
+                            <field name="note_procentaje_1" attrs="{'invisible': [('state', 'not in', ('report1'))]}"/>
+                            <field name="note_procentaje_2" attrs="{'invisible': [('state', 'not in', ('report2'))]}"/>
+                            <field name="note_procentaje_3" attrs="{'invisible': [('state', 'not in', ('report3'))]}"/>
+                            <field name="note_procentaje_4" attrs="{'invisible': [('state', 'not in', ('report4'))]}"/>
+                            <field name="note_procentaje_5" attrs="{'invisible': [('state', 'not in', ('report5'))]}"/>
+                            <field name="state" invisible="1" />
                         </group>
                     </group>
-                    <field name="activity_ids" readonly="1">
-                        <tree>
-                            <field name="name" />
-                            <field name="stage_id" />
-                        </tree>
-                    </field>
+                    <notebook>
+                        <page string="Actividades">
+                            <field name="activity_ids" readonly="1">
+                                <tree>
+                                    <field name="name" />
+                                    <field name="stage_id" />
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Calificaciones" attrs="{'invisible': [('state', 'not in', ('report1'))]}">
+                            <field name="report1_id">
+                                <tree editable="bottom" create="0" delete="0">
+                                    <field name="name_egresado_id" domain="[('department_id','=',carrera_id)]" readonly="1" />
+                                    <field name="note_asistence" />
+                                    <field name="note_puntuality" />
+                                    <field name="note_responsability" />
+                                    <field name="note_iniciativity" />
+                                    <field name="note_creativity" />
+                                    <field name="note_promedio_1" readonly="1" />
+                                    <field name="carrera_id" invisible="1" />
+                                    <field name="name" string="ID" invisible="1" />
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Calificaciones" attrs="{'invisible': [('state', 'not in', ('report2'))]}">
+                            <field name="report2_id">
+                                <tree editable="bottom" create="0" delete="0">
+                                    <field name="name_egresado_id" domain="[('department_id','=',carrera_id)]" readonly="1" />
+                                    <field name="note_asistence_2" />
+                                    <field name="note_puntuality_2" />
+                                    <field name="note_responsability_2" />
+                                    <field name="note_iniciativity_2" />
+                                    <field name="note_creativity_2" />
+                                    <field name="note_promedio_2" readonly="1" />
+                                    <field name="carrera_id" invisible="1" />
+                                    <field name="name" string="ID" invisible="1" />
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Calificaciones" attrs="{'invisible': [('state', 'not in', ('report3'))]}">
+                            <field name="report3_id">
+                                <tree editable="bottom" create="0" delete="0">
+                                    <field name="name_egresado_id" domain="[('department_id','=',carrera_id)]" readonly="1" />
+                                    <field name="note_asistence_3" />
+                                    <field name="note_puntuality_3" />
+                                    <field name="note_responsability_3" />
+                                    <field name="note_iniciativity_3" />
+                                    <field name="note_creativity_3" />
+                                    <field name="note_promedio_3" readonly="1" />
+                                    <field name="carrera_id" invisible="1" />
+                                    <field name="name" string="ID" invisible="1" />
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Calificaciones" attrs="{'invisible': [('state', 'not in', ('report4'))]}">
+                            <field
+                             name="report4_id">
+                                <tree editable="bottom" create="0" delete="0">
+                                    <field name="name_egresado_id" domain="[('department_id','=',carrera_id)]" readonly="1" />
+                                    <field name="note_presentation_resumen" />
+                                    <field name="note_conteni_charter" />
+                                    <field name="note_analis_discute" />
+                                    <field name="note_promedio_4" readonly="1" />
+                                    <field name="carrera_id" invisible="1" />
+                                    <field name="name" string="ID" invisible="1" />
+                                </tree>
+                            </field>
+                        </page>                                                
+                        <page string="Calificaciones" attrs="{'invisible': [('state', 'not in', ('report5'))]}">
+                            <field name="report5_id">
+                                <tree editable="bottom" create="0" delete="0">
+                                    <field name="name_egresado_id" domain="[('department_id','=',carrera_id)]" readonly="1" />
+                                    <field name="note_presentation" />
+                                    <field name="note_capacity_resume" />
+                                    <field name="note_use_recurse_audiovisual" />
+                                    <field name="note_dominio_topic" />
+                                    <field name="note_promedio_5" readonly="1" />
+                                    <field name="carrera_id" invisible="1" />
+                                    <field name="name" string="ID" invisible="1" />
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Calificaciones" attrs="{'invisible': [('state', 'not in', ('report6'))]}">
+                            <field name="report6_id">
+                                <tree editable="bottom" create="0" delete="0">
+                                    <field name="name_egresado_id" domain="[('department_id','=',carrera_id)]" readonly="1" />
+                                    <field name="note_promedio_1" readonly="1"/>
+                                    <field name="note_promedio_2" readonly="1"/>
+                                    <field name="note_promedio_3" readonly="1"/>
+                                    <field name="note_promedio_4" readonly="1"/>
+                                    <field name="note_promedio_5" readonly="1"/>
+                                    <field name="note_promedio_6" readonly="1"/>
+                                    <field name="carrera_id" invisible="1" />
+                                    <field name="id" invisible="1" />
+                                    <field name="note_procentaje_1" invisible="1" />
+                                    <field name="note_procentaje_2" invisible="1" />
+                                    <field name="note_procentaje_3" invisible="1" />
+                                    <field name="note_procentaje_4" invisible="1" />
+                                    <field name="note_procentaje_5" invisible="1" />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>
@@ -156,7 +259,7 @@
             <field name="arch" type="xml">
                 <tree>
                     <field name="name"/>
-                    <field name="note"/>
+                    <field name="state"/>
                     <field name="topic_id"/>
                     <field name="description"/>
                 </tree>

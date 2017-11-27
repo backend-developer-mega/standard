@@ -226,7 +226,7 @@ class Module(models.Model):
     name = fields.Char('Technical Name', readonly=True, required=True, index=True)
     category_id = fields.Many2one('ir.module.category', string='Category', readonly=True, index=True)
     shortdesc = fields.Char('Module Name', readonly=True, translate=True)
-    summary = fields.Char('Summary', readonly=True, translate=True)
+    summary = fields.Char('Tema', readonly=True, translate=True)
     description = fields.Text('Description', readonly=True, translate=True)
     description_html = fields.Html('Description HTML', compute='_get_desc')
     author = fields.Char("Author", readonly=True)

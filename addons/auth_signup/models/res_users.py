@@ -18,7 +18,7 @@ class ResUsers(models.Model):
     _inherit = 'res.users'
 
     state = fields.Selection(compute='_compute_state', string='Status',
-                 selection=[('new', 'Never Connected'), ('active', 'Confirmed')])
+                 selection=[('new', 'Nunca se ha conectado'), ('active', 'Confirmado')])
 
     @api.multi
     def _compute_state(self):
@@ -125,6 +125,7 @@ class ResUsers(models.Model):
         template = False
         if create_mode:
             try:
+                #template = False
                 template = self.env.ref('auth_signup.set_password_email', raise_if_not_found=False)
             except ValueError:
                 pass

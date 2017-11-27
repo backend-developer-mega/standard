@@ -81,7 +81,7 @@
                         icon="fa-user"
                         type="object"
                         attrs="{'invisible': [('emp_id', '=', False)]}">
-                        <field name="employee_name" widget="statinfo" string="Employee"/>
+                        <field name="employee_name" widget="statinfo" string="Egresado"/>
                     </button>
                     <button name="toggle_active" type="object"
                             class="oe_stat_button" icon="fa-archive"

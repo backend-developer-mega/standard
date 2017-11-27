@@ -17,7 +17,7 @@
                     <div t-if="record.new_applicant_count.raw_value > 0" class="row">
                         <div class="col-xs-9">
                             <a name="%(hr_applicant_action_from_department)d" type="action">
-                                New Applicants
+                                Egresados inscritos
                             </a>
                         </div>
                         <div class="col-xs-3">
@@ -30,7 +30,7 @@
                     <div class="row">
                         <div class="col-xs-12 text-left">
                             <a name="%(hr_applicant_action_from_department)d" type="action">
-                                <t t-esc="record.new_applicant_count.raw_value or 0"/> New Applicants
+                                <t t-esc="record.new_applicant_count.raw_value or 0"/> Egresados inscritos
                             </a>
                         </div>
                     </div>

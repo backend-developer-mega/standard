@@ -160,7 +160,7 @@ class Applicant(models.Model):
     day_open = fields.Float(compute='_compute_day', string="Days to Open")
     day_close = fields.Float(compute='_compute_day', string="Days to Close")
     color = fields.Integer("Color Index", default=0)
-    emp_id = fields.Many2one('hr.employee', string="Employee", track_visibility="onchange", help="Employee linked to the applicant.")
+    emp_id = fields.Many2one('hr.employee', string="Egresado", track_visibility="onchange", help="Egresado conectado a la solicitud.")
     user_email = fields.Char(related='user_id.email', type="char", string="User Email", readonly=True)
     attachment_number = fields.Integer(compute='_get_attachment_number', string="Number of Attachments")
     employee_name = fields.Char(related='emp_id.name', string="Employee Name")
@@ -422,10 +422,10 @@ class Applicant(models.Model):
                         'name': attach_id.name,
                         'datas_fname': attach_id.datas_fname,
                         'res_model': 'hr.employee', 'res_id': employee.id})
-        #jose        #applicant.job_id.message_post(
-        #jose        #    body=_('New Employee %s Hired') % applicant.partner_name if applicant.partner_name else applicant.name,
-        #jose        #    subtype="hr_recruitment.mt_job_applicant_hired")
-        #jose        #employee._broadcast_welcome()
+                applicant.job_id.message_post(
+                    body=_('New Employee %s Hired') % applicant.partner_name if applicant.partner_name else applicant.name,
+                    subtype="hr_recruitment.mt_job_applicant_hired")
+                employee._broadcast_welcome()
                 employee.create_user()
             else:
                 raise UserError(_('You must define an Applied Job and a Contact Name for this applicant.'))
