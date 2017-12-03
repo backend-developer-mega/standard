@@ -43,7 +43,7 @@ class Activity(models.Model):
     date_last_stage_update = fields.Datetime("Last Stage Update", index=True, default=fields.Datetime.now)
     date_action = fields.Date("Next Action Date")
     title_action = fields.Char("Next Action", size=64)
-    department_id = fields.Many2one('hr.department', "Department")
+    department_id = fields.Many2one('hr.job', "Department")
     user_id = fields.Many2one('res.users', "Responsible", track_visibility="onchange", default=lambda self: self.env.uid)
     create_date = fields.Datetime("Creation Date", readonly=True, index=True)
     write_date = fields.Datetime("Update Date", readonly=True)

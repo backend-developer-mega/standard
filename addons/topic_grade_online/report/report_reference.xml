@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 
 <odoo>
-	<report id="reports_evaluations_1_qweb" string="Proceso formativo 1"
+	<report id="reports_evaluations_1_qweb" string="Hoja de evaluación"
 		model="topic.grade.online.evaluations" report_type="qweb-pdf" file="topic_grade_online.report_evaluations_1"
 		name="topic_grade_online.report_evaluations_1" />
 </odoo>

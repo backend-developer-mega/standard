@@ -47,8 +47,8 @@
                                 <group>
                                     <group>
                                     </group>
-                                    <group>
-                                        <field name="total" string="Promedio" />
+                                    <group><!--
+                                        <field name="total" string="Promedio" /> -->
                                     </group>    
                                 </group>
                             </group>
@@ -389,8 +389,8 @@
         <field name="model">topic.grade.online.activity</field>
         <field name="arch" type="xml">
           <form string="Detalle de actividades">
-            <header> 
-                <button string="Crear usuario" type="object" class="oe_highlight" />
+            <header> <!--
+                <button string="Crear usuario" type="object" class="oe_highlight" /> -->
                 <field name="stage_id" widget="statusbar" clickable="True" options="{'fold_field': 'fold'}" />
             </header>
             <sheet>
@@ -410,9 +410,9 @@
                     <separator string="Descripcion de la actividad"/>
                     <field name="description" placeholder="Descripcion detallada..."/>
                     <group>
-                        <field name="name" />
-                        <field name="evaluations_id" />
-                        <field name="user_id" />
+                        <field name="name" string="Tema de actividad"/>
+                        <field name="evaluations_id" string="Pertenece a la evaluación"/>
+                        <field name="user_id" invisible="1" />
                     </group>
                 </div>
             </sheet>
