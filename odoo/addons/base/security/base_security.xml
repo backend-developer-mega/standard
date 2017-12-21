@@ -8,7 +8,7 @@
             base/module/module_data.xml
         -->
         <record model="res.groups" id="group_erp_manager">
-            <field name="name">Access Rights</field>
+            <field name="name">Reglas de acceso</field>
         </record>
 
         <record model="res.groups" id="group_system">

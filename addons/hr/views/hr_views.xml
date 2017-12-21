@@ -52,6 +52,7 @@
 										<field name="carnet" string="Carnet" placeholder="Ejemplo: MM25001" />
 										<field name="mobile_phone" string="Movil" />
 										<field name="year_incom" string="Año de ingreso" />
+										<field name="user_uid" />
 									</group>
 									<group>
 										<field name="academic_year" />
@@ -120,13 +121,13 @@
 			<field name="model">hr.employee</field>
 			<field name="arch" type="xml">
 				<tree string="Estudiantes" decoration-bf="message_needaction==True">
-					<field name="name" />
-					<field name="work_phone" />
-					<field name="work_email" />
+					<field name="name" string="Nombre" />
+					<field name="work_phone" string="Telefono" />
+					<field name="work_email" string="Email" />
 					<field name="company_id" groups="base.group_multi_company" />
-					<field name="department_id" />
-					<field name="job_id" />
-					<field name="parent_id" />
+					<field name="department_id" string="Carrera" />
+					<field name="job_id" string="Departamento" />
+					<field name="parent_id" invisible="1" />
 					<field name="coach_id" invisible="1" />
 					<field name="message_needaction" invisible="1" />
 				</tree>
@@ -183,7 +184,7 @@
 												<i class='fa fa-comments' />
 												<t t-raw="record.message_needaction_counter.raw_value" />
 											</span>
-										</t>
+										</t><!--
 										<span title='Messages'>
 											<i class='fa fa-comments' />
 											<t t-esc="record.message_ids.raw_value.length" />
@@ -191,7 +192,7 @@
 										<span title='Followers'>
 											<i class='fa fa-users' />
 											<t t-esc="record.message_follower_ids.raw_value.length" />
-										</span>
+										</span> -->
 									</div>
 								</div>
 								<div class="oe_kanban_details">
@@ -289,13 +290,13 @@
 			<field name="field_parent">child_ids</field>
 			<field name="priority" eval="20" />
 			<field name="arch" type="xml">
-				<tree string="Estudiantes">
-					<field name="name" />
-					<field name="work_phone" />
-					<field name="work_email" />
+				<tree string="Estudiantes"> 
+					<field name="name" string="Nombre" />
+					<field name="work_phone" string="Telefono" />
+					<field name="work_email" string="Email" />
 					<field name="company_id" groups="base.group_multi_company" />
-					<field name="department_id" />
-					<field name="job_id" />
+					<field name="department_id" string="Carrera" />
+					<field name="job_id" string="Departamento" />
 					<field name="coach_id" invisible="1" />
 					<field name="parent_id" invisible="1" />
 				</tree>
@@ -364,28 +365,28 @@
 			<field name="arch" type="xml">
 				<form string="Job">
 					<header>
-						<button name="set_recruit" string="Launch Recruitment"
+						<button name="set_recruit" string="Abrir inscripción"
 							states="open" type="object" class="oe_highlight" groups="base.group_user" />
-						<button name="set_open" string="Stop Recruitment" states="recruit"
+						<button name="set_open" string="Cerrar inscripción" states="recruit"
 							type="object" groups="base.group_user" />
 						<field name="state" widget="statusbar" statusbar_visible="recruit,open" />
 					</header>
 					<sheet>
 						<div class="oe_button_box" name="button_box" />
 						<div class="oe_title">
-							<label for="name" class="oe_edit_only" />
+							<label for="name" string="Departamento" class="oe_edit_only" />
 							<h1>
-								<field name="name" placeholder="e.g. Sales Manager" />
+								<field name="name" placeholder="Ingrese el nombre" />
 							</h1>
 						</div>
 						<group name="employee_data">
 							<group>
-								<field name="department_id" />
-								<field name="no_of_recruitment" />
+								<field name="department_id" invisible="1" />
+								<field name="no_of_recruitment" invisible="1" />
 							</group>
 						</group>
 						<div attrs="{'invisible': [('state', '!=', 'recruit')]}">
-							<label for="description" />
+							<label for="description" string="Descripción general" />
 							<field name="description" />
 						</div>
 					</sheet>
@@ -401,13 +402,7 @@
 			<field name="model">hr.job</field>
 			<field name="arch" type="xml">
 				<tree string="Job" decoration-bf="message_needaction==True">
-					<field name="name" />
-					<field name="department_id" />
-					<field name="no_of_employee" />
-					<field name="no_of_recruitment" />
-					<field name="expected_employees" />
-					<field name="no_of_hired_employee" />
-					<field name="state" />
+					<field name="name" string="Departamento" />
 					<field name="message_needaction" invisible="1" />
 				</tree>
 			</field>
@@ -417,12 +412,12 @@
 			<field name="name">hr.job.search</field>
 			<field name="model">hr.job</field>
 			<field name="arch" type="xml">
-				<search string="Jobs">
+				<search string="Solicitudes"><!--
 					<field name="name" string="Job" />
-					<filter domain="[('state','=','open')]" string="In Position" />
-					<filter domain="[('state','=','recruit')]" string="In Recruitment"
-						name="in_recruitment" />
-					<field name="department_id" />
+					<filter domain="[('state','=','open')]" string="In Position" /> -->
+					<filter domain="[('state','=','recruit')]" string="En inscripción"
+						name="in_recruitment" /><!--
+					<field name="department_id" />  
 					<separator />
 					<filter string="Unread Messages" name="message_needaction"
 						domain="[('message_needaction','=',True)]" />
@@ -432,7 +427,7 @@
 						<filter string="Status" domain="[]" context="{'group_by':'state'}" />
 						<filter string="Company" domain="[]" context="{'group_by':'company_id'}"
 							groups="base.group_multi_company" />
-					</group>
+					</group> -->
 				</search>
 			</field>
 		</record>

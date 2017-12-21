@@ -84,6 +84,8 @@
             <field name="view_id" ref="view_translation_tree"/>
         </record>
 
-        <menuitem action="action_translation" id="menu_action_translation" parent="base.menu_translation_app" />
+        <menuitem action="action_translation" id="menu_action_translation" parent="base.menu_translation_app" />  
+
+
 
 </odoo>

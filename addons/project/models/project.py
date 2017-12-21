@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# Part of Odoo. See LICENSE file for full copyright and licensing details
 
 from lxml import etree
 
@@ -94,6 +94,18 @@ class Project(models.Model):
         values = super(Project, self).get_alias_values()
         values['alias_defaults'] = {'project_id': self.id}
         return values
+
+    @api.multi
+    def show_topic_for_user(self):
+        '''
+        Este metodo muestra en un grid las lista de los temas de trabajo de grado que un usuario ha creado
+        '''
+        action = self.env.ref('project.act_project_project_2_project_task_all_2')
+        result = action.read()[0]
+        users_ids = self.env['hr.employee'].search([('user_id', '=', self.env.user.id)]) 
+        task_ids = self.env['project.task'].search([('project_id', '=', self.id),('student_ids','in', users_ids.ids)]) 
+        result['domain'] = [('id','in', task_ids.ids)]
+        return result
 
     @api.multi
     def unlink(self):

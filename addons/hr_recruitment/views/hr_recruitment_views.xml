@@ -22,30 +22,30 @@
 
     <!-- Applicants -->
     <record model="ir.ui.view" id="crm_case_tree_view_job">
-        <field name="name">Applicants</field>
+        <field name="name">Solicitudes</field>
         <field name="model">hr.applicant</field>
         <field name="arch" type="xml">
-            <tree string="Applicants" decoration-bf="message_needaction==True">
+            <tree string="Solicitudes" decoration-bf="message_needaction==True">
                 <field name="message_needaction" invisible="1"/>
                 <field name="last_stage_id" invisible="1"/>
-                <field name="create_date"/>
+                <field name="create_date" string="Fecha solicitud" />
                 <!-- <field name="dui"/> -->
                 <field name="date_last_stage_update" invisible="1"/>
-                <field name="name"/>
-                <field name="partner_name"/>
-                <field name="email_from"/>
-                <field name="partner_phone"/>
-                <field name="job_id"/>
-                <field name="stage_id"/>
+                <field name="name" invisible="1" />
+                <field name="partner_name" string="Nombre" />
+                <field name="email_from" string="Email" />
+                <field name="partner_phone" string="Telefono" />
+                <field name="job_id" string="Departamento" />
+                <field name="stage_id" string="Estado" />
                 <field name="title_action" invisible="context.get('invisible_next_action', True)"/>
                 <field name="date_action" invisible="context.get('invisible_next_date', True)"/>
-                <field name="medium_id"/>
-                <field name="source_id"/>
-                <field name="priority"/>
+                <field name="medium_id" invisible="1"/>
+                <field name="source_id" invisible="1" />
+                <field name="priority" invisible="1" />
                 <field name="type_id" invisible="1"/>
                 <field name="availability" invisible="1"/>
                 <field name="department_id" invisible="context.get('invisible_department', True)"/>
-                <field name="user_id"/>
+                <field name="user_id" invisible="1" />
             </tree>
         </field>
     </record>
@@ -319,12 +319,7 @@
         <field name="context">{'search_default_job_id': [active_id], 'default_job_id': active_id}</field>
         <field name="help" type="html">
               <p>
-                Odoo helps you track applicants in the recruitment
-                process and follow up all operations: meetings, interviews, etc.
-              </p><p>
-                Applicants and their attached CV are created automatically when an email is sent.
-                If you install the document management modules, all resumes are indexed automatically,
-                so that you can easily search through their content.
+                No se ha encontrado ninguna solicitud
               </p>
          </field>
     </record>
@@ -344,7 +339,7 @@
          </field>
     </record>
 
-    <!-- Jobs -->
+    <!-- Jobs --><!--
     <record id="view_job_filter_recruitment" model="ir.ui.view">
         <field name="name">Departamento</field>
         <field name="model">hr.job</field>
@@ -352,10 +347,10 @@
         <field name="arch" type="xml">
             <field name="department_id" positon="after">
                 <separator/>
-                <filter string="Unread Messages" name="message_needaction" domain="[('message_needaction','=',True)]"/>
-            </field>
+                <filter string="Unread Messages" name="message_needaction" domain="[('message_needaction','=',True)]"/> 
+            </field> 
         </field>
-    </record>
+    </record>-->
 
     <!-- Action for the stat button of the no_employee -->
     <record model="ir.actions.act_window" id="action_hr_job_no_employee">
@@ -415,21 +410,17 @@
         <field name="inherit_id" ref="hr.view_hr_job_form"/>
         <field name="arch" type="xml">
             <group name="employee_data" position="inside">
+                <!--
                 <group>
                     <field name="address_id" context="{'show_address': 1}" domain= "[('is_company', '=', True )]" options="{'always_reload': True}"/>
+                </group> -->
+                <group>
+                    <field name="user_id" string="Administrativo" options="{'no_create_edit': True, 'no_open': True}" />
                 </group>
             </group>
             <xpath expr="//field[@name='department_id']" position="after">
-                <label for="alias_name" string="Specific Email Address" attrs="{'invisible': [('alias_domain', '=', False)]}" help="Define a specific contact address for this job position. If you keep it empty, the default email address will be used which is in human resources settings"/>
-                <div name="alias_def" attrs="{'invisible': [('alias_domain', '=', False)]}">
-                    <field name="alias_id" class="oe_read_only" string="Email Alias" required="0"/>
-                    <div class="oe_edit_only" name="edit_alias">
-                        <field name="alias_name" class="oe_inline"/>@<field name="alias_domain" class="oe_inline" readonly="1"/>
-                    </div>
-                </div>
-            </xpath>
-            <xpath expr="//field[@name='department_id']" position="after">
-                <field name="user_id"/>
+                <field name="jefe_department_id" options="{'no_create_edit': True, 'no_open': True}" />
+                <field name="coordinador_department_id" options="{'no_create_edit': True, 'no_open': True}" />
             </xpath>
             <div name="button_box" position="inside">
                 <button class="oe_stat_button"
@@ -437,7 +428,7 @@
                     name="%(action_hr_job_applications)d"
                     context="{'default_user_id': user_id}"
                     type="action">
-                    <field name="application_count" widget="statinfo" string="Applications"/>
+                    <field name="application_count" widget="statinfo" string="Solicitudes"/>
                 </button>
                 <button class="oe_stat_button"
                     icon="fa-users"
@@ -449,15 +440,15 @@
                     icon="fa-book"
                     name="action_get_attachment_tree_view"
                     type="object">
-                    <field name="documents_count" widget="statinfo" string="Documents"/>
-                </button>
+                    <field name="documents_count" widget="statinfo" string="Documentos"/>
+                </button><!--
                 <button class="oe_stat_button" type="action"
                     name="%(action_hr_job_sources)d" icon="fa-share"
                     context="{'default_job_id': active_id}">
                     <div class="o_form_field o_stat_info">
                         <span class="o_stat_text">Trackers</span>
                     </div>
-                </button>
+                </button> -->
             </div>
         </field>
     </record>
@@ -507,12 +498,6 @@
         <field name="context">{}</field>
         <field name="help" type="html">
           <p>
-            Odoo helps you track applicants in the recruitment
-            process and follow up all operations: meetings, interviews, etc.
-          </p><p>
-            Applicants and their attached CV are created automatically when an email is sent.
-            If you install the document management modules, all resumes are indexed automatically, 
-            so that you can easily search through their content.
           </p>
         </field>
     </record>
@@ -611,10 +596,10 @@
         <field name="name">hr.recruitment.stage.tree</field>
         <field name="model">hr.recruitment.stage</field>
         <field name="arch" type="xml">
-            <tree string="Stages">
+            <tree string="Estados">
                 <field name="sequence" widget="handle"/>
-                <field name="name"/>
-                <field name="fold"/>
+                <field name="name" string="Nombre" />
+                <field name="fold" invisible="1"/>
             </tree>
         </field>
     </record>
@@ -644,7 +629,7 @@
 
     <!-- Stage Action -->
     <record id="hr_recruitment_stage_act" model="ir.actions.act_window">
-        <field name="name">Stages</field>
+        <field name="name">Estados</field>
         <field name="res_model">hr.recruitment.stage</field>
         <field name="view_type">form</field>
         <field name="view_id" ref="hr_recruitment_stage_tree"/>
@@ -660,7 +645,7 @@
 
     <menuitem
         id="menu_hr_recruitment_stage"
-        name="Stages"
+        name="Estados"
         parent="menu_hr_recruitment_configuration"
         action="hr_recruitment_stage_act"
         sequence="1"/>

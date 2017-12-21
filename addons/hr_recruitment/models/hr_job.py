@@ -19,13 +19,16 @@ class Job(models.Model):
     manager_id = fields.Many2one(
         'hr.employee', related='department_id.manager_id', string="Department Manager",
         readonly=True, store=True)
-    user_id = fields.Many2one('res.users', "Recruitment Responsible", track_visibility='onchange')
+    user_id = fields.Many2one('res.users', "Personal administrativo", track_visibility='onchange')
     document_ids = fields.One2many('ir.attachment', compute='_compute_document_ids', string="Applications")
     documents_count = fields.Integer(compute='_compute_document_ids', string="Documentos")
     alias_id = fields.Many2one(
         'mail.alias', "Alias", ondelete="restrict", required=True,
         help="Email alias for this job position. New emails will automatically create new applicants for this job position.")
     color = fields.Integer("Color Index")
+    jefe_department_id = fields.Many2one('res.users', "Jefe de Departamento", track_visibility='onchange')
+    coordinador_department_id = fields.Many2one('res.users', "Coordinador de Departamento", track_visibility='onchange')
+    
     #topic = fields.One2many('project.task', 'depart_ids', string='Temas')
 
     def _compute_document_ids(self):

@@ -8,10 +8,10 @@
             <field name="arch" type="xml">
                 <!-- add state field in header -->
                 <xpath expr="//header" position="inside">
-                    <button string="Send Reset Password Instructions"
+                    <button string="Enviar instrucciones para cambiar password"
                                 type="object" name="action_reset_password"
                                 attrs="{'invisible': [('state', '!=', 'active')]}"/>
-                    <button string="Send an Invitation Email"
+                    <button string="Enviar invitación"
                                 type="object" name="action_reset_password" context="{'create_user': 1}"
                                 attrs="{'invisible': [('state', '!=', 'new')]}"/>
                     <field name="state" widget="statusbar"/>

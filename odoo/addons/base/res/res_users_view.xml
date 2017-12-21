@@ -4,15 +4,15 @@
 
 		<!-- change password wizard -->
 		<record id="change_password_wizard_view" model="ir.ui.view">
-			<field name="name">Change Password</field>
+			<field name="name">Cambiar password</field>
 			<field name="model">change.password.wizard</field>
 			<field name="arch" type="xml">
-				<form string="Change Password">
+				<form string="Cambiar password">
 					<field name="user_ids" />
 					<footer>
-						<button string="Change Password" name="change_password_button"
+						<button string="Cambiar password" name="change_password_button"
 							type="object" class="btn-primary" />
-						<button string="Cancel" class="btn-default" special="cancel" />
+						<button string="Cancelar" class="btn-default" special="cancel" />
 					</footer>
 				</form>
 			</field>
@@ -28,7 +28,7 @@
 				</tree>
 			</field>
 		</record>
-		<act_window id="change_password_wizard_action" name="Change Password"
+		<act_window id="change_password_wizard_action" name="Cambiar Password"
 			src_model="res.users" res_model="change.password.wizard" view_type="form"
 			view_mode="form" key2="client_action_multi" target="new"
 			groups="base.group_erp_manager" />
@@ -137,7 +137,7 @@
 			<field name="model">res.users</field>
 			<field name="priority">1</field>
 			<field name="arch" type="xml">
-				<form string="Users">
+				<form string="Usuarios">
 					<sheet>
 						<field name="id" invisible="1" />
 						<div class="oe_form_box_info oe_text_center" style="margin-bottom: 10px"
@@ -148,12 +148,12 @@
 						<field name="image" widget='image' class="oe_avatar"
 							options='{"preview_image": "image_medium"}' />
 						<div class="oe_title">
-							<label for="name" class="oe_edit_only" />
+							<label for="name" string="Nombre" class="oe_edit_only" />
 							<h1>
 								<field name="name" required="1" />
 							</h1>
 							<field name="email" invisible="1" />
-							<label for="login" class="oe_edit_only" string="Email Address" />
+							<label for="login" class="oe_edit_only" string="Email" />
 							<h2>
 								<field name="login" placeholder="email@yourcompany.com" />
 							</h2>
@@ -162,7 +162,7 @@
 								groups="base.group_multi_company" />
 						</div>
 						<group>
-							<label for="groups_id" string="Access Rights"
+							<label for="groups_id" string="Reglas de acceso"
 								attrs="{'invisible': [('id', '>', 0)]}" groups="base.group_no_one" />
 							<div attrs="{'invisible': [('id', '>', 0)]}" groups="base.group_no_one">
 								<field name="groups_id" readonly="1" widget="many2many_tags"
@@ -184,8 +184,8 @@
 			<field name="arch" type="xml">
 				<form string="Users">
 					<header>
-						<button string="Change Password" type="action"
-							name="%(change_password_wizard_action)d" help="Change the user password." />
+						<button string="Cambiar Password" type="action"
+							name="%(change_password_wizard_action)d" help="Cambia el password del usuario." />
 					</header>
 					<sheet>
 						<field name="id" invisible="1" />
@@ -215,7 +215,7 @@
                                         <field name="type_selection" string="Tipo de usuario" widget="radio" />
 						</div>
 						<notebook colspan="4">
-							<page name="access_rights" string="Access Rights">
+							<page name="access_rights" string="Reglas de acceso">
 								<group string="Multi Companies"
 									attrs="{'invisible': [('companies_count', '&lt;=', 1)]}">
 									<field string="Allowed Companies" name="company_ids"
@@ -227,7 +227,7 @@
 								</group>
 								<field name="groups_id" />
 							</page>
-							<page string="Preferences">
+							<page string="Preferences" invisible="1">
 								<group>
 									<group string="Localization" name="preferences">
 										<field name="lang" />
@@ -253,11 +253,11 @@
 			<field name="name">res.users.tree</field>
 			<field name="model">res.users</field>
 			<field name="arch" type="xml">
-				<tree string="Users">
-					<field name="name" />
-					<field name="login" />
-					<field name="lang" />
-					<field name="login_date" />
+				<tree string="Usuarios">
+					<field name="name" string="Nombre" />
+					<field name="login" string="usuario" />
+					<field name="lang" invisible="1" />
+					<field name="login_date" string="Ultima conección" />
 				</tree>
 			</field>
 		</record>
@@ -265,7 +265,7 @@
 			<field name="name">res.users.search</field>
 			<field name="model">res.users</field>
 			<field name="arch" type="xml">
-				<search string="Users">
+				<search string="Usuarios">
 					<field name="name"
 						filter_domain="['|', '|', ('name','ilike',self), ('login','ilike',self), ('email','ilike',self)]"
 						string="User" />
@@ -321,14 +321,14 @@
 			<field name="model">res.users</field>
 			<field eval="18" name="priority" />
 			<field name="arch" type="xml">
-				<form string="Users">
+				<form string="Usuarios">
 					<field name="image" readonly="0" widget='image' class="oe_right oe_avatar"
 						options='{"preview_image": "image_small"}' />
 					<h1>
 						<field name="name" readonly="1" class="oe_inline" />
 					</h1>
 					<button name="preference_change_password" type="object"
-						string="Change password" class="oe_link" />
+						string="Cambiar password" class="oe_link" />
 					<group name="preferences" col="4">
 						<field name="lang" readonly="0" />
 						<field name="tz" widget="timezone_mismatch" options="{'tz_offset_field': 'tz_offset'}"
@@ -351,7 +351,7 @@
 			</field>
 		</record>
 		<record id="action_res_users_my" model="ir.actions.act_window">
-			<field name="name">Change My Preferences</field>
+			<field name="name">Modificar mis preferencias</field>
 			<field name="type">ir.actions.act_window</field>
 			<field name="res_model">res.users</field>
 			<field name="target">new</field>

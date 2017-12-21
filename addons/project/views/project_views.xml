@@ -23,7 +23,7 @@
 				<field name="project_id" />
 				<field name="user_id" />
 				<field name="stage_id" />
-				<filter string="Mis temas" name="my_tasks" domain="[('user_id','=',uid)]" />
+			<!--	<filter string="Mis temas" name="my_tasks" domain="[('user_id','=',uid)]" /> -->
 				<filter string="Unassigned" name="unassigned" domain="[('user_id', '=', False)]" />
 				<separator />
 				<filter string="New" name="draft"
@@ -71,6 +71,19 @@
 		</field>
 	</record>
 
+	<record id="act_project_project_2_project_task_all_2" model="ir.actions.act_window">
+		<field name="name">Temas</field>
+		<field name="res_model">project.task</field>
+		<field name="view_mode">kanban,tree,form,calendar,pivot,graph</field>
+		<field name="context">{}</field>
+		<field name="domain">[]</field>
+		<field name="help" type="html">
+			<p class="oe_view_nocontent_create">
+				Here, you can create new tasks
+			</p>
+		</field>
+	</record>	
+
 	<record id="create_project_evaluation" model="ir.ui.view">
 		<field name="name">project.evaluation.form</field>
 		<field name="model">project.evaluation</field>
@@ -87,24 +100,32 @@
 		<field name="name">project.project.form</field>
 		<field name="model">project.project</field>
 		<field name="arch" type="xml">
-			<form string="Project">
-				<sheet string="Project">
+			<form string="Inscripción">
+				<sheet string="Inscripción">
 					<field name="analytic_account_id" invisible="1" required="0" />
 					<div class="oe_button_box" name="button_box" groups="base.group_user">
+						<!--
 						<button class="oe_stat_button" name="attachment_tree_view"
 							type="object" icon="fa-files-o">
 							<field string="Documents" name="doc_count" widget="statinfo" />
-						</button>
+						</button> 
 						<button class="oe_stat_button" type="action"
 							attrs="{'invisible':[('use_tasks','=', False)]}" name="%(act_project_project_2_project_task_all)d"
 							icon="fa-tasks">
-							<field string="Tasks" name="task_count" widget="statinfo"
+							<field name="task_count" widget="statinfo"
 								options="{'label_field': 'label_tasks'}" />
+						</button> -->
+						<button type="object" class="oe_stat_button" id="dinvoice_button"
+								icon="fa-pencil-square-o" name="show_topic_for_user">
+								<div class="o_form_field o_stat_info">
+									<span class="o_stat_text">Temas</span>
+								</div>
 						</button>
+							
 						<button name="toggle_active" type="object"
 							confirm="(Un)archiving a project automatically (un)archives its tasks and issues. Do you want to proceed?"
 							class="oe_stat_button" icon="fa-archive">
-							<field name="active" widget="boolean_button" options='{"terminology": "archive"}' />
+							<field name="active" string="Activo" widget="boolean_button" options='{"terminology": "archive"}' /> 
 						</button>
 					</div>
 					<div class="oe_title">
@@ -114,20 +135,20 @@
 						<div name="options_active" class="oe_edit_only">
 							<div>
 								<field name="use_tasks" class="oe_inline" />
-								<label for="use_tasks" class="oe_inline" string="Tasks" />
+								<label for="use_tasks" class="oe_inline" string="Todos" />
 								<span attrs="{'invisible':[('use_tasks', '=', False)]}">as </span>
 								<field name="label_tasks" class="oe_inline oe_input_align"
 									attrs="{'invisible': [('use_tasks', '=', False)]}" />
-							</div>
+							</div> 
 						</div>
 					</div>
 					<notebook>
-						<page string="Settings">
+						<page string="Settings" invisible="1">
 							<group>
 								<field name="user_id" string="Project Manager"
-									attrs="{'readonly':[('active','=',False)]}" />
-								<field name="privacy_visibility" widget="radio" />
-								<field name="partner_id" string="Customer" />
+									attrs="{'readonly':[('active','=',False)]}" invisible="1"/>
+								<field name="privacy_visibility" widget="radio" invisible="1"/>
+								<field name="partner_id" string="Customer" invisible="1"/>
 							</group>
 							<group name="misc">
 								<group string="Configuration" groups="base.group_no_one">
@@ -138,7 +159,7 @@
 								</group>
 							</group>
 						</page>
-						<page string="Evaluaciones">
+						<page string="Evaluaciones" invisible="1">
 							<field name="evaluation_ids">
 								<tree string="Registered sessions">
 									<field name="name" />
@@ -146,7 +167,7 @@
 							</field>
 						</page>
 
-						<page string="Emails" attrs="{'invisible': [('alias_domain', '=', False)]}">
+						<page string="Emails" attrs="{'invisible': [('alias_domain', '=', False)]}"  invisible="1">
 							<group name="group_alias">
 								<label for="alias_name" string="Email Alias" />
 								<div name="alias_def">
@@ -207,12 +228,12 @@
 		<field name="arch" type="xml">
 			<tree decoration-bf="message_needaction==True" decoration-muted="active == False"
 				string="Inscripción">
-				<field name="sequence" widget="handle" />
+			<!--	<field name="sequence" widget="handle" /> -->
 				<field name="message_needaction" invisible="1" />
 				<field name="active" invisible="1" />
-				<field name="name" string="Project Name" />
-				<field name="user_id" string="Project Manager" />
-				<field name="partner_id" string="Contact" />
+				<field name="name" string="Departamento" />
+				<field name="user_id" string="Jefe del departamento" />
+				<field name="partner_id" string="Contacto" />
 			</tree>
 		</field>
 	</record>
@@ -221,7 +242,7 @@
 		<field name="name">project.project.view.form.simplified</field>
 		<field name="model">project.project</field>
 		<field name="arch" type="xml">
-			<form string="Project">
+			<form string="Inscripción">
 				<sheet>
 					<group>
 						<group>
@@ -401,6 +422,20 @@
 		</field>
 	</record>
 
+
+	<record id="open_view_project_all" model="ir.actions.act_window">
+		<field name="name">Departamentos</field>
+		<field name="res_model">project.project</field>
+		<field name="view_type">form</field>
+		<field name="domain">[]</field>
+		<field name="view_mode">tree,form</field>
+		<field name="context">{}</field>
+		<field name="help" type="html">
+			<p class="oe_view_nocontent_create">
+				Departamentos.
+			</p>
+		</field>
+	</record>
 	<!-- Task -->
 	<record id="view_task_form2" model="ir.ui.view">
 		<field name="name">project.task.form</field>
@@ -696,8 +731,8 @@
 		<field name="name">Temas</field>
 		<field name="res_model">project.task</field>
 		<field name="view_mode">kanban,tree,form,calendar,pivot,graph</field>
-		<field name="context">{'search_default_my_tasks': 1}</field>
-		<field name="search_view_id" ref="view_task_search_form" />
+<!--		<field name="context">{'search_default_user_id': uid}</field>
+		<field name="search_view_id" ref="view_task_search_form" /> -->
 		<field name="help" type="html">
 			<p>
 				Odoo's project management allows you to manage the pipeline of
@@ -708,6 +743,7 @@
 			</p>
 		</field>
 	</record>
+
 	<record id="open_view_task_list_kanban" model="ir.actions.act_window.view">
 		<field name="sequence" eval="0" />
 		<field name="view_mode">kanban</field>
@@ -721,6 +757,9 @@
 
 	<menuitem action="action_view_task" id="menu_action_view_task"
 		parent="project.menu_project_management" sequence="5" />
+
+	<menuitem action="open_view_project_all_config" id="menu_action_view_department"
+		parent="project.menu_project_management" name="Departamentos" sequence="4" />
 
 	<record id="action_view_task_overpassed_draft" model="ir.actions.act_window">
 		<field name="name">Overpassed Tasks</field>
@@ -856,11 +895,11 @@
 
 	<menuitem id="menu_tasks_config" name="GTD" parent="menu_project_config"
 		sequence="2" />
-
+<!--
 	<menuitem action="open_task_type_form" id="menu_project_config_project"
-		name="Stages" parent="menu_project_config" sequence="3"
+		name="Estados" parent="menu_project_config" sequence="3"
 		groups="group_project_manager" />
-
+-->
 	<menuitem action="open_view_project_all" id="menu_projects"
 		name="Principal" parent="menu_main_pm" sequence="1" />
 	<menuitem action="open_view_project_all_config" id="menu_projects_config"
@@ -908,11 +947,12 @@
 		parent="menu_project_config" groups="base.group_no_one" />
 
 	<!-- Reporting menus -->
+	<!--
 	<menuitem id="menu_project_report" name="Reports"
 		groups="project.group_project_manager" parent="menu_main_pm" sequence="99" />
-
+	
 	<menuitem id="menu_project_report_task_analysis" name="Tasks Analysis"
 		action="project.action_project_task_user_tree" parent="menu_project_report"
-		sequence="10" />
+		sequence="10" />-->
 
 </odoo>

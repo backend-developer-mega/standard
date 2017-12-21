@@ -190,7 +190,7 @@ class Users(models.Model):
 
     partner_id = fields.Many2one('res.partner', required=True, ondelete='restrict', auto_join=True,
         string='Related Partner', help='Partner-related data of the user')
-    login = fields.Char(required=True, help="Used to log into the system")
+    login = fields.Char(required=True, string='Email',  help="Used to log into the system")
     password = fields.Char(default='', invisible=True, copy=False,
         help="Keep empty if you don't want the user to be able to connect on the system.")
     new_password = fields.Char(string='Set Password',
@@ -226,7 +226,7 @@ class Users(models.Model):
 
     # overridden inherited fields to bypass access rights, in case you have
     # access to the user but not its corresponding partner
-    name = fields.Char(related='partner_id.name', inherited=True)
+    name = fields.Char(related='partner_id.name', string='Nombre', inherited=True)
     email = fields.Char(related='partner_id.email', inherited=True)
 
     _sql_constraints = [
@@ -709,7 +709,7 @@ class GroupsView(models.Model):
         if view and view.exists() and view._name == 'ir.ui.view':
             group_no_one = view.env.ref('base.group_no_one')
             xml1, xml2 = [], []
-            xml1.append(E.separator(string=_('Application'), colspan="2"))
+            xml1.append(E.separator(string=_('Operaciones'), colspan="2"))
             for app, kind, gs in self.get_groups_by_application():
                 # hide groups in categories 'Hidden' and 'Extra' (except for group_no_one)
                 attrs = {}
@@ -932,9 +932,9 @@ class ChangePasswordUser(models.TransientModel):
     _description = 'Change Password Wizard User'
 
     wizard_id = fields.Many2one('change.password.wizard', string='Wizard', required=True)
-    user_id = fields.Many2one('res.users', string='User', required=True, ondelete='cascade')
-    user_login = fields.Char(string='User Login', readonly=True)
-    new_passwd = fields.Char(string='New Password', default='')
+    user_id = fields.Many2one('res.users', string='Usuario', required=True, ondelete='cascade')
+    user_login = fields.Char(string='Usuario', readonly=True)
+    new_passwd = fields.Char(string='Nuevo password', default='')
 
     @api.multi
     def change_password_button(self):

@@ -10,10 +10,10 @@
                     <field name="user_check_tick" invisible="1"/>
                 </field>
                 <xpath expr="//form/sheet" position="before">
-                    <header>
+                    <header><!--
                         <button name="create_user" string="Create User" type="object" class="oe_highlight"
                                 attrs="{'invisible':[('user_check_tick','=',True)]}"/>
-                    </header>
+                 -->   </header>
                 </xpath>
                 <field name="work_email" position="attributes">
                     <attribute name="required">1</attribute>

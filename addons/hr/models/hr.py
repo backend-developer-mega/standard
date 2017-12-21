@@ -47,8 +47,8 @@ class Job(models.Model):
     department_id = fields.Many2one('hr.department', string='Department')
     company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.user.company_id)
     state = fields.Selection([
-        ('recruit', 'Recruitment in Progress'),
-        ('open', 'Not Recruiting')
+        ('recruit', 'Inscripción abierta'),
+        ('open', 'Inscripción cerrada')
     ], string='Status', readonly=True, required=True, track_visibility='always', copy=False, default='recruit', help="Set whether the recruitment process is open or closed for this job position.")
 
     _sql_constraints = [
@@ -115,6 +115,8 @@ class Employee(models.Model):
     year_out = fields.Char()
     curriculum = fields.Char()
     valuation_units = fields.Char()
+    user_uid = fields.Char(related='user_id.login', store=True)
+
     # we need a related field in order to be able to sort the employee by name
     name_related = fields.Char(related='resource_id.name', string="Resource Name", readonly=True, store=True)
     country_id = fields.Many2one('res.country', string='Nationality (Country)')
@@ -154,6 +156,7 @@ class Employee(models.Model):
     color = fields.Integer('Color Index', default=0)
     city = fields.Char(related='address_id.city')
     login = fields.Char(related='user_id.login', readonly=True)
+    #user_id = fields.Char(related='user_id.id', readonly=True)
     last_login = fields.Datetime(related='user_id.login_date', string='Latest Connection', readonly=True)
 
     # image: all image fields are base64 encoded and PIL-supported
