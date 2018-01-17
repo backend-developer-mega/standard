@@ -6,6 +6,7 @@
             <t t-set="body_classname" t-value="'o_connected_user' if env['ir.ui.view'].user_has_groups('base.group_user') else None"/>
         </xpath>
         <xpath expr="//div[@id='wrapwrap']" position="before">
+            <!--
             <nav groups="base.group_user" t-if="website and menu_data" id="oe_main_menu_navbar" class="o_main_navbar">
                 <ul id="oe_applications">
                     <li class="dropdown active">
@@ -31,7 +32,9 @@
                 <div class="o_menu_brand">Website</div>
 
                 <ul class="o_menu_sections" groups="website.group_website_designer">
+                    -->
                     <!-- Content -->
+                    <!--
                     <li class="dropdown content" t-if="editable">
                         <a id="content-menu-button" class="dropdown-toggle waves" data-toggle="dropdown" href="#">Content</a>
                         <ul class="dropdown-menu oe_content_menu" role="menu">
@@ -42,8 +45,9 @@
                             <li t-if="deletable"><a href="#" data-action="rename_page">Rename Page</a></li>
                             <li t-if="deletable"><a href="#" data-action="delete_page">Delete Page</a></li>
                         </ul>
-                    </li>
+                    </li> -->
                     <!-- Customize -->
+                    <!--
                     <li class="dropdown" id="customize-menu">
                         <a class="dropdown-toggle waves" data-toggle="dropdown" href="#" id="customize-menu-button">Customize</a>
                         <ul class="dropdown-menu" role="menu">
@@ -53,7 +57,9 @@
                             <li class="divider"/>
                         </ul>
                     </li>
+                    -->
                     <!-- Promote -->
+                    <!--
                     <li class="dropdown">
                         <a class="dropdown-toggle waves" data-toggle="dropdown" href="#" id="promote-menu-button">Promote</a>
                         <ul class="dropdown-menu oe_promote_menu" role="menu">
@@ -63,11 +69,15 @@
                 </ul>
 
                 <ul class="o_menu_systray hidden-xs" groups="website.group_website_publisher">
+                -->
                     <!-- Mobile preview -->
+                    <!--
                     <li class="o_mobile_preview">
                         <a data-action="show-mobile-preview" href="#"><span title="Mobile preview" class="fa fa-mobile"/></a>
                     </li>
+                    -->
                     <!-- Page Edition -->
+                    <!--
                     <li>
                         <a data-action="new_page" href="#" data-toggle="modal" data-target="#o_website_add_page_modal"><span class="fa fa-plus"/>New</a>
                     </li>
@@ -81,7 +91,7 @@
                         <a data-action="edit_master" href="#">or Edit Master</a>
                     </li>
                 </ul>
-            </nav>
+            </nav> -->
         </xpath>
 
         <!-- Add new page/content modal -->

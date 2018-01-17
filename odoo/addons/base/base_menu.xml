@@ -1,22 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
       <!-- Top menu item -->
-          <menuitem id="menu_board_root" name="Dashboards" sequence="305" web_icon="base,static/description/board.png" groups="base.group_user"/> 
-          <menuitem id="menu_reporting_dashboard" name="Dashboards" parent="menu_board_root" sequence="0"/>
+          <menuitem id="menu_board_root" name="Indicaciones" sequence="305" web_icon="base,static/description/board.png" groups="base.group_user"/> 
+          <menuitem id="menu_reporting_dashboard" name="Dashboards" parent="menu_board_root" sequence="1000"/>
           <menuitem id="menu_reporting_config" name="Configuration" parent="menu_board_root" sequence="100" groups="base.group_system"/> 
 
       <!-- Top menu item -->
-      <menuitem name="Usuarios"
-          id="menu_administration"
+      <menuitem name="Usuarios 3"
+          id="menu_administration2"
           web_icon="base,static/description/settings.png"
           sequence="500"
-          groups="base.group_erp_manager"/>
-          <menuitem id="menu_management" name="Volver" sequence="310" web_icon="base,static/description/modules.png" groups="base.group_system"/>
-          <menuitem id="menu_administration_shortcut" parent="menu_administration" name="Custom Shortcuts" sequence="50"/>
-          <menuitem id="menu_users" name="Users" parent="menu_administration" sequence="0"/>
-          <menuitem id="menu_translation" name="menu" parent="menu_administration" sequence="7"/> 
-              <menuitem id="menu_translation_app" name="Application Terms" parent="menu_translation" sequence="4" groups="base.group_no_one"/>
-              <menuitem id="menu_translation_export" name="Import / Export" parent="menu_translation" sequence="3" groups="base.group_no_one"/> 
+          groups="base.group_erp_manager"/> <!--
+          <menuitem id="menu_management" name="Volver" sequence="310" web_icon="base,static/description/modules.png" groups="base.group_system"/> -->
+          <!--
+          <menuitem id="menu_administration_shortcut" parent="menu_administration" name="Custom Shortcuts" sequence="50"/>-->
+          <menuitem id="menu_administration" name="Usuarios" sequence="510"
+             web_icon="base,static/description/settings.png"
+             groups="base.group_erp_manager" />
+          <!--
+          <menuitem id="menu_translation" name="menu" parent="menu_administration" sequence="7"/> --> 
+              <menuitem id="menu_translation_app" name="Application Terms" parent="menu_administration2" sequence="4" groups="base.group_no_one"/>
+              
+              <menuitem id="menu_translation_export" name="Import / Export" parent="menu_administration2" sequence="3" groups="base.group_no_one"/> 
+          
+          
           <menuitem id="menu_custom" name="Technical" parent="menu_administration" sequence="110" groups="base.group_no_one"/>
               <menuitem id="next_id_2" name="User Interface" parent="menu_custom"/>
               <menuitem id="menu_email" name="Email" parent="menu_custom" sequence="1"/>
@@ -24,6 +31,7 @@
               <menuitem id="menu_automation" name="Automation" parent="base.menu_custom"/>
               <menuitem id="menu_security" name="Security" parent="menu_custom" sequence="25"/>
               <menuitem id="menu_ir_property" name="Parameters" parent="menu_custom" sequence="24"/>
+          
 
           <menuitem id="base.menu_tests" name="Tests" sequence="1000000" web_icon="test_exceptions,static/description/icon.png"/>
 

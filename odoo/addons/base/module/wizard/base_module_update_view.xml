@@ -38,7 +38,7 @@
             <field name="view_mode">form</field>
             <field name="target">new</field>
         </record>
-
+<!--
         <menuitem
             name="Update Apps List"
             action="action_view_base_module_update"
@@ -47,6 +47,6 @@
             parent="menu_management"
             sequence="40"
             icon="fa-exchange"/>
-
+-->
     </data>
 </odoo>

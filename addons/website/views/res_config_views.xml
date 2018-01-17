@@ -150,7 +150,7 @@
             <field name="name">Website Dashboard</field>
             <field name="tag">backend_dashboard</field>
         </record>
-
+<!--
         <menuitem id="menu_website_configuration" sequence="215" name="Website Admin"
             groups="website.group_website_designer" web_icon="website,static/description/icon_admin.png"/>
 
@@ -159,5 +159,5 @@
         <menuitem id="menu_website_global_configuration" parent="menu_website_configuration"
             sequence="100" name="Configuration" groups="base.group_system"/>
         <menuitem id="menu_website_website_settings" parent="menu_website_global_configuration" name="Settings" action="action_website_configuration"/>
-
+-->
 </odoo>
