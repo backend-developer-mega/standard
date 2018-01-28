@@ -1,6 +1,6 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
-from odoo import api, fields, models
+from odoo import api, fields, models, _
 
 
 class Job(models.Model):
@@ -28,8 +28,28 @@ class Job(models.Model):
     color = fields.Integer("Color Index")
     jefe_department_id = fields.Many2one('res.users', "Jefe de Departamento", track_visibility='onchange')
     coordinador_department_id = fields.Many2one('res.users', "Coordinador de Departamento", track_visibility='onchange')
-    
     #topic = fields.One2many('project.task', 'depart_ids', string='Temas')
+
+    @api.multi
+    def activate_sample_project(self):
+        value_domain = [('id', '=', self.env.user.department_id.id)]
+        if self.env.uid == 1:
+            value_domain = [] 
+        return {
+            'name': _('Departamentos'),
+            'view_type': 'form',
+            'view_mode': 'kanban,form',
+            'res_model': 'hr.job',
+            'view_id': False,
+            'type': 'ir.actions.act_window',
+            'domain': value_domain,
+#            'domain': [('id', 'in', [x.id for x in self.invoice_ids])],
+        }
+        
+    #@api.model
+    #def activate_sample_project(self):
+    #    action_data = 1
+    #    return action_data
 
     def _compute_document_ids(self):
         applicants = self.mapped('application_ids').filtered(lambda self: not self.emp_id)

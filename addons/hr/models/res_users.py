@@ -8,7 +8,7 @@ from odoo import SUPERUSER_ID
 class User(models.Model):
 
     _inherit = ['res.users']
-
+    
     employee_ids = fields.One2many('hr.employee', 'user_id', string='Related employees')
 
     @api.multi

@@ -91,6 +91,18 @@ class Applicant(models.Model):
     _inherit = ['mail.thread', 'ir.needaction_mixin', 'utm.mixin']
     _mail_mass_mailing = _('Applicants')
 
+    @api.multi
+    def filter_students_applicant(self):
+        return {
+            'name': _('Solicitudes'),
+            'view_mode': 'kanban,tree,form,pivot,graph,calendar,pivot',
+            'res_model': 'hr.applicant',
+            'view_id': False,
+            'type': 'ir.actions.act_window',
+            'domain': [('job_id.id','=',self.env.uid.department_id.id)],
+        }
+    
+
     def _default_stage_id(self):
         if self._context.get('default_job_id'):
             ids = self.env['hr.recruitment.stage'].search([
@@ -112,7 +124,7 @@ class Applicant(models.Model):
             company_id = self.env['res.company']._company_default_get('hr.applicant')
         return company_id
 
-    name = fields.Char("Subject / Application Name", required=True)
+    name = fields.Char("Nombre del solicitante", required=True)
     cycle = fields.Char("Ciclo")
     academic_year = fields.Char("Año académico")
     carnet = fields.Char()
@@ -201,6 +213,10 @@ class Applicant(models.Model):
 
         stage_ids = stages._search(search_domain, order=order, access_rights_uid=SUPERUSER_ID)
         return stages.browse(stage_ids)
+
+    @api.onchange('partner_name')
+    def onchange_partner_name(self):
+        self.name = self.partner_name
 
     @api.onchange('job_id')
     def onchange_job_id(self):

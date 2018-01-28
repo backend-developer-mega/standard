@@ -27,6 +27,9 @@
                         <nav class="header-nav-top pull-right">
 
                             <div id="social">
+                                <a href="http://localhost:8069/web#"
+                                     style="color: #FFFFFF"><strong>--> Ir a la plataforma   </strong>
+                                </a>
                                 <a href="https://www.facebook.com/UESoficial.SV/"
                                     target="_blank">
                                     <i class="fa fa-facebook fa-1x img-circle"></i>

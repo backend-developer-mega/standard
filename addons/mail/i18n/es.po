@@ -976,7 +976,7 @@ msgstr ""
 #. module: mail
 #: code:addons/mail/models/mail_thread.py:356
 #, python-format
-msgid "Click here to add new %s"
+msgid "Pulse aquí para añadir un nuevo %s"
 msgstr "Pulse aquí para añadir un nuevo %s"
 
 #. module: mail

@@ -30,8 +30,10 @@ class ResUsersInherit(models.Model):
 
     @api.multi
     def create_user(self):
-        user_id = self.env['res.users'].create({'name': self.name,'login': self.work_email, 'email': self.work_email,'password': self.work_phone})
-        user_id.action_reset_password() 
+        user_id = self.env['res.users'].create({'name': self.name,'login': self.work_email, 
+            'email': self.work_email,'password': self.work_phone, 'emp_id': self.id,
+            'department_id': self.job_id.id,'career_id': self.department_id.id })
+        #user_id.action_reset_password() quitar comentario 
         #user_id = self.env['res.users'].create({'name': self.name,'login': self.work_email, 'email': self.work_email}).action_reset_password()
         self.address_home_id = user_id.partner_id.id
         self.user_check_tick = True

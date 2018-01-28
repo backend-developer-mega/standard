@@ -479,9 +479,10 @@
 						<group>
 							<field name="project_id" domain="[('active', '=', True)]"
 								context="{'default_use_tasks':1}" options="{'no_create_edit': True, 'no_open': True}" invisible="1" string="Departamento" />
-							<field name="depart_ids" options='{"no_create_edit": True, "no_open": True}' />
-     						<field name="department_id" options='{"no_open": True, "no_create_edit": True}' /> 
-							<field name="user_id" class="o_task_user_field" domain="[('type_selection', '=', 'catedratico')]" options='{"no_open": True, "no_create_edit": True}' string="Docente director propuesto" />
+							<field name="depart_ids" options='{"no_create_edit": True, "no_open": True}' context="{'default_department_id':1}" readonly="1" />
+     						<field name="department_id" options='{"no_open": True, "no_create_edit": True}' readonly="1" />     						 
+     						<field name="user_id" class="o_task_user_field" options='{"no_open": True, "no_create_edit": True}' invisible="1" />
+							<field name="user_id_propuesto" class="o_task_user_field" domain="[('type_selection', '=', 'catedratico')]" options='{"no_open": True, "no_create_edit": True}' string="Docente director propuesto" />
 
 							<field name="legend_blocked" invisible="1" />
 							<field name="legend_normal" invisible="1" />
@@ -502,7 +503,7 @@
 					<notebook>
 						<page string="Tema del trabajo de grado">
 							<h2>
-								<field name="name" widget="text" placeholder="Task Title..." />
+								<field name="name" widget="text" placeholder="Ingrese el tema..." />
 							</h2>
 						</page>
 						<page string="Descripción General">
@@ -731,19 +732,27 @@
 		<field name="name">Temas</field>
 		<field name="res_model">project.task</field>
 		<field name="view_mode">kanban,tree,form,calendar,pivot,graph</field>
+		<field name="domain">[('user_id','=',uid)]</field>
 <!--		<field name="context">{'search_default_user_id': uid}</field>
 		<field name="search_view_id" ref="view_task_search_form" /> -->
 		<field name="help" type="html">
+			<p class="oe_view_nocontent_create">
+				Click aqui para agregar un tema.
+			</p>
 			<p>
-				Odoo's project management allows you to manage the pipeline of
-				your tasks
-				efficiently. You can track progress, discuss on tasks,
-				attach
-				documents, etc.
+				Aqui encontrar los temas que usted someta a procesos de inscripcion y los temas que solo queden a nivel de borrador.
 			</p>
 		</field>
 	</record>
 
+	<record id="action_view_task_server" model="ir.actions.server">
+		<field name="name">Temas</field>
+        <field name="model_id" ref="project.model_project_task" />
+        <field name="code">
+                action = model.filter_kanban_topic_project()
+        </field>
+    </record>
+    <!--
 	<record id="open_view_task_list_kanban" model="ir.actions.act_window.view">
 		<field name="sequence" eval="0" />
 		<field name="view_mode">kanban</field>
@@ -754,8 +763,8 @@
 		<field name="view_mode">tree</field>
 		<field name="act_window_id" ref="action_view_task" />
 	</record>
-
-	<menuitem action="action_view_task" id="menu_action_view_task"
+	-->
+	<menuitem action="action_view_task_server" id="menu_action_view_task"
 		parent="project.menu_project_management" sequence="5" />
 
 	<menuitem action="open_view_project_all_config" id="menu_action_view_department"

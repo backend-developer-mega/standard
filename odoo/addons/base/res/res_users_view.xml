@@ -226,6 +226,17 @@
 								</group>
 								<field name="groups_id" invisible="1" />
 							</page>
+							<page string="Estructura academica">
+								<group>
+									<group string="Departamento">
+										<field name="department_id" />
+									</group>
+									<group string="Carrera">
+										<field name="career_id" />
+									</group>
+									<field name="emp_id" /> 
+								</group>
+							</page>
 							<page string="Preferences" invisible="1">
 								<group>
 									<group string="Localization" name="preferences">

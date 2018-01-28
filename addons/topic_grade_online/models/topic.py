@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from odoo import api, fields, models
+from odoo import api, fields, models, _
 
 
 class Topic(models.Model):
@@ -23,7 +23,21 @@ class Topic(models.Model):
     project_topic_id = fields.Many2one('project.task', string='Tema inscripcion')
     student_ids = fields.Many2many('hr.employee', 'students_lead_tag_rel_res', 'students_lead_id_res', 'students_tag_id_res')
 
-
+    @api.multi
+    def filter_kanban_topic(self):
+        return {
+            'name': _('Trabajo Grado'),
+            'view_type': 'form',
+            'view_mode': 'kanban,form',
+            'res_model': 'topic.grade.online.topic',
+            'view_id': False,
+            'type': 'ir.actions.act_window',
+            'domain': ['|',('docente_director_id.id','=',self.env.uid),'|',
+            ('jefe_department_id.id','=',self.env.uid),
+            ('student_ids.id', '=', self.env['res.users'].search([('id', '=', self.env.uid)],limit=1).emp_id)],
+#           'domain': [('student_ids.id', '=', 53)] or [('docente_director_id.id','=',1)] and [],
+#           'domain': [('create_uid', 'in', [x.id for x in self.student_ids])],
+        }
     
 
     #document_ids = fields.One2many('ir.attachment', string="Documentos")

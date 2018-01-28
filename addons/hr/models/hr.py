@@ -116,7 +116,7 @@ class Employee(models.Model):
     curriculum = fields.Char()
     valuation_units = fields.Char()
     user_uid = fields.Char(related='user_id.login', store=True)
-
+    
     # we need a related field in order to be able to sort the employee by name
     name_related = fields.Char(related='resource_id.name', string="Resource Name", readonly=True, store=True)
     country_id = fields.Many2one('res.country', string='Nationality (Country)')

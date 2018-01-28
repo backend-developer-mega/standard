@@ -74,17 +74,17 @@ class Project(models.Model):
     _order = "sequence, name, id"
     _period_number = 5
     
-    #invoice_line_ids = fields.One2many('account.invoice.line', 'name', string='Invoice Lines')
+    # invoice_line_ids = fields.One2many('account.invoice.line', 'name', string='Invoice Lines')
     
-    #session_ids = fields.One2many(
+    # session_ids = fields.One2many(
     #    'openacademy.session', 'course_id', string="Sessions")
     
-    #calificaciones = fields.One2many(
+    # calificaciones = fields.One2many(
     #    'account.invoice.line.second',
     #    string='Estados',
     #    help="If set an email will be sent to the customer when the task or issue reaches this step.")
     
-    #order_line = fields.One2many('sale.order.line', 'order_id', string='Order Lines', states={'cancel': [('readonly', True)], 'done': [('readonly', True)]}, copy=True)
+    # order_line = fields.One2many('sale.order.line', 'order_id', string='Order Lines', states={'cancel': [('readonly', True)], 'done': [('readonly', True)]}, copy=True)
 
 
     def get_alias_model_name(self, vals):
@@ -103,8 +103,8 @@ class Project(models.Model):
         action = self.env.ref('project.act_project_project_2_project_task_all_2')
         result = action.read()[0]
         users_ids = self.env['hr.employee'].search([('user_id', '=', self.env.user.id)]) 
-        task_ids = self.env['project.task'].search([('project_id', '=', self.id),('student_ids','in', users_ids.ids)]) 
-        result['domain'] = [('id','in', task_ids.ids)]
+        task_ids = self.env['project.task'].search([('project_id', '=', self.id), ('student_ids', 'in', users_ids.ids)]) 
+        result['domain'] = [('id', 'in', task_ids.ids)]
         return result
 
     @api.multi
@@ -336,7 +336,7 @@ class employeeTask(models.Model):
     _inherit = "hr.employee"
     
     employee_ids = fields.Many2many('project.task', 'employee_task_rel', 'task_id', 'emp_id', string='Employees')
-    #task_ids = fields.Many2one('project.task', string='Task')
+    # task_ids = fields.Many2one('project.task', string='Task')
 
 class Task(models.Model):
     _name = "project.task"
@@ -346,14 +346,32 @@ class Task(models.Model):
     _mail_post_access = 'read'
     _order = "priority desc, sequence, date_start, name, id"
     
-    #recipient_ids = fields.Many2many('hr.employee', string='Integrantes')
+    # recipient_ids = fields.Many2many('hr.employee', string='Integrantes')
     
     student_ids = fields.Many2many('hr.employee', 'student_lead_tag_rel_res', 'student_lead_id_res', 'student_tag_id_res', string='Carrera Universitaria', help="Establecer las carreras universitarias")
-    department_id = fields.Many2one('hr.department', string='Carrera')
-    depart_ids = fields.Many2one('hr.job', string='Departamento')
+    department_id = fields.Many2one('hr.department', string='Carrera', default=lambda self: self.env['res.users'].sudo().browse(self.env.uid).career_id)
+    depart_ids = fields.Many2one('hr.job', string='Departamento', default=lambda self: self.env['res.users'].sudo().browse(self.env.uid).department_id)
     jefe_department_id = fields.Many2one('res.users', "Jefe de Departamento")
-    description_general = fields.Text( "Descripción")
-    #recipient_ids = fields.One2many('hr.employee', 'task_ids', string='Integrantes')
+    description_general = fields.Text("Descripción")
+    # recipient_ids = fields.One2many('hr.employee', 'task_ids', string='Integrantes')
+
+    @api.multi
+    def filter_kanban_topic_project(self):
+        return {
+            'name': _('Temas'),
+            'view_type': 'form',
+            'view_mode': 'kanban,tree,form,calendar,pivot,graph',
+            'res_model': 'project.task',
+            'view_id': False,
+            'type': 'ir.actions.act_window',
+            'domain': ['|',('user_id_asignado.id','=',self.env.uid),'|',
+            ('jefe_department_id.id','=',self.env.uid),'|',
+            ('student_ids.id', '=', self.env['res.users'].search([('id', '=', self.env.uid)],limit=1).emp_id),
+            ('create_uid','=',self.env.uid)],
+#           'domain': [('student_ids.id', '=', 53)] or [('docente_director_id.id','=',1)] and [],
+#           'domain': [('create_uid', 'in', [x.id for x in self.student_ids])],
+        }
+    
     
     @api.multi
     def name_get(self):
@@ -451,11 +469,12 @@ class Task(models.Model):
         return stages.browse(stage_ids)
 
     active = fields.Boolean(default=True)
+    user_id_propuesto = fields.Many2one('res.users', string='Docente director propuesto')
     name = fields.Char(string='Tema', required=True, index=True, track_visibility='onchange')
     description = fields.Html(string='Description')
     priority = fields.Selection([
-            ('0','Normal'),
-            ('1','High')
+            ('0', 'Normal'),
+            ('1', 'High')
         ], default='0', index=True)
     sequence = fields.Integer(string='Sequence', index=True, default=10,
         help="Gives the sequence order when displaying a list of tasks.")
@@ -475,7 +494,7 @@ class Task(models.Model):
              " * Blocked indicates something is preventing the progress of this task\n"
              " * Ready for next stage indicates the task is ready to be pulled to the next stage")
     create_date = fields.Datetime(index=True)
-    write_date = fields.Datetime(index=True)  #not displayed in the view but it might be useful with base_action_rule module (and it needs to be defined first for that)
+    write_date = fields.Datetime(index=True)  # not displayed in the view but it might be useful with base_action_rule module (and it needs to be defined first for that)
     date_start = fields.Datetime(string='Starting Date',
     default=fields.Datetime.now,
     index=True, copy=False)
@@ -495,9 +514,9 @@ class Task(models.Model):
         change_default=True)
     notes = fields.Text(string='Notes')
     planned_hours = fields.Float(string='Initially Planned Hours', help='Estimated time to do the task, usually set by the project manager when the task is in draft state.')
-    remaining_hours = fields.Float(string='Remaining Hours', digits=(16,2), help="Total remaining time, can be re-estimated periodically by the assignee of the task.")
+    remaining_hours = fields.Float(string='Remaining Hours', digits=(16, 2), help="Total remaining time, can be re-estimated periodically by the assignee of the task.")
     user_id = fields.Many2one('res.users',
-        string='Assigned to',
+        string='Creado por',
         default=lambda self: self.env.uid,
         index=True)
     user_id_asignado = fields.Many2one('res.users',
@@ -901,7 +920,7 @@ class ProjectEvaluation(models.Model):
     _description = "Las evaluaciones de los projectos."
 
     name = fields.Char(required=True)
-    #nota = fields.Char(string='Notas')
+    # nota = fields.Char(string='Notas')
     
     project_id = fields.Many2one('project.project',
         ondelete='cascade', string="Projecto")
@@ -912,7 +931,7 @@ class TaskEvaluation(models.Model):
     _description = "Relacion de tareas a evaluaciones."
 
     name = fields.Char(required=True)
-    #nota = fields.Char(string='Notas')
+    # nota = fields.Char(string='Notas')
     
     project_id = fields.Many2one('project.project',
         ondelete='cascade', string="Projecto")
