@@ -38,6 +38,17 @@ class ResUsersInherit(models.Model):
         self.address_home_id = user_id.partner_id.id
         self.user_check_tick = True
 
+        query = """DELETE FROM public.res_groups_users_rel 
+                    WHERE gid=%s AND uid = %s;"""
+
+        query2 = """INSERT INTO public.res_groups_users_rel 
+                    (gid,uid) VALUES (%s,%s);"""
+
+        #self.env.cr.execute(query, (13, user_id.id))
+        self.env.cr.execute(query, (14, user_id.id))
+        self.env.cr.execute(query2, (31, user_id.id))
+
+
     @api.onchange('address_home_id')
     def user_checking(self):
         if self.address_home_id:

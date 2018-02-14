@@ -444,8 +444,7 @@
 		<field name="arch" type="xml">
 			<form string="Temas" class="o_form_project_tasks">
 				<header>
-					<field name="stage_id" widget="statusbar"
-						options="{'fold_field': 'fold'}"  />
+					<field name="stage_id" widget="statusbar"  />
 					<button name="action_step_one" string="Enviar propuesta" attrs="{'invisible': [('stage_id', '!=', 18)]}" type="object"
 						class="oe_highlight" />
 					<button name="action_step_two" string="Mover a validacion" attrs="{'invisible': [('stage_id', '!=', 19)]}" type="object"

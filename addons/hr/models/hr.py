@@ -107,6 +107,21 @@ class Employee(models.Model):
         image_path = get_module_resource('hr', 'static/src/img', 'default_image.png')
         return tools.image_resize_image_big(open(image_path, 'rb').read().encode('base64'))
 
+    @api.multi
+    def filter_domain_list(self):
+        value_domain = [('id', '=', self.env.user.emp_id)]
+        if self.env.uid == 1:
+            value_domain = [] 
+        return {
+            'name': _('Estudiantes'),
+            'view_type': 'form',
+            'view_mode': 'kanban,tree,form',
+            'res_model': 'hr.employee',
+            'view_id': False,
+            'type': 'ir.actions.act_window',
+            'domain': value_domain,
+        }
+
 
     cycle = fields.Char("Ciclo")
     academic_year = fields.Char("Año académico")

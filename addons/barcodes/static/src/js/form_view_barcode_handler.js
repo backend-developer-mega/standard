@@ -85,7 +85,7 @@ var FormViewBarcodeHandler = common.AbstractField.extend(BarcodeHandlerMixin, {
                 if (this.last_scanned_barcode) {
                     this.dialog = new Dialog(this, {
                         title: _t('Set quantity'),
-                        buttons: [{text: _t('Select'), classes: 'btn-primary', close: true, click: function () {
+                        buttons: [{text: _t('Seleccionar'), classes: 'btn-primary', close: true, click: function () {
                             var new_qty = this.$content.find('.o_set_qty_input').val();
                             var record = _.find(self._get_records(field), function (record) {
                                 return record.get('product_barcode') === self.last_scanned_barcode;

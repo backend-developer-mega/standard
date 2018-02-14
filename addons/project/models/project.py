@@ -478,9 +478,7 @@ class Task(models.Model):
         ], default='0', index=True)
     sequence = fields.Integer(string='Sequence', index=True, default=10,
         help="Gives the sequence order when displaying a list of tasks.")
-    stage_id = fields.Many2one('project.task.type', string='Estado actual', track_visibility='onchange', index=True,
-        default=_get_default_stage_id, group_expand='_read_group_stage_ids',
-        domain="[('project_ids', '=', project_id)]", copy=False)
+    stage_id = fields.Many2one('project.task.type', string='Estado actual', index=True, copy=False, default=18,store=True)
     tag_ids = fields.Many2many('project.tags', string='Tags', oldname='categ_ids')
     kanban_state = fields.Selection([
             ('normal', 'In Progress'),
@@ -658,7 +656,12 @@ class Task(models.Model):
         # user_id change: update date_assign
         if vals.get('user_id'):
             vals['date_assign'] = fields.Datetime.now()
+            vals['stage_id'] = 18
         task = super(Task, self.with_context(context)).create(vals)
+        #update project_task set stage_id=18 where id=64;
+        #query = """UPDATE public.project_task SET stage_id=%s WHERE id=%s;"""
+        #self.env.cr.execute(query, (18, task.id))
+
         return task
 
     @api.multi

@@ -1020,7 +1020,7 @@ var X2ManyList = ListView.List.extend({
             colspan: columns,
             'class': 'o_form_field_x2many_list_row_add'
         }).append(
-            $('<a>', {href: '#'}).text(_t("Add an item"))
+            $('<a>', {href: '#'}).text(_t("Agregar registro"))
                 .click(function (e) {
                     e.preventDefault();
                     e.stopPropagation();
