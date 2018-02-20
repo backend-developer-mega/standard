@@ -1928,7 +1928,7 @@ var ColumnMany2OneButton = Column.extend({
     _format: function (row_data, options) {
         this.has_value = !!row_data[this.id].value;
         this.icon = this.has_value ? 'fa-circle o_toggle_button_success' : 'fa-circle text-danger';
-        this.string = this.has_value ? _t('View') : _t('Create');
+        this.string = this.has_value ? _t('View') : _t('Nuevo');
         return QWeb.render('Many2OneButton.cell', {
             'widget': this,
             'prefix': session.prefix,

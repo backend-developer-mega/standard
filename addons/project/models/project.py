@@ -348,11 +348,11 @@ class Task(models.Model):
     
     # recipient_ids = fields.Many2many('hr.employee', string='Integrantes')
     
-    student_ids = fields.Many2many('hr.employee', 'student_lead_tag_rel_res', 'student_lead_id_res', 'student_tag_id_res', string='Carrera Universitaria', help="Establecer las carreras universitarias")
+    student_ids = fields.Many2many('hr.employee', 'student_lead_tag_rel_res', 'student_lead_id_res', 'student_tag_id_res', string='Carrera Universitaria', help="Establecer las carreras universitarias", track_visibility='always')
     department_id = fields.Many2one('hr.department', string='Carrera', default=lambda self: self.env['res.users'].sudo().browse(self.env.uid).career_id)
     depart_ids = fields.Many2one('hr.job', string='Departamento', default=lambda self: self.env['res.users'].sudo().browse(self.env.uid).department_id)
     jefe_department_id = fields.Many2one('res.users', "Jefe de Departamento")
-    description_general = fields.Text("Descripción")
+    description_general = fields.Text("Descripción", track_visibility='always')
     # recipient_ids = fields.One2many('hr.employee', 'task_ids', string='Integrantes')
 
     @api.multi
@@ -471,14 +471,14 @@ class Task(models.Model):
     active = fields.Boolean(default=True)
     user_id_propuesto = fields.Many2one('res.users', string='Docente director propuesto')
     name = fields.Char(string='Tema', required=True, index=True, track_visibility='onchange')
-    description = fields.Html(string='Description')
+    description = fields.Html(string='Description', track_visibility='always')
     priority = fields.Selection([
             ('0', 'Normal'),
             ('1', 'High')
         ], default='0', index=True)
     sequence = fields.Integer(string='Sequence', index=True, default=10,
         help="Gives the sequence order when displaying a list of tasks.")
-    stage_id = fields.Many2one('project.task.type', string='Estado actual', index=True, copy=False, default=18,store=True)
+    stage_id = fields.Many2one('project.task.type', string='Estado actual', index=True, copy=False, default=18,store=True, track_visibility='always')
     tag_ids = fields.Many2many('project.tags', string='Tags', oldname='categ_ids')
     kanban_state = fields.Selection([
             ('normal', 'In Progress'),
@@ -518,7 +518,7 @@ class Task(models.Model):
         default=lambda self: self.env.uid,
         index=True)
     user_id_asignado = fields.Many2one('res.users',
-        string='Docente director designado')
+        string='Docente director designado', track_visibility='always')
     user_id_coordi = fields.Many2one('res.users',
         string='Coordinador de Carrera')
     time_grade = fields.Char(string="Tiempo probable de realizacion de trabajo de grado")

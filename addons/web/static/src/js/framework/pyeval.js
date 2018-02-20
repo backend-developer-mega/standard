@@ -406,7 +406,7 @@ datetime.datetime = py.type('datetime', null, {
     }),
     today: py.classmethod.fromJSON(function () {
         var dt_class = py.PY_getAttr(datetime, 'datetime');
-        return py.PY_call(py.PY_getAttr(dt_class, 'now'));
+        return py.PY_call(py.PY_getAttr(dt_class, 'ahora'));
     }),
     utcnow: py.classmethod.fromJSON(function () {
         var d = new Date();

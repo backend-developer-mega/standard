@@ -33,31 +33,31 @@ CalendarView.include({
             local_context: context,
         }).done(function(o) {
             if (o.status === "need_auth") {
-                Dialog.alert(self, _t("You will be redirected to Google to authorize access to your calendar!"), {
+                Dialog.alert(self, _t("¡Serás redirigido a Google para autorizar el acceso a tu calendario!"), {
                     confirm_callback: function() {
                         framework.redirect(o.url);
                     },
-                    title: _t('Redirection'),
+                    title: _t('Redirección'),
                 });
             } else if (o.status === "need_config_from_admin") {
                 if (!_.isUndefined(o.action) && parseInt(o.action)) {
-                    Dialog.confirm(self, _t("The Google Synchronization needs to be configured before you can use it, do you want to do it now?"), {
+                    Dialog.confirm(self, _t("La Sincronización de Google necesita configurarse antes de poder usarla, ¿quieres hacerlo ahora?"), {
                         confirm_callback: function() {
                             self.do_action(o.action);
                         },
-                        title: _t('Configuration'),
+                        title: _t('Configuración'),
                     });
                 } else {
-                    Dialog.alert(self, _t("An administrator needs to configure Google Synchronization before you can use it!"), {
-                        title: _t('Configuration'),
+                    Dialog.alert(self, _t("¡Se necesita configurar la Sincronización de Google antes de poder usarla!"), {
+                        title: _t('Configuración'),
                     });
                 }
             } else if (o.status === "need_refresh") {
                 self.$calendar.fullCalendar('refetchEvents');
             } else if (o.status === "need_reset") {
-                var confirm_text1 = _t("The account you are trying to synchronize (%s) is not the same as the last one used (%s)!");
-                var confirm_text2 = _t("In order to do this, you first need to disconnect all existing events from the old account.");
-                var confirm_text3 = _t("Do you want to do this now?");
+                var confirm_text1 = _t("¡La cuenta que está intentando sincronizar (%s) no es la misma que la última (%s)!");
+                var confirm_text2 = _t("Para hacer esto, primero necesita desconectar todos los eventos existentes de la cuenta anterior.");
+                var confirm_text3 = _t("¿Quieres hacer esto ahora?");
                 var text = _.str.sprintf(confirm_text1 + "\n" + confirm_text2 + "\n\n" + confirm_text3, o.info.new_name, o.info.old_name);
                 Dialog.confirm(self, text, {
                     confirm_callback: function() {
@@ -66,17 +66,17 @@ CalendarView.include({
                             local_context: context,
                         }).done(function(o) {
                             if (o.status === "OK") {
-                                Dialog.alert(self, _t("All events have been disconnected from your previous account. You can now restart the synchronization"), {
-                                    title: _t('Event disconnection success'),
+                                Dialog.alert(self, _t("Todos los eventos han sido desconectados de su cuenta anterior. Ahora puede reiniciar la sincronización"), {
+                                    title: _t('Desconexión de evento éxitoso'),
                                 });
                             } else if (o.status === "KO") {
-                                Dialog.alert(self, _t("An error occured while disconnecting events from your previous account. Please retry or contact your administrator."), {
-                                    title: _t('Event disconnection error'),
+                                Dialog.alert(self, _t("Se produjo un error al desconectar eventos de su cuenta anterior. Vuelva a intentarlo ."), {
+                                    title: _t('Desconexión de evento'),
                                 });
                             } // else NOP
                         });
                     },
-                    title: _t('Accounts'),
+                    title: _t('Cuentas'),
                 });
             }
         }).always(function(o) { self.$google_button.prop('disabled', false); });
@@ -87,7 +87,7 @@ CalendarView.include({
         this.$google_button = $();
         if (this.dataset.model === "calendar.event") {
             return result.then(function() {
-                this.$google_button = $('<button/>', {type: 'button', html: _t("Sync with <b>Google</b>")})
+                this.$google_button = $('<button/>', {type: 'button', html: _t("Sincronizar <b>Google</b>")})
                                     .addClass('o_google_sync_button oe_button btn btn-sm btn-default')
                                     .prepend($('<img/>', {
                                         src: "/google_calendar/static/src/img/calendar_32.png",

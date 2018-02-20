@@ -469,7 +469,7 @@ The urls in the actions list can be generated automatically by calling the
                 if self.state == 'confirmed':
                     app_action = self._notification_link_helper('method',
                                         method='action_cancel')
-                    trip_actions = [{'url': app_action, 'title': _('Cancel')}]
+                    trip_actions = [{'url': app_action, 'title': _('Cancelar')}]
                 
                 new_group = (
                     'group_trip_manager',

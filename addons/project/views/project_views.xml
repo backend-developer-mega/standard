@@ -61,12 +61,10 @@
 		<field name="search_view_id" ref="view_task_search_form" />
 		<field name="help" type="html">
 			<p class="oe_view_nocontent_create">
-				Here, you can create new tasks
+				Aqui, puede hacer propuestas de temas de grado
 			</p>
 			<p>
-				You can now manage your tasks in order to get things done
-				efficiently.
-				Track progress, discuss, attach documents, etc.
+				Puede administrar todas las propuestas de trabajo de grado, que realice, ya que los temas de grado pueden estan en un estado borrador previo a someterce a un proceso de evaluación.
 			</p>
 		</field>
 	</record>
@@ -79,7 +77,7 @@
 		<field name="domain">[]</field>
 		<field name="help" type="html">
 			<p class="oe_view_nocontent_create">
-				Here, you can create new tasks
+				Aqui, puede hacer propuestas de temas de grado
 			</p>
 		</field>
 	</record>	
@@ -739,7 +737,7 @@
 				Click aqui para agregar un tema.
 			</p>
 			<p>
-				Aqui encontrar los temas que usted someta a procesos de inscripcion y los temas que solo queden a nivel de borrador.
+				Aqui encontrar los temas que usted someta a procesos de inscripcion y todos los temas que solo queden a nivel de borrador.
 			</p>
 		</field>
 	</record>
@@ -764,7 +762,7 @@
 	</record>
 	-->
 	<menuitem action="action_view_task_server" id="menu_action_view_task"
-		parent="project.menu_project_management" sequence="5" />
+		parent="project.menu_project_management" sequence="3" />
 
 	<menuitem action="open_view_project_all_config" id="menu_action_view_department"
 		parent="project.menu_project_management" name="Departamentos" sequence="4" />
@@ -903,13 +901,13 @@
 
 	<menuitem id="menu_tasks_config" name="GTD" parent="menu_project_config"
 		sequence="2" />
-<!--
+
 	<menuitem action="open_task_type_form" id="menu_project_config_project"
-		name="Estados" parent="menu_project_config" sequence="3"
+		name="Estados" parent="menu_project_config" sequence="12"
 		groups="group_project_manager" />
--->
+
 	<menuitem action="open_view_project_all" id="menu_projects"
-		name="Principal" parent="menu_main_pm" sequence="1" />
+		name="General" parent="menu_main_pm" sequence="100" />
 	<menuitem action="open_view_project_all_config" id="menu_projects_config"
 		name="Departamentos" parent="menu_project_config" sequence="10" />
 
