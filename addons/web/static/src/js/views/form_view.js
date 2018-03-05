@@ -299,7 +299,7 @@ var FormView = View.extend(common.FieldManagerMixin, {
         var self = this, set_values = [];
         if (!record) {
             this.set({ 'title' : undefined });
-            this.do_warn(_t("Form"), _t("The record could not be found in the database."), true);
+            this.do_warn(_t("Formulario"), _t("El se encontro ningun resultado."), true);
             return $.Deferred().reject();
         }
         this.datarecord = record;
@@ -313,7 +313,7 @@ var FormView = View.extend(common.FieldManagerMixin, {
             set_values.push(result);
         });
         this._actualize_mode(); // call after updating the fields as it may trigger a re-rendering
-        this.set({ 'title' : record.id ? record.display_name : _t("New") });
+        this.set({ 'title' : record.id ? record.display_name : _t("Nuevo") });
         this.update_pager(); // the mode must be actualized before updating the pager
         return $.when.apply(null, set_values).then(function() {
             if (!record.id) {
@@ -755,7 +755,7 @@ var FormView = View.extend(common.FieldManagerMixin, {
         var self = this;
         var def = $.Deferred();
         var options = {
-            title: _t("Warning"),
+            title: _t("Advertencia"),
             confirm_callback: function() {
                 self.$el.removeClass('oe_form_dirty');
                 this.on('closed', null, function() { // 'this' is the dialog widget

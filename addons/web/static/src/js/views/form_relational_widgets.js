@@ -23,10 +23,10 @@ var M2ODialog = Dialog.extend({
     init: function(parent) {
         this.name = parent.string;
         this._super(parent, {
-            title: _.str.sprintf(_t("Create a %s"), parent.string),
+            title: _.str.sprintf(_t("Crear un %s"), parent.string),
             size: 'medium',
             buttons: [
-                {text: _t('Create'), classes: 'btn-primary', click: function(e) {
+                {text: _t('Crear'), classes: 'btn-primary', click: function(e) {
                     if (this.$("input").val() !== ''){
                         this.getParent()._quick_create(this.$("input").val());
                         this.close();
@@ -36,16 +36,16 @@ var M2ODialog = Dialog.extend({
                     }
                 }},
 
-                {text: _t('Create and edit'), classes: 'btn-primary', close: true, click: function() {
+                {text: _t('Agregar y editar'), classes: 'btn-primary', close: true, click: function() {
                     this.getParent()._search_create_popup("form", undefined, this.getParent()._create_context(this.$("input").val()));
                 }},
 
-                {text: _t('Cancel'), close: true}
+                {text: _t('Cancelar'), close: true}
             ]
         });
     },
     start: function() {
-        var text = _.str.sprintf(_t("You are creating a new %s, are you sure it does not exist yet?"), this.name);
+        var text = _.str.sprintf(_t("¿Quiere crear un nuevo %s, esta seguro que no existe?"), this.name);
         this.$("p").text(text);
         this.$("input").val(this.getParent().$input.val());
     },
@@ -151,7 +151,7 @@ var FieldMany2One = common.AbstractField.extend(common.CompletionFieldMixin, com
                     res_model: self.field.relation,
                     res_id: self.get("value"),
                     context: self.build_context(),
-                    title: _t("Open: ") + self.string,
+                    title: _t("Abrir: ") + self.string,
                     view_id: view_id,
                     readonly: !self.can_write
                 }).open();
@@ -1082,7 +1082,7 @@ var One2ManyListView = X2ManyListView.extend({
                 res_model: self.x2m.field.relation,
                 domain: self.x2m.build_domain(),
                 context: self.x2m.build_context(),
-                title: _t("Create: ") + self.x2m.string,
+                title: _t("Nuevo: ") + self.x2m.string,
                 initial_view: "form",
                 alternative_form_view: self.x2m.field.views ? self.x2m.field.views.form : undefined,
                 create_function: function(data, options) {
@@ -1380,7 +1380,7 @@ var FieldMany2ManyKanban = FieldMany2Many.extend({
     init: function() {
         this._super.apply(this, arguments);
         this.view_options = _.extend({}, this.view_options, {
-            'create_text': _t("Add"),
+            'create_text': _t("Agregar"),
         });
     }
 });
@@ -1656,7 +1656,7 @@ var FieldMany2ManyBinaryMultiFiles = AbstractManyField.extend(common.Reinitializ
         }
 
         if(result.error || !result.id) {
-            this.do_warn(_t('Uploading Error'), result.error);
+            this.do_warn(_t('Error al descargar'), result.error);
             delete this.data[0];
         } else {
             if(this.data[0] && this.data[0].filename === result.filename && this.data[0].upload) {

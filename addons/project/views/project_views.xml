@@ -440,25 +440,26 @@
 		<field name="model">project.task</field>
 		<field eval="2" name="priority" />
 		<field name="arch" type="xml">
-			<form string="Temas" class="o_form_project_tasks">
+			<form string="Temas" class="o_form_project_tasks"><!--
+				<button name="save" type="object" string="Save" class="oe_highlight" style="btn btn-primary btn-sm o_form_button_edit"/>-->
 				<header>
 					<field name="stage_id" widget="statusbar"  />
-					<button name="action_step_one" string="Enviar propuesta" attrs="{'invisible': [('stage_id', '!=', 18)]}" type="object"
+					<button name="action_step_one" string="Enviar propuesta" attrs="{'invisible': [('stage_id', '!=', 18)]}" type="object" groups="project.group_project_student"
 						class="oe_highlight" />
-					<button name="action_step_two" string="Mover a validacion" attrs="{'invisible': [('stage_id', '!=', 19)]}" type="object"
+					<button name="action_step_two" string="Mover a validacion" attrs="{'invisible': [('stage_id', '!=', 19)]}" type="object" groups="project.group_project_head_department"
 						class="oe_highlight" />
-					<button name="action_step_three" string="Asignar" attrs="{'invisible': [('stage_id', '!=', 20)]}" type="object"
+					<button name="action_step_three" string="Asignar" attrs="{'invisible': [('stage_id', '!=', 20)]}" type="object" groups="project.group_project_coordinator"
 						class="oe_highlight" />
-					<button name="action_step_four" string="Revision detallada" attrs="{'invisible': [('stage_id', '!=', 21)]}" type="object"
+					<button name="action_step_four" string="Revision detallada" attrs="{'invisible': [('stage_id', '!=', 21)]}" type="object" groups="project.group_project_professor"
 						class="oe_highlight" />
-					<button name="action_step_five" string="Junta Directiva" attrs="{'invisible': [('stage_id', '!=', 22)]}" type="object"
+					<button name="action_step_five" string="Junta Directiva" attrs="{'invisible': [('stage_id', '!=', 22)]}" type="object" groups="project.group_project_coordinator"
 						class="oe_highlight" />
-					<button name="action_inscri" string="Inscribir" attrs="{'invisible': ['|',('stage_id', '=', 18),('stage_id', '=', 24)]}" type="object"
+					<button name="action_inscri" string="Inscribir" attrs="{'invisible': ['|',('stage_id', '=', 18),('stage_id', '=', 24)]}" type="object" groups="project.group_project_directors"
 						class="oe_highlight" />
 				</header>
 				<sheet string="Temas">
 					<div class="oe_button_box" name="button_box">
-						<button name="toggle_active" type="object" groups="base.group_user"
+						<button name="toggle_active" type="object" groups="project.group_project_head_department"
 							class="oe_stat_button" icon="fa-archive">
 							<field name="active" widget="boolean_button" options='{"terminology": "archive"}' />
 						</button>
@@ -910,6 +911,13 @@
 		name="General" parent="menu_main_pm" sequence="100" />
 	<menuitem action="open_view_project_all_config" id="menu_projects_config"
 		name="Departamentos" parent="menu_project_config" sequence="10" />
+
+
+	<!-- User Form 
+	<act_window
+		id="act_menu_item_extra" name="Acciones extras"
+		res_model="project.task" src_model="project.task" view_mode="tree,form,calendar,graph"
+		view_type="form" /> -->
 
 	<!-- User Form -->
 	<act_window

@@ -5250,8 +5250,8 @@ nv.models.multiBarChart = function() {
                  g.select('.nv-controlsWrap').selectAll('*').remove();
             } else {
                 var controlsData = [
-                    { key: controlLabels.grouped || 'Grouped', disabled: multibar.stacked() },
-                    { key: controlLabels.stacked || 'Stacked', disabled: !multibar.stacked() }
+                    { key: controlLabels.grouped || 'Agrupado', disabled: multibar.stacked() },
+                    { key: controlLabels.stacked || 'Desagrupar', disabled: !multibar.stacked() }
                 ];
 
                 controls.width(controlWidth()).color(['#444', '#444', '#444']);

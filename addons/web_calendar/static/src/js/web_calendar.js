@@ -120,7 +120,7 @@ var CalendarView = View.extend({
 
         var attrs = this.fields_view.arch.attrs;
         if (!attrs.date_start) {
-            throw new Error(_t("Calendar view has not defined 'date_start' attribute."));
+            throw new Error(_t("La vista de calendario no ha definido el atributo."));
         }
         this.fields = this.fields_view.fields;
         this.name = this.fields_view.name || attrs.string;
@@ -287,7 +287,7 @@ var CalendarView = View.extend({
         this.$('.o_calendar_sidebar_toggler')
             .toggleClass('fa-close', display)
             .toggleClass('fa-chevron-left', !display)
-            .attr('title', display ? _('Close Sidebar') : _('Open Sidebar'));
+            .attr('title', display ? _('Cerrar barra lateral') : _('Abrir barra lateral'));
         this.$sidebar_container.toggleClass('o_sidebar_hidden', !display);
     },
     get_fc_init_options: function () {
@@ -989,7 +989,7 @@ var CalendarView = View.extend({
             });
         }
         if (this.options.confirm_on_delete) {
-            if (confirm(_t("Are you sure you want to delete this record ?"))) {
+            if (confirm(_t("¿Seguro que quieres borrar este registro?"))) {
                 return do_it();
             }
         } else

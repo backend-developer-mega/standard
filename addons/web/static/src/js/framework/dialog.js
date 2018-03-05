@@ -34,7 +34,7 @@ var Dialog = Widget.extend({
         this._opened = $.Deferred();
 
         options = _.defaults(options || {}, {
-            title: _t('Odoo'), subtitle: '',
+            title: _t('UES'), subtitle: '',
             size: 'large',
             dialogClass: '',
             $content: false,
@@ -166,7 +166,7 @@ Dialog.alert = function (owner, message, options) {
         $content: $('<div>', {
             text: message,
         }),
-        title: _t("Alert"),
+        title: _t("Alerta"),
     }, options)).open();
 };
 
@@ -191,7 +191,7 @@ Dialog.confirm = function (owner, message, options) {
         $content: $('<div>', {
             text: message,
         }),
-        title: _t("Confirmation"),
+        title: _t("Confirmación"),
     }, options)).open();
 };
 

@@ -925,20 +925,20 @@ class IrModelAccess(models.Model):
             groups = '\n\t'.join('- %s' % g for g in self.group_names_with_access(model_name, mode))
             msg_heads = {
                 # Messages are declared in extenso so they are properly exported in translation terms
-                'read': _("Sorry, you are not allowed to access this document."),
-                'write':  _("Sorry, you are not allowed to modify this document."),
-                'create': _("Sorry, you are not allowed to create this kind of document."),
-                'unlink': _("Sorry, you are not allowed to delete this document."),
+                'read': _("Lo siento, pero usted no tiene permisos de acceso."),
+                'write':  _("Lo siento, pero usted no tiene permisos para editar."),
+                'create': _("Lo siento, pero usted no tiene permisos."),
+                'unlink': _("Lo siento, pero usted no tiene permisos."),
             }
             if groups:
-                msg_tail = _("Only users with the following access level are currently allowed to do that") + ":\n%s\n\n(" + _("Document model") + ": %s)"
+                msg_tail = _("Solo usuarios con un nivel de acceso superior")
                 msg_params = (groups, model_name)
             else:
                 msg_tail = _("Please contact your system administrator if you think this is an error.") + "\n\n(" + _("Document model") + ": %s)"
                 msg_params = (model_name,)
             _logger.info('Access Denied by ACLs for operation: %s, uid: %s, model: %s', mode, self._uid, model_name)
             msg = '%s %s' % (msg_heads[mode], msg_tail)
-            raise AccessError(msg % msg_params)
+            raise AccessError(msg)
 
         return bool(r)
 

@@ -322,7 +322,7 @@ class Partner(models.Model, FormatAddress):
     @api.multi
     def copy(self, default=None):
         self.ensure_one()
-        default = dict(default or {}, name=_('%s (copy)') % self.name)
+        default = dict(default or {}, name=_('%s (copia)') % self.name)
         return super(Partner, self).copy(default)
 
     @api.onchange('parent_id')

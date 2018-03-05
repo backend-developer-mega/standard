@@ -39,15 +39,15 @@
     <div class="o_form_view">
         <table class="o_group o_inner_group o_label_nowrap">
             <tr>
-                <td class="o_td_label"><label for="old_pwd" class="o_form_label">Old Password</label></td>
+                <td class="o_td_label"><label for="old_pwd" class="o_form_label">Contraseña anterior</label></td>
                 <td width="100%"><input type="password" class="o_form_field o_form_input" name="old_pwd" minlength="1" autofocus="autofocus" autocomplete="current-password"/></td>
             </tr>
             <tr>
-                <td class="o_td_label"><label for="new_password" class="o_form_label">New Password</label></td>
+                <td class="o_td_label"><label for="new_password" class="o_form_label">Nueva contraseña</label></td>
                 <td width="100%"><input type="password" class="o_form_field o_form_input" name="new_password" minlength="1" autocomplete="new-password"/></td>
             </tr>
             <tr>
-                <td class="o_td_label"><label for="confirm_pwd" class="o_form_label">Confirm New Password</label></td>
+                <td class="o_td_label"><label for="confirm_pwd" class="o_form_label">Confirmar nueva contraseña</label></td>
                 <td width="100%"><input type="password" class="o_form_field o_form_input" name="confirm_pwd" minlength="1" autocomplete="new-password"/></td>
             </tr>
         </table>
@@ -237,7 +237,7 @@
                     </t>
                     <a t-att-title="item.title or None" t-att-data-section="section.name" t-att-data-index="item_index" t-att-href="item.url">
                         <t t-raw="item.label"/>
-                        <span t-if="section.name == 'files' and widget.options.editable and !item.callback" class="fa fa-trash-o o_sidebar_delete_attachment" t-att-data-id="item.id" title="Delete this attachment"/>
+                        <span t-if="section.name == 'files' and widget.options.editable and !item.callback" class="fa fa-trash-o o_sidebar_delete_attachment" t-att-data-id="item.id" title="Eliminar este archivo adjunto"/>
                     </a>
                 </li>
                 <li t-if="section.name == 'files' and widget.options.editable" class="o_sidebar_add_attachment">
@@ -342,10 +342,10 @@
                 </button>
             </t>
             <button type="button" class="btn btn-primary btn-sm o_list_button_save" accesskey="s">
-                Save
+                Guardar
             </button>
             <button type="button" class="btn btn-default btn-sm o_list_button_discard" accesskey="j">
-                Discard
+                Descartar
             </button>
         </div>
     </t>
@@ -434,7 +434,7 @@
             <td>
                 <label for="formview_default_fields"
                        class="oe_label oe_align_right">
-                    Default:
+                    Por defecto:
                 </label>
             </td>
             <td class="oe_form_required">
@@ -451,7 +451,7 @@
             <td>
                 <label for="formview_default_conditions"
                        class="oe_label oe_align_right">
-                    Condition:
+                    Condición:
                 </label>
             </td>
             <td>
@@ -470,14 +470,14 @@
                        value="self" name="scope" checked="checked"/>
                 <label for="formview_default_self" class="oe_label"
                        style="display: inline;">
-                    Only you
+                    Sólo tu
                 </label>
                 <br/>
                 <input type="radio" id="formview_default_all"
                        value="all" name="scope"/>
                 <label for="formview_default_all" class="oe_label"
                        style="display: inline;">
-                    All users
+                    Todos los usuarios
                 </label>
             </td>
         </tr>
@@ -532,14 +532,14 @@
 <t t-name="GraphView.buttons">
     <div class="btn-group btn-group-sm" role="group">
         <button class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown">
-            Measures <span class="caret"/>
+            Medidas <span class="caret"/>
         </button>
         <ul class="dropdown-menu o_graph_measures_list">
             <li t-foreach="measures" t-as="measure" t-att-data-field="measure[0]">
                 <a href="#"><t t-esc="measure[1].string"/></a>
             </li>
             <li class="divider"></li>
-            <li data-field="__count__"><a href="#">Count</a></li>
+            <li data-field="__count__"><a href="#">Contar</a></li>
         </ul>
     </div>
     <div class="btn-group btn-group-sm">
@@ -561,14 +561,14 @@
 <t t-name="PivotView.buttons">
     <div class="btn-group btn-group-sm" role="group">
         <button class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown">
-            Measures <span class="caret"/>
+            Medidas <span class="caret"/>
         </button>
         <ul class="dropdown-menu o_pivot_measures_list">
             <li t-foreach="measures" t-as="measure" t-att-data-field="measure[0]">
                 <a href="#"><t t-esc="measure[1].string"/></a>
             </li>
             <li class="divider"></li>
-            <li data-field="__count__"><a href="#">Count</a></li>
+            <li data-field="__count__"><a href="#">Contar</a></li>
         </ul>
     </div>
     <div class="btn-group btn-group-sm">
@@ -603,10 +603,9 @@
 </t>
 
 <div t-name="PivotView.nodata" class="oe_view_nocontent" >
-    <p><strong>No data to display.</strong></p>
+    <p><strong>No hay información para mostrar.</strong></p>
     <p>
-        No data available for this pivot table.  Try to add some records, or make sure
-        that there is at least one measure and no active filter in the search bar.
+        No hay datos disponibles para esta tabla dinámica. Intente agregar algunos registros, o asegúrese de que haya al menos una medida y ningún filtro activo en la barra de búsqueda.
     </p>
 </div>
 
@@ -743,7 +742,7 @@
             <span t-att-data-id="tag_id" t-att-data-color="10" class="o_tag_color_10"/>
         </li>
         <li>
-            Not shown in kanban
+            No se muestra en kanban
         </li>
     </ul>
 </t>
@@ -811,9 +810,9 @@
         <t t-if="!widget.get('effective_readonly')">
             <div class="o_form_image_controls">
                 <span class="fa fa-pencil fa-lg pull-left o_select_file_button" title="Editar"/>
-                <span class="fa fa-trash-o fa-lg pull-right o_clear_file_button" title="Clear"/>
+                <span class="fa fa-trash-o fa-lg pull-right o_clear_file_button" title="Limpiar"/>
 
-                <span class="o_form_binary_progress">Uploading...</span>
+                <span class="o_form_binary_progress">Cargando...</span>
                 <t t-call="HiddenInputFile">
                     <t t-set="fileupload_id" t-value="widget.fileupload_id"/>
                 </t>
@@ -839,11 +838,11 @@
             t-att-tabindex="widget.node.attrs.tabindex"
             t-att-autofocus="widget.node.attrs.autofocus"/>
 
-        <button type="button" class="btn btn-sm btn-primary o_select_file_button" title="Select">Upload your file</button>
-        <button type="button" class="btn btn-sm btn-default fa fa-pencil o_select_file_button" title="Select"/>
-        <button type="button" class="btn btn-sm btn-default fa fa-trash-o o_clear_file_button" title="Clear"/>
+        <button type="button" class="btn btn-sm btn-primary o_select_file_button" title="Seleccionar">Suba su archivo</button>
+        <button type="button" class="btn btn-sm btn-default fa fa-pencil o_select_file_button" title="Seleccionar"/>
+        <button type="button" class="btn btn-sm btn-default fa fa-trash-o o_clear_file_button" title="Limpiar"/>
 
-        <span class="o_form_binary_progress">Uploading...</span>
+        <span class="o_form_binary_progress">Cargando...</span>
         <t t-call="HiddenInputFile">
             <t t-set="fileupload_id" t-value="widget.fileupload_id"/>
             <t t-set="fileupload_style" t-translation="off">overflow-x: hidden</t>
@@ -890,12 +889,12 @@
             <span t-if="file.upload or file.percent_loaded&lt;100"
                   t-att-title="(file.name || file.filename) + ((file.date)? (' \n(' + file.date + ')') : '')"
                   t-att-name="file.name || file.filename">
-                <span class="oe_fileuploader_in_process">...Upload in progress...</span>
+                <span class="oe_fileuploader_in_process">...Carga en progreso...</span>
                 <t t-raw="file.name || file.filename"/>
             </span>
             <t t-if="!file.upload or file.percent_loaded&gt;=100">
                 <div>
-                    <a href="#" class="fa fa-times pull-right oe_delete" title="Delete this file" t-att-data-id="file.id"/>
+                    <a href="#" class="fa fa-times pull-right oe_delete" title="Eliminar este archivo" t-att-data-id="file.id"/>
                     <t t-raw="file.name || file.filename"/>
                 </div>
                 <a class="o_image" target="_blank" t-att-href="file.url"
@@ -907,7 +906,7 @@
     </t>
 </div>
 <div t-name="SearchView" class="o_searchview">
-    <span class="o_searchview_more fa" title="Advanced Search..."/>
+    <span class="o_searchview_more fa" title="Búsqueda avanzada..."/>
 </div>
 <input t-name="SearchView.InputView" type="text" class="o_searchview_input" placeholder="Buscar..."/>
 <div t-name="SearchView.FacetView" tabindex="0" class="o_searchview_facet">
@@ -1022,7 +1021,7 @@
 </t>
 <t t-name="SearchView.extended_search.proposition.float">
     <input t-att-type="widget.decimal_point === '.' ? 'number' : 'text'"
-        t-attf-title="Number using #{widget.decimal_point  || '.' } as decimal separator."
+        t-attf-title="Número usando #{widget.decimal_point  || '.' } como separador decimal."
         t-attf-pattern="[0-9]+([\\#{widget.decimal_point || '.' }][0-9]+)?"
         t-attf-value="0#{widget.decimal_point || '.' }0" step="0.01"/>
 </t>
@@ -1271,7 +1270,6 @@
             <li><a href="#" data-menu="support">Support</a></li>
             <li class="divider"/> -->
             <li><a href="#" data-menu="settings">Preferencias</a></li>
-        <!-- <li><a href="#" data-menu="account">My Odoo.com account</a></li> -->
             <li><a href="#" data-menu="logout">Salir</a></li>
         </ul>
     </li>

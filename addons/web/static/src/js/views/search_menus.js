@@ -82,14 +82,14 @@ return Widget.extend({
             default_filter = this.$inputs[1].checked,
             shared_filter = this.$inputs[2].checked;
         if (!filter_name.length){
-            this.do_warn(_t("Error"), _t("Filter name is required."));
+            this.do_warn(_t("Error"), _t("El nombre del filtro es requerido."));
             this.$inputs.first().focus();
             return;
         }
         if (_.chain(this.filters)
                 .pluck('name')
                 .contains(filter_name).value()) {
-            this.do_warn(_t("Error"), _t("Filter with same name already exists."));
+            this.do_warn(_t("Error"), _t("El filtro con ese nobre ya existe."));
             this.$inputs.first().focus();
             return;
         }
@@ -175,7 +175,7 @@ return Widget.extend({
      */
     facet_for: function (filter) {
         return {
-            category: _t("Custom Filter"),
+            category: _t("Filtros personalizados"),
             icon: 'fa-star',
             field: {
                 get_context: function () { return filter.context; },
@@ -249,8 +249,8 @@ return Widget.extend({
     },
     remove_filter: function (filter, $filter, key) {
         var self = this;
-        var global_warning = _t("This filter is global and will be removed for everybody if you continue."),
-            warning = _t("Are you sure that you want to remove this filter?");
+        var global_warning = _t("Este filtro es general y va ser removido para todos."),
+            warning = _t("¿Esta seguro de querer eliminar este filtro?");
         if (!confirm(filter.user_id ? warning : global_warning)) {
             return;
         }

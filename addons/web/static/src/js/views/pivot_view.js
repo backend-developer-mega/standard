@@ -180,7 +180,7 @@ var PivotView = View.extend({
                 }
             }
         });
-        this.measures.__count__ = {string: _t("Count"), type: "integer"};
+        this.measures.__count__ = {string: _t("Contar"), type: "integer"};
     },
     do_search: function (domain, context, group_by) {
         if (!this.ready) {
@@ -829,7 +829,7 @@ var PivotView = View.extend({
             title: this.title,
         };
         if(table.measure_row.length + 1 > 256) {
-            c.show_message(_t("For Excel compatibility, data cannot be exported if there are more than 256 columns.\n\nTip: try to flip axis, filter further or reduce the number of measures."));
+            c.show_message(_t("Para compatibilidad con Excel, no exporte mas de 256 columnas."));
             return;
         }
         session.get_file({

@@ -49,12 +49,12 @@ var QuickCreate = Dialog.extend({
     get_title: function () {
         var parent = this.getParent();
         if (_.isUndefined(parent)) {
-            return _t("Create");
+            return _t("Crear");
         }
         var title = (_.isUndefined(parent.field_widget)) ?
                 (parent.title || parent.string || parent.name) :
                 (parent.field_widget.string || parent.field_widget.name || '');
-        return _t("Create: ") + title;
+        return _t("Crear: ") + title;
     },
     start: function () {
         var self = this;

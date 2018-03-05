@@ -94,17 +94,17 @@ var _lt = function (s) {
  * job.
  */
 {
-    _t('less than a minute ago');
-    _t('about a minute ago');
-    _t('%d minutes ago');
-    _t('about an hour ago');
-    _t('%d hours ago');
+    _t('menos de un minuto atras');
+    _t('hace un minuto atras');
+    _t('%d minutos atras');
+    _t('hace una hora atras');
+    _t('%d horas atras');
     _t('hace un dia');
-    _t('%d days ago');
-    _t('about a month ago');
-    _t('%d months ago');
-    _t('about a year ago');
-    _t('%d years ago');
+    _t('%d dias atras');
+    _t('varios meses atras');
+    _t('%d mes atras');
+    _t('varios años atras');
+    _t('%d años atras');
 }
 
 

@@ -17,7 +17,7 @@ var read_less = _t('read less');
 
 function time_from_now(date) {
     if (moment().diff(date, 'seconds') < 45) {
-        return _t("now");
+        return _t("en este momento");
     }
     return date.fromNow();
 }

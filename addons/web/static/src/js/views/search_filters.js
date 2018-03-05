@@ -159,12 +159,12 @@ ExtendedSearchProposition.Char = ExtendedSearchProposition.Field.extend({
         type: 'text'
     },
     operators: [
-        {value: "ilike", text: _lt("contains")},
-        {value: "not ilike", text: _lt("doesn't contain")},
-        {value: "=", text: _lt("is equal to")},
-        {value: "!=", text: _lt("is not equal to")},
-        {value: "∃", text: _lt("is set")},
-        {value: "∄", text: _lt("is not set")}
+        {value: "ilike", text: _lt("contiene")},
+        {value: "not ilike", text: _lt("no contiene")},
+        {value: "=", text: _lt("es igual a")},
+        {value: "!=", text: _lt("no es igual a")},
+        {value: "∃", text: _lt("tiene")},
+        {value: "∄", text: _lt("no tiene")}
     ],
     get_value: function() {
         return this.$el.val();
@@ -177,15 +177,15 @@ ExtendedSearchProposition.DateTime = ExtendedSearchProposition.Field.extend({
         type: 'datetime'
     },
     operators: [
-        {value: "=", text: _lt("is equal to")},
-        {value: "!=", text: _lt("is not equal to")},
-        {value: ">", text: _lt("greater than")},
-        {value: "<", text: _lt("less than")},
-        {value: ">=", text: _lt("greater than or equal to")},
-        {value: "<=", text: _lt("less than or equal to")},
-        {value: "between", text: _lt("is between")},
-        {value: "∃", text: _lt("is set")},
-        {value: "∄", text: _lt("is not set")}
+        {value: "=", text: _lt("es igual a")},
+        {value: "!=", text: _lt("no es igual a")},
+        {value: ">", text: _lt("mayor que")},
+        {value: "<", text: _lt("menor que")},
+        {value: ">=", text: _lt("mayor o igual")},
+        {value: "<=", text: _lt("menor o igual")},
+        {value: "between", text: _lt("entre")},
+        {value: "∃", text: _lt("es")},
+        {value: "∄", text: _lt("no es")}
     ],
     widget: function () { return datepicker.DateTimeWidget; },
     get_value: function() {
@@ -249,14 +249,14 @@ ExtendedSearchProposition.Integer = ExtendedSearchProposition.Field.extend({
         value: '0',
     },
     operators: [
-        {value: "=", text: _lt("is equal to")},
-        {value: "!=", text: _lt("is not equal to")},
-        {value: ">", text: _lt("greater than")},
-        {value: "<", text: _lt("less than")},
-        {value: ">=", text: _lt("greater than or equal to")},
-        {value: "<=", text: _lt("less than or equal to")},
-        {value: "∃", text: _lt("is set")},
-        {value: "∄", text: _lt("is not set")}
+        {value: "=", text: _lt("es igual a")},
+        {value: "!=", text: _lt("no es igual a")},
+        {value: ">", text: _lt("mayor que")},
+        {value: "<", text: _lt("menor que")},
+        {value: ">=", text: _lt("mayor o igual que")},
+        {value: "<=", text: _lt("menor o igual que")},
+        {value: "∃", text: _lt("es")},
+        {value: "∄", text: _lt("no es")}
     ],
     toString: function () {
         return this.$el.val();
@@ -278,14 +278,14 @@ ExtendedSearchProposition.Id = ExtendedSearchProposition.Integer.extend({
 ExtendedSearchProposition.Float = ExtendedSearchProposition.Field.extend({
     template: 'SearchView.extended_search.proposition.float',
     operators: [
-        {value: "=", text: _lt("is equal to")},
-        {value: "!=", text: _lt("is not equal to")},
-        {value: ">", text: _lt("greater than")},
-        {value: "<", text: _lt("less than")},
-        {value: ">=", text: _lt("greater than or equal to")},
-        {value: "<=", text: _lt("less than or equal to")},
-        {value: "∃", text: _lt("is set")},
-        {value: "∄", text: _lt("is not set")}
+        {value: "=", text: _lt("es igual a")},
+        {value: "!=", text: _lt("no es igual a")},
+        {value: ">", text: _lt("mayor que")},
+        {value: "<", text: _lt("menor que")},
+        {value: ">=", text: _lt("mayor que o igual a")},
+        {value: "<=", text: _lt("menor que o igual a")},
+        {value: "∃", text: _lt("es")},
+        {value: "∄", text: _lt("no es")}
     ],
     init: function (parent) {
         this._super(parent);
@@ -307,10 +307,10 @@ ExtendedSearchProposition.Float = ExtendedSearchProposition.Field.extend({
 ExtendedSearchProposition.Selection = ExtendedSearchProposition.Field.extend({
     template: 'SearchView.extended_search.proposition.selection',
     operators: [
-        {value: "=", text: _lt("is")},
-        {value: "!=", text: _lt("is not")},
-        {value: "∃", text: _lt("is set")},
-        {value: "∄", text: _lt("is not set")}
+        {value: "=", text: _lt("es")},
+        {value: "!=", text: _lt("no es")},
+        {value: "∃", text: _lt("es")},
+        {value: "∄", text: _lt("no es")}
     ],
     toString: function () {
         var select = this.$el[0];
@@ -325,8 +325,8 @@ ExtendedSearchProposition.Selection = ExtendedSearchProposition.Field.extend({
 ExtendedSearchProposition.Boolean = ExtendedSearchProposition.Field.extend({
     tagName: 'span',
     operators: [
-        {value: "=", text: _lt("is true")},
-        {value: "!=", text: _lt("is false")}
+        {value: "=", text: _lt("es verdadero")},
+        {value: "!=", text: _lt("es falso")}
     ],
     get_label: function (field, operator) {
         return this.format_label(

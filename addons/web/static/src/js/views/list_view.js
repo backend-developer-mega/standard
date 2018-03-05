@@ -46,7 +46,7 @@ var ListView = View.extend({
         // whether the column headers should be displayed
         header: true,
         // display addition button, with that label
-        addable: _lt("Create"),
+        addable: _lt("Nuevo"),
         // whether the list view can be sorted, note that once a view has been
         // sorted it can not be reordered anymore
         sortable: true,
@@ -285,10 +285,10 @@ var ListView = View.extend({
                 this.sidebar.add_toolbar(this.fields_view.toolbar);
             }
             this.sidebar.add_items('other', _.compact([
-                { label: _t("Export"), callback: this.on_sidebar_export },
-                this.fields_view.fields.active && {label: _t("Archive"), callback: this.do_archive_selected},
-                this.fields_view.fields.active && {label: _t("Unarchive"), callback: this.do_unarchive_selected},
-                this.is_action_enabled('delete') && { label: _t('Delete'), callback: this.do_delete_selected }
+                { label: _t("Exportar"), callback: this.on_sidebar_export },
+                this.fields_view.fields.active && {label: _t("Archivar"), callback: this.do_archive_selected},
+                this.fields_view.fields.active && {label: _t("Desarchivar"), callback: this.do_unarchive_selected},
+                this.is_action_enabled('delete') && { label: _t('Eliminar'), callback: this.do_delete_selected }
             ]));
 
             $node = $node || this.options.$sidebar;
@@ -541,7 +541,7 @@ var ListView = View.extend({
      * @param {Array} ids the ids of the records to delete
      */
     do_delete: function (ids) {
-        if (!(ids.length && confirm(_t("Do you really want to remove these records?")))) {
+        if (!(ids.length && confirm(_t("¿Esta seguro de eliminar estos registros?")))) {
             return;
         }
         var self = this;
@@ -674,7 +674,7 @@ var ListView = View.extend({
         if (ids.length) {
             this.do_delete(this.groups.get_selection().ids);
         } else {
-            this.do_warn(_t("Warning"), _t("You must select at least one record."));
+            this.do_warn(_t("Advertencia"), _t("Es necesario seleccionar al menos un registro."));
         }
     },
     /**
@@ -1845,7 +1845,7 @@ var ColumnBinary = Column.extend({
      * @private
      */
     _format: function (row_data, options) {
-        var text = _t("Download"), filename=_t('Binary file');
+        var text = _t("Descargar"), filename=_t('Binary file');
         var value = row_data[this.id].value;
         if (!value) {
             return options.value_if_empty || '';
@@ -1861,7 +1861,7 @@ var ColumnBinary = Column.extend({
             }
         }
         if (this.filename && row_data[this.filename]) {
-            text = _.str.sprintf(_t("Download \"%s\""), formats.format_value(
+            text = _.str.sprintf(_t("Descargar \"%s\""), formats.format_value(
                     row_data[this.filename].value, {type: 'char'}));
             filename = row_data[this.filename].value;
         }

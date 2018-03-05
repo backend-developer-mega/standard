@@ -19,8 +19,8 @@ var Sidebar = Widget.extend({
             'editable': true
         });
         this.sections = options.sections || [
-            {name: 'print', label: _t('Print')},
-            {name: 'other', label: _t('Action')},
+            {name: 'print', label: _t('Impresión')},
+            {name: 'other', label: _t('Acción')},
         ];
         this.items = options.items || {
             print: [],
@@ -129,7 +129,7 @@ var Sidebar = Widget.extend({
                 domain = $.Deferred().resolve(undefined);
             }
             if (ids.length === 0) {
-                new Dialog(this, {title: _t("Warning"), size: 'medium', $content: $("<div/>").html(_t("You must choose at least one record."))}).open();
+                new Dialog(this, {title: _t("Advertencia"), size: 'medium', $content: $("<div/>").html(_t("Debes elegir al menos un registro."))}).open();
                 return false;
             }
             var dataset = self.getParent().dataset;
@@ -197,7 +197,7 @@ var Sidebar = Widget.extend({
             this.$('form.o_form_binary_form').submit();
             $e.parent().find('input[type=file]').prop('disabled', true);
             $e.parent().find('button').prop('disabled', true).find('img, span').toggle();
-            this.$('.o_sidebar_add_attachment a').text(_t('Uploading...'));
+            this.$('.o_sidebar_add_attachment a').text(_t('Cargando...'));
             framework.blockUI();
         }
     },
@@ -215,7 +215,7 @@ var Sidebar = Widget.extend({
                     });
             }
         };
-        Dialog.confirm(this, _t("Do you really want to delete this attachment ?"), options);
+        Dialog.confirm(this, _t("¿De verdad quieres eliminar este archivo adjunto?"), options);
     }
 });
 

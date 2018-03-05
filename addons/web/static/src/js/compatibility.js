@@ -165,7 +165,7 @@ function start_modules (modules) {
     }
     modules = _.without(modules, "web");
     if (inited) {
-        throw new Error("OpenERP was already inited");
+        throw new Error("La aplicación ya estaba ingresada");
     }
     inited = true;
     for(var i=0; i < modules.length; i++) {

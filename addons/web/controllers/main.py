@@ -151,7 +151,7 @@ def module_installed(environment):
     # Retrieve database installed modules
     # TODO The following code should move to ir.module.module.list_installed_modules()
     Modules = environment['ir.module.module']
-    domain = [('state','=','installed'), ('name','in', loadable)]
+    domain = [('state', '=', 'installed'), ('name', 'in', loadable)]
     modules = {
         module.name: module.dependencies_id.mapped('name')
         for module in Modules.search(domain)
@@ -205,7 +205,7 @@ def concat_xml(file_list):
 
         if root is None:
             root = ElementTree.Element(xml.tag)
-        #elif root.tag != xml.tag:
+        # elif root.tag != xml.tag:
         #    raise ValueError("Root tags missmatch: %r != %r" % (root.tag, xml.tag))
 
         for child in xml.getchildren():
@@ -473,7 +473,7 @@ class Home(http.Controller):
                     redirect = '/web'
                 return http.redirect_with_hash(redirect)
             request.uid = old_uid
-            values['error'] = _("Wrong login/password")
+            values['error'] = _("Verifique email/password")
         return request.render('web.login', values)
 
 
@@ -622,7 +622,7 @@ class Proxy(http.Controller):
 class Database(http.Controller):
 
     def _render_template(self, **d):
-        d.setdefault('manage',True)
+        d.setdefault('manage', True)
         d['insecure'] = odoo.tools.config['admin_passwd'] == 'admin'
         d['list_db'] = odoo.tools.config['list_db']
         d['langs'] = odoo.service.db.exp_list_lang()
@@ -674,7 +674,7 @@ class Database(http.Controller):
     @http.route('/web/database/drop', type='http', auth="none", methods=['POST'], csrf=False)
     def drop(self, master_pwd, name):
         try:
-            dispatch_rpc('db','drop', [master_pwd, name])
+            dispatch_rpc('db', 'drop', [master_pwd, name])
             request._cr = None  # dropping a database leads to an unusable cursor
             return http.local_redirect('/web/database/manager')
         except Exception, e:
@@ -682,7 +682,7 @@ class Database(http.Controller):
             return self._render_template(error=error)
 
     @http.route('/web/database/backup', type='http', auth="none", methods=['POST'], csrf=False)
-    def backup(self, master_pwd, name, backup_format = 'zip'):
+    def backup(self, master_pwd, name, backup_format='zip'):
         try:
             odoo.service.db.check_super(master_pwd)
             ts = datetime.datetime.utcnow().strftime("%Y-%m-%d_%H-%M-%S")
@@ -743,18 +743,18 @@ class Session(http.Controller):
 
     @http.route('/web/session/change_password', type='json', auth="user")
     def change_password(self, fields):
-        old_password, new_password,confirm_password = operator.itemgetter('old_pwd', 'new_password','confirm_pwd')(
+        old_password, new_password, confirm_password = operator.itemgetter('old_pwd', 'new_password', 'confirm_pwd')(
                 dict(map(operator.itemgetter('name', 'value'), fields)))
         if not (old_password.strip() and new_password.strip() and confirm_password.strip()):
-            return {'error':_('You cannot leave any password empty.'),'title': _('Change Password')}
+            return {'error':_('You cannot leave any password empty.'), 'title': _('Cambiar contraseña')}
         if new_password != confirm_password:
-            return {'error': _('The new password and its confirmation must be identical.'),'title': _('Change Password')}
+            return {'error': _('The new password and its confirmation must be identical.'), 'title': _('Cambiar contraseña')}
         try:
             if request.env['res.users'].change_password(old_password, new_password):
                 return {'new_password':new_password}
         except Exception:
-            return {'error': _('The old password you provided is incorrect, your password was not changed.'), 'title': _('Change Password')}
-        return {'error': _('Error, password not changed !'), 'title': _('Change Password')}
+            return {'error': _('The old password you provided is incorrect, your password was not changed.'), 'title': _('Cambiar contraseña')}
+        return {'error': _('Error, password not changed !'), 'title': _('Cambiar contraseña')}
 
     @http.route('/web/session/get_lang_list', type='json', auth="none")
     def get_lang_list(self):
@@ -1140,7 +1140,7 @@ class Action(http.Controller):
                 assert action._name.startswith('ir.actions.')
                 action_id = action.id
             except Exception:
-                action_id = 0   # force failed read
+                action_id = 0  # force failed read
 
         base_action = Actions.browse([action_id]).read(['type'])
         if base_action:
@@ -1181,7 +1181,7 @@ class Export(http.Controller):
         return fields
 
     @http.route('/web/export/get_fields', type='json', auth="user")
-    def get_fields(self, model, prefix='', parent_name= '',
+    def get_fields(self, model, prefix='', parent_name='',
                    import_compat=True, parent_field_type=None,
                    exclude=None):
 
@@ -1337,7 +1337,7 @@ class ExportFormat(object):
             fields = [field for field in fields if field['name'] != 'id']
 
         field_names = map(operator.itemgetter('name'), fields)
-        import_data = records.export_data(field_names, self.raw_data).get('datas',[])
+        import_data = records.export_data(field_names, self.raw_data).get('datas', [])
 
         if import_compat:
             columns_headers = field_names
@@ -1418,7 +1418,7 @@ class ExcelExport(ExportFormat, http.Controller):
 
         for i, fieldname in enumerate(fields):
             worksheet.write(0, i, fieldname)
-            worksheet.col(i).width = 8000 # around 220 pixels
+            worksheet.col(i).width = 8000  # around 220 pixels
 
         base_style = xlwt.easyxf('align: wrap yes')
         date_style = xlwt.easyxf('align: wrap yes', num_format_str='YYYY-MM-DD')

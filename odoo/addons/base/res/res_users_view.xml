@@ -63,8 +63,7 @@
 								<field name="users" context="{'search_default_no_share':1}" />
 							</page>
 							<page string="Inherited">
-								<label
-									string="Usuario" />
+								<label string="Usuario" />
 								<field name="implied_ids" />
 							</page>
 							<page string="Menus">
@@ -126,11 +125,12 @@
 				groups or edit the ones existing by default in order to customize
 				the view of the menu that users will be able to see. Whether they
 				can have a read, write, create and delete access right can be
-				managed from here.</field>
+				managed from here.
+			</field>
 		</record>
 		<menuitem action="action_res_groups" id="menu_action_res_groups"
-			parent="base.menu_administration" 
-			groups="base.group_no_one" sequence="3" />
+			parent="base.menu_administration" groups="base.group_no_one"
+			sequence="3" />
 
 		<!-- res.users -->
 		<record id="view_users_simple_form" model="ir.ui.view">
@@ -197,21 +197,22 @@
 						<field name="image" widget='image' class="oe_avatar"
 							options='{"preview_image": "image_medium"}' />
 						<div class="oe_title">
-									<label for="name" class="oe_edit_only" />
-									<h1>
-										<field name="name" required="1" />
-									</h1>
-									<field name="email" invisible="1" />
-									<label for="login" class="oe_edit_only" string="Email Address" />
-									<h2>
-										<field name="login" />
-									</h2>
-									<group>
-										<field name="partner_id" readonly="1" required="0" invisible="1"
-											groups="base.group_no_one" attrs="{'invisible': [('id', '=', False)]}" />
-									</group>
-                                        <label for="login" class="oe_edit_only" string="Tipo de usuario" />
-                                        <field name="type_selection" string="Tipo de usuario" widget="radio" />
+							<label for="name" string="Nombre" class="oe_edit_only" />
+							<h1>
+								<field name="name" string="Nombre" required="1" />
+							</h1>
+							<field name="email" invisible="1" />
+							<label for="login" class="oe_edit_only" string="Usuario" />
+							<h2>
+								<field name="login" />
+							</h2>
+							<group>
+								<field name="partner_id" readonly="1" required="0"
+									invisible="1" groups="base.group_no_one" attrs="{'invisible': [('id', '=', False)]}" />
+							</group>
+							<label for="login" class="oe_edit_only" string="Tipo de usuario" />
+							<field name="type_selection" string="Tipo de usuario"
+								widget="radio" />
 						</div>
 						<notebook colspan="4">
 							<page name="access_rights" string="Reglas de acceso">
@@ -234,7 +235,7 @@
 									<group string="Carrera">
 										<field name="career_id" />
 									</group>
-									<field name="emp_id" /> 
+									<field name="emp_id" />
 								</group>
 							</page>
 							<page string="Preferences" invisible="1">
@@ -280,9 +281,9 @@
 						filter_domain="['|', '|', ('name','ilike',self), ('login','ilike',self), ('email','ilike',self)]"
 						string="User" />
 					<field name="company_ids" string="Company" groups="base.group_multi_company" />
-					<field name="share" /><!--
-					<filter name="no_share" string="Internal Users" domain="[('share','=',False)]" />
-					<filter name="Inactive" string="Inactive Users" domain="[('active','=',False)]" /> -->
+					<field name="share" /><!-- <filter name="no_share" string="Internal 
+						Users" domain="[('share','=',False)]" /> <filter name="Inactive" string="Inactive 
+						Users" domain="[('active','=',False)]" /> -->
 				</search>
 			</field>
 		</record>
@@ -298,7 +299,7 @@
 		<!-- dummy update on group, to force the view above to be update -->
 		<record model="res.groups" id="group_no_one" />
 		<record id="action_res_users" model="ir.actions.act_window">
-			<field name="name">Users</field>
+			<field name="name">Usuarios</field>
 			<field name="type">ir.actions.act_window</field>
 			<field name="res_model">res.users</field>
 			<field name="view_type">form</field>
@@ -309,7 +310,8 @@
 				system. Users can be deactivated should there be a period of time
 				during which they will/should not connect to the system. You can
 				assign them groups in order to give them specific access to the
-				applications they need to use in the system.</field>
+				applications they need to use in the system.
+			</field>
 		</record>
 		<record id="action_res_users_view1" model="ir.actions.act_window.view">
 			<field eval="10" name="sequence" />
@@ -335,7 +337,7 @@
 					<field name="image" readonly="0" widget='image' class="oe_right oe_avatar"
 						options='{"preview_image": "image_small"}' />
 					<h1>
-						<field name="name" readonly="1" class="oe_inline" />
+						<field name="name" string="Nombre" readonly="1" class="oe_inline" />
 					</h1>
 					<button name="preference_change_password" type="object"
 						string="Cambiar password" class="oe_link" />

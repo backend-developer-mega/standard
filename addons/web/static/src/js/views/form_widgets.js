@@ -430,10 +430,10 @@ var FieldCharDomain = common.AbstractField.extend(common.ReinitializeFieldMixin,
             ds.call('search_count', [domain, ds.get_context()]).then(function (results) {
                 self.$('.o_count').text(results + ' ' + _t(' selected records'));
                 if (self.get('effective_readonly')) {
-                    self.$('button').text(_t('See selection '));
+                    self.$('button').text(_t('Ver selección '));
                 }
                 else {
-                    self.$('button').text(_t('Change selection '));
+                    self.$('button').text(_t('Cambiar selección '));
                 }
                 self.$('button').append($("<span/>").addClass('fa fa-arrow-right'));
             });
@@ -443,9 +443,9 @@ var FieldCharDomain = common.AbstractField.extend(common.ReinitializeFieldMixin,
             }
         } else {
             this.$('.o_form_input').val('');
-            this.$('.o_count').text(_t('No selected record'));
+            this.$('.o_count').text(_t('No ha seleccionado registros'));
             var $arrow = this.$('button span').detach();
-            this.$('button').text(_t('Select records ')).append($("<span/>").addClass('fa fa-arrow-right'));
+            this.$('button').text(_t('Registros seleccionados ')).append($("<span/>").addClass('fa fa-arrow-right'));
         }
     },
     on_click: function(event) {
@@ -455,7 +455,7 @@ var FieldCharDomain = common.AbstractField.extend(common.ReinitializeFieldMixin,
         var dialog = new common.DomainEditorDialog(this, {
             res_model: this.options.model || this.field_manager.get_field_value(this.options.model_field),
             default_domain: this.get('value'),
-            title: this.get('effective_readonly') ? _t('Selected records') : _t('Select records...'),
+            title: this.get('effective_readonly') ? _t('Registros seleccionados') : _t('Registros seleccionados...'),
             readonly: this.get('effective_readonly'),
             disable_multiple_selection: this.get('effective_readonly'),
             no_create: this.get('effective_readonly'),
@@ -632,16 +632,16 @@ var FieldBooleanButton = common.AbstractField.extend({
         this._super.apply(this, arguments);
         switch (this.options["terminology"]) {
             case "active":
-                this.string_true = _t("Active");
-                this.hover_true = _t("Deactivate");
-                this.string_false = _t("Inactive");
-                this.hover_false = _t("Activate");
+                this.string_true = _t("Habilitado");
+                this.hover_true = _t("Desabilitar");
+                this.string_false = _t("Inactivar");
+                this.hover_false = _t("Activar");
                 break;
             case "archive":
-                this.string_true = _t("Active");
-                this.hover_true = _t("Archive");
-                this.string_false = _t("Archived");
-                this.hover_false = _t("Unarchive");
+                this.string_true = _t("Habilitado");
+                this.hover_true = _t("Archivar");
+                this.string_false = _t("Archivado");
+                this.hover_false = _t("Desarchivar");
                 break;
             default:
                 var terms = typeof this.options["terminology"] === 'string' ? {} : this.options["terminology"];
@@ -1092,7 +1092,7 @@ var FieldBinary = common.AbstractField.extend(common.ReinitializeFieldMixin, {
                 var file = file_node.files[0];
                 if (file.size > this.max_upload_size) {
                     var msg = _t("The selected file exceed the maximum file size of %s.");
-                    this.do_warn(_t("File upload"), _.str.sprintf(msg, utils.human_size(this.max_upload_size)));
+                    this.do_warn(_t("Cargar archivo"), _.str.sprintf(msg, utils.human_size(this.max_upload_size)));
                     return false;
                 }
                 var filereader = new FileReader();
@@ -1112,9 +1112,9 @@ var FieldBinary = common.AbstractField.extend(common.ReinitializeFieldMixin, {
     },
     on_file_uploaded: function(size, name) {
         if (size === false) {
-            this.do_warn(_t("File Upload"), _t("There was a problem while uploading your file"));
+            this.do_warn(_t("Cargar archivo"), _t("Ha ocurrido un problema al cargar el archivo"));
             // TODO: use openerp web crashmanager
-            console.warn("Error while uploading file : ", name);
+            console.warn("Error mientras se cargaba el archivo : ", name);
         } else {
             this.on_file_uploaded_and_valid.apply(this, arguments);
         }
@@ -1129,7 +1129,7 @@ var FieldBinary = common.AbstractField.extend(common.ReinitializeFieldMixin, {
     on_save_as: function(ev) {
         var value = this.get('value');
         if (!value) {
-            this.do_warn(_t("Save As..."), _t("The field is empty, there's nothing to save !"));
+            this.do_warn(_t("Guardar en..."), _t("El archivo esta en blanco, no se ha guardado!"));
             ev.stopPropagation();
         } else {
             framework.blockUI();

@@ -230,7 +230,7 @@
         <li class="divider" groups="base.group_public"/>
         <li groups="base.group_public">
             <a t-attf-href="/web/login">
-                <b>Sign in</b>
+                <b>Acceder</b>
             </a>
         </li>
     </xpath>

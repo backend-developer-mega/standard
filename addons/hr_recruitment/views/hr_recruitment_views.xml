@@ -180,11 +180,12 @@
     </record>
 
     <record model="ir.ui.view" id="crm_case_graph_view_job">
-        <field name="name">Jobs - Recruitment Graph</field>
+        <field name="name">Graficos de las solicitudes</field>
         <field name="model">hr.applicant</field>
         <field name="arch" type="xml">
-              <graph string="Cases By Stage and Estimates" type="bar" orientation="vertical" stacked="True">
+              <graph string="Graficos" type="bar" orientation="vertical" stacked="True">
                 <field name="stage_id" type="col"/>
+                <field name="job_id" type="row"/>
             </graph>
         </field>
     </record>
@@ -225,7 +226,7 @@
 
     <!-- CRM Lead Calendar View -->
     <record model="ir.ui.view" id="hr_applicant_calendar_view">
-        <field name="name">Hr Applicants Calendar</field>
+        <field name="name">Solicitudes calendario</field>
         <field name="model">hr.applicant</field>
         <field name="priority" eval="2"/>
         <field name="arch" type="xml">
@@ -500,7 +501,7 @@
     <record model="ir.actions.act_window" id="crm_case_categ0_act_job">
         <field name="name">Solicitudes</field>
         <field name="res_model">hr.applicant</field>
-        <field name="view_mode">kanban,tree,form,pivot,graph,calendar,pivot</field>
+        <field name="view_mode">kanban,tree,form,pivot,graph</field>
         <field name="view_id" eval="False"/>
         <field name="search_view_id" ref="view_crm_case_jobs_filter"/>
         <field name="context">{}</field>
@@ -511,7 +512,7 @@
     </record>
 
     <record id="crm_case_categ0_act_job_server" model="ir.actions.server">
-        <field name="name">Solicitudes</field>
+        <field name="name">Solicitudes por departamento</field>
         <field name="model_id" ref="hr_recruitment.model_hr_applicant" />
         <field name="code">
                 action = model.filter_students_applicant()
@@ -559,8 +560,9 @@
     <!-- ALL JOBS REQUESTS -->
     <menuitem parent="menu_hr_recruitment_root" id="menu_hr_job_position" action="action_hr_job_server" sequence="1"/>
     <menuitem parent="menu_hr_recruitment_configuration" id="menu_hr_job_position_config" action="action_hr_job_config" sequence="10"/>
+
     <menuitem
-        name="Solicitudes"
+        name="Lista de solicitudes"
         parent="menu_hr_recruitment_root"
         id="menu_crm_case_categ0_act_job" action="crm_case_categ0_act_job_server" sequence="2" groups="base.group_no_one"/>
 
@@ -691,13 +693,13 @@
             </p>
         </field>
     </record>
-
+<!--
     <menuitem
         id="hr_applicant_category_menu"
         parent="menu_hr_recruitment_configuration"
         action="hr_applicant_category_action"
         sequence="2" groups="base.group_no_one"/>
-
+-->
     <!-- Degree Tree View -->
     <record model="ir.ui.view" id="hr_recruitment_degree_tree">
         <field name="name">hr.recruitment.degree.tree</field>
@@ -731,13 +733,13 @@
         <field name="view_type">form</field>
         <field name="view_id" ref="hr_recruitment_degree_tree"/>
     </record>
-
+<!--
      <menuitem
             id="menu_hr_recruitment_degree"
             name="Degrees"
             parent="menu_hr_recruitment_configuration"
             action="hr_recruitment_degree_action"
-            sequence="5" groups="base.group_no_one"/>
+            sequence="5" groups="base.group_no_one"/> -->
 
     <!-- Source Tree View -->
     <record model="ir.ui.view" id="hr_recruitment_source_tree">
@@ -756,13 +758,13 @@
         <field name="res_model">hr.recruitment.source</field>
         <field name="view_type">form</field>
     </record>
-
+    <!--
     <menuitem
         id="menu_hr_recruitment_source"
         parent="menu_hr_recruitment_configuration"
         action="hr_recruitment_source_action"
         groups="base.group_no_one"
-        sequence="10"/>
+        sequence="10"/> -->
 
     <record id="hr_applicant_action_from_department" model="ir.actions.act_window">
         <field name="name">New Applications</field>

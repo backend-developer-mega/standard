@@ -76,7 +76,7 @@ var ProgressBar = Widget.extend({
             return;
         }
         if(isNaN($input.val())) {
-            this.do_warn(_t("Wrong value entered!"), _t("Only Integer Value should be valid."));
+            this.do_warn(_t("Valor incorrecto ingresado!"), _t("Solo el valor entero debe ser válido."));
         } else {
             if(e.type === 'input') {
                 this._render_value($input.val());

@@ -348,15 +348,22 @@ class Task(models.Model):
     
     # recipient_ids = fields.Many2many('hr.employee', string='Integrantes')
     
-    student_ids = fields.Many2many('hr.employee', 'student_lead_tag_rel_res', 'student_lead_id_res', 'student_tag_id_res', string='Carrera Universitaria', help="Establecer las carreras universitarias", track_visibility='always')
+    student_ids = fields.Many2many('hr.employee', 'student_lead_tag_rel_res', 'student_lead_id_res', 'student_tag_id_res', string='Carrera Universitaria', help="Establecer las carreras universitarias", track_visibility='onchange')
     department_id = fields.Many2one('hr.department', string='Carrera', default=lambda self: self.env['res.users'].sudo().browse(self.env.uid).career_id)
     depart_ids = fields.Many2one('hr.job', string='Departamento', default=lambda self: self.env['res.users'].sudo().browse(self.env.uid).department_id)
     jefe_department_id = fields.Many2one('res.users', "Jefe de Departamento")
-    description_general = fields.Text("Descripción", track_visibility='always')
+    description_general = fields.Text("Descripción", track_visibility='onchange')
     # recipient_ids = fields.One2many('hr.employee', 'task_ids', string='Integrantes')
 
     @api.multi
     def filter_kanban_topic_project(self):
+        value_domain = ['|',('user_id_asignado.id','=',self.env.uid),'|',
+            ('jefe_department_id.id','=',self.env.uid),'|',
+            ('student_ids.id', '=', self.env['res.users'].search([('id', '=', self.env.uid)],limit=1).emp_id),
+            ('create_uid','=',self.env.uid)]
+        #[('id', '=', self.env.user.emp_id)]
+        if self.env.uid == 1:
+            value_domain = [] 
         return {
             'name': _('Temas'),
             'view_type': 'form',
@@ -364,10 +371,7 @@ class Task(models.Model):
             'res_model': 'project.task',
             'view_id': False,
             'type': 'ir.actions.act_window',
-            'domain': ['|',('user_id_asignado.id','=',self.env.uid),'|',
-            ('jefe_department_id.id','=',self.env.uid),'|',
-            ('student_ids.id', '=', self.env['res.users'].search([('id', '=', self.env.uid)],limit=1).emp_id),
-            ('create_uid','=',self.env.uid)],
+            'domain': value_domain,
 #           'domain': [('student_ids.id', '=', 53)] or [('docente_director_id.id','=',1)] and [],
 #           'domain': [('create_uid', 'in', [x.id for x in self.student_ids])],
         }
@@ -383,6 +387,14 @@ class Task(models.Model):
 
     @api.multi
     def action_step_one(self):
+        topic_member = self.env['project.task'].search([('stage_id', '>', 18),('active', '=', True)])
+        for project in topic_member:
+            for member in project.student_ids:
+                if member.id == self.env['res.users'].search([('id', '=', self.env.uid)],limit=1).emp_id:
+                    raise UserError(_('Ya perteneces a un grupo que tiene un tema en proceso de inscripción.'))
+        topic_active = self.env['project.task'].search([('create_uid', '=', self.env.user.id),('stage_id', '>', 18),('active', '=', True)])
+        for projects in topic_active:
+            raise UserError(_('Ya tiene un tema en proceso de inscripción.'))
         self.write({'stage_id': '19'})
  
     @api.multi
@@ -415,7 +427,8 @@ class Task(models.Model):
             'docente_director_id': self.user_id_asignado.id,
             'jefe_department_id': self.jefe_department_id.id,
             'eraise_topic_ids': self.id,
-            'project_topic_id': self.id
+            'project_topic_id': self.id,
+            'create_uid':1
         }) 
         self.write({'stage_id': '24'})
         topic_grade_online._onchange_id_values()
@@ -471,14 +484,14 @@ class Task(models.Model):
     active = fields.Boolean(default=True)
     user_id_propuesto = fields.Many2one('res.users', string='Docente director propuesto')
     name = fields.Char(string='Tema', required=True, index=True, track_visibility='onchange')
-    description = fields.Html(string='Description', track_visibility='always')
+    description = fields.Html(string='Description', track_visibility='onchange')
     priority = fields.Selection([
             ('0', 'Normal'),
             ('1', 'High')
         ], default='0', index=True)
     sequence = fields.Integer(string='Sequence', index=True, default=10,
         help="Gives the sequence order when displaying a list of tasks.")
-    stage_id = fields.Many2one('project.task.type', string='Estado actual', index=True, copy=False, default=18,store=True, track_visibility='always')
+    stage_id = fields.Many2one('project.task.type', string='Estado actual', index=True, copy=False, default=18,store=True, track_visibility='onchange')
     tag_ids = fields.Many2many('project.tags', string='Tags', oldname='categ_ids')
     kanban_state = fields.Selection([
             ('normal', 'In Progress'),
@@ -518,7 +531,7 @@ class Task(models.Model):
         default=lambda self: self.env.uid,
         index=True)
     user_id_asignado = fields.Many2one('res.users',
-        string='Docente director designado', track_visibility='always')
+        string='Docente director designado', track_visibility='onchange')
     user_id_coordi = fields.Many2one('res.users',
         string='Coordinador de Carrera')
     time_grade = fields.Char(string="Tiempo probable de realizacion de trabajo de grado")
@@ -666,6 +679,10 @@ class Task(models.Model):
 
     @api.multi
     def write(self, vals):
+        #query = """SELECT COUNT(*) FROM res_groups_users_rel WHERE uid = %s AND gid = 35;"""
+        #is_groups_students = self.env.cr.execute(query, (self.env.user.id))
+        #if self.stage_id != 18 and is_groups_students = 1:
+        #    raise UserError(_('Los alumnos no pueden editar '))
         now = fields.Datetime.now()
         # stage change: update date_last_stage_update
         if 'stage_id' in vals:

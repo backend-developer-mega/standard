@@ -86,13 +86,13 @@ class TimeTableLine(models.Model):
                               help="Time according to timeformat of 24 hours")
     end_time = fields.Float('End Time', required=True,
                             help="Time according to timeformat of 24 hours")
-    week_day = fields.Selection([('monday', 'Monday'),
-                                 ('tuesday', 'Tuesday'),
-                                 ('wednesday', 'Wednesday'),
-                                 ('thursday', 'Thursday'),
-                                 ('friday', 'Friday'),
-                                 ('saturday', 'Saturday'),
-                                 ('sunday', 'Sunday')], "Week day",)
+    week_day = fields.Selection([('monday', 'Lunes'),
+                                 ('tuesday', 'Martes'),
+                                 ('wednesday', 'Miercoles'),
+                                 ('thursday', 'Jueves'),
+                                 ('friday', 'Viernes'),
+                                 ('saturday', 'Sabado'),
+                                 ('sunday', 'Domingo')], "Week day",)
 
 
 class SubjectSubject(models.Model):

@@ -193,7 +193,7 @@ var Apps = Widget.extend({
 
             def.resolve();
         }, function() {
-            self.do_warn(_t('Odoo Apps will be available soon'), _t('Showing locally available modules'), true);
+            self.do_warn(_t('Apps will be available soon'), _t('Showing locally available modules'), true);
             return session.rpc('/web/action/load', {action_id: self.failback_action_id}).then(function(action) {
                 return self.do_action(action);
             }).always(function () {

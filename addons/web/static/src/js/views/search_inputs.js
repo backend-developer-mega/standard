@@ -190,7 +190,7 @@ var CharField = Field.extend( /** @lends instance.web.search.CharField# */ {
     complete: function (value) {
         if (_.isEmpty(value)) { return $.when(null); }
         var label = _.str.sprintf(_.str.escapeHTML(
-            _t("Search %(field)s for: %(value)s")), {
+            _t("Buscar %(field)s por: %(value)s")), {
                 field: '<em>' + _.escape(this.attrs.string) + '</em>',
                 value: '<strong>' + _.escape(value) + '</strong>'});
         return $.when([{
@@ -209,7 +209,7 @@ var NumberField = Field.extend(/** @lends instance.web.search.NumberField# */{
         var val = this.parse(value);
         if (isNaN(val)) { return $.when(); }
         var label = _.str.sprintf(
-            _t("Search %(field)s for: %(value)s"), {
+            _t("Buscar %(field)s por: %(value)s"), {
                 field: '<em>' + _.escape(this.attrs.string) + '</em>',
                 value: '<strong>' + _.escape(value) + '</strong>'});
         return $.when([{
@@ -228,7 +228,7 @@ var NumberField = Field.extend(/** @lends instance.web.search.NumberField# */{
  * @extends instance.web.search.NumberField
  */
 var IntegerField = NumberField.extend(/** @lends instance.web.search.IntegerField# */{
-    error_message: _t("not a valid integer"),
+    error_message: _t("no es un integer valido"),
     parse: function (value) {
         try {
             return formats.parse_value(value, {'widget': 'integer'});
@@ -243,7 +243,7 @@ var IntegerField = NumberField.extend(/** @lends instance.web.search.IntegerFiel
  * @extends instance.web.search.NumberField
  */
 var FloatField = NumberField.extend(/** @lends instance.web.search.FloatField# */{
-    error_message: _t("not a valid number"),
+    error_message: _t("no es un numero valido"),
     parse: function (value) {
         try {
             return formats.parse_value(value, {'widget': 'float'});
@@ -328,7 +328,7 @@ var BooleanField = SelectionField.extend(/** @lends instance.web.search.BooleanF
     init: function () {
         this._super.apply(this, arguments);
         this.attrs.selection = [
-            [true, _t("Yes")],
+            [true, _t("Si")],
             [false, _t("No")]
         ];
     }
@@ -358,7 +358,7 @@ var DateField = Field.extend(/** @lends instance.web.search.DateField# */{
         var d = m.toDate();
         var date_string = formats.format_value(d, this.attrs);
         var label = _.str.sprintf(_.str.escapeHTML(
-            _t("Search %(field)s at: %(value)s")), {
+            _t("Buscar %(field)s: %(value)s")), {
                 field: '<em>' + _.escape(this.attrs.string) + '</em>',
                 value: '<strong>' + date_string + '</strong>'});
         return $.when([{
@@ -400,7 +400,7 @@ var ManyToOneField = CharField.extend({
     complete: function (value) {
         if (_.isEmpty(value)) { return $.when(null); }
         var label = _.str.sprintf(_.str.escapeHTML(
-            _t("Search %(field)s for: %(value)s")), {
+            _t("Buscar %(field)s por: %(value)s")), {
                 field: '<em>' + _.escape(this.attrs.string) + '</em>',
                 value: '<strong>' + _.escape(value) + '</strong>'});
         return $.when([{
@@ -493,7 +493,7 @@ var ManyToOneField = CharField.extend({
 var FilterGroup = Input.extend(/** @lends instance.web.search.FilterGroup# */{
     template: 'SearchView.filters',
     icon: "fa-filter",
-    completion_label: _lt("Filter on: %s"),
+    completion_label: _lt("Filtrar: %s"),
     /**
      * Inclusive group of filters, creates a continuous "button" with clickable
      * sections (the normal display for filters is to be a self-contained button)
@@ -549,9 +549,9 @@ var FilterGroup = Input.extend(/** @lends instance.web.search.FilterGroup# */{
     },
     make_facet: function (values) {
         return {
-            category: _t("Filter"),
+            category: _t("Filtrar"),
             icon: this.icon,
-            separator: _t(" or "),
+            separator: _t(" o "),
             values: values,
             field: this
         };
@@ -671,7 +671,7 @@ var FilterGroup = Input.extend(/** @lends instance.web.search.FilterGroup# */{
 
 var GroupbyGroup = FilterGroup.extend({
     icon: 'fa-bars',
-    completion_label: _lt("Group by: %s"),
+    completion_label: _lt("Agrupar por: %s"),
     init: function (filters, parent) {
         this._super(filters, parent);
         this.searchview = parent;
@@ -696,7 +696,7 @@ var GroupbyGroup = FilterGroup.extend({
     },
     make_facet: function (values) {
         return {
-            category: _t("Group By"),
+            category: _t("Agrupar por"),
             icon: this.icon,
             separator: " > ",
             values: values,

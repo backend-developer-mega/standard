@@ -10,13 +10,13 @@ var _t = core._t;
 var _lt = core._lt;
 
 var map_title ={
-    user_error: _lt('Warning'),
-    warning: _lt('Warning'),
-    access_error: _lt('Access Error'),
+    user_error: _lt('Advertencia'),
+    warning: _lt('Advertencia'),
+    access_error: _lt('Error de acceso'),
     missing_error: _lt('Missing Record'),
     validation_error: _lt('Validation Error'),
     except_orm: _lt('Global Business Error'),
-    access_denied: _lt('Access Denied'),
+    access_denied: _lt('Acceso denegado'),
 };
 
 var CrashManager = core.Class.extend({
@@ -55,7 +55,7 @@ var CrashManager = core.Class.extend({
             return;
         }
         if (error.data.name === "openerp.http.SessionExpiredException" || error.data.name === "werkzeug.exceptions.Forbidden") {
-            this.show_warning({type: "Session Expired", data: { message: _t("Your Odoo session expired. Please refresh the current web page.") }});
+            this.show_warning({type: "Session Expired", data: { message: _t("Your session expired. Please refresh the current web page.") }});
             return;
         }
         if (_.has(map_title, error.data.exception_type)) {
@@ -66,7 +66,7 @@ var CrashManager = core.Class.extend({
                                     data: _.extend({}, error.data,
                                         {
                                             message: error.data.arguments[1],
-                                            title: error.data.arguments[0] !== 'Warning' ? (" - " + error.data.arguments[0]) : '',
+                                            title: error.data.arguments[0] !== 'Advertencia' ? (" - " + error.data.arguments[0]) : '',
                                         })
                                 });
                 }
@@ -87,7 +87,7 @@ var CrashManager = core.Class.extend({
                                 data: _.extend({}, error.data,
                                     {
                                         message: error.data.arguments[0],
-                                        title: map_title[error.data.exception_type] !== 'Warning' ? (" - " + map_title[error.data.exception_type]) : '',
+                                        title: map_title[error.data.exception_type] !== 'Advertencia' ? (" - " + map_title[error.data.exception_type]) : '',
                                     })
                             });
             }
@@ -105,7 +105,7 @@ var CrashManager = core.Class.extend({
         }
         new Dialog(this, {
             size: 'medium',
-            title: "Odoo " + (_.str.capitalize(error.type) || _t("Warning")),
+            title: (_.str.capitalize(error.type) || _t("Advertencia")),
             subtitle: error.data.title,
             $content: $('<div>').html(QWeb.render('CrashManager.warning', {error: error}))
         }).open();
@@ -115,7 +115,7 @@ var CrashManager = core.Class.extend({
             return;
         }
         new Dialog(this, {
-            title: "Odoo " + _.str.capitalize(error.type),
+            title: _.str.capitalize(error.type),
             $content: QWeb.render('CrashManager.error', {error: error})
         }).open();
     },
@@ -162,13 +162,13 @@ var RedirectWarningHandler = Dialog.extend(ExceptionHandler, {
 
         new Dialog(this, {
             size: 'medium',
-            title: "Odoo " + (_.str.capitalize(error.type) || "Warning"),
+            title: (_.str.capitalize(error.type) || "Advertencia"),
             buttons: [
                 {text: error.data.arguments[2], classes : "btn-primary", click: function() {
                     window.location.href = '#action='+error.data.arguments[1];
                     self.destroy();
                 }},
-                {text: _t("Cancel"), click: function() { self.destroy(); }, close: true}
+                {text: _t("Cancelar"), click: function() { self.destroy(); }, close: true}
             ],
             $content: QWeb.render('CrashManager.warning', {error: error}),
         }).open();

@@ -547,7 +547,7 @@ var KanbanView = View.extend({
             });
         }
         if (this.options.confirm_on_delete) {
-            Dialog.confirm(this, _t("Are you sure you want to delete this record ?"), { confirm_callback: do_it });
+            Dialog.confirm(this, _t("¿Quiere eliminar este registro?"), { confirm_callback: do_it });
         } else {
             do_it();
         }
@@ -722,7 +722,7 @@ var KanbanView = View.extend({
             var dialog = new form_common.FormViewDialog(self, {
                 res_model: self.model,
                 context: _.extend({"default_name": name}, context),
-                title: _t("Create"),
+                title: _t("Nuevo"),
                 disable_multiple_selection: true,
                 on_selected: function(element_ids) {
                     add_record(element_ids[0]);

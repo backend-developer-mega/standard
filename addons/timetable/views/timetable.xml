@@ -64,27 +64,27 @@
                                             </td>
                                             <td align="center" width="14.16%"
                                                 style="font-family: 'Helvetica';font-size: 18px;border: 2px solid black;">
-                                                <b>Monday</b>
+                                                <b>Lunes</b>
                                             </td>
                                             <td align="center" width="14.16%"
                                                 style="font-family: 'Helvetica';font-size: 18px;border: 2px solid black;">
-                                                <b>Tuesday</b>
+                                                <b>Martes</b>
                                             </td>
                                             <td align="center" width="14.16%"
                                                 style="font-family: 'Helvetica';font-size: 18px;border: 2px solid black;">
-                                                <b>Wednesday</b>
+                                                <b>Miercoles</b>
                                             </td>
                                             <td align="center" width="14.16%"
                                                 style="font-family: 'Helvetica';font-size: 18px;border: 2px solid black;">
-                                                <b>Thursday</b>
+                                                <b>Jueves</b>
                                             </td>
                                             <td align="center" width="14.16%"
                                                 style="font-family: 'Helvetica';font-size: 18px;border: 2px solid black;">
-                                                <b>Friday</b>
+                                                <b>Viernes</b>
                                             </td>
                                             <td align="center" width="14.16%"
                                                 style="font-family: 'Helvetica';font-size: 18px;border: 2px solid black;">
-                                                <b>Saturday</b>
+                                                <b>Sabado</b>
                                             </td>
                                         </tr>
                                         <t t-foreach="get_timetable(o)" t-as="t">

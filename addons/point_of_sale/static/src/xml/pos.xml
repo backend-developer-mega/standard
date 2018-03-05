@@ -35,12 +35,12 @@
 
             <div class="loader">
                 <div class='loader-feedback oe_hidden'>
-                    <h1 class='message'>Loading</h1>
+                    <h1 class='message'>Cargando</h1>
                     <div class='progressbar'>
                         <div class='progress' width='50%'></div>
                     </div>
                     <div class='oe_hidden button skip'>
-                        Skip
+                        Quitar
                     </div>
                 </div>
             </div>

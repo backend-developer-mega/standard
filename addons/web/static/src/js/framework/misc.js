@@ -16,7 +16,7 @@ var messages_by_seconds = function() {
         [120, _t("Aunque no lo creas,<br />sigo cargando...")],
         [300, _t("Tu no lo vas a creer,<br />pero la aplicacion sige cargando...")],
         [420, _t("Tomate un cafe,<br />por que sigo cargando...")],
-        [3600, _t("Maybe you should consider reloading the application by pressing F5...")]
+        [3600, _t("La aplicación no responde presiona F5...")]
     ];
 };
 

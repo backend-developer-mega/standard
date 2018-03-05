@@ -1,21 +1,61 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_project_project,project.project,model_project_project,project.group_project_user,1,0,0,0
-access_project_project_manager,project.project,model_project_project,project.group_project_manager,1,1,1,1
-access_account_analytic_account_user,account.analytic.account,analytic.model_account_analytic_account,project.group_project_user,1,0,0,0
-access_account_analytic_account_manager,account.analytic.account,analytic.model_account_analytic_account,project.group_project_manager,1,1,1,1
 access_project_task_type_user,project.task.type.user,model_project_task_type,base.group_user,1,0,0,0
-access_project_task_type_project_user,project.task.type.project.user,model_project_task_type,project.group_project_user,1,0,0,0
-access_project_task_type_manager,project.task.type manager,model_project_task_type,project.group_project_manager,1,1,1,1
-access_project_task,project.task,model_project_task,project.group_project_user,1,1,1,1
-access_report_project_task_user,report.project.task.user,model_report_project_task_user,project.group_project_manager,1,1,1,1
-access_partner_task user,base.res.partner user,base.model_res_partner,project.group_project_user,1,0,0,0
 access_task_on_partner,project.task on partners,model_project_task,base.group_user,1,0,0,0
 access_project_on_partner,project.project on partners,model_project_project,base.group_user,1,0,0,0
+access_project_project_manager,project.project,model_project_project,project.group_project_manager,1,1,1,1
+access_account_analytic_account_manager,account.analytic.account,analytic.model_account_analytic_account,project.group_project_manager,1,1,1,1
+access_project_task_type_manager,project.task.type manager,model_project_task_type,project.group_project_manager,1,1,1,1
+access_report_project_task_user,report.project.task.user,model_report_project_task_user,project.group_project_manager,1,1,1,1
 access_account_analytic_line_project,account.analytic.line project,analytic.model_account_analytic_line,project.group_project_manager,1,1,1,1
+access_project_tags_manager,project.project_tags_manager,model_project_tags,project.group_project_manager,1,1,1,1
+access_mail_alias,mail.alias,mail.model_mail_alias,project.group_project_manager,1,1,1,1
+access_project_evaluation,project.evaluation,model_project_evaluation,project.group_project_manager,1,1,1,1
+access_project_project,project.project,model_project_project,project.group_project_user,1,0,0,0
+access_account_analytic_account_user,account.analytic.account,analytic.model_account_analytic_account,project.group_project_user,1,0,0,0
+access_project_task_type_project_user,project.task.type.project.user,model_project_task_type,project.group_project_user,1,0,0,0
+access_project_task,project.task,model_project_task,project.group_project_user,1,1,1,0
+access_partner_task user,base.res.partner user,base.model_res_partner,project.group_project_user,1,0,0,0
 access_resource_calendar,project.resource_calendar user,resource.model_resource_calendar,project.group_project_user,1,0,0,0
 access_resource_calendar_attendance,project.resource_calendar_attendance user,resource.model_resource_calendar_attendance,project.group_project_user,1,0,0,0
 access_resource_calendar_leaves_user,resource.calendar.leaves user,resource.model_resource_calendar_leaves,project.group_project_user,1,1,1,1
 access_project_tags_all,project.project_tags_all,model_project_tags,,1,0,0,0
-access_project_tags_manager,project.project_tags_manager,model_project_tags,project.group_project_manager,1,1,1,1
-access_mail_alias,mail.alias,mail.model_mail_alias,project.group_project_manager,1,1,1,1
-access_project_evaluation,project.evaluation,model_project_evaluation,project.group_project_manager,1,1,1,1
+access_project_project_student,project.project,model_project_project,project.group_project_student,1,1,1,1
+access_account_analytic_account_student,account.analytic.account,analytic.model_account_analytic_account,project.group_project_student,1,1,1,1
+access_project_task_type_student,project.task.type manager,model_project_task_type,project.group_project_student,1,1,1,1
+access_report_project_task_student,report.project.task.user,model_report_project_task_user,project.group_project_student,1,1,1,1
+access_account_analytic_line_student,account.analytic.line project,analytic.model_account_analytic_line,project.group_project_student,1,1,1,1
+access_project_tags_student,project.project_tags_manager,model_project_tags,project.group_project_student,1,1,1,1
+access_mail_alias_student,mail.alias,mail.model_mail_alias,project.group_project_student,1,1,1,1
+access_project_evaluation_student,project.evaluation,model_project_evaluation,project.group_project_student,1,1,1,1
+access_project_project_professor,project.project,model_project_project,project.group_project_professor,1,1,1,1
+access_account_analytic_account_professor,account.analytic.account,analytic.model_account_analytic_account,project.group_project_professor,1,1,1,1
+access_project_task_type_professor,project.task.type manager,model_project_task_type,project.group_project_professor,1,1,1,1
+access_report_project_task_professor,report.project.task.user,model_report_project_task_user,project.group_project_professor,1,1,1,1
+access_account_analytic_line_professor,account.analytic.line project,analytic.model_account_analytic_line,project.group_project_professor,1,1,1,1
+access_project_tags_professor,project.project_tags_manager,model_project_tags,project.group_project_professor,1,1,1,1
+access_mail_alias_professor,mail.alias,mail.model_mail_alias,project.group_project_professor,1,1,1,1
+access_project_evaluation_professor,project.evaluation,model_project_evaluation,project.group_project_professor,1,1,1,1
+access_project_project_head_department,project.project,model_project_project,project.group_project_head_department,1,1,1,1
+access_account_analytic_account_head_department,account.analytic.account,analytic.model_account_analytic_account,project.group_project_head_department,1,1,1,1
+access_project_task_type_head_department,project.task.type manager,model_project_task_type,project.group_project_head_department,1,1,1,1
+access_report_project_task_head_department,report.project.task.user,model_report_project_task_user,project.group_project_head_department,1,1,1,1
+access_account_analytic_line_head_department,account.analytic.line project,analytic.model_account_analytic_line,project.group_project_head_department,1,1,1,1
+access_project_tags_head_department,project.project_tags_manager,model_project_tags,project.group_project_head_department,1,1,1,1
+access_mail_alias_head_department,mail.alias,mail.model_mail_alias,project.group_project_head_department,1,1,1,1
+access_project_evaluation_head_department,project.evaluation,model_project_evaluation,project.group_project_head_department,1,1,1,1
+access_project_project_coordinator,project.project,model_project_project,project.group_project_coordinator,1,1,1,1
+access_account_analytic_account_coordinator,account.analytic.account,analytic.model_account_analytic_account,project.group_project_coordinator,1,1,1,1
+access_project_task_type_coordinator,project.task.type manager,model_project_task_type,project.group_project_coordinator,1,1,1,1
+access_report_project_task_coordinator,report.project.task.user,model_report_project_task_user,project.group_project_coordinator,1,1,1,1
+access_account_analytic_line_coordinator,account.analytic.line project,analytic.model_account_analytic_line,project.group_project_coordinator,1,1,1,1
+access_project_tags_coordinator,project.project_tags_manager,model_project_tags,project.group_project_coordinator,1,1,1,1
+access_mail_alias_coordinator,mail.alias,mail.model_mail_alias,project.group_project_coordinator,1,1,1,1
+access_project_evaluation_coordinator,project.evaluation,model_project_evaluation,project.group_project_coordinator,1,1,1,1
+access_project_project_directors,project.project,model_project_project,project.group_project_directors,1,1,1,1
+access_account_analytic_account_directors,account.analytic.account,analytic.model_account_analytic_account,project.group_project_directors,1,1,1,1
+access_project_task_type_directors,project.task.type manager,model_project_task_type,project.group_project_directors,1,1,1,1
+access_report_project_task_directors,report.project.task.user,model_report_project_task_user,project.group_project_directors,1,1,1,1
+access_account_analytic_line_directors,account.analytic.line project,analytic.model_account_analytic_line,project.group_project_directors,1,1,1,1
+access_project_tags_directors,project.project_tags_manager,model_project_tags,project.group_project_directors,1,1,1,1
+access_mail_alias_directors,mail.alias,mail.model_mail_alias,project.group_project_directors,1,1,1,1
+access_project_evaluation_directors,project.evaluation,model_project_evaluation,project.group_project_directors,1,1,1,1

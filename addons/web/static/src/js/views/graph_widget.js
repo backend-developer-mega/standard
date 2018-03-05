@@ -19,7 +19,7 @@ return Widget.extend({
         this._super(parent);
         this.context = options.context;
         this.fields = options.fields;
-        this.fields.__count__ = {string: _t("Count"), type: "integer"};
+        this.fields.__count__ = {string: _t("Contar"), type: "integer"};
         this.model = new Model(model, {group_by_no_leaf: true});
 
         this.domain = options.domain || [];
@@ -92,10 +92,10 @@ return Widget.extend({
         this.$el.empty();
         if (!this.data.length) {
             this.$el.append(QWeb.render('GraphView.error', {
-                title: _t("No data to display"),
-                description: _t("No data available for this chart. " +
-                    "Try to add some records, or make sure that " +
-                    "there is no active filter in the search bar."),
+                title: _t("No hay datos disponibles"),
+                description: _t("No hay datos disponibles. " +
+                    "" +
+                    ""),
             }));
         } else {
             var chart = this['display_' + this.mode]();
@@ -206,17 +206,17 @@ return Widget.extend({
         });
         if (some_negative && !all_negative) {
             this.$el.append(QWeb.render('GraphView.error', {
-                title: _t("Invalid data"),
-                description: _t("Pie chart cannot mix positive and negative numbers. " +
-                    "Try to change your domain to only display positive results"),
+                title: _t("Datos invalidos"),
+                description: _t("No se puede mezclar numero positivos con numeros negativos. " +
+                    ""),
             }));
             return;
         }
         if (all_zero) {
             this.$el.append(QWeb.render('GraphView.error', {
-                title: _t("Invalid data"),
-                description: _t("Pie chart cannot display all zero numbers.. " +
-                    "Try to change your domain to display positive results"),
+                title: _t("Datos invalidos"),
+                description: _t("No se puede operar con todos los numeros en cero.. " +
+                    ""),
             }));
             return;
         }
@@ -250,8 +250,8 @@ return Widget.extend({
     display_line: function () {
         if (this.data.length < 2) {
             this.$el.append(QWeb.render('GraphView.error', {
-                title: _t("Not enough data points"),
-                description: "You need at least two data points to display a line chart."
+                title: _t("No se encuentran puntos de datos"),
+                description: "Se necesitan por lo menos dos puntos de datos."
             }));
             return;
         }

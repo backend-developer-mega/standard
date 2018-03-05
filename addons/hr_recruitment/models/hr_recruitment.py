@@ -93,13 +93,17 @@ class Applicant(models.Model):
 
     @api.multi
     def filter_students_applicant(self):
+        if self.env.uid == 1:
+            domain_value = []
+        if self.env.uid != 1:
+            domain_value = [('job_id.id','=',self.env.uid.department_id.id)]
         return {
             'name': _('Solicitudes'),
-            'view_mode': 'kanban,tree,form,pivot,graph,calendar,pivot',
+            'view_mode': 'kanban,tree,form,graph',
             'res_model': 'hr.applicant',
             'view_id': False,
             'type': 'ir.actions.act_window',
-            'domain': [('job_id.id','=',self.env.uid.department_id.id)],
+            'domain': domain_value,
         }
     
 

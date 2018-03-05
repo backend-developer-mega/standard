@@ -223,7 +223,7 @@ var CompletionFieldMixin = {
             if (search_val.length > 0 && !_.include(raw_result, search_val) &&
                 ! (self.options && (self.options.no_create || self.options.no_quick_create))) {
                 self.can_create && values.push({
-                    label: _.str.sprintf(_t('Create "<strong>%s</strong>"'),
+                    label: _.str.sprintf(_t('Nuevo "<strong>%s</strong>"'),
                         $('<span />').text(search_val).html()),
                     action: function() {
                         self._quick_create(search_val);
@@ -234,7 +234,7 @@ var CompletionFieldMixin = {
             // create...
             if (!(self.options && (self.options.no_create || self.options.no_create_edit)) && self.can_create){
                 values.push({
-                    label: _t("Create and Edit..."),
+                    label: _t("Agregar y editar..."),
                     action: function() {
                         self._search_create_popup("form", undefined, self._create_context(search_val));
                     },
@@ -243,7 +243,7 @@ var CompletionFieldMixin = {
             }
             else if (values.length === 0) {
                 values.push({
-                    label: _t("No results to show..."),
+                    label: _t("No encontro ningun resultado..."),
                     action: function() {},
                     classname: 'o_m2o_dropdown_option'
                 });
@@ -279,7 +279,7 @@ var CompletionFieldMixin = {
             res_model: self.field.relation,
             domain: self.build_domain(),
             context: new data.CompoundContext(self.build_context(), context || {}),
-            title: (view === 'search' ? _t("Search: ") : _t("Create: ")) + this.string,
+            title: (view === 'search' ? _t("Buscar: ") : _t("Nuevo: ")) + this.string,
             initial_ids: ids ? _.map(ids, function(x) {return x[0];}) : undefined,
             initial_view: view,
             disable_multiple_selection: true,
@@ -877,13 +877,13 @@ var FormViewDialog = ViewDialog.extend({
         if(!options || !options.buttons) {
             options = options || {};
             options.buttons = [
-                {text: (readonly ? _t("Close") : _t("Discard")), classes: "btn-default o_form_button_cancel", close: true, click: function() {
+                {text: (readonly ? _t("Cerrar") : _t("Descartar")), classes: "btn-default o_form_button_cancel", close: true, click: function() {
                     self.view_form.trigger('on_button_cancel');
                 }}
             ];
 
             if(!readonly) {
-                options.buttons.splice(0, 0, {text: _t("Save") + ((multi_select)? " " + _t(" & Close") : ""), classes: "btn-primary", click: function() {
+                options.buttons.splice(0, 0, {text: _t("Guardar") + ((multi_select)? " " + _t(" & Cerrar") : ""), classes: "btn-primary", click: function() {
                         self.view_form.onchanges_mutex.def.then(function() {
                             if (!self.view_form.warning_displayed) {
                                 $.when(self.view_form.save()).done(function() {
@@ -898,7 +898,7 @@ var FormViewDialog = ViewDialog.extend({
                 });
 
                 if(multi_select) {
-                    options.buttons.splice(1, 0, {text: _t("Save & New"), classes: "btn-primary", click: function() {
+                    options.buttons.splice(1, 0, {text: _t("Guardar & Nuevo"), classes: "btn-primary", click: function() {
                         $.when(self.view_form.save()).done(function() {
                             self.view_form.reload_mutex.exec(function() {
                                 self.view_form.on_button_new();
@@ -1055,15 +1055,15 @@ var SelectCreateDialog = ViewDialog.extend({
             });
 
             var buttons = [
-                {text: _t("Cancel"), classes: "btn-default o_form_button_cancel", close: true}
+                {text: _t("Cancelar"), classes: "btn-default o_form_button_cancel", close: true}
             ];
             if(!self.options.no_create) {
-                buttons.splice(0, 0, {text: _t("Create"), classes: "btn-primary", click: function() {
+                buttons.splice(0, 0, {text: _t("Nuevo"), classes: "btn-primary", click: function() {
                     self.create_edit_record();
                 }});
             }
             if(!self.options.disable_multiple_selection) {
-                buttons.splice(0, 0, {text: _t("Select"), classes: "btn-primary o_selectcreatepopup_search_select", disabled: true, close: true, click: function() {
+                buttons.splice(0, 0, {text: _t("Seleccionar"), classes: "btn-primary o_selectcreatepopup_search_select", disabled: true, close: true, click: function() {
                     self.on_selected(self.selected_ids);
                 }});
             }
@@ -1105,14 +1105,14 @@ var SelectCreateDialog = ViewDialog.extend({
 var DomainEditorDialog = SelectCreateDialog.extend({
     init: function(parent, options) {
         options = _.defaults(options, {initial_facet: {
-            category: _t("Custom Filter"),
+            category: _t("Filtros personalizados"),
             icon: 'fa-star',
             field: {
                 get_context: function () { return options.context; },
                 get_groupby: function () { return []; },
                 get_domain: function () { return options.default_domain; },
             },
-            values: [{label: _t("Selected domain"), value: null}],
+            values: [{label: _t("Dominio seleccionado"), value: null}],
         }});
 
         this._super(parent, options);

@@ -165,7 +165,7 @@ var DataExport = Dialog.extend({
 
             var value = $saveList.find("input").val();
             if(!value) {
-                Dialog.alert(this, _t("Please enter save field list name"));
+                Dialog.alert(this, _t("Por favor ingrese guardar"));
                 return;
             }
 
@@ -197,10 +197,10 @@ var DataExport = Dialog.extend({
     },
     init: function(parent, dataset) {
         var options = {
-            title: _t("Export Data"),
+            title: _t("Exportar datos"),
             buttons: [
-                {text: _t("Export To File"), click: this.export_data, classes: "btn-primary"},
-                {text: _t("Close"), close: true},
+                {text: _t("Exportar a archivo"), click: this.export_data, classes: "btn-primary"},
+                {text: _t("Cerrar"), close: true},
             ],
         };
         this._super(parent, options);
@@ -419,7 +419,7 @@ var DataExport = Dialog.extend({
             return $(this).val();
         }).get();
         if($export_fields.length === 0) {
-            Dialog.alert(this, _t("Please select fields to save export list..."));
+            Dialog.alert(this, _t("Seleccione los campos para guardar la lista de exportación..."));
         }
         return $export_fields;
     },
@@ -433,7 +433,7 @@ var DataExport = Dialog.extend({
         }).get();
 
         if (_.isEmpty(exported_fields)) {
-            Dialog.alert(this, _t("Please select fields to export..."));
+            Dialog.alert(this, _t("Por favor seleccione los campos para exportar..."));
             return;
         }
         exported_fields.unshift({name: 'id', label: 'External ID'});

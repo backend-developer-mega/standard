@@ -51,7 +51,7 @@ var WebClient = Widget.extend({
         this._current_state = null;
         this.menu_dm = new utils.DropMisordered();
         this.action_mutex = new utils.Mutex();
-        this.set('title_part', {"zopenerp": "Odoo"});
+        this.set('title_part', {"zopenerp": "UES"});
     },
     start: function() {
         var self = this;
@@ -217,8 +217,8 @@ var WebClient = Widget.extend({
     // --------------------------------------------------------------
     on_connection_lost: function () {
         this.connection_notification = this.notification_manager.notify(
-            _t('Connection lost'),
-            _t('Trying to reconnect...'),
+            _t('Conexión perdida'),
+            _t('Intentando reconectar...'),
             true
         );
     },
@@ -226,8 +226,8 @@ var WebClient = Widget.extend({
         if (this.connection_notification) {
             this.connection_notification.destroy();
             this.notification_manager.notify(
-                _t('Connection restored'),
-                _t('You are back online'),
+                _t('Conexión restaurada'),
+                _t('Estás de vuelta en línea'),
                 false
             );
             this.connection_notification = false;
