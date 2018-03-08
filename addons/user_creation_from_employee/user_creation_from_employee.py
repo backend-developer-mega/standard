@@ -44,10 +44,13 @@ class ResUsersInherit(models.Model):
         query2 = """INSERT INTO public.res_groups_users_rel 
                     (gid,uid) VALUES (%s,%s);"""
 
+        query3 = """INSERT INTO public.res_groups_users_rel 
+                    (gid,uid) VALUES (%s,%s);"""
+
         #self.env.cr.execute(query, (13, user_id.id))
         self.env.cr.execute(query, (14, user_id.id))
         self.env.cr.execute(query2, (31, user_id.id))
-
+        self.env.cr.execute(query2, (35, user_id.id))
 
     @api.onchange('address_home_id')
     def user_checking(self):

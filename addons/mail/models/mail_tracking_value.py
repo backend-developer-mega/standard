@@ -98,3 +98,12 @@ class MailTracking(models.Model):
     def get_new_display_value(self):
         # grep : # new_value_integer | new_value_datetime | new_value_char
         return self.get_display_value('new')
+
+    @api.model
+    def create(self, vals):
+        return super(MailTracking, self).create(vals)
+
+    @api.multi
+    def write(self, values):
+        return super(MailTracking, self).write(values)
+

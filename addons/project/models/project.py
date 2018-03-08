@@ -8,6 +8,268 @@ from odoo import api, fields, models, tools, SUPERUSER_ID, _
 from odoo.exceptions import UserError, ValidationError
 from odoo.tools.safe_eval import safe_eval
 
+class MessagePostShowAll(models.Model):
+
+    """With this object you can add an extensive log in your model like the
+    traditional message log don't does
+    You need do it the following way:
+        _name = "account.invoice"
+        _inherit = ['account.invoice', 'message.post.show.all']
+    """
+
+    _name = 'message.post.show.all'
+    _inherit = ['mail.thread']
+
+    # pylint: disable=W0622
+    @api.model
+    def get_last_value(self, ids, model=None, field=None,
+                       fieldtype=None):
+        """Return the last value of a record in the model to show a post with the
+        change
+        @param ids: int with id record
+        @param model: String with model name
+        @param field: Name field to return his value
+        return the value of the field
+        """
+
+        field = ids and field or []
+        model_obj = self.env[model]
+        model_brw = model_obj.browse(ids)
+        if 'many2one' in fieldtype:
+            value = field and model_brw[field] and \
+                model_brw[field].name_get() or ''
+            value = value and value[0][1]
+        elif 'many2many' in fieldtype:
+            value = [i.id for i in model_brw[field]]
+        else:
+            value = field and model_brw[field] or ''
+
+        return field and value or ''
+
+    @api.model
+    def prepare_many_info(self, ids, records, string, n_obj,
+                          last=None):
+        info = {
+            0: _('Created New Line'),
+            1: _('Updated Line'),
+            2: _('Removed Line'),
+            3: _('Removed Line'),
+            6: _('many2many'),
+        }
+        message = '<ul>'
+        obj = self.env[n_obj]
+        r_name = obj._rec_name
+        mes = ''
+        last = last or []
+        for val in records:
+            if val and info.get(val[0], False):
+                if val[0] == 0:
+                    value = val[2]
+                    message = '%s\n<li><b>%s<b>: %s</li>' % \
+                        (self.get_encode_value(message),
+                         self.get_encode_value(info.get(val[0])),
+                         self.get_encode_value(value.get(r_name)))
+                elif val[0] in (2, 3):
+                    model_brw = obj.browse(val[1])
+                    last_value = model_brw.name_get()
+                    last_value = last_value and last_value[0][1]
+                    value = val[1]
+                    message = '%s\n<li><b>%s<b>: %s</li>' % \
+                        (self.get_encode_value(message),
+                         self.get_encode_value(info.get(val[0])),
+                         self.get_encode_value(last_value))
+
+                elif val[0] == 6:
+                    lastv = list(set(val[2]) - set(last))
+                    new = list(set(last) - set(val[2]))
+                    add = _('Agregado')
+                    delete = _('Eliminado')
+                    if lastv and not new:
+                        dele = [obj.browse(i).name_get()[0][1]
+                                for i in lastv]
+                        mes = ' - '.join(dele)
+                        message = '%s\n<li><b>%s %s<b>: %s</li>' % \
+                            (self.get_encode_value(message),
+                             self.get_encode_value(add),
+                             self.get_encode_value(string),
+                             self.get_encode_value(mes))
+                    if not lastv and new:
+
+                        dele = [obj.browse(i).name_get()[0][1] for i in new]
+                        mes = '-'.join(dele)
+                        message = '%s\n<li><b>%s %s<b>: %s</li>' % \
+                            (self.get_encode_value(message),
+                             self.get_encode_value(delete),
+                             self.get_encode_value(string),
+                             self.get_encode_value(mes))
+
+                elif val[0] == 1:
+                    vals = val[2]
+                    id_line = 0
+                    for field in vals:
+                        if obj._fields[field].type in \
+                                ('one2many', 'many2many'):
+                            is_many = obj._fields[field].type == 'many2many'
+
+                            last_value = is_many and self.get_last_value(
+                                val[1], n_obj, field, 'many2many')
+                            field_str = self.get_string_by_field(obj, field)
+                            new_n_obj = obj._fields[field].comodel_name
+                            mes = self.prepare_many_info(val[1],
+                                                         vals[field],
+                                                         field_str,
+                                                         new_n_obj,
+                                                         last_value)
+
+                        elif obj._fields[field].type == 'many2one':
+                            mes = self.prepare_many2one_info(val[1],
+                                                             n_obj,
+                                                             field,
+                                                             vals)
+
+                        elif 'many' not in obj._fields[field].type:
+                            mes = self.prepare_simple_info(val[1],
+                                                           n_obj, field,
+                                                           vals)
+                        if mes and mes != '<p>':
+                            message = id_line != val[1] and \
+                                _('%s\n<h3>Line %s</h3>' % (message, val[1])) \
+                                or message
+                            message = '%s\n%s' % \
+                                (self.get_encode_value(message),
+                                 mes)
+                            id_line = val[1]
+
+        message = '%s\n</ul>' % self.get_encode_value(message)
+        return message
+
+    @api.model
+    def get_selection_value(self, source_obj, field, value):
+        """Get the string of a selection field using
+        fields_get method to get the string
+        @param source_obj: Model that contains the field
+        @type source_obj: RecordSet
+        @param field: Database name of the field
+        @type field: str or unicode
+        @param value: Database value used to find its the
+                      string in the selection
+        @type value: str or unicode
+        @returns: String shown in the selection field
+        @rtype: str
+        """
+        val = source_obj.fields_get([field])
+        val = val and val.get(field, {})
+        val = val and val.get('selection', ()) or ()
+        val = [i[1] for i in val if value in i]
+        val = val and val[0] or ''
+        return val.encode('utf-8', 'ignore')
+
+    @api.model
+    def get_string_by_field(self, source_obj, field):
+        """Get the string of a field using fields_get method to
+        get the string depending of the user lang
+        @param source_obj: Model that contains the field
+        @type source_obj: RecordSet
+        @param field: Database name of the field
+        @type field: str or unicode
+        @returns: String of the field shown in the views
+        @rtype: str
+        """
+        description = source_obj.fields_get([field])
+        description = description and description.get(field, {})
+        description = description and description.get('string', '') or ''
+        return description.encode('utf-8', 'ignore')
+
+    @api.model
+    def prepare_many2one_info(self, ids, n_obj, field, vals):
+        obj = self.env[n_obj]
+        message = '<p>'
+
+        last_value = self.get_last_value(
+            ids, obj._name, field, obj._fields[field].type)
+        model_obj = self.env[obj._fields[field].comodel_name]
+        model_brw = model_obj.browse(vals[field])
+        new_value = model_brw.name_get()
+        new_value = new_value and new_value[0][1]
+
+        if not (last_value == new_value) and any((new_value, last_value)):
+            message = '<li><b>%s<b>: %s → %s</li>' % \
+                (self.get_string_by_field(obj, field),
+                 self.get_encode_value(last_value),
+                 self.get_encode_value(new_value))
+        return message
+
+    @staticmethod
+    def get_encode_value(value):
+        """Encode string values to avoid unicode errors
+        @param value: Any object to try encode the value
+        @type value: str bool date
+        """
+        val = value
+        if isinstance(value, (unicode)):
+            val = value.encode('utf-8', 'ignore')
+        return val
+
+    @api.model
+    def prepare_simple_info(self, ids, n_obj, field,
+                            vals):
+        obj = self.env[n_obj]
+        message = '<p>'
+        last_value = self.get_last_value(
+            ids, obj._name, field, obj._fields[field].type)
+
+        last_value = obj._fields[field].type == 'selection' and \
+            self.get_selection_value(obj, field, last_value) or last_value
+        new_value = obj._fields[field].type == 'selection' and \
+            self.get_selection_value(obj, field, vals[field]) or vals[field]
+        last_value = self.get_encode_value(last_value)
+        new_value = self.get_encode_value(new_value)
+
+        message = ((last_value != new_value) and
+                   any((last_value, vals[field]))) and \
+            '<li><b>%s<b>: %s → %s</li>' % \
+            (self.get_string_by_field(obj, field), last_value,
+             new_value) or '<p>'
+        return message
+
+    # pylint: disable=W0106
+    @api.multi
+    def write(self, vals):
+        for idx in self:
+            body = '<ul>'
+            message = ''
+            for field in vals:
+                if self._fields[field].type in ('one2many', 'many2many'):
+                    is_many = self._fields[field].type == 'many2many'
+
+                    last_value = is_many and self.get_last_value(
+                        idx.id, self._name, field, 'many2many')
+                    field_str = self.get_string_by_field(self, field)
+                    n_obj = self._fields[field].comodel_name
+                    message = self.prepare_many_info(
+                        idx.id, vals[field], field_str, n_obj,
+                        last_value)
+                    body = len(message.split('\n')) > 2 and '%s\n%s: %s' % (
+                        body, field_str, message) or body
+
+                elif self._fields[field].type == 'many2one':
+                    message = self.prepare_many2one_info(idx.id,
+                                                         self._name,
+                                                         field,
+                                                         vals)
+                    body = '%s\n%s' % (body, message)
+
+                elif 'many' not in self._fields[field].type:
+                    #message = self.prepare_simple_info(
+                    #    idx.id, self._name, field, vals)
+                    #body = '%s\n%s' % (body, message)
+                    lis_info = ''
+
+            body = body and '%s\n</ul>' % body
+            if body and message:
+                idx.message_post(body, _('Cambios en los campos'))
+        res = super(MessagePostShowAll, self).write(vals)
+        return res
 
 class ProjectTaskType(models.Model):
     _name = 'project.task.type'
@@ -269,6 +531,7 @@ class Project(models.Model):
         ('project_date_greater', 'check(date >= date_start)', 'Error! project start-date must be lower than project end-date.')
     ]
 
+
     @api.multi
     def map_tasks(self, new_project_id):
         """ copy and map tasks from old to new project """
@@ -286,7 +549,7 @@ class Project(models.Model):
             default = {}
         self = self.with_context(active_test=False)
         if not default.get('name'):
-            default['name'] = _("%s (copy)") % (self.name)
+            default['name'] = _("%s (copia)") % (self.name)
         project = super(Project, self).copy(default)
         for follower in self.message_follower_ids:
             project.message_subscribe(partner_ids=follower.partner_id.ids, subtype_ids=follower.subtype_ids.ids)
@@ -342,18 +605,44 @@ class Task(models.Model):
     _name = "project.task"
     _description = "Task"
     _date_name = "date_start"
-    _inherit = ['mail.thread', 'ir.needaction_mixin']
+    _inherit = ['message.post.show.all', 'ir.needaction_mixin']
     _mail_post_access = 'read'
     _order = "priority desc, sequence, date_start, name, id"
     
     # recipient_ids = fields.Many2many('hr.employee', string='Integrantes')
     
-    student_ids = fields.Many2many('hr.employee', 'student_lead_tag_rel_res', 'student_lead_id_res', 'student_tag_id_res', string='Carrera Universitaria', help="Establecer las carreras universitarias", track_visibility='onchange')
+    student_ids = fields.Many2many('hr.employee', 'student_lead_tag_rel_res', 'student_lead_id_res', 'student_tag_id_res', string='integrante', help="Agregar los integrantes al grupo", track_visibility='onchange')
     department_id = fields.Many2one('hr.department', string='Carrera', default=lambda self: self.env['res.users'].sudo().browse(self.env.uid).career_id)
     depart_ids = fields.Many2one('hr.job', string='Departamento', default=lambda self: self.env['res.users'].sudo().browse(self.env.uid).department_id)
-    jefe_department_id = fields.Many2one('res.users', "Jefe de Departamento")
+    jefe_department_id = fields.Many2one('res.users', "Jefe de Departamento", track_visibility='onchange')
     description_general = fields.Text("Descripción", track_visibility='onchange')
     # recipient_ids = fields.One2many('hr.employee', 'task_ids', string='Integrantes')
+
+#    @api.onchange('student_ids')
+    def _students(self):
+        values = {
+            'website_published': True,
+            'message_type': 'notification',
+            'no_auto_thread': False,
+            'record_name': self.name,
+            'model':'project.task',
+            'subtype_id': 2,
+            'parent_id': 1608,
+            'res_id': 76, 
+        }
+        message_id = self.env['mail.message'].create(values)
+
+        vals = {
+            'new_value_text': 'valor prueba',
+            'write_id': self.env.uid,
+            'field':'student_ids',
+            'field_type':'text',
+            'old_value_text': 'valor viejo',
+            'field_desc': 'Integrantes',
+            'mail_message_id': message_id.id,
+        }
+        tracking = self.env['mail.tracking.value'].create(vals)
+        #raise UserError(_('Ya tiene un tema en proceso de inscripción.'))
 
     @api.multi
     def filter_kanban_topic_project(self):
@@ -481,8 +770,8 @@ class Task(models.Model):
         stage_ids = stages._search(search_domain, order=order, access_rights_uid=SUPERUSER_ID)
         return stages.browse(stage_ids)
 
-    active = fields.Boolean(default=True)
-    user_id_propuesto = fields.Many2one('res.users', string='Docente director propuesto')
+    active = fields.Boolean(default=True, string='Habilitado', track_visibility='onchange')
+    user_id_propuesto = fields.Many2one('res.users', string='Docente director propuesto', track_visibility='onchange')
     name = fields.Char(string='Tema', required=True, index=True, track_visibility='onchange')
     description = fields.Html(string='Description', track_visibility='onchange')
     priority = fields.Selection([
@@ -533,8 +822,8 @@ class Task(models.Model):
     user_id_asignado = fields.Many2one('res.users',
         string='Docente director designado', track_visibility='onchange')
     user_id_coordi = fields.Many2one('res.users',
-        string='Coordinador de Carrera')
-    time_grade = fields.Char(string="Tiempo probable de realizacion de trabajo de grado")
+        string='Coordinador de Carrera', track_visibility='onchange')
+    time_grade = fields.Char(string="Tiempo probable de realizacion de trabajo de grado", track_visibility='onchange')
     partner_id = fields.Many2one('res.partner',
         string='Customer',
         default=_get_default_partner)
