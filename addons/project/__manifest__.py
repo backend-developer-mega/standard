@@ -45,6 +45,7 @@ Dashboard / Reports for Project Management will include:
         'views/tour_views.xml',
         'data/web_planner_data.xml',
         'data/project_mail_template_data.xml',
+        #'views/project_email_templates.xml',
     ],
     'qweb': ['static/src/xml/project.xml'],
     'demo': ['data/project_demo.xml'],

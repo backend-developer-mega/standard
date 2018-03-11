@@ -11,7 +11,7 @@
                 <sheet>
                     <div class="oe_button_box" name="button_box">
                         <button  class="oe_stat_button" name="show_evaluations_topic" icon="fa-pencil-square-o" type="object"
-                             help="Schedule interview with this applicant">
+                             help="Ver las notas de las evaluaciones">
                             <div class="o_form_field o_stat_info">
                                 <span class="o_stat_text">Evaluaciones</span>
                              </div>
@@ -413,15 +413,17 @@
                     </button>
                 </div>
                 <div>
-                    <separator string="Tema de grado"/>
-                    <h2>
-                        <field name="topic_id" string="Tema de grado" readonly="1" />
-                    </h2>
-                    <separator string="Descripcion de la actividad"/>
+                    <separator string="Actividad"/> 
+                    <h2><field name="name" string="Tema de actividad"/></h2>
+                    <separator string="Descripción de la actividad"/>
                     <field name="description" placeholder="Descripcion detallada..."/>
                     <group>
-                        <field name="name" string="Tema de actividad"/>
-                        <field name="evaluations_id" string="Pertenece a la evaluación"/>
+                        <group>
+                            <field name="topic_id" string="Tema de grado" readonly="1" />
+                        </group>
+                        <group>
+                            <field name="evaluations_id" string="Pertenece a la evaluación"/>
+                        </group>
                         <field name="user_id" invisible="1" />
                     </group>
                 </div>

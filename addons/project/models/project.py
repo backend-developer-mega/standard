@@ -260,9 +260,9 @@ class MessagePostShowAll(models.Model):
                     body = '%s\n%s' % (body, message)
 
                 elif 'many' not in self._fields[field].type:
-                    #message = self.prepare_simple_info(
+                    # message = self.prepare_simple_info(
                     #    idx.id, self._name, field, vals)
-                    #body = '%s\n%s' % (body, message)
+                    # body = '%s\n%s' % (body, message)
                     lis_info = ''
 
             body = body and '%s\n</ul>' % body
@@ -273,7 +273,7 @@ class MessagePostShowAll(models.Model):
 
 class ProjectTaskType(models.Model):
     _name = 'project.task.type'
-    _description = 'Task Stage'
+    _description = 'Estados'
     _order = 'sequence, id'
 
     def _get_mail_template_id_domain(self):
@@ -283,10 +283,10 @@ class ProjectTaskType(models.Model):
         default_project_id = self.env.context.get('default_project_id')
         return [default_project_id] if default_project_id else None
 
-    name = fields.Char(string='Stage Name', required=True, translate=True)
+    name = fields.Char(string='Estados', required=True, translate=True)
     description = fields.Text(translate=True)
     sequence = fields.Integer(default=1)
-    project_ids = fields.Many2many('project.project', 'project_task_type_rel', 'type_id', 'project_id', string='Projects',
+    project_ids = fields.Many2many('project.project', 'project_task_type_rel', 'type_id', 'project_id', string='Departamentos',
         default=_get_default_project_ids)
     legend_priority = fields.Char(
         string='Priority Management Explanation', translate=True,
@@ -618,39 +618,13 @@ class Task(models.Model):
     description_general = fields.Text("Descripción", track_visibility='onchange')
     # recipient_ids = fields.One2many('hr.employee', 'task_ids', string='Integrantes')
 
-#    @api.onchange('student_ids')
-    def _students(self):
-        values = {
-            'website_published': True,
-            'message_type': 'notification',
-            'no_auto_thread': False,
-            'record_name': self.name,
-            'model':'project.task',
-            'subtype_id': 2,
-            'parent_id': 1608,
-            'res_id': 76, 
-        }
-        message_id = self.env['mail.message'].create(values)
-
-        vals = {
-            'new_value_text': 'valor prueba',
-            'write_id': self.env.uid,
-            'field':'student_ids',
-            'field_type':'text',
-            'old_value_text': 'valor viejo',
-            'field_desc': 'Integrantes',
-            'mail_message_id': message_id.id,
-        }
-        tracking = self.env['mail.tracking.value'].create(vals)
-        #raise UserError(_('Ya tiene un tema en proceso de inscripción.'))
-
     @api.multi
     def filter_kanban_topic_project(self):
-        value_domain = ['|',('user_id_asignado.id','=',self.env.uid),'|',
-            ('jefe_department_id.id','=',self.env.uid),'|',
-            ('student_ids.id', '=', self.env['res.users'].search([('id', '=', self.env.uid)],limit=1).emp_id),
-            ('create_uid','=',self.env.uid)]
-        #[('id', '=', self.env.user.emp_id)]
+        value_domain = ['|', ('user_id_asignado.id', '=', self.env.uid), '|',
+            ('jefe_department_id.id', '=', self.env.uid), '|',
+            ('student_ids.id', '=', self.env['res.users'].search([('id', '=', self.env.uid)], limit=1).emp_id),
+            ('create_uid', '=', self.env.uid)]
+        # [('id', '=', self.env.user.emp_id)]
         if self.env.uid == 1:
             value_domain = [] 
         return {
@@ -676,35 +650,148 @@ class Task(models.Model):
 
     @api.multi
     def action_step_one(self):
-        topic_member = self.env['project.task'].search([('stage_id', '>', 18),('active', '=', True)])
+        id_user_now = self.env['res.users'].search([('id', '=', self.env.uid)], limit=1).emp_id
+        topic_member = self.env['project.task'].search([('stage_id', '>', 18), ('active', '=', True)])
         for project in topic_member:
-            for member in project.student_ids:
-                if member.id == self.env['res.users'].search([('id', '=', self.env.uid)],limit=1).emp_id:
-                    raise UserError(_('Ya perteneces a un grupo que tiene un tema en proceso de inscripción.'))
-        topic_active = self.env['project.task'].search([('create_uid', '=', self.env.user.id),('stage_id', '>', 18),('active', '=', True)])
-        for projects in topic_active:
-            raise UserError(_('Ya tiene un tema en proceso de inscripción.'))
-        self.write({'stage_id': '19'})
+            if project.student_ids:
+                for member in project.student_ids:
+                    if member.id == id_user_now:
+                        raise UserError(_('Ya perteneces a un grupo que tiene un tema en proceso de inscripción.'))
+        topic_active = self.env['project.task'].search([('create_uid', '=', self.env.user.id), ('stage_id', '>', 18), ('active', '=', True)])
+        if topic_active:
+            for projects in topic_active:
+                raise UserError(_('Ya tiene un tema en proceso de inscripción.'))
+        self.write({'stage_id': 19})
+        self.ensure_one()
+        IrModelData = self.env['ir.model.data']
+        template_new_topic_propuesta = IrModelData.xmlid_to_object('project.email_template_stage_propuesta')
+        if template_new_topic_propuesta:
+            MailTemplate = self.env['mail.template']
+            body_html = MailTemplate.render_template(template_new_topic_propuesta.body_html, 'project.task', self.id)
+            subject = MailTemplate.render_template(template_new_topic_propuesta.subject, 'project.task', self.id)
+            email_to_1 = ''.join(self.jefe_department_id.mapped('login'))
+            email_to_2 = ''.join(self.user_id_coordi.mapped('login'))
+            email_to_students = ','.join(self.student_ids.mapped('work_email'))
+            mail = self.env['mail.mail'].create({
+                'name': 'TestTemplate',
+                'email_from': 'plataformatrabajogrado@gmail.com',
+                'email_to': email_to_1 + ',' + email_to_2,
+                'email_cc': email_to_students,
+                'partner_to': '',
+                'model_id': 209,
+                'subject': subject,
+                'body_html': body_html,
+            })
+            mail.send()
  
     @api.multi
     def action_step_two(self):
-        self.write({'stage_id': '20'})
+        self.write({'stage_id': 20})
+        self.ensure_one()
+        IrModelData = self.env['ir.model.data']
+        template_new_topic_validacion = IrModelData.xmlid_to_object('project.email_template_stage_validacion')
+        if template_new_topic_validacion:
+            MailTemplate = self.env['mail.template']
+            body_html = MailTemplate.render_template(template_new_topic_validacion.body_html, 'project.task', self.id)
+            subject = MailTemplate.render_template(template_new_topic_validacion.subject, 'project.task', self.id)
+            email_to_1 = ''.join(self.jefe_department_id.mapped('login'))
+            email_to_2 = ''.join(self.user_id_coordi.mapped('login'))
+            email_to_review = ','.join(self.person_review.mapped('login'))
+            email_to_students = ','.join(self.student_ids.mapped('work_email'))
+            mail = self.env['mail.mail'].create({
+                'name': 'Validacion',
+                'email_from': 'plataformatrabajogrado@gmail.com',
+                'email_to': email_to_review,
+                'email_cc': email_to_students + ',' + email_to_1 + ',' + email_to_2,
+                'partner_to': '',
+                'model_id': 209,
+                'subject': subject,
+                'body_html': body_html,
+            })
+            mail.send()
 
     @api.multi
     def action_step_three(self):
-        self.write({'stage_id': '21'})
+        self.write({'stage_id': 21})
+        self.ensure_one()
+        IrModelData = self.env['ir.model.data']
+        template_new_topic_asignacion = IrModelData.xmlid_to_object('project.email_template_stage_asignacion')
+        if template_new_topic_asignacion:
+            MailTemplate = self.env['mail.template']
+            body_html = MailTemplate.render_template(template_new_topic_asignacion.body_html, 'project.task', self.id)
+            subject = MailTemplate.render_template(template_new_topic_asignacion.subject, 'project.task', self.id)
+            email_to_1 = ''.join(self.jefe_department_id.mapped('login'))
+            email_to_2 = ''.join(self.user_id_coordi.mapped('login'))
+            email_to_3 = ','.join(self.user_id_asignado.mapped('login'))
+            email_to_students = ','.join(self.student_ids.mapped('work_email'))
+            mail = self.env['mail.mail'].create({
+                'name': 'Asignacion',
+                'email_from': 'plataformatrabajogrado@gmail.com',
+                'email_to': email_to_3,
+                'email_cc': email_to_students + ',' + email_to_1 + ',' + email_to_2,
+                'partner_to': '',
+                'model_id': 209,
+                'subject': subject,
+                'body_html': body_html,
+            })
+            mail.send()
  
     @api.multi
     def action_step_four(self):
-        self.write({'stage_id': '22'})
+        self.write({'stage_id': 22})
+        self.ensure_one()
+        IrModelData = self.env['ir.model.data']
+        template_new_topic_revision = IrModelData.xmlid_to_object('project.email_template_stage_revision')
+        if template_new_topic_revision:
+            MailTemplate = self.env['mail.template']
+            body_html = MailTemplate.render_template(template_new_topic_revision.body_html, 'project.task', self.id)
+            subject = MailTemplate.render_template(template_new_topic_revision.subject, 'project.task', self.id)
+            email_to_1 = ''.join(self.jefe_department_id.mapped('login'))
+            email_to_2 = ''.join(self.user_id_coordi.mapped('login'))
+            email_to_3 = ','.join(self.user_id_asignado.mapped('login'))
+            email_to_students = ','.join(self.student_ids.mapped('work_email'))
+            mail = self.env['mail.mail'].create({
+                'name': 'Revision',
+                'email_from': 'plataformatrabajogrado@gmail.com',
+                'email_to': email_to_students,
+                'email_cc': email_to_3 + ',' + email_to_1 + ',' + email_to_2,
+                'partner_to': '',
+                'model_id': 209,
+                'subject': subject,
+                'body_html': body_html,
+            })
+            mail.send()
 
     @api.multi
     def action_step_five(self):
-        self.write({'stage_id': '23'})
+        self.write({'stage_id': 23})
+        self.ensure_one()
+        IrModelData = self.env['ir.model.data']
+        template_new_topic_revision_end = IrModelData.xmlid_to_object('project.email_template_stage_revision_end')
+        if template_new_topic_revision_end:
+            MailTemplate = self.env['mail.template']
+            body_html = MailTemplate.render_template(template_new_topic_revision_end.body_html, 'project.task', self.id)
+            subject = MailTemplate.render_template(template_new_topic_revision_end.subject, 'project.task', self.id)
+            email_to_1 = ''.join(self.jefe_department_id.mapped('login'))
+            email_to_2 = ''.join(self.user_id_coordi.mapped('login'))
+            email_to_3 = ','.join(self.user_id_asignado.mapped('login'))
+            email_to_students = ','.join(self.student_ids.mapped('work_email'))
+            mail = self.env['mail.mail'].create({
+                'name': 'Revision',
+                'email_from': 'plataformatrabajogrado@gmail.com',
+                'email_to': email_to_students,
+                'email_cc': email_to_3 + ',' + email_to_1 + ',' + email_to_2,
+                'partner_to': '',
+                'model_id': 209,
+                'subject': subject,
+                'body_html': body_html,
+            })
+            mail.send()
  
     @api.multi
     def action_refuse(self):
-        self.write({'stage_id': '24'})
+        self.write({'stage_id': 24})
+
 
     @api.multi
     def action_inscri(self):
@@ -719,8 +806,30 @@ class Task(models.Model):
             'project_topic_id': self.id,
             'create_uid':1
         }) 
-        self.write({'stage_id': '24'})
+        self.write({'stage_id': 24})
         topic_grade_online._onchange_id_values()
+        self.ensure_one()
+        IrModelData = self.env['ir.model.data']
+        template_new_topic_inscripcion = IrModelData.xmlid_to_object('project.email_template_stage_inscripcion')
+        if template_new_topic_inscripcion:
+            MailTemplate = self.env['mail.template']
+            body_html = MailTemplate.render_template(template_new_topic_inscripcion.body_html, 'project.task', self.id)
+            subject = MailTemplate.render_template(template_new_topic_inscripcion.subject, 'project.task', self.id)
+            email_to_1 = ''.join(self.jefe_department_id.mapped('login'))
+            email_to_2 = ''.join(self.user_id_coordi.mapped('login'))
+            email_to_3 = ','.join(self.user_id_asignado.mapped('login'))
+            email_to_students = ','.join(self.student_ids.mapped('work_email'))
+            mail = self.env['mail.mail'].create({
+                'name': 'inscripcion',
+                'email_from': 'plataformatrabajogrado@gmail.com',
+                'email_to': email_to_students,
+                'email_cc': email_to_3 + ',' + email_to_1 + ',' + email_to_2,
+                'partner_to': '',
+                'model_id': 209,
+                'subject': subject,
+                'body_html': body_html,
+            })
+            mail.send()
 
     @api.multi
     def send_email(self):
@@ -772,6 +881,7 @@ class Task(models.Model):
 
     active = fields.Boolean(default=True, string='Habilitado', track_visibility='onchange')
     user_id_propuesto = fields.Many2one('res.users', string='Docente director propuesto', track_visibility='onchange')
+    person_review = fields.Many2many('res.users', string='Solicitar revisión', track_visibility='onchange')
     name = fields.Char(string='Tema', required=True, index=True, track_visibility='onchange')
     description = fields.Html(string='Description', track_visibility='onchange')
     priority = fields.Selection([
@@ -780,7 +890,7 @@ class Task(models.Model):
         ], default='0', index=True)
     sequence = fields.Integer(string='Sequence', index=True, default=10,
         help="Gives the sequence order when displaying a list of tasks.")
-    stage_id = fields.Many2one('project.task.type', string='Estado actual', index=True, copy=False, default=18,store=True, track_visibility='onchange')
+    stage_id = fields.Many2one('project.task.type', string='Estado actual', index=True, copy=False, default=18, store=True, track_visibility='onchange')
     tag_ids = fields.Many2many('project.tags', string='Tags', oldname='categ_ids')
     kanban_state = fields.Selection([
             ('normal', 'In Progress'),
@@ -960,17 +1070,17 @@ class Task(models.Model):
             vals['date_assign'] = fields.Datetime.now()
             vals['stage_id'] = 18
         task = super(Task, self.with_context(context)).create(vals)
-        #update project_task set stage_id=18 where id=64;
-        #query = """UPDATE public.project_task SET stage_id=%s WHERE id=%s;"""
-        #self.env.cr.execute(query, (18, task.id))
+        # update project_task set stage_id=18 where id=64;
+        # query = """UPDATE public.project_task SET stage_id=%s WHERE id=%s;"""
+        # self.env.cr.execute(query, (18, task.id))
 
         return task
 
     @api.multi
     def write(self, vals):
-        #query = """SELECT COUNT(*) FROM res_groups_users_rel WHERE uid = %s AND gid = 35;"""
-        #is_groups_students = self.env.cr.execute(query, (self.env.user.id))
-        #if self.stage_id != 18 and is_groups_students = 1:
+        # query = """SELECT COUNT(*) FROM res_groups_users_rel WHERE uid = %s AND gid = 35;"""
+        # is_groups_students = self.env.cr.execute(query, (self.env.user.id))
+        # if self.stage_id != 18 and is_groups_students = 1:
         #    raise UserError(_('Los alumnos no pueden editar '))
         now = fields.Datetime.now()
         # stage change: update date_last_stage_update

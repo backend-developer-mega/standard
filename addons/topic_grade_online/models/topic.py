@@ -25,6 +25,12 @@ class Topic(models.Model):
 
     @api.multi
     def filter_kanban_topic(self):
+        domain = []
+        if self.env.uid != 1:
+            domain = ['|',('docente_director_id.id','=',self.env.uid),'|',
+            ('jefe_department_id.id','=',self.env.uid),
+            ('student_ids.id', '=', self.env['res.users'].search([('id', '=', self.env.uid)],limit=1).emp_id)]
+
         return {
             'name': _('Trabajo Grado'),
             'view_type': 'form',
@@ -32,9 +38,7 @@ class Topic(models.Model):
             'res_model': 'topic.grade.online.topic',
             'view_id': False,
             'type': 'ir.actions.act_window',
-            'domain': ['|',('docente_director_id.id','=',self.env.uid),'|',
-            ('jefe_department_id.id','=',self.env.uid),
-            ('student_ids.id', '=', self.env['res.users'].search([('id', '=', self.env.uid)],limit=1).emp_id)],
+            'domain': domain,
 #           'domain': [('student_ids.id', '=', 53)] or [('docente_director_id.id','=',1)] and [],
 #           'domain': [('create_uid', 'in', [x.id for x in self.student_ids])],
         }

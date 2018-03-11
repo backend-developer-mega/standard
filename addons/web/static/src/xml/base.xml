@@ -742,7 +742,7 @@
             <span t-att-data-id="tag_id" t-att-data-color="10" class="o_tag_color_10"/>
         </li>
         <li>
-            No se muestra en kanban
+            Seleccione el color
         </li>
     </ul>
 </t>

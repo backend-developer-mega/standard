@@ -119,5 +119,116 @@
             model="mail.template" 
             name="send_mail"
             eval="[ref('mail_template_data_module_install_project'), ref('base.module_project')]"/>
+
+        <record id="email_template_stage_propuesta" model="mail.template">
+            <field name="name">Se ha enviado la propuesta</field>
+            <field name="subject">Trabajo de grado: ${object.name} </field>
+            <field name="model_id" ref="project.model_project_task"/>
+            <field name="body_html">
+            <![CDATA[
+                <p>Respetable Jefe de departamento,</p>
+                <p>Por medio de la presente se manifiesta que solicitamos su revision para la siguiente propuesta de tema de trabajo de grado: <strong> ${object.name} </strong>.</p>
+                <p>Para obtener más detalles de la solicitud del tema propuesto, por favor dirigirse a la plataforma de trabajos de grado en línea de la Universidad de El Salvador, Facultad Multidiciplinaria de Occidente.</p>
+                <p><strong>Información general</strong></p>
+                <p> Referencia numerica: ${object.id}</p>
+                <p> Departamento: ${object.depart_ids.name}</p>
+                <p> Carrera: ${object.department_id.name}</p>
+                <p> Numero de integrants: 5</p>
+            ]]></field>
+        </record>
+
+        <record id="email_template_stage_validacion" model="mail.template">
+            <field name="name">Proceso de validacion general</field>
+            <field name="subject">Evaluación de tema de trabajo de grado: ${object.name} </field>
+            <field name="model_id" ref="project.model_project_task"/>
+            <field name="body_html">
+            <![CDATA[
+                <p>Mi estimado colega,</p>
+                <p>Por medio de la presente se solicito un analisis y una revision detallada del tema: <strong> ${object.name} </strong>.</p>
+                <p>Para obtener más detalles de la solicitud del tema propuesto, por favor dirigirse a la plataforma de trabajos de grado en línea de la Universidad de El Salvador, Facultad Multidiciplinaria de Occidente.</p>
+                <p><strong>Información general</strong></p>
+                <p> Referencia numerica: ${object.id}</p>
+                <p> Departamento: ${object.depart_ids.name}</p>
+                <p> Carrera: ${object.department_id.name}</p>
+                <p> Numero de integrants: 5</p>
+            ]]></field>
+        </record>
+
+        <record id="email_template_stage_asignacion" model="mail.template">
+            <field name="name">Asignación de docente director</field>
+            <field name="subject">Asignación de docente director: ${object.user_id_asignado.name} </field>
+            <field name="model_id" ref="project.model_project_task"/>
+            <field name="body_html">
+            <![CDATA[
+                <p>Saludos ${object.user_id_asignado.name},</p>
+                <p>Informale por medio de la presente que has sido asignad@ como asesor de trabajo de grado del tema: <strong> ${object.name} </strong>.</p>
+                <p>Para obtener más detalles del tema asignado, por favor dirigirse a la plataforma de trabajos de grado en línea de la Universidad de El Salvador, Facultad Multidiciplinaria de Occidente.</p>
+                <p><strong>Información general</strong></p>
+                <p> Referencia numerica: ${object.id}</p>
+                <p> Departamento: ${object.depart_ids.name}</p>
+                <p> Carrera: ${object.department_id.name}</p>
+                <p> Numero de integrants: 5</p>
+            ]]></field>
+        </record>
+
+        <record id="email_template_stage_revision" model="mail.template">
+            <field name="name">Revision del tema</field>
+            <field name="subject">Revisión detallada del tema: ${object.name} </field>
+            <field name="model_id" ref="project.model_project_task"/>
+            <field name="body_html">
+            <![CDATA[
+                <p>Saludos egresados,</p>
+                <p>Informale que el asesor de trabajo de grado, ha iniciado la etapa de revision detallada del tema: <strong> ${object.name} </strong>.</p>
+                <p>Es muy importante que se diriga a la plataforma de trabajos de grado en línea y se ponga en contacto con el asesor por medio de la herramienta de traking de avances segun la etapa, realizando las respectivas correcciones en el caso fueren necesarias, segun indicaaciones del asesor. </p>
+                <p>Recuerde dejar en este traking el seguimiento de cada uno de los avances de las observaciones que el docente director le haga.</p>
+                <p>Para obtener más detalles del tema asignado, por favor dirigirse a la plataforma de trabajos de grado en línea de la Universidad de El Salvador, Facultad Multidiciplinaria de Occidente.</p>
+                <p><strong>Información general</strong></p>
+                <p> Referencia numerica: ${object.id}</p>
+                <p> Departamento: ${object.depart_ids.name}</p>
+                <p> Carrera: ${object.department_id.name}</p>
+                <p> Numero de integrants: 5</p>
+            ]]></field>
+        </record>
+
+        <record id="email_template_stage_revision_end" model="mail.template">
+            <field name="name">Revision del tema finalizada</field>
+            <field name="subject">Revisión detallada del tema: ${object.name}, finalizada </field>
+            <field name="model_id" ref="project.model_project_task"/>
+            <field name="body_html">
+            <![CDATA[
+                <p>Saludos egresados,</p>
+                <p>Informale que el asesor de trabajo de grado, ha finalizado la etapa de revision detallada del tema: <strong> ${object.name} </strong>.</p>
+                <p>En este momento tu proceso de inscripción del tema de trabajo de grado se encuentra bajo la auditoria de la Junta Directiva de la Universidad de El Salvador, Facultad Multidiciplinaria de Occidente. </p>
+ 
+                <p>Para obtener más detalles de los avances del proceso, por favor dirigirse a la plataforma de trabajos de grado en línea de la Universidad de El Salvador, Facultad Multidiciplinaria de Occidente.</p>
+                <p><strong>Información general</strong></p>
+                <p> Referencia numerica: ${object.id}</p>
+                <p> Departamento: ${object.depart_ids.name}</p>
+                <p> Carrera: ${object.department_id.name}</p>
+                <p> Numero de integrants: 5</p>
+            ]]></field>
+        </record>
+
+        <record id="email_template_stage_inscripcion" model="mail.template">
+            <field name="name">Tema inscrito</field>
+            <field name="subject">Tema de grado INSCRITO: ${object.name} </field>
+            <field name="model_id" ref="project.model_project_task"/>
+            <field name="body_html">
+            <![CDATA[
+                <p>Saludos egresados,</p>
+                <p>Informale que Junta Directiva a realizado al revision del tema de grado y a procedido a realizar la <strong> INSCRIPCIÓN OFICIAL</strong> del tema: <strong> ${object.name} </strong>.</p>
+                <p>En este momento en el modulo de trabajos de grado en la plataforma debe aparacer tu tema de grado inscripto para que inicies desde este momento el desarrollo de tu tema de grado. </p>
+
+                <p>Los miembros de la Junta Directiva de Universidad de El Salvador, te motivan culminar con perseverancia y dedicación el tema de grado inscripto</p>
+ 
+                <p>Para obtener más detalles de los avances del proceso, por favor dirigirse a la plataforma de trabajos de grado en línea de la Universidad de El Salvador, Facultad Multidiciplinaria de Occidente.</p>
+                <p><strong>Información general</strong></p>
+                <p> Referencia numerica: ${object.id}</p>
+                <p> Departamento: ${object.depart_ids.name}</p>
+                <p> Carrera: ${object.department_id.name}</p>
+                <p> Numero de integrants: 5</p>
+            ]]></field>
+        </record>
+
     </data>
 </odoo>

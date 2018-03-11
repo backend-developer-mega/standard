@@ -327,7 +327,7 @@ var Followers = form_common.AbstractField.extend({
      * @param {Array} [ids.channel_ids] the channel ids
      */
     do_unfollow: function (ids) {
-        if (confirm(_t("Warning! \n If you remove a follower, he won't be notified of any email or discussion on this document. Do you really want to remove this follower ?"))) {
+        if (confirm(_t("Advertencia! \n ¿Estas seguro de quitar este usuario del seguimiento de este tema?"))) {
             _(this.$('.o_subtype_checkbox')).each(function (record) {
                 $(record).attr('checked',false);
             });

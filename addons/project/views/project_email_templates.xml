@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<odoo>
+	<data noupdate="1">
+		<record id="email_template_stage_propuesta" model="mail.template">
+	        <field name="name">Se ha enviado la propuesta</field>
+	        <field name="subject">Trabajo de grado: ${object.name} </field>
+	        <field name="model_id" ref="project.model_project_task"/>
+	        <field name="body_html">
+			<![CDATA[
+				<p>Respetable Jefe de departamento,</p>
+				<p>Por medio de la presente se manifiesta que solicitamos su revision para la siguiente propuesta de tema de trabajo de grado: <strong> ${object.name} </strong>.</p>
+				<p>Para obtener mas detalles de la solicitud del tema propuesto, por favor dirigirse a la plataforma de trabajos de grado en linea de la Universidad de El Salvador, Facultad Multidiciplinaria de Occidente.</p>
+				<p><strong>Información general</strong></p>
+				<p> Referencia numerica: ${object.id}</p>
+				<p> Departamento: ${object.depart_ids.name}</p>
+				<p> Carrera: ${object.department_id.name}</p>
+				<p> Numero de integrants: 5</p>
+			]]></field>
+	    </record>
+
+	</data>
+</odoo>
