@@ -32,7 +32,7 @@ class Job(models.Model):
     _description = "Job Position"
     _inherit = ['mail.thread']
 
-    name = fields.Char(string='Job Title', required=True, index=True, translate=True)
+    name = fields.Char(string='Nombre', required=True, index=True, translate=True)
     expected_employees = fields.Integer(compute='_compute_employees', string='Total Forecasted Employees', store=True,
         help='Expected number of employees for this job position after new recruitment.')
     no_of_employee = fields.Integer(compute='_compute_employees', string="Current Number of Employees", store=True,
@@ -268,11 +268,11 @@ class Employee(models.Model):
 class Department(models.Model):
 
     _name = "hr.department"
-    _description = "Hr Department"
+    _description = "Carrera"
     _inherit = ['mail.thread', 'ir.needaction_mixin']
     _order = "name"
 
-    name = fields.Char('Department Name', required=True)
+    name = fields.Char('Carrera', required=True)
     active = fields.Boolean('Active', default=True)
     company_id = fields.Many2one('res.company', string='Company', index=True, default=lambda self: self.env.user.company_id)
     parent_id = fields.Many2one('hr.department', string='Parent Department', index=True)
@@ -280,6 +280,7 @@ class Department(models.Model):
     manager_id = fields.Many2one('hr.employee', string='Manager', track_visibility='onchange')
     member_ids = fields.One2many('hr.employee', 'department_id', string='Members', readonly=True)
     jobs_ids = fields.One2many('hr.job', 'department_id', string='Jobs')
+    jobs_id = fields.Many2one('hr.job', string='Departamento')
     note = fields.Text('Note')
     color = fields.Integer('Color Index')
 

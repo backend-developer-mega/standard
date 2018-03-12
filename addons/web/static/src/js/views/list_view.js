@@ -285,7 +285,7 @@ var ListView = View.extend({
                 this.sidebar.add_toolbar(this.fields_view.toolbar);
             }
             this.sidebar.add_items('other', _.compact([
-                { label: _t("Exportar"), callback: this.on_sidebar_export },
+                /*{ label: _t("Exportar"), callback: this.on_sidebar_export },*/
                 this.fields_view.fields.active && {label: _t("Archivar"), callback: this.do_archive_selected},
                 this.fields_view.fields.active && {label: _t("Desarchivar"), callback: this.do_unarchive_selected},
                 this.is_action_enabled('delete') && { label: _t('Eliminar'), callback: this.do_delete_selected }

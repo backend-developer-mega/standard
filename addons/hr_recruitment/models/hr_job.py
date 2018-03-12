@@ -86,6 +86,12 @@ class Job(models.Model):
 
     @api.model
     def create(self, vals):
+        #Aqui debe ir el codigo para agregar un departamento al proceso de inscripcion
+        project_values = {
+                'name': vals.get('name'),
+                'use_tasks': True,
+        }
+        department = self.env['project.project'].create(project_values)
         return super(Job, self.with_context(mail_create_nolog=True)).create(vals)
 
     @api.multi

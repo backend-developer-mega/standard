@@ -378,18 +378,20 @@
             <form string="Create a Job Position">
                 <sheet>
                     <group>
-                        <field name="name" class="oe_inline" placeholder="e.g. Sales Manager"/>
-                        <label for="alias_name" string="Job Email" attrs="{'invisible': [('alias_domain', '=', False)]}" help="Define a specific contact address for this job position. If you keep it empty, the default email address will be used which is in human resources settings"/>
-                        <div name="alias_def" attrs="{'invisible': [('alias_domain', '=', False)]}">
-                            <field name="alias_id" class="oe_read_only" string="Email Alias" required="0"/>
+                        <field name="name" class="oe_inline" placeholder="Ingenieria y Ar..."/>
+                        <label for="alias_name" string="Job Email" attrs="{'invisible': [('alias_domain', '=', False)]}" invisible="1" />
+                        
+                        <div name="alias_def" attrs="{'invisible': [('alias_domain', '=', False)]}" invisible="1">
+                            <field name="alias_id" class="oe_read_only" string="Email Alias" required="0" invisible="1" />
                             <div class="oe_edit_only" name="edit_alias">
-                                <field name="alias_name" class="oe_inline"/>@<field name="alias_domain" class="oe_inline" readonly="1"/>
+                                <field name="alias_name" class="oe_inline"/>@<field name="alias_domain" class="oe_inline" readonly="1" invisible="1" />
                             </div>
                         </div>
+
                     </group>
                     <footer>
                         <button string="Nuevo" name="close_dialog" type="object" class="btn-primary"/>
-                        <button string="Discard" class="btn-default" special="cancel"/>
+                        <button string="Cerrar" class="btn-default" special="cancel"/>
                     </footer>
                 </sheet>
             </form>

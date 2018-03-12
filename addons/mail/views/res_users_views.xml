@@ -10,7 +10,9 @@
             <field name="arch" type="xml">
             <data>
                 <field name="email" position="before">
+                    <!--
                     <field name="notify_email" widget="radio" readonly="0"/>
+                    -->
                 </field>
             </data>
             </field>
@@ -24,7 +26,9 @@
             <field name="arch" type="xml">
                 <data>
                     <field name="signature" position="before">
+                        <!--
                         <field name="notify_email" widget="radio"/>
+                        -->
                     </field>
                     <field name="signature" position="before">
                         <field name="alias_id"/>
