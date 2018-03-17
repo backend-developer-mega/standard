@@ -133,7 +133,7 @@
 
 	<template id="apply">
 		<t t-call="website.layout">
-			<t t-set="additional_title">Apply Job</t>
+			<t t-set="additional_title">Solicitud</t>
 
 			<div id="wrap" class="container">
 				<h1 class="text-center">
@@ -222,7 +222,7 @@
 								</div>
 								<div class="col-md-7 col-sm-8">
 									<input type="email" class="form-control o_website_form_input"
-										name="email_from" required="" />
+										name="email_from" id="email_prueba" required="" />
 								</div>
 							</div>
 							<div class="form-group form-field o_website_form_required_custom">
@@ -239,16 +239,27 @@
 									<label class="control-label" for="partner_phone">Año de: Ingreso</label>
 								</div>
 								<div class="col-md-3 col-sm-3">
-									<input type="text" class="form-control o_website_form_input"
-										name="year_incom" required="" />
+									<input type="number" class="form-control o_website_form_input" onkeyup="myFunction()"
+										name="year_incom" id="year_incom_1" required="" min="1990" max="2100" />
 								</div>
 								<div class="col-sm-1">
 									<label class="control-label" for="partner_phone">Egreso</label>
 								</div>
 								<div class="col-md-3 col-sm-1">
-									<input type="text" class="form-control o_website_form_input"
-										name="year_out" required="" />
+									<input type="number" class="form-control o_website_form_input" value=""
+										name="year_out" id="year_out_1" required="" 
+										 max="2100" />
 								</div>
+								<script>
+									function myFunction() {
+				var year_incom = document.getElementById('year_incom_1');
+				var year_out = document.getElementById('year_out_1');
+				var minin = parseInt(year_incom.value)+parseInt(1); 
+				year_out.setAttribute("min", minin);
+				year_out.setAttribute("value", minin);
+				
+									}
+								</script>
 							</div>
 							<div class="form-group form-field o_website_form_required_custom">
 								<div class="col-md-3 col-sm-4 text-right">
@@ -258,9 +269,11 @@
 									<select id="department_id" name="department_id" class="form-control">
 										<!-- <option value="">Seleccione</option> -->
 										<t t-foreach="departments" t-as="c">
-											<option t-att-value="c.id">
-												<t t-esc="c.name" />
-											</option>
+											<t t-if="c.jobs_id.id == job.id">
+												<option t-att-value="c.id">
+													<t t-esc="c.name" />
+												</option>
+											</t>
 										</t>
 									</select>
 								</div>
@@ -326,7 +339,7 @@
 		<section class="mb32">
 			<div class="container">
 				<p class="mt0 lead">
-					Short summary of the job: A sales job for smart people
+					Datos relevantes del departamento en general: A sales job for smart people
 					and can
 					learn quickly new industries management practices. You will
 					be
@@ -685,7 +698,6 @@
 		<xpath expr="." position="inside">
 			<script type="text/javascript"
 				src="/website_hr_recruitment/static/src/js/website_hr_recruitment_tour.js"></script>
-				
 		</xpath>
 	</template>
 

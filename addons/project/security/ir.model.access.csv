@@ -10,6 +10,7 @@ access_account_analytic_line_project,account.analytic.line project,analytic.mode
 access_project_tags_manager,project.project_tags_manager,model_project_tags,project.group_project_manager,1,1,1,1
 access_mail_alias,mail.alias,mail.model_mail_alias,project.group_project_manager,1,1,1,1
 access_project_evaluation,project.evaluation,model_project_evaluation,project.group_project_manager,1,1,1,1
+access_project_hr_employee_project,hr.employee,hr.model_hr_employee,project.group_project_manager,1,0,0,0
 access_project_project,project.project,model_project_project,project.group_project_user,1,0,0,0
 access_account_analytic_account_user,account.analytic.account,analytic.model_account_analytic_account,project.group_project_user,1,0,0,0
 access_project_task_type_project_user,project.task.type.project.user,model_project_task_type,project.group_project_user,1,0,0,0

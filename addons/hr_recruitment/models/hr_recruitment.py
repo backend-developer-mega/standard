@@ -86,10 +86,10 @@ class RecruitmentDegree(models.Model):
 
 class Applicant(models.Model):
     _name = "hr.applicant"
-    _description = "Applicant"
+    _description = "Solicitudes"
     _order = "priority desc, id desc"
     _inherit = ['mail.thread', 'ir.needaction_mixin', 'utm.mixin']
-    _mail_mass_mailing = _('Applicants')
+    _mail_mass_mailing = _('Solicitudes')
 
     @api.multi
     def filter_students_applicant(self):
@@ -171,7 +171,7 @@ class Applicant(models.Model):
     partner_phone = fields.Char("Phone", size=32)
     partner_mobile = fields.Char("Mobile", size=32)
     type_id = fields.Many2one('hr.recruitment.degree', "Degree")
-    department_id = fields.Many2one('hr.department', "Department")
+    department_id = fields.Many2one('hr.department', "Carrera")
     reference = fields.Char("Referred By")
     day_open = fields.Float(compute='_compute_day', string="Days to Open")
     day_close = fields.Float(compute='_compute_day', string="Days to Close")

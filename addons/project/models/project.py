@@ -611,7 +611,7 @@ class Task(models.Model):
     
     # recipient_ids = fields.Many2many('hr.employee', string='Integrantes')
     
-    student_ids = fields.Many2many('hr.employee', 'student_lead_tag_rel_res', 'student_lead_id_res', 'student_tag_id_res', string='integrante', help="Agregar los integrantes al grupo", track_visibility='onchange')
+    student_ids = fields.Many2many('hr.employee', 'student_lead_tag_rel_res', 'student_lead_id_res', 'student_tag_id_res', string='integrante', help="Agregar los integrantes al grupo", track_visibility='onchange', groups="project.group_project_manager")
     department_id = fields.Many2one('hr.department', string='Carrera', default=lambda self: self.env['res.users'].sudo().browse(self.env.uid).career_id)
     depart_ids = fields.Many2one('hr.job', string='Departamento', default=lambda self: self.env['res.users'].sudo().browse(self.env.uid).department_id)
     jefe_department_id = fields.Many2one('res.users', "Jefe de Departamento", track_visibility='onchange')
