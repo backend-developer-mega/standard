@@ -480,8 +480,9 @@
 							<field name="depart_ids" options='{"no_create_edit": True, "no_open": True}' context="{'default_department_id':1}" readonly="1" />
      						<field name="department_id" options='{"no_open": True, "no_create_edit": True}' readonly="1" />     						 
      						<field name="user_id" class="o_task_user_field" options='{"no_open": True, "no_create_edit": True}' invisible="1" />
-							<field name="user_id_propuesto" class="o_task_user_field" domain="[('type_selection', '=', 'catedratico')]" options='{"no_open": True, "no_create_edit": True}' string="Docente director propuesto" />
-							<field name="person_review" string="Revisión detallada" widget="many2many_tags" domain="[('type_selection', '=', 'catedratico')]" options='{"no_open": True, "no_create_edit": True}' attrs="{'invisible': [('stage_id', '!=', 19)]}" />
+							<field name="user_id_propuesto" class="o_task_user_field" domain="[('type_selection', '=', 'catedratico')]" options='{"no_open": True, "no_create_edit": True}' string="Docente director propuesto" attrs="{'required': [('stage_id', '==', 18)]}" />
+							<field name="person_review" string="Revisión detallada" widget="many2many_tags" domain="[('type_selection', '=', 'catedratico')]" options='{"no_open": True, "no_create_edit": True}' attrs="{'invisible': [('stage_id', '!=', 19)], 'required': [('stage_id', '==', 19)]}" 
+								 />
 							<field name="legend_blocked" invisible="1" />
 							<field name="legend_normal" invisible="1" />
 							<field name="legend_done" invisible="1" />
@@ -492,7 +493,7 @@
 							<field name="jefe_department_id" domain="[('type_selection', '=', 'department')]" options='{"no_open": True, "no_create_edit": True}' />
 							<field name="user_id_coordi" domain="[('type_selection', '=', 'coordinador')]" options='{"no_open": True, "no_create_edit": True}' />
 							<field name="user_id_asignado" domain="[('type_selection', '=', 'catedratico')]" options='{"no_open": True, "no_create_edit": True}' />
-      						<field name="time_grade" string="Tiempo trabajo grado probable" />
+      						<field name="time_grade" string="Tiempo trabajo grado probable" attrs="{'required': [('stage_id', '==', 18)]}" />
 							<!-- <field name="recipient_ids" widget="many2many_tags" /> -->
 
 						</group>
@@ -501,15 +502,15 @@
 					<notebook>
 						<page string="Tema del trabajo de grado">
 							<h2>
-								<field name="name" widget="text" placeholder="Ingrese el tema..." />
+								<field name="name" widget="text" placeholder="Ingrese el tema..." attrs="{'required': [('stage_id', '==', 18)]}" />
 							</h2>
 						</page>
 						<page string="Descripción General">
-							<field name="description_general" />
+							<field name="description_general" attrs="{'required': [('stage_id', '==', 18)]}"/>
 							<div class="oe_clear" />
 						</page>
 						<page string="Integrantes">
-							<field name="student_ids" domain="[('department_id','=',department_id)]">
+							<field name="student_ids" attrs="{'required': [('stage_id', '==', 18)]}" domain="[('department_id','=',department_id)]">
 								<tree editable="bottom" string="Taxes">
 									<field name="carnet" string="Carnet" />
 									<field name="name" string="Nombre" />

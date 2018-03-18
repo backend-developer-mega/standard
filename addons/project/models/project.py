@@ -630,7 +630,7 @@ class Task(models.Model):
         return {
             'name': _('Temas'),
             'view_type': 'form',
-            'view_mode': 'kanban,tree,form,calendar,pivot,graph',
+            'view_mode': 'kanban,tree,form',
             'res_model': 'project.task',
             'view_id': False,
             'type': 'ir.actions.act_window',
