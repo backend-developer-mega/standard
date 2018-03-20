@@ -422,7 +422,7 @@
                             <field name="topic_id" string="Tema de grado" readonly="1" />
                         </group>
                         <group>
-                            <field name="evaluations_id" string="Pertenece a la evaluación"/>
+                            <field name="evaluations_id" domain="[('topic_id', '=', topic_id)]" string="Pertenece a la evaluación"/>
                         </group>
                         <field name="user_id" invisible="1" />
                     </group>
@@ -464,7 +464,7 @@
                 <templates>
                     <t t-name="kanban-tooltip">
                         <ul class="oe_kanban_tooltip">
-                            <li t-if="record.user_id"><b>Docente:</b> <field name="user_id"/></li>
+                            <li t-if="record.user_id"><b>Evaluación: </b> <field name="evaluations_id"/></li>
                         </ul>
                     </t>
                     <t t-name="kanban-box">
@@ -479,9 +479,9 @@
                                 </ul>
                             </div>
                             <div class="oe_kanban_content" tooltip="kanban-tooltip">
-                                    <i><field name="user_id"/></i><br/>
-                                    <field name="topic_id"/><br/>
-                                        <field name="name"/>
+                                    <strong><field name="topic_id"/></strong><br/>
+                                    <field name="name"/><br/>
+                                    <i><field name="description"/></i>
                             <!--    <div class="oe_kanban_bottom_left oe_margin_top_4">
                                     <t t-if="record.message_needaction_counter.raw_value">
                                         <span class='oe_kanban_mail_new' title='Unread Messages'><i class='fa fa-comments'/><t t-raw="record.message_needaction_counter.raw_value"/></span>
@@ -544,28 +544,28 @@
 
     <menuitem id="menu_topic_grade_online_configuration" name="Configuración" parent="menu_topic_grade_online_root"
         sequence="100"/>
-
+<!--
     <menuitem
         id="menu_topic_grade_online_topic"
         name="Temas de grado"
         parent="menu_topic_grade_online_configuration"
         action="topic_grade_online_topic_act"
         sequence="1"/>
-
+-->
     <menuitem
         id="menu_topic_grade_online_stage"
         name="Estados"
         parent="menu_topic_grade_online_configuration"
         action="topic_grade_online_stage_act"
         sequence="2"/>
-
+<!--
     <menuitem
         id="menu_topic_grade_online_evaluations"
         name="Evaluaciones"
         parent="menu_topic_grade_online_configuration"
         action="topic_grade_online_evaluations_act"
         sequence="3"/>
-
+-->
 <!--     <menuitem
         id="menu_topic_grade_online_evaluations"
         name="Evaluaciones"

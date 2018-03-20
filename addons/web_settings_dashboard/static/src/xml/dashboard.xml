@@ -23,7 +23,7 @@
     </t>
 
     <t t-name="DashboardApps">
-        
+<!--        
         <div class="text-center o_web_settings_dashboard_apps">
             <i class="fa fa-cog fa-4x text-muted o_browse_apps" style="cursor: pointer;"></i>
             <div class="o_web_settings_dashboard_header">
@@ -46,9 +46,10 @@
             </div>
             <div class="clearfix"/>
         </div>
-    
+    -->
     </t>
     <t t-name="DashboardInvitations">
+        <!--
         <div class="text-center o_web_settings_dashboard_invitations">
             <i class="fa fa-users fa-4x text-muted o_web_settings_dashboard_access_rights" style="cursor: pointer;"></i>
             <div class="o_web_settings_dashboard_header">
@@ -85,8 +86,10 @@
                 </small>
             </div>
         </div>
+    -->
     </t>
     <t t-name="DashboardPlanner">
+        <!--
         <div class="text-center o_web_settings_dashboard_planner">
             <i class="fa fa-check-square-o fa-4x text-muted"></i>
             <div class="o_web_settings_dashboard_header">
@@ -104,9 +107,11 @@
             <hr/>
             Need more help? <a href="https://www.odoo.com/documentation/user">Browse the documentation.</a>
         </div>
+    -->
     </t>
     
     <t t-name="DashboardPlanner.PlannersList">
+        <!--
         <div class="row o_web_settings_dashboard_planners_list">
             <t t-if="!planners.length">
                 <div>You need to install some apps first.</div>
@@ -126,9 +131,11 @@
                 </div>
             </t>
         </div>
+    -->
     </t>
 
     <t t-name="DashboardShare">
+    <!--
         <div class="text-center o_web_settings_dashboard_share">
             <i class="fa fa-share-alt fa-4x text-muted"/>
             <div class="o_web_settings_dashboard_header">Share the Love</div>
@@ -172,10 +179,16 @@
                     <a t-if="debug != false" class="oe_activate_debug_mode pull-right" href="/web" >Deactivate the developer mode</a>
                 </div>
             </div>
-        </div>
+        </div> -->
+            <div class="row">
+                <div class="col-md-12">
+                    <a t-if="debug != 'assets'" class="oe_activate_debug_mode pull-right" href="?debug=assets" >Dashboard</a>
+                </div>
+            </div>
     </t>
 
     <t t-name="DashboardEnterprise">
+        <!--
         <hr class="mt16"/>
         <div class="text-center o_web_settings_dashboard_enterprise">
             <div class="text-center o_web_settings_dashboard_enterprise">
@@ -187,6 +200,7 @@
                 </div>
             </div>
         </div>
+    -->
     </t>
 
 

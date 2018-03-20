@@ -600,12 +600,9 @@
         <field name="context">{'create': False}</field>
         <field name="help" type="html">
             <p>
-                No document yet.
+                Ningun documento.
             </p><p>
-                This menu helps you search through resumes and motivation
-                letters. Odoo automatically indexes .PDF, .DOC, DOCX, .TXT
-                files so that you can search keywords from the content of these
-                files.
+                No se encontro ningun documento asociado a solicitudes.
             </p>
         </field>
     </record>
@@ -785,8 +782,7 @@
         <field name="model">hr.employee</field>
         <field name="inherit_id" ref="hr.view_employee_filter"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='department_id']" position="after">
-                <filter name="newly_hired_employee" string="New Hired" domain="[('newly_hired_employee', '=', True)]"/>
+         <xpath expr="//field[@name='name']" position="after">
             </xpath>
         </field>
     </record>

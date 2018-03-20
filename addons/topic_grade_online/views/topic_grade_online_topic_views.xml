@@ -56,12 +56,17 @@
                             </div>
                             <div class="container o_kanban_card_manage_pane o_invisible">
                                 <div class="row">
-                                    <div class="col-xs-12 o_kanban_card_manage_section o_kanban_manage_view">
+                                    <div class="col-xs-6 o_kanban_card_manage_section o_kanban_manage_view">
                                     <button  class="btn btn-primary oe_kanban_action oe_kanban_action_button" name="show_evaluations_topic" type="object" help="Ver las notas de las evaluaciones">
                                         <div class="o_form_field o_stat_info">
                                          <span class="o_stat_text">Evaluaciones</span>
                                         </div>
                                     </button>
+                                    </div>
+                                    <div class="col-xs-6 text-right">
+                                        <a type="edit" help="Ver Información">
+                                                Información general
+                                        </a>
                                     </div>
                                 </div>
 

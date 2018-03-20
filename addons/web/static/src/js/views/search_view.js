@@ -317,17 +317,18 @@ var SearchView = View.extend({
         var menu_defs = [];
         this.prepare_search_inputs();
         if (this.$buttons) {
+
             if (!this.options.disable_filters) {
                 this.filter_menu = new FilterMenu(this, this.filters);
-                menu_defs.push(this.filter_menu.appendTo(this.$buttons));
+                //menu_defs.push(this.filter_menu.appendTo(this.$buttons));
             }
             if (!this.options.disable_groupby) {
                 this.groupby_menu = new GroupByMenu(this, this.groupbys);
-                menu_defs.push(this.groupby_menu.appendTo(this.$buttons));
+                //menu_defs.push(this.groupby_menu.appendTo(this.$buttons));
             }
             if (!this.options.disable_favorites) {
                 this.favorite_menu = new FavoriteMenu(this, this.query, this.dataset.model, this.action_id, this.favorite_filters);
-                menu_defs.push(this.favorite_menu.appendTo(this.$buttons));
+                //menu_defs.push(this.favorite_menu.appendTo(this.$buttons));
             }
         }
         return $.when.apply($, menu_defs).then(this.set_default_filters.bind(this));
