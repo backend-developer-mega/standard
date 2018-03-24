@@ -185,7 +185,7 @@
         <field name="model">hr.applicant</field>
         <field name="arch" type="xml">
             <search string="Search Applicants">
-                <field name="partner_name" filter_domain="['|','|',('name','ilike',self),('partner_name','ilike',self),('email_from','ilike',self)]" string="Subject / Applicant"/>
+                <field name="partner_name" filter_domain="['|','|',('name','ilike',self),('partner_name','ilike',self),('email_from','ilike',self)]" string="Nombre"/>
                 <filter string="My" domain="[('user_id', '=', uid)]"/>
                 <filter string="Unassigned" domain="[('user_id', '=', False)]"/>
                 <separator/>

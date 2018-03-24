@@ -50,7 +50,7 @@
                                     </group>
                                 </group>
                             </page>
-                            <page string="Attachments">
+                            <page string="Archivos">
                                 <field name="attachment_ids"/>
                             </page>
                             <page string="Failure Reason" attrs="{'invisible': [('state', '!=', 'exception')]}">

@@ -11,6 +11,7 @@
 	</template>
 
 	<template id="index" name="Jobs">
+		<t t-set="additional_title">Departamento</t>
 		<t t-call="website.layout">
 			<div id="wrap">
 				<div class="oe_structure">
@@ -89,7 +90,7 @@
 
 	<template id="detail" name="Job Detail">
 		<t t-call="website.layout">
-			<t t-set="additional_title">Job Detail</t>
+			<t t-set="additional_title">Departamento</t>
 			<div id="wrap" class="js_hr_recruitment">
 				<div class="oe_structure" />
 

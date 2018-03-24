@@ -161,7 +161,7 @@ response = request.render("website.template_partner_comment", {
                                   <h2>Homepage 0.0.0.0</h2>
                                   <h3>Click to customize this text</h3>
                                   <p>
-                                    <a class="btn btn-success btn-large" href="/page/website.contactus">Contact us</a>
+                                    <a class="btn btn-success btn-large" href="/page/website.contactus">Contactenos</a>
                                   </p>
                                 </div>
                                 <span class="carousel-img col-md-6 hidden-sm hidden-xs"> </span>
@@ -196,7 +196,7 @@ response = request.render("website.template_partner_comment", {
         </record>
 
         <record id="website2_menu_contactus" model="website.menu">
-            <field name="name">Contact us</field>
+            <field name="name">Contactenos</field>
             <field name="url">/page/website.contactus</field>
             <field name="parent_id" ref="website.website2_main_menu"/>
             <field name="sequence" type="int">60</field>

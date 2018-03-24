@@ -262,25 +262,25 @@ class IrAttachment(models.Model):
                 index_content = ustr("\n".join(words))
         return index_content
 
-    name = fields.Char('Attachment Name', required=True)
-    datas_fname = fields.Char('File Name')
+    name = fields.Char('Nombre del archivo', required=True)
+    datas_fname = fields.Char('File')
     description = fields.Text('Description')
     res_name = fields.Char('Resource Name', compute='_compute_res_name', store=True)
     res_model = fields.Char('Resource Model', readonly=True, help="The database object this attachment will be attached to.")
     res_field = fields.Char('Resource Field', readonly=True)
     res_id = fields.Integer('Resource ID', readonly=True, help="The record id this is attached to.")
-    create_date = fields.Datetime('Date Created', readonly=True)
-    create_uid = fields.Many2one('res.users', string='Owner', readonly=True)
+    create_date = fields.Datetime('Fecha', readonly=True)
+    create_uid = fields.Many2one('res.users', string='Propietario', readonly=True)
     company_id = fields.Many2one('res.company', string='Company', change_default=True,
                                  default=lambda self: self.env['res.company']._company_default_get('ir.attachment'))
-    type = fields.Selection([('url', 'URL'), ('binary', 'File')],
-                            string='Type', required=True, default='binary', change_default=True,
+    type = fields.Selection([('url', 'URL'), ('binary', 'Archivo')],
+                            string='Tipo', required=True, default='binary', change_default=True,
                             help="You can either upload a file from your computer or copy/paste an internet link to your file.")
     url = fields.Char('Url', index=True, size=1024)
     public = fields.Boolean('Is public document')
 
     # the field 'datas' is computed and may use the other fields below
-    datas = fields.Binary(string='File Content', compute='_compute_datas', inverse='_inverse_datas')
+    datas = fields.Binary(string='Contenido del archivo', compute='_compute_datas', inverse='_inverse_datas')
     db_datas = fields.Binary('Database Data')
     store_fname = fields.Char('Stored Filename')
     file_size = fields.Integer('File Size', readonly=True)

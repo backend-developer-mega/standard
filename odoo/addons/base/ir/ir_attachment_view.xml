@@ -4,7 +4,7 @@
         <record id="view_attachment_form" model="ir.ui.view">
             <field name="model">ir.attachment</field>
             <field name="arch" type="xml">
-                <form string="Attachments">
+                <form string="Archivos">
                    <sheet>
                     <label for="name" class="oe_edit_only"/>
                     <h1>
@@ -47,12 +47,13 @@
         <record id="view_attachment_tree" model="ir.ui.view">
             <field name="model">ir.attachment</field>
             <field name="arch" type="xml">
-                <tree string="Attachments">
+                <tree string="Archivos">
                     <field name="name"/>
                     <field name="datas_fname"/>
+                    <!--
                     <field name="res_model"/>
                     <field name="res_field"/>
-                    <field name="res_id"/>
+                    <field name="res_id"/>-->
                     <field name="type"/>
                     <field name="company_id" groups="base.group_multi_company"/>
                     <field name="create_uid"/>
@@ -63,7 +64,7 @@
         <record id="view_attachment_search" model="ir.ui.view">
             <field name="model">ir.attachment</field>
             <field name="arch" type="xml">
-                <search string="Attachments">
+                <search string="Archivos">
                     <field name="name" filter_domain="['|', ('name','ilike',self), ('datas_fname','ilike',self)]" string="Attachment"/>
                     <field name="create_date"/>
                     <filter name="url_filter" string="URL" domain="[('type','=','url')]"/>
@@ -86,7 +87,7 @@
             </field>
         </record>
         <record id="action_attachment" model="ir.actions.act_window">
-            <field name="name">Attachments</field>
+            <field name="name">Archivos</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">ir.attachment</field>
             <field name="view_type">form</field>
@@ -94,10 +95,10 @@
             <field name="search_view_id" ref="view_attachment_search"/>
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">
-                    Click here to create new documents.
+                    Click aqui para agregar un nuevo documento.
                 </p>
                 <p>
-                    Also you will find here all the related documents and download it by clicking on any individual document.
+                    Todos tus documentos del trabajo de grado listos y organizados en un solo lugar.
                 </p>
             </field>
         </record>

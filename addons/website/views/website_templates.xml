@@ -841,6 +841,7 @@ Sitemap: <t t-esc="url_root"/>sitemap.xml
 </template>
 
 <template id="contactus" name="Contact us" page="True">
+    <t t-set="additional_title">Contactenos</t>
     <t t-call="website.layout">
       <div id="wrap">
         <div class="oe_structure"/>

@@ -608,12 +608,22 @@ class Task(models.Model):
     _inherit = ['message.post.show.all', 'ir.needaction_mixin']
     _mail_post_access = 'read'
     _order = "priority desc, sequence, date_start, name, id"
-    
-    # recipient_ids = fields.Many2many('hr.employee', string='Integrantes')
-    
+
+    @api.onchange('jefe_department_id')
+    def _id_department_uid(self):
+        id_department_uid = 0
+        id_coordinator_uid = 0
+        self._cr.execute("""SELECT id FROM res_users WHERE type_selection = 'department' AND department_id = (SELECT department_id FROM res_users WHERE id = %s)""", (self.env.uid,))
+        id_department_uid = [r[0] for r in self._cr.fetchall()]
+        self.jefe_department_id = self.env['res.users'].search([('id', '=', id_department_uid)], limit=1).id
+        self._cr.execute("""SELECT id FROM res_users WHERE type_selection = 'coordinador' AND department_id = (SELECT department_id FROM res_users WHERE id = %s)""", (self.env.uid,))
+        id_coordinator_uid = [r[0] for r in self._cr.fetchall()]
+        self.user_id_coordi = self.env['res.users'].search([('id', '=', id_coordinator_uid)], limit=1).id
+                
     student_ids = fields.Many2many('hr.employee', 'student_lead_tag_rel_res', 'student_lead_id_res', 'student_tag_id_res', string='integrante', help="Agregar los integrantes al grupo", track_visibility='onchange', groups="project.group_project_manager")
     department_id = fields.Many2one('hr.department', string='Carrera', default=lambda self: self.env['res.users'].sudo().browse(self.env.uid).career_id)
     depart_ids = fields.Many2one('hr.job', string='Departamento', default=lambda self: self.env['res.users'].sudo().browse(self.env.uid).department_id)
+    #id_department_uid = self.env['res.users'].search([('id', '=', self.env.uid)], limit=1).department_id
     jefe_department_id = fields.Many2one('res.users', "Jefe de Departamento", track_visibility='onchange')
     description_general = fields.Text("Descripción", track_visibility='onchange')
     # recipient_ids = fields.One2many('hr.employee', 'task_ids', string='Integrantes')
@@ -1226,7 +1236,7 @@ class Task(models.Model):
         if self.project_id:
             current_objects = filter(None, headers.get('X-Odoo-Objects', '').split(','))
             current_objects.insert(0, 'project.project-%s, ' % self.project_id.id)
-            headers['X-Odoo-Objects'] = ','.join(current_objects)
+            headers['X-Odoo-Objfects'] = ','.join(current_objects)
         if self.tag_ids:
             headers['X-Odoo-Tags'] = ','.join(self.tag_ids.mapped('name'))
         res['headers'] = repr(headers)

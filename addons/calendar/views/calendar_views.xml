@@ -279,6 +279,7 @@
                 <field name="name" string="Reuniones" filter_domain="[('name','ilike',self)]"/>
                 <field name="partner_ids"/>
                 <field name="categ_ids"/>
+                <!--
                 <field name="user_id"/>
                 <field name="show_as"/>
                 <field name="privacy" string="Privacidad"/>
@@ -291,6 +292,7 @@
                     <filter string="Disponibilidad" domain="[]" context="{'group_by':'show_as'}"/>
                     <filter string="Privacidad" domain="[]" context="{'group_by':'privacy'}"/>
                 </group>
+                -->
             </search>
         </field>
     </record>

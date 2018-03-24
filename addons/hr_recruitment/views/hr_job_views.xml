@@ -63,11 +63,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-xs-12 o_kanban_primary_bottom">
-                                            Egresados inscritos:   <field name="no_of_hired_employee" />
-                                        </div>
-                                    </div>
                                 </t>
                                 <t t-if="record.state.raw_value == 'open'">
                                     <div class="row">
@@ -98,7 +93,7 @@
                                         <div>
                                             <a name="%(action_hr_job_new_application)d" type="action">Solicitud</a>
                                         </div>
-                                    </div>
+                                    </div><!--
                                     <div class="col-xs-4 o_kanban_card_manage_section o_kanban_manage_reports">
                                         <div class="o_kanban_card_manage_title">
                                             <span>Reportes</span>
@@ -107,7 +102,7 @@
                                         <div>
                                             <a name="%(action_hr_recruitment_report_filtered_job)d" type="action">Solicitudes</a>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
 
                                 <div t-if="widget.editable" class="o_kanban_card_manage_settings row">
@@ -115,7 +110,7 @@
                                     <!--    <ul class="oe_kanban_colorpicker" data-field="color"/> -->
                                     </div>
                                     <div class="col-xs-4 text-right">
-                                        <a type="edit">Settings</a>
+                                        <a type="edit">Configuraciones</a>
                                     </div>
                                 </div>
                             </div>

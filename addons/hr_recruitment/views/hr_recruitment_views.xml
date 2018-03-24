@@ -195,7 +195,8 @@
         <field name="model">hr.applicant</field>
         <field name="arch" type="xml">
             <search string="Search Applicants">
-                <field name="partner_name" filter_domain="['|','|',('name','ilike',self),('partner_name','ilike',self),('email_from','ilike',self)]" string="Subject / Applicant"/>
+                <field name="partner_name" filter_domain="['|','|',('name','ilike',self),('partner_name','ilike',self),('email_from','ilike',self)]" string="Nombre"/>
+                <!--
                 <filter string="My" domain="[('user_id', '=', uid)]"/>
                 <filter string="Unassigned" domain="[('user_id', '=', False)]"/>
                 <separator/>
@@ -210,7 +211,7 @@
                 <field name="stage_id" domain="[]"/>
                 <separator/>
                 <field name="categ_ids"/>
-                <field name="attachment_ids" filter_domain="[('attachment_ids.index_content', 'ilike', self)]" string="Attachments"/>
+                <field name="attachment_ids" filter_domain="[('attachment_ids.index_content', 'ilike', self)]" string="Archivos"/>
                 <separator/>
                 <group expand="0" string="Group By">
                     <filter string="Responsible" domain="[]"  context="{'group_by':'user_id'}"/>
@@ -219,7 +220,7 @@
                     <filter string="Stage" domain="[]" context="{'group_by':'stage_id'}"/>
                     <filter string="Creation Date" context="{'group_by':'create_date'}"/>
                     <filter string="Last Stage Update" context="{'group_by':'date_last_stage_update'}"/>
-                </group>
+                </group>-->
            </search>
         </field>
     </record>
@@ -316,7 +317,7 @@
     <record model="ir.actions.act_window" id="action_hr_job_applications">
         <field name="name">Solicitudes</field>
         <field name="res_model">hr.applicant</field>
-        <field name="view_mode">kanban,tree,form,graph,calendar,pivot</field>
+        <field name="view_mode">kanban,tree,form,graph,calendar</field>
         <field name="context">{'search_default_job_id': [active_id], 'default_job_id': active_id}</field>
         <field name="help" type="html">
               <p>

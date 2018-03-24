@@ -298,7 +298,7 @@
 				</tree>
 			</field>
 		</record>
-
+		<!--
 		<record id="hr_employee_action_subordinate_hierachy" model="ir.actions.act_window">
 			<field name="name">Subordinate Hierarchy</field>
 			<field name="type">ir.actions.act_window</field>
@@ -318,7 +318,7 @@
 			<field name="key2">client_action_multi</field>
 			<field name="model">hr.employee</field>
 		</record>
-
+		-->
 		<!-- Employee Category -->
 		<record id="view_employee_category_form" model="ir.ui.view">
 			<field name="name">hr.employee.category.form</field>
