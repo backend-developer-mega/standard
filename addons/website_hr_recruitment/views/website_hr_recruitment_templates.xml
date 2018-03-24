@@ -156,26 +156,26 @@
 								<div class="col-md-3 col-sm-4 text-right">
 									<label class="control-label" for="partner_phone">Ciclo</label>
 								</div>
-								<div class="col-sm-1" style="width: 90px !important; padding-right: 2px !important;">
+								<div class="col-sm-1" id="input_01">
 									<select type="text" name="cycle" class="form-control">
 										<option value="1">1</option>
 										<option value="2">2</option>
 										<option value="3">3</option>
 									</select>
 								</div>
-								<div class="col-sm-2" style="padding-left: 3px !important; width: 115px !important; padding-right: 2px !important;">
+								<div class="col-sm-2" id="input_02">
 									<label class="control-label" for="partner_phone">Año academico</label>
 								</div>
-								<div class="col-sm-1" style="padding-left: 2px !important; padding-right: 2px !important;">
+								<div class="col-sm-1" id="input_03">
 									<input type="number" min="1950" class="form-control o_website_form_input"
 										name="academic_year" required="" />
 								</div>
-								<div class="col-sm-1" style="padding-left: 5px !important; width: 70px !important; padding-right: 5px !important;">
+								<div class="col-sm-1" id="input_04">
 									<label class="control-label" for="partner_phone">Carnet</label>
 								</div>
-								<div class="col-sm-2" style="padding-left: 2px !important; width: 137px !important;">
+								<div class="col-sm-2" id="input_05">
 									<input type="text" class="form-control o_website_form_input"
-										name="carnet" required="" style="width: 290.992188px !important;" />
+										name="carnet" required="" id="input_06" />
 								</div>
 							</div>
 							
@@ -243,7 +243,7 @@
 									<input type="number" class="form-control o_website_form_input" onkeyup="myFunction()"
 										name="year_incom" id="year_incom_1" required="" min="1990" max="2100" />
 								</div>
-								<div class="col-sm-1">
+								<div class="col-sm-1" id="input_09">
 									<label class="control-label" for="partner_phone">Egreso</label>
 								</div>
 								<div class="col-md-3 col-sm-1">
@@ -287,7 +287,7 @@
 									<input type="text" class="form-control o_website_form_input"
 										name="curriculum" required="" />
 								</div>
-								<div class="col-sm-2" style="width: 120px !important;">
+								<div class="col-sm-2" id="input_07">
 									<label class="control-label" for="partner_phone">Total de U.V.</label>
 								</div>
 								<div class="col-sm-1">
@@ -316,7 +316,7 @@
 								</div>
 							</div>
 							<div class="form-group form-field o_website_form_custom"
-								style="margin-left: 120px;">
+								id="input_08">
 								Adjuta tus documentos en un solo archivo PDF: Comprobante
 								de pago,
 								recod de notas, certificado de horas sociales y carta de
