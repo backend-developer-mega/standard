@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <data noupdate="1">
+    <data noupdate="0">
 
         <!-- Banner -->
         <template inherit_id="website.homepage" id="homepage_inherit">
@@ -21,6 +21,12 @@
                             <img class="img img-responsive"
                                 src="/web_openeducat/static/src/img/banner_image.jpg"
                                 alt="Banner Odoo Image" />
+
+                        </div>
+                        <div class="item">
+                            <img class="img img-responsive"
+                                src="/web_openeducat/static/src/img/banner_image1.jpg"
+                                alt="Banner Odoo Image1" />
 
                         </div>
                         <div class="item">
@@ -63,7 +69,7 @@
                                 <div
                                     class="about-sec section-padding-top mt64 mb64">
                                     <h2 class="section-title">
-                                        Why Choose Us?
+                                        ¿No te has inscrito aún?
                                         <span>Lorem ipsum dolor sit amet
                                         </span>
                                     </h2>

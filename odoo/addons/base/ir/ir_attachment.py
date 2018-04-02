@@ -262,8 +262,8 @@ class IrAttachment(models.Model):
                 index_content = ustr("\n".join(words))
         return index_content
 
-    name = fields.Char('Nombre del archivo', required=True)
-    datas_fname = fields.Char('File')
+    name = fields.Char('Nombre del archivo', required=True, track_visibility='onchange')
+    datas_fname = fields.Char('File', track_visibility='onchange')
     description = fields.Text('Description')
     res_name = fields.Char('Resource Name', compute='_compute_res_name', store=True)
     res_model = fields.Char('Resource Model', readonly=True, help="The database object this attachment will be attached to.")

@@ -222,7 +222,7 @@ class WebsiteForm(http.Controller):
         if orphan_attachment_ids:
             if model.model != 'mail.mail':
                 values = {
-                    'body': _('<p>Attached files : </p>'),
+                    'body': _('<p>Archivo adjunto: </p>'),
                     'model': model.model,
                     'message_type': 'comment',
                     'no_auto_thread': False,
