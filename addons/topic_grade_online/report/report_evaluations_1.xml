@@ -12,22 +12,22 @@
                 <div class="col-md-10">
                   <div class="page-header">
                     <t t-if="result.state == 'report1'">
-                      <center><h3>Evaluación de proceso formativo 1</h3></center>
+                      <center><h3>EVALUACIÓN DE PROCESO FORMATIVO 1</h3></center>
                     </t>
                     <t t-if="result.state == 'report2'">
-                      <center><h3>Evaluación de proyecto</h3></center>
+                      <center><h3>EVALUACIÓN DE PROYECTO</h3></center>
                     </t>
                     <t t-if="result.state == 'report3'">
-                      <center><h3>Evaluación de proceso formativo 2</h3></center>
+                      <center><h3>EVALUACIÓN DE PROCESO FORMATIVO 2</h3></center>
                     </t>
                     <t t-if="result.state == 'report4'">
-                      <center><h3>Evaluación del avance capitular</h3></center>
+                      <center><h3>EVALUACIÓN DEL AVANCE CAPITULAR</h3></center>
                     </t>
                     <t t-if="result.state == 'report5'">
-                      <center><h3>Evaluación de presentación oral final</h3></center>
+                      <center><h3>EVALUACIÓN DE PRESENTACIÓN ORAL FINAL</h3></center>
                     </t>
                     <t t-if="result.state == 'report6'">
-                      <center><h3>Consolidado final</h3></center>
+                      <center><h3>CONSOLIDADO FINAL</h3></center>
                     </t>
                   </div>
                 </div>
@@ -263,10 +263,11 @@
 
               <div class="row">
                 <div class="col-md-12">
+                  <div id="postdata">
                   <p>POR MEDIO DE LA PRESENTE SE HACE CONSTAR  LA NOTA PONDERADA  DE CADA ALUMNO AL FINAL DE LA COLUMNA RESPECTIVA</p>
                   <p>* Evaluación Parcial sobre la base de los artículos Nos. 11 y 13 del REGLAMENTO GENERAL DE PROCESOS DE GRADUACION DE LA U.E.S.</p>
                   <p>** NOTAS INDIVIDUALES: En este Proceso todas las notas registradas son individuales.</p>
-                  <P>Dicha nota deberá ser ESCRITA A MANO POR EL DOCENTE DIRECTOR del Trabajo de Graduación, debiendo las anotaciones no tener ningún tipo de ENMENDADURA</P>
+                  </div>
                 </div>
 
               </div>

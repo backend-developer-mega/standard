@@ -18,7 +18,7 @@ class Topic(models.Model):
     jefe_department_id = fields.Many2one('res.users', "Jefe de Departamento", track_visibility='onchange')
     coordinador_department_id = fields.Many2one('res.users', "Coordinador de Departamento", track_visibility='onchange')
     docente_director_id = fields.Many2one('res.users', "Docente director", track_visibility='onchange')
-    evaluations_ids = fields.One2many('topic.grade.online.evaluations', 'topic_id') 
+    evaluations_ids = fields.One2many('topic.grade.online.evaluations', 'topic_id', string="Evaluaciones") 
     total = fields.Float(string="Total", readonly=True, compute='calulate_total', store=True)
     project_topic_id = fields.Many2one('project.task', string='Tema inscripcion')
     student_ids = fields.Many2many('hr.employee', 'students_lead_tag_rel_res', 'students_lead_id_res', 'students_tag_id_res')

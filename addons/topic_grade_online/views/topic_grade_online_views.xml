@@ -544,6 +544,17 @@
 
     <menuitem id="menu_topic_grade_online_configuration" name="Configuración" parent="menu_topic_grade_online_root"
         sequence="100"/>
+
+    <menuitem id="menu_topic_grade_online_report" name="Reportes" parent="menu_topic_grade_online_root"
+        sequence="101"/>
+
+    <menuitem
+        id="menu_topic_grade_online_reports_1" 
+        name="Trabajos de grado"
+        parent="menu_topic_grade_online_report"
+        action="topic_grade_online_topic_act"
+        sequence="1"/>
+
 <!--
     <menuitem
         id="menu_topic_grade_online_topic"

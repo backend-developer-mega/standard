@@ -21,6 +21,7 @@
 		'utm',
 		'document',
 		'web_tour',
+		'report',
 	],
 	'data': [
     	'security/topic_grade_security.xml',
@@ -29,6 +30,7 @@
 		'views/topic_grade_online_templates.xml',
 		'views/topic_grade_online_topic_views.xml',
 		'report/report_evaluations_1.xml',
+		'report/report_topic_grade.xml',
 		'report/report_reference.xml',
 		'report/template.xml',
 	],
